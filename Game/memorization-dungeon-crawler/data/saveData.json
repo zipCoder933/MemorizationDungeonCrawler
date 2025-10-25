@@ -2,12 +2,12 @@
 	"games": [
 		{
 			"name": "Multiplication",
-			"uuid": "a",
+			"path": "C:/Local Files/github/MemorizationDungeonCrawler/Game/memorization-dungeon-crawler/data/games/multiplication/",
 			"completed_level": 0
 		},
 		{
 			"name": "Addition",
-			"uuid": "b",
+			"path": "C:/Local Files/github/MemorizationDungeonCrawler/Game/memorization-dungeon-crawler/data/games/addition/",
 			"completed_level": 0
 		}
 	]

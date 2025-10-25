@@ -1,18 +1,30 @@
 extends Node
 
+#An array of Levels
 static var levels: Array = []
 static var seed
-
 static var start_speed
 static var goal_speed
 static var midgame_start_speed
 static var midgame_goal_speed
 
-func _ready():
-	load_levels("res://data/games/multiplication/level.json")  # path to your JSON file
-	print("Loaded %d levels" % levels.size())
+#The level we are currently on
+static var current_level = null
 
-static func load_levels(file_path: String):
+func _ready():
+	pass
+	#load_levels("res://data/games/multiplication/level.json")  # path to your JSON file
+	#print("Loaded %d levels" % levels.size())
+
+static func load_from_file(file_path: String):
+	#Reset everything first
+	levels = []
+	seed = 0
+	start_speed = 0
+	goal_speed = 0
+	midgame_start_speed = 0
+	midgame_goal_speed = 0
+	
 	print("Loading levels")
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	
@@ -72,10 +84,6 @@ static func load_levels(file_path: String):
 				learnedTags, 
 				Level.LevelType.STANDARD))
 		levels.append(makeLevel(final, goal_speed, learnedTags, Level.LevelType.BOSS))
-	
-	#print("\nlevels:")
-	#for l in levels:
-		#print(l.toString())
 
 static func makeLevel(dungeon:Variant, speed_seconds:float, cardTags:Array, levelType: Level.LevelType) -> Level:
 

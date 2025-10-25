@@ -3,6 +3,8 @@ class_name CardsHandler extends Node
 #A hashmap (dictionary)
 static var tag_dict = {}
 static var player_mastery_dict = {}
+
+#CONSTANTS
 static var UNIQUE_IN_N_FACTS:int = 2; # We dont want cards to be repeated too quickly
 
 func _init():
@@ -41,9 +43,11 @@ static func randomCard(tag: String) -> Card:
 	return picked
 
 
-
-
-static func openCards(jsonFile):
+static func load_from_file(jsonFile):
+	#reset everything first
+	tag_dict={}
+	player_mastery_dict = {}
+	
 	var file = FileAccess.open(jsonFile, FileAccess.READ)
 	if file:#If read succesfully
 		var content = file.get_as_text()
