@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4y3srd4o2pb3"]
+[gd_scene load_steps=10 format=3 uid="uid://b4y3srd4o2pb3"]
 
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_n5p7m"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_eelho"]
@@ -10,6 +10,8 @@
 
 [sub_resource type="Resource" id="Resource_0oum7"]
 script = ExtResource("4_aevpi")
+
+[sub_resource type="BoxMesh" id="BoxMesh_eelho"]
 
 [node name="Level" type="Node3D"]
 
@@ -38,6 +40,16 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="StaticBody3D" parent="." instance=ExtResource("5_eelho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2889023, 0, 3.251708)
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.07118406, 0.9974632, 0, -0.9974632, 0.07118406, 0, 3.286365, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DirectionalLight3D"]
+transform = Transform3D(1, 0, 0, 0, -0.9041869, -0.42713705, 0, 0.42713705, -0.9041869, 0, 3.2863648, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_eelho")
+
 [node name="Player" parent="." node_paths=PackedStringArray("phantom_camera_3d") instance=ExtResource("4_n5p7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0331488, 0.7522333, 0.76711893)
 phantom_camera_3d = NodePath("../PhantomCamera3D")
@@ -47,10 +59,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
 
 [node name="Door" parent="." instance=ExtResource("7_0oum7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6340475, -0.03555858, 1.2157931)
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.901508, 0.024285711, -0.4320805, 0.26702994, 0.75447875, 0.5995474, 0.340556, -0.6558752, 0.6736835, -3.0613227, 1.8557096, -3.074823)
-light_energy = 2.829
-
-[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.901508, 0.03110703, 0.431643, 0.26702997, -0.8248837, -0.49825892, 0.3405559, 0.56444603, -0.7519458, -5.9382224, 2.8218932, -5.025458)

@@ -125,6 +125,5 @@ func _input(event: InputEvent) -> void:
 func _on_body_entered(body: Node) -> void:
 	if body is Floor:
 		is_on_floor = true
-	#elif body is DoorTrigger:
-		#print("PLAYER IN DOOR")
-		#body.open_door(true)
+	elif body is DoorTrigger:
+		body.open_door(true)

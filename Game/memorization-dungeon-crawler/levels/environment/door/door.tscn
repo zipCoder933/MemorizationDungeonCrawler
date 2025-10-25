@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdnosseu7fsm"]
+
+[ext_resource type="PackedScene" uid="uid://bkeiga1qgtt2g" path="res://assets/models/door/medeval/door frame.glb" id="1_45plq"]
+[ext_resource type="Script" uid="uid://b6gsly6ywnrfy" path="res://levels/environment/door/door.gd" id="1_k7fuj"]
+[ext_resource type="PackedScene" uid="uid://y4f1l2qd7mo7" path="res://assets/models/door/medeval/door.glb" id="2_k7fuj"]
+[ext_resource type="Script" uid="uid://b68we0kyy51am" path="res://levels/environment/door/trigger.gd" id="4_wsbsg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xgmq8"]
+size = Vector3(1.3112488, 5, 1.1327026)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_45plq"]
+size = Vector3(3.1680908, 5.339203, 0.5579834)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_45plq"]
+radius = 4.0
+
+[node name="Door" type="StaticBody3D"]
+collision_layer = 2
+script = ExtResource("1_k7fuj")
+
+[node name="wall sides" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 2.0156207)
+shape = SubResource("BoxShape3D_xgmq8")
+
+[node name="wall sides2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005783081, 2.5, -2.007875)
+shape = SubResource("BoxShape3D_xgmq8")
+
+[node name="frame mesh" parent="." instance=ExtResource("1_45plq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="door mesh" parent="." instance=ExtResource("2_k7fuj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="door mesh"]
+collision_layer = 2
+
+[node name="doorCollision" type="CollisionShape3D" parent="door mesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7030783, 0)
+shape = SubResource("BoxShape3D_45plq")
+
+[node name="trigger" type="StaticBody3D" parent="."]
+collision_layer = 4
+script = ExtResource("4_wsbsg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8124537, 0)
+shape = SubResource("SphereShape3D_45plq")

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpunwt6bwc3bm"]
+
+[ext_resource type="Texture2D" uid="uid://oxj6462r64m" path="res://assets/models/door/medeval/door frame_seaworn_stone_tiles_diff_4k.jpg" id="1_5vrq6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
+size = Vector3(1, 5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7e51"]
+albedo_texture = ExtResource("1_5vrq6")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5vrq6"]
+size = Vector3(1, 5, 5)
+
+[node name="wall" type="StaticBody3D"]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_xfbw5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = SubResource("StandardMaterial3D_x7e51")
+mesh = SubResource("BoxMesh_5vrq6")
