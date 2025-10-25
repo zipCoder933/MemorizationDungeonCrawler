@@ -1,5 +1,20 @@
 class_name CardsHandler extends Node
 
+
+const LevelsHandler = preload("uid://bte11e0fapqes")
+
+#An easier alternative
+static func randomCardInCurrentLevel() -> Card:
+	#Get the tags of the current level
+	var tags = LevelsHandler.current_level.cardTags
+	#Get a random tag from that pile
+	var tag = tags[randi_range(0,tags.size()-1)]
+	#print("TAGS: ",tags)
+	#Get a card from the tag
+	return CardsHandler.randomCard(tag)
+	
+#======================================================
+
 #A hashmap (dictionary)
 static var tag_dict = {}
 static var player_mastery_dict = {}

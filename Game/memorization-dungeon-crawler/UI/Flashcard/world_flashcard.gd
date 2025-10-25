@@ -18,13 +18,14 @@ signal single_drill
 
 const GLOBAL_NODE = preload("uid://d364dmqkqu5a0")
 
-
+var deckSize:int = 0
 var succeeded:int = 0
 var questions:Array#[Question];
 
 func drill(questions2:Array):
 	Globals.fact_answering_mode.emit(self)
 	print("Drilling player on ",questions2.size()," cards.")
+	deckSize = questions2.size()
 	questions = questions2;
 	succeeded = 0
 	_drill(questions[0])
@@ -77,6 +78,7 @@ func _ready():
 	 #])
 
 func _nextCard(succeed:bool):
+	print("Succeeded: ",succeed)
 	if(succeed):
 		succeeded += 1
 	single_drill.emit(succeed)
@@ -84,7 +86,7 @@ func _nextCard(succeed:bool):
 	if(questions.size() > 0):
 		_drill(questions[0])
 	else:
-		finished_drill.emit(succeeded)
+		finished_drill.emit(succeeded, deckSize)
 		Globals.adventure_mode.emit()
 		visible = false
 	if(anyKeyPressed):
@@ -118,14 +120,13 @@ func _input(event):
 					if answer.text.length() > 0:
 						answer.text = answer.text.substr(0, answer.text.length() - 1)
 				elif key_name == "Enter":
-					print("Entered:", answer.text)
-					_nextCard(answer.text.strip_edges() == currentQuestion.answer_text.strip_edges())
+					_nextCard(currentQuestion.answerEquals(answer.text))
 				elif !(event.keycode in ignored_keys):
 					var char = event.as_text()
 					if( char != null):
 						answer.text += char
 				#print("Answer ", answer.text ," Real: ",currentQuestion.answer_text)
-				if(answer.text.strip_edges() == currentQuestion.answer_text.strip_edges()):
+				if(currentQuestion.answerEquals(answer.text)):
 					_nextCard(true)
 		else:#Any key released
 			anyKeyPressed = false

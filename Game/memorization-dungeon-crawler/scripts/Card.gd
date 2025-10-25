@@ -1,5 +1,9 @@
 class_name Card
 
+const Question = preload("uid://f2davn2or15j")
+const Level = preload("uid://dbbavq1ux02yt")
+
+
 var type: String
 var question: String
 var answer: String
@@ -10,6 +14,10 @@ func _init(_type: String, _question: String, _answer: String, _tags: Array):
 	question = _question
 	answer = _answer
 	tags = _tags
+
+func toQuestion(timeMultiplier:float, level:Level):
+	var isImage = type == "image";
+	return Question.new(isImage, question, answer, level.time_to_answer_sec * timeMultiplier)
 
 func toString() -> String:
 	return "%s: %s = %s [%s]" % [type, question, answer, ", ".join(tags)]

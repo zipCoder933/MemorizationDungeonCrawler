@@ -1,5 +1,7 @@
 extends StaticBody3D
 class_name DoorTrigger
+const CardsHandler = preload("uid://cc0wwewiey4d7")
+const LevelsHandler = preload("uid://bte11e0fapqes")
 
 @export var door:Door;
 @onready var _3d_flashcard: Sprite3D = $"3dFlashcard"
@@ -15,15 +17,12 @@ func _ready():
 func open_door(open2:bool):
 	if(!door.open):
 		_3d_flashcard.drill([ 
-		Question.new(false, "5+5", "10", 5),
-		Question.new(false, "10+10", "20", 5),
-		Question.new(false, "15+15", "30", 5),
-		Question.new(false, "20+20", "40", 5)
+			CardsHandler.randomCardInCurrentLevel().toQuestion(1,LevelsHandler.current_level)
 		 ])
 
-func _on_d_flashcard_finished_drill(succeeded:int) -> void:
-	#print("A ",succeeded)
-	if(succeeded > 2):
+func _on_d_flashcard_finished_drill(succeeded:int, questions:int) -> void:
+	print("succeeded=",succeeded," questions=", questions)
+	if(succeeded >= questions):
 		door.setOpen(true)
 
 func _on_d_flashcard_single_drill(success:bool) -> void:

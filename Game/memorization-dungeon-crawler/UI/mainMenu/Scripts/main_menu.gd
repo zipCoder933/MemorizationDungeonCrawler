@@ -26,11 +26,5 @@ func start_game(dir:String):
 	
 	#Load a level
 	LevelsHandler.current_level = LevelsHandler.levels[0]
-	
-	var tags = LevelsHandler.current_level.cardTags
-	print(tags)
-	var card = CardsHandler.randomCard(tags)
-	print(card.toString())
-	
-	#get_tree().change_scene_to_file("res://levels/Level.tscn")
+	get_tree().change_scene_to_file("res://levels/Level.tscn")
 	
