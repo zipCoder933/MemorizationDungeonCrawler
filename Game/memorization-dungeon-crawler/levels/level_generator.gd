@@ -93,21 +93,22 @@ func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, t
 	x = final.x;
 	z = final.z;
 	
-	#Place an enemy in the center of the arena
-	var instance = ARENA_ENEMIES[randi_range(0,ARENA_ENEMIES.size()-1)].instantiate()
-	var enemyPos = Vector3(x+0.5,0,z+0.5)
-	if(direction == Direction.ZPOS):
-		instance.rotation.y = PI/2
-		enemyPos.z += 1
-	elif(direction == Direction.ZNEG):
-		instance.rotation.y = -(PI/2)
-		enemyPos.z -= 1
-	elif(direction == Direction.XPOS):
-		instance.rotation.y = PI
-		enemyPos.x += 1
-	else:
-		enemyPos.x -= 1
-	add_entry(enemyPos, instance)
+	if !testMode:
+		var instance = ARENA_ENEMIES[randi_range(0,ARENA_ENEMIES.size()-1)].instantiate()
+		var enemyPos = Vector3(x+0.5,0,z+0.5)
+		if(direction == Direction.ZPOS):
+			instance.rotation.y = PI/2
+			enemyPos.z += 1
+		elif(direction == Direction.ZNEG):
+			instance.rotation.y = -(PI/2)
+			enemyPos.z -= 1
+		elif(direction == Direction.XPOS):
+			instance.rotation.y = PI
+			enemyPos.x += 1
+		else:
+			enemyPos.x -= 1
+		instance.position = _format_vec3(enemyPos)
+		add_child(instance)
 	
 	if direction == Direction.ZPOS:
 		for ox in range(x-z_radius,x+z_radius+1):#Spread out
