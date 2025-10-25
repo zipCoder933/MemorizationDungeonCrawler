@@ -150,6 +150,7 @@ bones/68/position = Vector3(-4.8912305e-09, 0.0712, 7.7089055e-09)
 player = NodePath("..")
 
 [node name="Panel" parent="." instance=ExtResource("4_83hs8")]
+visible = false
 offset_left = 231.0
 offset_top = 261.0
 offset_right = 421.0
