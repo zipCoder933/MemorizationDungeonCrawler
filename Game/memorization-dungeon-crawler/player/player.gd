@@ -98,8 +98,19 @@ func _physics_process(delta: float) -> void:
 		rotation.y = lerp_angle(rotation.y, targetRotation, 0.1)
 	elif(mode == PlayerMode.FACTS):
 		pass
+		#position = flash_card.position
 		#phantom_camera_3d.set_follow_targets([self,flash_card])
 		#targetRotation = flash_card.rotation.y+PI
+		#look_at(flash_card.global_position, Vector3.UP)
+		var target_pos = flash_card.global_position
+		var self_pos = global_transform.origin
+
+		# get direction (ignoring Y)
+		var dir = target_pos - self_pos
+		dir.y = 0
+		dir = dir.normalized()
+		var target_yaw = atan2(dir.x, dir.z)
+		rotation.y = target_yaw
 		#rotation.y = lerp_angle(rotation.y, targetRotation, 0.1)
 	else:
 		linear_velocity = Vector3.ZERO

@@ -30,8 +30,11 @@ func drill(questions2:Array):
 	succeeded = 0
 	_drill(questions[0])
 
-func _drill(q:Question):
+func _makeVisible():
 	visible = true
+
+func _drill(q:Question):
+	_makeVisible()
 	print("QUESITON: ",q.question)
 	progress_bar.value = 1
 	time_left_ms = q.time_limit * 1000
@@ -56,9 +59,6 @@ func _drill(q:Question):
 	answer.text=""
 	if(anyKeyPressed):
 		can_accept_input = false
-	#move card to player
-	#position = Vector3(player.position.x,player.position.y,player.position.z)
-	#print("POS: ",position)
 
 var can_accept_input = false
 var currentQuestion:Question;

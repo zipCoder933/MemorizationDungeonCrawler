@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://kc1hudugjql4"]
+[gd_scene load_steps=6 format=3 uid="uid://3cmqyetfdyvt"]
 
 [ext_resource type="PackedScene" uid="uid://m1nwhli4ahnc" path="res://player/Knight.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://btu8hwdt0o0n4" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="PackedScene" uid="uid://bfj67b4iujjtf" path="res://UI/HUD.tscn" id="3_g1dw6"]
+[ext_resource type="PackedScene" uid="uid://cynckudprgttu" path="res://UI/Flashcard/flashcard.tscn" id="4_83hs8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rkbax"]
 
@@ -147,6 +148,13 @@ bones/68/position = Vector3(-4.8912305e-09, 0.0712, 7.7089055e-09)
 
 [node name="PlayerHUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g1dw6")]
 player = NodePath("..")
+
+[node name="Panel" parent="." instance=ExtResource("4_83hs8")]
+offset_left = 231.0
+offset_top = 261.0
+offset_right = 421.0
+offset_bottom = 481.0
+script = null
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
