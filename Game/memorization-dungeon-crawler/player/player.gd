@@ -23,7 +23,7 @@ var target_cam_offset:Vector2 = Vector2(0,0)
 var movement:Vector3 = Vector3.ZERO
 var is_on_floor:bool = false
 const FORWARD_SPEED = 300
-const TURN_SPEED = 10;
+const TURN_SPEED = 4;
 const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
 var mode = PlayerMode.ADVENTURE
