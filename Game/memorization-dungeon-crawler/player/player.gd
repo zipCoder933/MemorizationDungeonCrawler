@@ -106,7 +106,11 @@ func _physics_process(delta: float) -> void:
 		linear_velocity.x = forwardDir.x * (forward_movement * FORWARD_SPEED * delta)
 		linear_velocity.z = forwardDir.z * (forward_movement * FORWARD_SPEED * delta)
 		#rotation
-		targetRotation += (movement.x * delta * TURN_SPEED)
+		if(movement.z > 0):
+			targetRotation = phantom_camera_3d.get_third_person_rotation().y + PI
+		else:
+			targetRotation += (movement.x * delta * TURN_SPEED)
+		
 		rotation.y = lerp_angle(rotation.y, targetRotation, 0.1)
 	elif(mode == PlayerMode.FACTS):
 		pass

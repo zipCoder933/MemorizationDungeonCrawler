@@ -9,7 +9,6 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="BoxMesh" id="BoxMesh_fljia"]
 
 [node name="3dFlashcard" type="Sprite3D"]
-billboard = 2
 texture = SubResource("ViewportTexture_rs4bw")
 script = ExtResource("1_fljia")
 
