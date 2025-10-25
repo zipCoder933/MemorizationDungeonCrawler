@@ -100,8 +100,16 @@ func _process(delta:float):
 			_nextCard(false)
 		progress_bar.value = timeLeft
 
+var ignored_keys = [
+	Key.KEY_SPACE,
+	Key.KEY_ENTER,
+	Key.KEY_UP, Key.KEY_DOWN, Key.KEY_LEFT, Key.KEY_RIGHT,
+	Key.KEY_SHIFT, Key.KEY_CTRL, Key.KEY_ALT,
+	Key.KEY_TAB, Key.KEY_ESCAPE, Key.KEY_BACKSPACE
+]
+
 func _input(event):
-	if event is InputEventKey:
+	if questions.size() > 0 and visible and currentQuestion != null and event is InputEventKey:
 		if event.pressed:#ANY key pressed
 			anyKeyPressed = true
 			if not event.echo and can_accept_input:
@@ -111,12 +119,13 @@ func _input(event):
 						answer.text = answer.text.substr(0, answer.text.length() - 1)
 				elif key_name == "Enter":
 					print("Entered:", answer.text)
-				else:
+					_nextCard(answer.text.strip_edges() == currentQuestion.answer_text.strip_edges())
+				elif !(event.keycode in ignored_keys):
 					var char = event.as_text()
 					if( char != null):
 						answer.text += char
 				#print("Answer ", answer.text ," Real: ",currentQuestion.answer_text)
-				if(questions.size() > 0 and visible and currentQuestion != null and answer.text.strip_edges() == currentQuestion.answer_text.strip_edges()):
+				if(answer.text.strip_edges() == currentQuestion.answer_text.strip_edges()):
 					_nextCard(true)
 		else:#Any key released
 			anyKeyPressed = false

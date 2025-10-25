@@ -3,7 +3,9 @@ extends Node3D
 const DOOR = preload("uid://bdnosseu7fsm")
 const FLOOR = preload("uid://bvoe5plbouam2")
 const WALL = preload("uid://bpunwt6bwc3bm")
-
+const ARENA_ENEMIES:Array = [
+	preload("uid://bqoufhp54uwue") #Goblin
+]
 
 """
 The level data
@@ -54,7 +56,6 @@ Procedural generation of dungeons:
 
 
 func wall(x:float, z:float, res:Resource, dir:Direction) -> Node3D:
-	print("Resource: ",res)
 	var instance = res.instantiate()
 	if(dir == Direction.ZPOS):
 		instance.rotation.y = PI/2
@@ -92,6 +93,22 @@ func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, t
 	var final = moveIn(Vector3(x,0,z),direction)
 	x = final.x;
 	z = final.z;
+	
+	#Place an enemy in the center of the arena
+	var instance = ARENA_ENEMIES[randi_range(0,ARENA_ENEMIES.size()-1)].instantiate()
+	var enemyPos = Vector3(x+0.5,0,z+0.5)
+	if(direction == Direction.ZPOS):
+		instance.rotation.y = PI/2
+		enemyPos.z += 1
+	elif(direction == Direction.ZNEG):
+		instance.rotation.y = -(PI/2)
+		enemyPos.z -= 1
+	elif(direction == Direction.XPOS):
+		instance.rotation.y = PI
+		enemyPos.x += 1
+	else:
+		enemyPos.x -= 1
+	add_entry(enemyPos, instance)
 	
 	if direction == Direction.ZPOS:
 		for ox in range(x-z_radius,x+z_radius+1):#Spread out

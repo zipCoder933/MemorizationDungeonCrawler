@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqoufhp54uwue"]
+
+[ext_resource type="PackedScene" uid="uid://csu8d43p8v4bu" path="res://assets/models/enemies/medeval/goblin/goblin.glb" id="1_46u0s"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s4b0v"]
+radius = 2.9989617
+
+[node name="goblin" instance=ExtResource("1_46u0s")]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Goblin" index="0"]
+bones/0/position = Vector3(0.018323433, 0.024632217, -0.5812462)
+bones/0/rotation = Quaternion(-0.6407632, -0.13581796, 0.12484892, 0.7452442)
+bones/1/position = Vector3(1.6298145e-09, 0.12066616, -0.013639846)
+bones/1/rotation = Quaternion(-0.028595274, -0.008392355, 0.014350475, 0.9994529)
+bones/2/rotation = Quaternion(0.07340562, -0.014348307, 0.014091863, 0.9970994)
+bones/3/position = Vector3(7.916242e-09, 0.1619126, -8.881784e-16)
+bones/3/rotation = Quaternion(0.07356651, -0.013365011, 0.014137475, 0.99710053)
+bones/4/rotation = Quaternion(0.71740985, 0.008734138, -0.04031631, 0.69542897)
+bones/5/rotation = Quaternion(-0.18214837, -0.043631457, -0.14764588, 0.9711431)
+bones/7/position = Vector3(0.077489085, 0.16883361, -0.0025290996)
+bones/7/rotation = Quaternion(-0.5317218, -0.45561078, 0.5937129, -0.39647928)
+bones/8/rotation = Quaternion(0.28585333, 0.091124944, 0.06759827, 0.9515328)
+bones/9/rotation = Quaternion(0.017172882, -0.103697516, 0.8387609, 0.53425854)
+bones/10/rotation = Quaternion(-0.052042093, 0.24183413, 0.15762228, 0.9560142)
+bones/11/position = Vector3(2.996387e-08, 0.11787846, 5.8247373e-08)
+bones/11/rotation = Quaternion(0.21076506, -0.13989194, -0.005895445, 0.9674573)
+bones/12/rotation = Quaternion(0.18912545, -0.13997892, 0.0070363274, 0.97189915)
+bones/13/rotation = Quaternion(0.09523157, -0.070486076, 0.003542622, 0.9929502)
+bones/15/rotation = Quaternion(0.5926064, -0.41513476, 0.5429454, 0.4262525)
+bones/16/rotation = Quaternion(0.37116688, -0.011584631, -0.06124192, 0.92647207)
+bones/17/rotation = Quaternion(0.015305936, 0.11617508, -0.8586268, 0.4990282)
+bones/18/position = Vector3(-3.863409e-09, 0.23439181, -5.954945e-08)
+bones/18/rotation = Quaternion(0.31333986, 0.20514213, -0.05055893, 0.9258394)
+bones/19/rotation = Quaternion(0.09752905, 0.1675658, 0.019583669, 0.9808294)
+bones/20/position = Vector3(-9.312899e-09, 0.030794334, -1.8626654e-08)
+bones/20/rotation = Quaternion(0.11039717, 0.17531776, 0.111690685, 0.97190607)
+bones/21/position = Vector3(0.0064179003, 0.033807475, 0.011632618)
+bones/21/rotation = Quaternion(0.05559185, 0.088280395, 0.05624332, 0.9929516)
+bones/23/position = Vector3(0.11674071, -0.06753042, -0.007141591)
+bones/23/rotation = Quaternion(0.1813301, 0.38155317, 0.8499226, -0.31490982)
+bones/24/rotation = Quaternion(-0.61184734, -0.08240296, 0.033237092, 0.7859694)
+bones/25/rotation = Quaternion(0.6449487, 0.0832963, -0.27691042, 0.70740616)
+bones/26/rotation = Quaternion(0.28146076, 0.030636536, -0.008668754, 0.95904434)
+bones/28/position = Vector3(-0.11674067, -0.067530364, -0.0068487204)
+bones/28/rotation = Quaternion(-0.14951031, 0.3381711, 0.89363605, 0.25436497)
+bones/29/rotation = Quaternion(-0.5989223, 0.0845988, -0.043269757, 0.7951497)
+bones/30/rotation = Quaternion(0.67159814, -0.08210198, 0.2922278, 0.6758833)
+bones/31/rotation = Quaternion(0.28251404, -0.026597617, 0.007834017, 0.95886236)
+
+[node name="target" type="StaticBody3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="target" index="0"]
+shape = SubResource("SphereShape3D_s4b0v")
