@@ -50,8 +50,12 @@ func _drill(q:Question):
 	currentQuestion = q
 	color_rect.color = DEFAULT_COLOR
 	answer.text=""
+	if(anyKeyPressed):
+		can_accept_input = false
 
+var can_accept_input = false
 var currentQuestion:Question;
+var anyKeyPressed = false
 
 func _ready():
 	progress_bar.min_value = 0
@@ -62,12 +66,12 @@ func _ready():
 	answer.text=""
 	color_rect.color = DEFAULT_COLOR
 	visible = false
-	drill([ 
-	Question.new(false, "5+5", "10", 5),
-	Question.new(false, "10+10", "20", 5),
-	Question.new(false, "15+15", "30", 5),
-	Question.new(false, "20+20", "40", 5)
-	 ])
+	#drill([ 
+	#Question.new(false, "5+5", "10", 5),
+	#Question.new(false, "10+10", "20", 5),
+	#Question.new(false, "15+15", "30", 5),
+	#Question.new(false, "20+20", "40", 5)
+	 #])
 
 func _nextCard(succeed:bool):
 	if(succeed):
@@ -79,8 +83,10 @@ func _nextCard(succeed:bool):
 	else:
 		finished_drill.emit(succeeded)
 		visible = false
+	if(anyKeyPressed):
+		can_accept_input = false
 		
-func _process(delta:float):
+func _process(delta:float):	
 	if(questions.size() > 0 and currentQuestion != null and visible):
 		var ms = Time.get_ticks_msec()
 		var timeLeft = remap(ms-start_time, 0, time_left_ms, 1, 0)
@@ -91,18 +97,24 @@ func _process(delta:float):
 		progress_bar.value = timeLeft
 
 func _input(event):
-	if event is InputEventKey and event.pressed and not event.echo:
-		var key_name = OS.get_keycode_string(event.keycode)
-		if key_name == "Backspace":
-			if answer.text.length() > 0:
-				answer.text = answer.text.substr(0, answer.text.length() - 1)
-		elif key_name == "Enter":
-			print("Entered:", answer.text)
-		else:
-			var char = event.as_text()
-			if( char != null):
-				answer.text += char
-			
-	#print("Answer ", answer.text ," Real: ",currentQuestion.answer_text)
-	if(currentQuestion != null and answer.text.strip_edges() == currentQuestion.answer_text.strip_edges()):
-		_nextCard(true)
+	if event is InputEventKey:
+		if event.pressed:#ANY key pressed
+			anyKeyPressed = true
+			if not event.echo and can_accept_input:
+				var key_name = OS.get_keycode_string(event.keycode)
+				if key_name == "Backspace":
+					if answer.text.length() > 0:
+						answer.text = answer.text.substr(0, answer.text.length() - 1)
+				elif key_name == "Enter":
+					print("Entered:", answer.text)
+				else:
+					var char = event.as_text()
+					if( char != null):
+						answer.text += char
+				#print("Answer ", answer.text ," Real: ",currentQuestion.answer_text)
+				if(questions.size() > 0 and visible and currentQuestion != null and answer.text.strip_edges() == currentQuestion.answer_text.strip_edges()):
+					_nextCard(true)
+		else:#Any key released
+			anyKeyPressed = false
+			can_accept_input=true #If the player is on the button when we start the quiz, we cant answer until the player lifts the key off the button
+	#print("KEY PRESSED ",anyKeyPressed)

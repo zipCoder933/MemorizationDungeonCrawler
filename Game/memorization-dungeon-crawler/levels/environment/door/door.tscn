@@ -1,25 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdnosseu7fsm"]
+[gd_scene load_steps=7 format=3 uid="uid://bdnosseu7fsm"]
 
 [ext_resource type="PackedScene" uid="uid://bkeiga1qgtt2g" path="res://assets/models/door/medeval/door frame.glb" id="1_45plq"]
 [ext_resource type="Script" uid="uid://b6gsly6ywnrfy" path="res://levels/environment/door/door.gd" id="1_k7fuj"]
 [ext_resource type="PackedScene" uid="uid://y4f1l2qd7mo7" path="res://assets/models/door/medeval/door.glb" id="2_k7fuj"]
-[ext_resource type="Script" uid="uid://b68we0kyy51am" path="res://levels/environment/door/trigger.gd" id="4_wsbsg"]
-[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="5_0c0ry"]
+[ext_resource type="PackedScene" uid="uid://bxect7ofq1jbm" path="res://levels/environment/door/DoorTrigger.tscn" id="4_wsbsg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xgmq8"]
 size = Vector3(1.3112488, 5, 1.1327026)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_45plq"]
 size = Vector3(3.1680908, 5.339203, 0.5579834)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_ehp0u"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_f0cak"]
-size = Vector3(2.348877, 5.1503906, 3.7077484)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_0c0ry"]
-viewport_path = NodePath("SubViewport")
 
 [node name="Door" type="StaticBody3D"]
 collision_layer = 2
@@ -37,6 +27,7 @@ shape = SubResource("BoxShape3D_xgmq8")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="door mesh" parent="." instance=ExtResource("2_k7fuj")]
+unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1.02, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="door mesh"]
@@ -46,27 +37,9 @@ collision_layer = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7030783, 0)
 shape = SubResource("BoxShape3D_45plq")
 
-[node name="trigger" type="StaticBody3D" parent="."]
-collision_layer = 4
-script = ExtResource("4_wsbsg")
+[node name="trigger" parent="." node_paths=PackedStringArray("door") instance=ExtResource("4_wsbsg")]
+door = NodePath("..")
 
-[node name="Sprite3D" parent="trigger" groups=["3dCard"] instance=ExtResource("5_0c0ry")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5638473, 1.7055924, 0)
-texture = SubResource("ViewportTexture_ehp0u")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6269932, 2.3397975, -0.043907166)
-shape = SubResource("BoxShape3D_f0cak")
-
-[node name="trigger2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1094594, 0, 0)
-collision_layer = 4
-script = ExtResource("4_wsbsg")
-
-[node name="Sprite3D" parent="trigger2" groups=["3dCard"] instance=ExtResource("5_0c0ry")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.3822148, 1.7055924, 0)
-texture = SubResource("ViewportTexture_0c0ry")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="trigger2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4393463, 2.3397975, -0.043907166)
-shape = SubResource("BoxShape3D_f0cak")
+[node name="trigger2" parent="." node_paths=PackedStringArray("door") instance=ExtResource("4_wsbsg")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+door = NodePath("..")

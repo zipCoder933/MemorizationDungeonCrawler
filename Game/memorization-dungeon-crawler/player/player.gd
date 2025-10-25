@@ -46,7 +46,7 @@ func _process(delta:float):
 	camRotation.x = -20 + (normalized_pos.y * cameraSensitivity)
 	phantom_camera_3d.set_third_person_rotation_degrees(camRotation)
 
-	
+
 func _physics_process(delta: float) -> void:
 	#For top down third person movement
 	linear_velocity.x = movement.x * FORWARD_SPEED * delta;

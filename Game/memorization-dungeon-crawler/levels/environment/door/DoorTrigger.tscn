@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxect7ofq1jbm"]
+
+[ext_resource type="Script" uid="uid://b68we0kyy51am" path="res://levels/environment/door/trigger.gd" id="1_fhmch"]
+[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="2_thcpj"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ctaek"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_46ljq"]
+size = Vector3(2.348877, 5.1503906, 3.7077484)
+
+[node name="trigger" type="StaticBody3D"]
+collision_layer = 4
+script = ExtResource("1_fhmch")
+
+[node name="3dFlashcard" parent="." groups=["3dCard"] instance=ExtResource("2_thcpj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5638473, 1.7055924, 0)
+texture = SubResource("ViewportTexture_ctaek")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6269932, 2.3397975, -0.043907166)
+shape = SubResource("BoxShape3D_46ljq")
