@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_6awyk"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_io462"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_36vw8"]
-[ext_resource type="PackedScene" uid="uid://dd73ane4iqj87" path="res://player/player.tscn" id="5_xvfop"]
+[ext_resource type="PackedScene" path="res://player/player.tscn" id="5_xvfop"]
 [ext_resource type="PackedScene" uid="uid://bvoe5plbouam2" path="res://levels/environment/floor/floor.tscn" id="6_6awyk"]
 [ext_resource type="PackedScene" uid="uid://bpunwt6bwc3bm" path="res://levels/environment/wall/wall.tscn" id="7_io462"]
 [ext_resource type="PackedScene" uid="uid://bdnosseu7fsm" path="res://levels/environment/door/door.tscn" id="8_io462"]
