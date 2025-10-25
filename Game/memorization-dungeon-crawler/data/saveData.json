@@ -1,0 +1,14 @@
+{
+	"games": [
+		{
+			"name": "Multiplication",
+			"uuid": "a",
+			"completed_level": 0
+		},
+		{
+			"name": "Addition",
+			"uuid": "b",
+			"completed_level": 0
+		}
+	]
+}

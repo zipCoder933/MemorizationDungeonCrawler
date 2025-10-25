@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpl08t4hcotn"]
 
 [ext_resource type="FontFile" uid="uid://d4l36d7861osl" path="res://assets/fonts/UnifrakturCook/UnifrakturCook-Bold.ttf" id="1_27owx"]
-[ext_resource type="Script" uid="uid://bnoxfrvj5kcx6" path="res://mainMenu/Scripts/main_menu.gd" id="1_gmjeq"]
-[ext_resource type="Texture2D" uid="uid://bvepl5nfew4th" path="res://mainMenu/menubg_placeholder.jpg" id="1_phg2d"]
+[ext_resource type="Script" uid="uid://bnoxfrvj5kcx6" path="res://UI/mainMenu/Scripts/main_menu.gd" id="1_gmjeq"]
+[ext_resource type="Texture2D" uid="uid://bvepl5nfew4th" path="res://UI/mainMenu/menubg_placeholder.jpg" id="1_phg2d"]
 
 [sub_resource type="Theme" id="Theme_phg2d"]
 
@@ -120,6 +120,10 @@ theme_override_colors/font_focus_color = Color(0.9999997, 0.8137702, 0.3384247, 
 theme_override_colors/font_hover_color = Color(0.9999996, 0.8732861, 0.570126, 1)
 text = "Quit"
 
+[node name="Button" type="Button" parent="CanvasLayer/ColorRect/Buttons"]
+layout_mode = 2
+text = "LOREM IPSUM"
+
 [node name="LoadPanel" type="Panel" parent="CanvasLayer/ColorRect"]
 layout_mode = 0
 offset_left = 346.0
@@ -156,3 +160,14 @@ offset_bottom = 91.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "Back"
+
+[node name="Button" type="Button" parent="CanvasLayer/ColorRect"]
+layout_mode = 0
+offset_left = -41.5
+offset_top = -123.0
+offset_right = 265.5
+offset_bottom = -52.0
+text = "JDSKFLJASKDLF:DJKF
+"
+
+[connection signal="pressed" from="CanvasLayer/ColorRect/Buttons/StartButton" to="." method="_on_start_button_pressed"]
