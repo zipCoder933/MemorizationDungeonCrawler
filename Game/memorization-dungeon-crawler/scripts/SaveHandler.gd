@@ -5,6 +5,7 @@ static var SAVE_FILE = "res://data/saveData.json"
 static var saves: Array[SaveEntry] = []
 
 static func load_from_file(file_path: String) -> void:
+	saves.clear()
 	var file := FileAccess.open(file_path, FileAccess.READ)
 	if file == null:
 		push_error("Failed to open file: " + file_path)

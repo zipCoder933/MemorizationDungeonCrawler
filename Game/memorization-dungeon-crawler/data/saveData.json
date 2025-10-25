@@ -1,3 +1,9 @@
 {
-	"games": []
+	"games": [
+		{
+			"completed_level": 0,
+			"name": "asdf",
+			"path": "res://data/games/multiplication/"
+		}
+	]
 }

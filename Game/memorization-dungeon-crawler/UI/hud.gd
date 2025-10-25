@@ -13,3 +13,6 @@ func _player_health_changed(health:float):
 
 func _game_over():
 	game_over_panel.visible = true
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://UI/mainMenu/main_menu.tscn")

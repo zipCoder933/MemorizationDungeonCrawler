@@ -48,7 +48,7 @@ offset_bottom = 30.0
 grow_horizontal = 2
 color = Color(0.105882354, 0.105882354, 0.105882354, 0.43529412)
 
-[node name="Label" type="Label" parent="CanvasLayer/ColorRect/ColorRect"]
+[node name="name" type="Label" parent="CanvasLayer/ColorRect/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -66,7 +66,7 @@ theme_override_fonts/font = ExtResource("2_0fahj")
 text = "NEW GAME"
 horizontal_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/ColorRect"]
+[node name="nameBox" type="LineEdit" parent="CanvasLayer/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -132,7 +132,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "✔️"
 
-[node name="ItemList" type="ItemList" parent="CanvasLayer/ColorRect"]
+[node name="templateBox" type="ItemList" parent="CanvasLayer/ColorRect"]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 128.0

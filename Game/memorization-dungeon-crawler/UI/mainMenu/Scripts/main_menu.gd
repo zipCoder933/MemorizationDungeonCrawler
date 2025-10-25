@@ -9,6 +9,8 @@ const SaveHandler = preload("uid://bgwdh30vglopu")
 const GAME_ENTRY = preload("uid://cw3i736uj4aib")
 @onready var v_box_container: VBoxContainer = $CanvasLayer/ColorRect/LoadPanel/VBoxContainer/Panel/ScrollContainer/VBoxContainer
 
+func reload():
+	get_tree().reload_current_scene()
 
 func _ready():
 	SaveHandler.load_from_file(SaveHandler.SAVE_FILE)
@@ -23,16 +25,6 @@ func _ready():
 func _on_start_button_pressed() -> void:
 	print("hi")
 
-func start_game(dir:String):
-	CardsHandler.load_from_file(dir+"/cards.json")
-	LevelsHandler.load_from_file(dir+"/level.json")
-	
-	print("Loaded %d levels" % LevelsHandler.levels.size())
-	
-	#Load a level
-	LevelsHandler.current_level = LevelsHandler.levels[0]
-	#get_tree().change_scene_to_file("res://levels/Level.tscn")
-	
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
