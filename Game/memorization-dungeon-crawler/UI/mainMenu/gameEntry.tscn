@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw3i736uj4aib"]
+
+[ext_resource type="Script" uid="uid://g4v5hbt16l3v" path="res://UI/mainMenu/game_entry.gd" id="1_0u46w"]
+
+[node name="gameEntry" type="HBoxContainer"]
+offset_right = 225.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+script = ExtResource("1_0u46w")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Multiplication "
+
+[node name="playGame" type="Button" parent="."]
+layout_mode = 2
+text = "Load"
+
+[node name="deleteGame" type="Button" parent="."]
+layout_mode = 2
+text = "Delete"
+
+[connection signal="pressed" from="playGame" to="." method="_on_play_game_pressed"]
+[connection signal="pressed" from="deleteGame" to="." method="_on_delete_game_pressed"]

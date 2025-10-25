@@ -1,14 +1,3 @@
 {
-	"games": [
-		{
-			"name": "Multiplication",
-			"path": "res://data/games/multiplication/",
-			"completed_level": 0
-		},
-		{
-			"name": "Addition",
-			"path": "",
-			"completed_level": 0
-		}
-	]
+	"games": []
 }

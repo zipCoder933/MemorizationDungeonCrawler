@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bplbn7hgtf0iv"]
+[gd_scene load_steps=4 format=3 uid="uid://o164qtonnr5o"]
 
+[ext_resource type="Script" uid="uid://3axsagpubaea" path="res://UI/mainMenu/newgame.gd" id="1_ad0hl"]
 [ext_resource type="Texture2D" uid="uid://bvepl5nfew4th" path="res://UI/mainMenu/menubg_placeholder.jpg" id="1_o1joj"]
 [ext_resource type="FontFile" uid="uid://bcq6fcy50kxjx" path="res://assets/fonts/Varela_Round/VarelaRound-Regular.ttf" id="2_0fahj"]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ad0hl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -141,3 +143,6 @@ item_0/text = "Multiplication"
 item_1/text = "Addition"
 item_2/text = "Subtraction"
 item_3/text = "Division"
+
+[connection signal="pressed" from="CanvasLayer/ColorRect/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/StartButton" to="." method="_on_start_button_pressed"]
