@@ -11,12 +11,8 @@ func _ready():
 	start_game(SaveHandler.saves[0].path);
 	#start_button.pressed.connect(_on_button_pressed, ["Button1"])
 
-#func _on_button_pressed(button_name):
-	#print(button_name, "was pressed")
-
 func _on_start_button_pressed() -> void:
 	print("hi")
-	pass # Replace with function body.
 
 func start_game(dir:String):
 	CardsHandler.load_from_file(dir+"/cards.json")
@@ -26,5 +22,5 @@ func start_game(dir:String):
 	
 	#Load a level
 	LevelsHandler.current_level = LevelsHandler.levels[0]
-	get_tree().change_scene_to_file("res://levels/Level.tscn")
+	#get_tree().change_scene_to_file("res://levels/Level.tscn")
 	

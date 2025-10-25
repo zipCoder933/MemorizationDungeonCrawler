@@ -1,10 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpl08t4hcotn"]
+[gd_scene load_steps=4 format=3 uid="uid://cpl08t4hcotn"]
 
 [ext_resource type="FontFile" uid="uid://d4l36d7861osl" path="res://assets/fonts/UnifrakturCook/UnifrakturCook-Bold.ttf" id="1_27owx"]
 [ext_resource type="Script" uid="uid://bnoxfrvj5kcx6" path="res://UI/mainMenu/Scripts/main_menu.gd" id="1_gmjeq"]
 [ext_resource type="Texture2D" uid="uid://bvepl5nfew4th" path="res://UI/mainMenu/menubg_placeholder.jpg" id="1_phg2d"]
-
-[sub_resource type="Theme" id="Theme_phg2d"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -36,24 +34,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -282.0
-offset_top = -127.0
-offset_right = 285.0
-offset_bottom = 119.0
+offset_left = -283.5
+offset_top = -159.0
+offset_right = 283.5
+offset_bottom = 203.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.22745098)
+color = Color(0, 0, 0, 0)
 
-[node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
+[node name="logo" type="Label" parent="CanvasLayer/ColorRect"]
 z_index = 5
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -193.5
-offset_top = 11.0
 offset_right = 189.5
-offset_bottom = 94.0
+offset_bottom = 83.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.8352941, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -65,53 +62,86 @@ theme_override_font_sizes/font_size = 63
 text = "Cogni-crawl"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect"]
+[node name="LoadPanel" type="Panel" parent="CanvasLayer/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -201.5
-offset_top = -32.0
-offset_right = 200.0
-offset_bottom = 112.0
+offset_left = -145.75
+offset_top = -84.0
+offset_right = 145.75
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/ColorRect/LoadPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ColorRect/LoadPanel/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/VBoxContainer/Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/LoadPanel/VBoxContainer/Panel/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Multiplication "
+
+[node name="PLAY" type="Button" parent="CanvasLayer/ColorRect/LoadPanel/VBoxContainer/Panel/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "PLAY"
+
+[node name="TRASH" type="Button" parent="CanvasLayer/ColorRect/LoadPanel/VBoxContainer/Panel/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "TRASH
+"
 
 [node name="Buttons" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
 custom_minimum_size = Vector2(0, 30)
 layout_direction = 1
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -25.5
-offset_right = 22.5
-offset_bottom = 102.0
+anchor_bottom = 1.0
+offset_left = -94.5
+offset_top = -86.16
+offset_right = 94.5
+offset_bottom = -11.820007
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="StartButton" type="Button" parent="CanvasLayer/ColorRect/Buttons"]
-layout_mode = 2
-theme = SubResource("Theme_phg2d")
-theme_override_colors/font_color = Color(1, 0.7764706, 0.039215688, 1)
-theme_override_colors/font_focus_color = Color(1, 0.8156863, 0.3372549, 1)
-theme_override_colors/font_hover_color = Color(0.99999994, 0.89388853, 0.64277464, 1)
-theme_override_font_sizes/font_size = 17
-text = "Start"
-
-[node name="LoadButton" type="Button" parent="CanvasLayer/ColorRect/Buttons"]
+[node name="NewButton" type="Button" parent="CanvasLayer/ColorRect/Buttons"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.7764706, 0.039215688, 1)
 theme_override_colors/font_focus_color = Color(1, 0.8156863, 0.3372549, 1)
 theme_override_colors/font_hover_color = Color(0.9999998, 0.87847877, 0.58870065, 1)
-text = "Load"
+text = "New Game
+"
 
 [node name="QuitButton" type="Button" parent="CanvasLayer/ColorRect/Buttons"]
 layout_mode = 2
@@ -119,55 +149,3 @@ theme_override_colors/font_color = Color(1, 0.7764706, 0.039215688, 1)
 theme_override_colors/font_focus_color = Color(0.9999997, 0.8137702, 0.3384247, 1)
 theme_override_colors/font_hover_color = Color(0.9999996, 0.8732861, 0.570126, 1)
 text = "Quit"
-
-[node name="Button" type="Button" parent="CanvasLayer/ColorRect/Buttons"]
-layout_mode = 2
-text = "LOREM IPSUM"
-
-[node name="LoadPanel" type="Panel" parent="CanvasLayer/ColorRect"]
-layout_mode = 0
-offset_left = 346.0
-offset_top = 99.0
-offset_right = 530.0
-offset_bottom = 235.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -92.0
-offset_top = -68.0
-offset_right = 92.0
-offset_bottom = 68.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BackButton" type="Button" parent="CanvasLayer/ColorRect/LoadPanel"]
-visible = false
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -24.0
-offset_top = 60.0
-offset_right = 48.0
-offset_bottom = 91.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "Back"
-
-[node name="Button" type="Button" parent="CanvasLayer/ColorRect"]
-layout_mode = 0
-offset_left = -41.5
-offset_top = -123.0
-offset_right = 265.5
-offset_bottom = -52.0
-text = "JDSKFLJASKDLF:DJKF
-"
-
-[connection signal="pressed" from="CanvasLayer/ColorRect/Buttons/StartButton" to="." method="_on_start_button_pressed"]
