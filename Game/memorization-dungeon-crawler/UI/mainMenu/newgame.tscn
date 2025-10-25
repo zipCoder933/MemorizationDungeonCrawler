@@ -1,0 +1,143 @@
+[gd_scene load_steps=3 format=3 uid="uid://bplbn7hgtf0iv"]
+
+[ext_resource type="Texture2D" uid="uid://bvepl5nfew4th" path="res://UI/mainMenu/menubg_placeholder.jpg" id="1_o1joj"]
+[ext_resource type="FontFile" uid="uid://bcq6fcy50kxjx" path="res://assets/fonts/Varela_Round/VarelaRound-Regular.ttf" id="2_0fahj"]
+
+[node name="Newgame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = -280.0
+offset_right = 1124.0
+offset_bottom = 512.0
+texture = ExtResource("1_o1joj")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -114.0
+offset_right = 108.5
+offset_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882354, 0.105882354, 0.105882354, 0.43529412)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_right = 56.0
+offset_bottom = 30.0
+grow_horizontal = 2
+color = Color(0.105882354, 0.105882354, 0.105882354, 0.43529412)
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.5
+offset_top = -11.5
+offset_right = 47.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 0.13333334, 1)
+theme_override_fonts/font = ExtResource("2_0fahj")
+text = "NEW GAME"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -88.0
+offset_right = 72.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0.3764706)
+theme_override_fonts/font = ExtResource("2_0fahj")
+placeholder_text = "Save Name"
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 0, 0.6627451)
+theme_override_fonts/font = ExtResource("2_0fahj")
+text = "Template"
+horizontal_alignment = 1
+
+[node name="CancelButton" type="Button" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -40.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "❌"
+
+[node name="StartButton" type="Button" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -40.0
+offset_right = -40.0
+offset_bottom = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "✔️"
+
+[node name="ItemList" type="ItemList" parent="CanvasLayer/ColorRect"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 128.0
+offset_right = 200.0
+offset_bottom = 216.0
+item_count = 4
+item_0/text = "Multiplication"
+item_1/text = "Addition"
+item_2/text = "Subtraction"
+item_3/text = "Division"
