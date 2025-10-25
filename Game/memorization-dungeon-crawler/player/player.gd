@@ -8,8 +8,6 @@ const IDLE_ANIMATION = "Idle Retarget"
 const DEATH_ANIMATION = "death Retarget"
 
 
-
-
 enum PlayerMode{
 	ADVENTURE,
 	FACTS,
@@ -18,7 +16,7 @@ enum PlayerMode{
 #camera
 @export var phantom_camera_3d: PhantomCamera3D
 var camRotation = Vector3(0, 0, 0)
-const cameraSensitivity:float = 2;
+const cameraSensitivity:float = 4;
 var cam_offset:Vector2 = Vector2(0,0)
 var target_cam_offset:Vector2 = Vector2(0,0)
 #movement
@@ -69,11 +67,7 @@ func _process(delta:float):
 		linear_velocity = Vector3.ZERO
 		animation_player.play(DEATH_ANIMATION,1)
 	else:
-		#update camera pan/tilt around the player
-		var screen_size = get_viewport().get_visible_rect().size
-		#var mouse_pos = -((get_viewport().get_mouse_position() / screen_size) * 2.0 - Vector2(1, 1))
 		var forwardDir = transform.basis.z.normalized();
-		
 		if Input.is_action_pressed("Camera Left"):
 			cam_offset.y += 0.05
 			target_cam_offset.y = cam_offset.y
@@ -82,6 +76,7 @@ func _process(delta:float):
 			target_cam_offset.y = cam_offset.y
 		elif(abs(movement.x) == 0): 	#Are we moving left or right?
 			cam_offset.y = lerp(cam_offset.y, target_cam_offset.y, cameraSensitivity*delta)
+		cam_offset.x = lerp(cam_offset.x, target_cam_offset.x, cameraSensitivity*delta)
 	
 	#The camera orientation influences the player
 		camRotation.y = PI + cam_offset.y;
@@ -94,8 +89,6 @@ func _process(delta:float):
 			animation_player.play(RUNNING_ANIMATION,1)
 		else:
 			animation_player.play(IDLE_ANIMATION,1)
-
-
 
 
 func _physics_process(delta: float) -> void:
@@ -131,41 +124,60 @@ func _physics_process(delta: float) -> void:
 		#linear_velocity = Vector3.ZERO
 		#animation_player.play(DEATH_ANIMATION,1)
 
+
+
+#var target_cam_start_position:Vector2
+#var click_start_position:Vector2
+#var relative_mouse_coords:Vector2
+
 func _input(event: InputEvent) -> void:
-	if(mode == PlayerMode.ADVENTURE):
-		if Input.is_action_just_pressed("Forward"):
-			movement.z = 1;
-		elif Input.is_action_just_released("Forward"):
-			movement.z = 0;
-			
-		if Input.is_action_just_pressed("Backward"):
-			movement.z = -1;
-			targetRotation = rotation.y+PI;
-		elif Input.is_action_just_released("Backward"):
-			movement.z = 0;
-			
-		if Input.is_action_just_pressed("Left"):
-			movement.x = 1;
-			if(movement.z == 0):
-				targetRotation = rotation.y+PI/2
-		elif Input.is_action_just_released("Left"):
-			movement.x = 0;
-			target_cam_offset.y = rotation.y
-			
-		if Input.is_action_just_pressed("Right"):
-			movement.x = -1;
-			if(movement.z == 0):
-				targetRotation = rotation.y-PI/2
-		elif Input.is_action_just_released("Right"):
-			movement.x = 0;
-			target_cam_offset.y = rotation.y
-			
-		if is_on_floor == true and Input.is_action_just_pressed("Jump"):
-			animation_player.play(JUMP_UP_ANIMATION,1)
-			apply_central_impulse(Vector3(0, 10, 0))
-			is_on_floor = false
-	else:
-		movement = Vector3.ZERO
+	#TODO: Mouse movements
+	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		#if event.pressed:
+			#click_start_position = event.position
+			#target_cam_start_position = target_cam_offset
+	## Check for mouse movement while a drag is likely happening
+	#if event is InputEventMouseMotion:
+		#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			#relative_mouse_coords = event.position - click_start_position
+			#print("Relative Drag Coordinates: ", relative_mouse_coords)
+			#target_cam_offset.x = (relative_mouse_coords.y/1000) - target_cam_start_position.y
+			#target_cam_offset.y = (relative_mouse_coords.x/1000) - target_cam_start_position.x
+	if event is InputEventKey:
+		if(mode == PlayerMode.ADVENTURE):
+			if Input.is_action_just_pressed("Forward"):
+				movement.z = 1;
+			elif Input.is_action_just_released("Forward"):
+				movement.z = 0;
+				
+			if Input.is_action_just_pressed("Backward"):
+				movement.z = -1;
+				targetRotation = rotation.y+PI;
+			elif Input.is_action_just_released("Backward"):
+				movement.z = 0;
+				
+			if Input.is_action_just_pressed("Left"):
+				movement.x = 1;
+				if(movement.z == 0):
+					targetRotation = rotation.y+PI/2
+			elif Input.is_action_just_released("Left"):
+				movement.x = 0;
+				target_cam_offset.y = rotation.y
+				
+			if Input.is_action_just_pressed("Right"):
+				movement.x = -1;
+				if(movement.z == 0):
+					targetRotation = rotation.y-PI/2
+			elif Input.is_action_just_released("Right"):
+				movement.x = 0;
+				target_cam_offset.y = rotation.y
+				
+			if is_on_floor == true and Input.is_action_just_pressed("Jump"):
+				animation_player.play(JUMP_UP_ANIMATION,1)
+				apply_central_impulse(Vector3(0, 10, 0))
+				is_on_floor = false
+		else:
+			movement = Vector3.ZERO
 
 func _on_body_entered(body: Node) -> void:
 	if body is Floor:
