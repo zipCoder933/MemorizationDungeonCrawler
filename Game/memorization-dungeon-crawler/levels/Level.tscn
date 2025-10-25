@@ -1,8 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4y3srd4o2pb3"]
+[gd_scene load_steps=8 format=3 uid="uid://b4y3srd4o2pb3"]
 
-[ext_resource type="PackedScene" uid="uid://m1nwhli4ahnc" path="res://player/Player.tscn" id="1_xubwl"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_n5p7m"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_eelho"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_aevpi"]
+[ext_resource type="PackedScene" uid="uid://dd73ane4iqj87" path="res://player/player.tscn" id="4_n5p7m"]
+[ext_resource type="PackedScene" uid="uid://bvoe5plbouam2" path="res://levels/environment/floor.tscn" id="5_eelho"]
+
+[sub_resource type="Resource" id="Resource_0oum7"]
+script = ExtResource("4_aevpi")
+
+[sub_resource type="BoxMesh" id="BoxMesh_eelho"]
 
 [node name="Level" type="Node3D"]
 
-[node name="Knight2" parent="." instance=ExtResource("1_xubwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013838083, 0, -0.05975151)
+[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0331488, 1.8772333, 2.767119)
+script = ExtResource("3_eelho")
+follow_mode = 6
+follow_target = NodePath("../Player")
+tween_resource = SubResource("Resource_0oum7")
+follow_offset = Vector3(0, 1.125, 0)
+follow_distance = 2.0
+spring_length = 2.0
+collision_mask = 11
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0331488, 1.8772333, 2.767119)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_n5p7m")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="StaticBody3D" parent="." instance=ExtResource("5_eelho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2889023, 0, 3.251708)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.07118406, 0.9974632, 0, -0.9974632, 0.07118406, 0, 3.286365, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DirectionalLight3D"]
+transform = Transform3D(1, 0, 0, 0, -0.9041869, -0.42713705, 0, 0.42713705, -0.9041869, 0, 3.2863648, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_eelho")
+
+[node name="Player" parent="." node_paths=PackedStringArray("phantom_camera_3d") instance=ExtResource("4_n5p7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0331488, 0.7522333, 0.76711893)
+phantom_camera_3d = NodePath("../PhantomCamera3D")
