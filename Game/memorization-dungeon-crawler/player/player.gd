@@ -57,7 +57,6 @@ func _game_over():
 
 func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 	flash_card = target2
-	print("Fact mode ",flash_card)
 	mode = PlayerMode.FACTS
 	animation_player.play(IDLE_ANIMATION,0.5)
 
@@ -71,6 +70,7 @@ func _process(delta:float):
 	camRotation.y = PI + rotation.y;
 	camRotation.x = -0.349;
 	phantom_camera_3d.set_third_person_rotation(camRotation)
+
 	
 	if(mode == PlayerMode.GAME_OVER):
 		pass
@@ -97,9 +97,10 @@ func _physics_process(delta: float) -> void:
 		targetRotation += (movement.x * delta * TURN_SPEED)
 		rotation.y = lerp_angle(rotation.y, targetRotation, 0.1)
 	elif(mode == PlayerMode.FACTS):
-		#rotation
-		targetRotation = flash_card.rotation.y+PI
-		rotation.y = lerp_angle(rotation.y, targetRotation, 0.1)
+		pass
+		#phantom_camera_3d.set_follow_targets([self,flash_card])
+		#targetRotation = flash_card.rotation.y+PI
+		#rotation.y = lerp_angle(rotation.y, targetRotation, 0.1)
 	else:
 		linear_velocity = Vector3.ZERO
 
