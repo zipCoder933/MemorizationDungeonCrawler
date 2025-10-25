@@ -16,18 +16,6 @@ script = ExtResource("1_gmjeq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1401.1914
-offset_bottom = 756.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.47, 0.47)
-texture = ExtResource("1_phg2d")
-expand_mode = 2
-
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -129,6 +117,15 @@ grow_horizontal = 2
 texture = ExtResource("3_6kmto")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_phg2d")
 
 [connection signal="pressed" from="CanvasLayer/ColorRect/Buttons/NewButton" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

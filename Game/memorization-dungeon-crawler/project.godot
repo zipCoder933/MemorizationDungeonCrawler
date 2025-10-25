@@ -22,8 +22,8 @@ Globals="*res://GlobalNode.tscn"
 
 [display]
 
-window/size/viewport_width=647
-window/size/viewport_height=500
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [dotnet]
 

@@ -102,7 +102,7 @@ func _process(delta:float):
 func _physics_process(delta: float) -> void:
 	if(mode == PlayerMode.ADVENTURE):
 		var forwardDir = transform.basis.z.normalized()  # Godot's "forward" is -Z
-		var forward_movement = movement.z
+		var forward_movement = max(abs(movement.z),abs(movement.x))
 		linear_velocity.x = forwardDir.x * (forward_movement * FORWARD_SPEED * delta)
 		linear_velocity.z = forwardDir.z * (forward_movement * FORWARD_SPEED * delta)
 		#rotation
