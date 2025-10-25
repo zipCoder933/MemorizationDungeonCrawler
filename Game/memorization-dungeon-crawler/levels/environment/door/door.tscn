@@ -30,7 +30,7 @@ shape = SubResource("BoxShape3D_xgmq8")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="door mesh" parent="." instance=ExtResource("2_k7fuj")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1.02, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="door mesh"]
 collision_layer = 2
