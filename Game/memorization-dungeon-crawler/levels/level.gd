@@ -7,3 +7,4 @@ func _ready():
 	CardsHandler.load_from_file(dir+"/cards.json")
 	LevelsHandler.load_from_file(dir+"/level.json")
 	LevelsHandler.current_level = LevelsHandler.levels[0]
+	
