@@ -57,7 +57,7 @@ func _drill(q:Question):
 	if(anyKeyPressed):
 		can_accept_input = false
 	#move card to player
-	position = Vector3(player.position.x,position.y,player.position.z)
+	position = Vector3(player.position.x,player.position.y,player.position.z)
 	print("POS: ",position)
 
 var can_accept_input = false

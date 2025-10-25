@@ -138,11 +138,10 @@ offset_left = 24.0
 offset_top = 128.0
 offset_right = 200.0
 offset_bottom = 216.0
-item_count = 4
+item_count = 3
 item_0/text = "Multiplication"
 item_1/text = "Addition"
 item_2/text = "Subtraction"
-item_3/text = "Division"
 
 [connection signal="pressed" from="CanvasLayer/ColorRect/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/StartButton" to="." method="_on_start_button_pressed"]
