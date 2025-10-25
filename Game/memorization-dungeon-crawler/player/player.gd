@@ -47,15 +47,15 @@ func _ready():
 	Globals.game_over.connect(_game_over)
 	Globals.adventure_mode.connect(_global_adventure_mode)
 
-var target:WorldFlashCard = null
+var flash_card:WorldFlashCard = null
 
 func _game_over():
 	mode = PlayerMode.GAME_OVER
 	animation_player.play(DEATH_ANIMATION,1)
 
 func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
-	target = target2
-	print("Fact mode ",target)
+	flash_card = target2
+	print("Fact mode ",flash_card)
 	mode = PlayerMode.FACTS
 
 func _global_adventure_mode():
@@ -66,15 +66,16 @@ func _global_adventure_mode():
 func _process(delta:float):
 	if(mode == PlayerMode.GAME_OVER):
 		linear_velocity = Vector3.ZERO
+		position = flash_card.position
+		rotation.y = flash_card.rotation.y
 	else:
-		var forwardDir = transform.basis.z.normalized();
 		if Input.is_action_pressed("Camera Left"):
 			cam_offset.y += 0.05
 			target_cam_offset.y = cam_offset.y
 		elif Input.is_action_pressed("Camera Right"):
 			cam_offset.y -= 0.05
 			target_cam_offset.y = cam_offset.y
-		elif(abs(movement.x) == 0): 	#Are we moving left or right?
+		elif(abs(movement.x) == 0): #Are we moving left or right?
 			cam_offset.y = lerp(cam_offset.y, target_cam_offset.y, cameraSensitivity*delta)
 		cam_offset.x = lerp(cam_offset.x, target_cam_offset.x, cameraSensitivity*delta)
 		#The camera orientation influences the player
@@ -103,11 +104,7 @@ func _physics_process(delta: float) -> void:
 		var forward_movement = max(abs(movement.x), abs(movement.z))
 		linear_velocity.x = forwardDir.x * (forward_movement * FORWARD_SPEED * delta)
 		linear_velocity.z = forwardDir.z * (forward_movement * FORWARD_SPEED * delta)		
-	elif(mode == PlayerMode.FACTS):
-		linear_velocity = Vector3.ZERO
-		var dir = (target.position - position).normalized()
-		rotation.y = atan2(dir.x, dir.z) + PI
-	elif(mode == PlayerMode.GAME_OVER):
+	else:
 		linear_velocity = Vector3.ZERO
 
 
