@@ -71,12 +71,16 @@ func get_normalized_mouse() -> Vector2:
 	var centered_mouse = ((mouse_pos / viewport_size) - Vector2(0.5, 0.5)) * 2.0
 	return centered_mouse
 
+@onready var mouse_controller: MouseController = $MouseController
+
+const MOUSE_SENSITIVITY = 0.06
 
 func _process(delta:float):
-	#Camera
-	var mouse = get_normalized_mouse()
-	camRotation.y = PI + rotation.y + (mouse.x * PI);
-	camRotation.x = -0.349  + (mouse.y * PI);
+	camRotation.x += -mouse_controller.mouse_delta.y * MOUSE_SENSITIVITY
+	camRotation.y += -mouse_controller.mouse_delta.x * MOUSE_SENSITIVITY
+	#var mouse = get_normalized_mouse()
+	#camRotation.y = PI + rotation.y + (mouse.x * PI);
+	#camRotation.x = -0.349;#  + (mouse.y * PI);
 	phantom_camera_3d.set_third_person_rotation(camRotation)
 
 	
