@@ -3,6 +3,7 @@ class_name GlobalEvents
 
 signal fact_answering_mode
 signal adventure_mode
+signal game_over
 #signal game_started
 #signal player_died
 #signal item_collected(item_name)

@@ -5,6 +5,7 @@ class_name Player
 const RUNNING_ANIMATION = "running Retarget"
 const JUMP_UP_ANIMATION = "jump up Retarget"
 const IDLE_ANIMATION = "Idle Retarget"
+const DEATH_ANIMATION = "death Retarget"
 
 #camera
 @export var phantom_camera_3d: PhantomCamera3D
@@ -12,6 +13,12 @@ var camRotation = Vector3(0, 0, 0)
 var cameraSensitivity:float = 60;
 var cameraHorizontalOffset:float = 0
 var cameraHorizontalOffsetLerp:float = 0.01
+
+enum PlayerMode{
+	ADVENTURE,
+	FACTS,
+	GAME_OVER
+}
 
 #movement
 var movement:Vector3 = Vector3.ZERO
@@ -21,7 +28,7 @@ const TURN_LERP_SPEED = 0.2
 const TURN_SPEED = 5;
 const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
-var canMove:bool = true
+var mode = PlayerMode.ADVENTURE
 
 #health
 signal health_changed
@@ -30,11 +37,17 @@ var health:float = 1
 
 func change_health(amt):
 	health = health + amt
-	if(health > 1):
-		health = 1
-	print("HEALTH: ",health)
+	if(health > MAX_HEALTH):
+		health = MAX_HEALTH
+	if(health < 0):
+		gameOver()
 	health_changed.emit(health)
 	
+func gameOver():
+	Globals.game_over.emit()
+	mode = PlayerMode.GAME_OVER
+	animation_player.play(DEATH_ANIMATION,1)
+
 func _ready():
 	print("PHANTOM CAMERA ",phantom_camera_3d)
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
@@ -45,34 +58,53 @@ var target:WorldFlashCard = null
 func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 	target = target2
 	print("Fact mode ",target)
-	canMove = false
+	mode = PlayerMode.FACTS
 
 func _global_adventure_mode():
 	print("Adventure mode")
-	canMove = true
+	mode = PlayerMode.ADVENTURE
 
 func _process(delta:float):
-	#update camera pan/tilt around the player
-	var screen_size = get_viewport().get_visible_rect().size
-	var mouse_pos = get_viewport().get_mouse_position()
-	var normalized_pos = -((mouse_pos / screen_size) * 2.0 - Vector2(1, 1))
-	if(movement.z >= 0):
-		cameraHorizontalOffset = lerp_angle(cameraHorizontalOffset, rotation.y, cameraHorizontalOffsetLerp)
-	camRotation.y = 180 + rad_to_deg(cameraHorizontalOffset) + (normalized_pos.x * cameraSensitivity)
-	camRotation.x = -20 + (normalized_pos.y * cameraSensitivity)
-	phantom_camera_3d.set_third_person_rotation_degrees(camRotation)
+	if(mode == PlayerMode.GAME_OVER):
+		linear_velocity = Vector3.ZERO
+		animation_player.play(DEATH_ANIMATION,1)
+	else:
+		#update camera pan/tilt around the player
+		var screen_size = get_viewport().get_visible_rect().size
+		var mouse_pos = get_viewport().get_mouse_position()
+		var normalized_pos = -((mouse_pos / screen_size) * 2.0 - Vector2(1, 1))
+		if(movement.z >= 0):
+			cameraHorizontalOffset = lerp_angle(cameraHorizontalOffset, rotation.y, cameraHorizontalOffsetLerp)
+		camRotation.y = 180 + rad_to_deg(cameraHorizontalOffset) + (normalized_pos.x * cameraSensitivity)
+		camRotation.x = -20 + (normalized_pos.y * cameraSensitivity)
+		phantom_camera_3d.set_third_person_rotation_degrees(camRotation)
 
 func _physics_process(delta: float) -> void:
 	#For top down third person movement
-	if(canMove):
+	if(mode == PlayerMode.ADVENTURE):
 		linear_velocity.x = movement.x * FORWARD_SPEED * delta;
 		linear_velocity.z = movement.z  * FORWARD_SPEED * delta;
 		targetRotation = atan2(linear_velocity.x, linear_velocity.z)
 		rotation.y = lerp_angle(rotation.y, targetRotation, TURN_LERP_SPEED)
-	else:
+		if( linear_velocity.y > 0.5 ):
+			animation_player.play(JUMP_UP_ANIMATION,1)
+		elif(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
+			animation_player.play(RUNNING_ANIMATION,1)
+		else:
+			animation_player.play(IDLE_ANIMATION,1)
+	elif(mode == PlayerMode.FACTS):
 		linear_velocity = Vector3.ZERO
 		var dir = (target.position - position).normalized()
 		rotation.y = atan2(dir.x, dir.z) + PI
+		if( linear_velocity.y > 0.5 ):
+			animation_player.play(JUMP_UP_ANIMATION,1)
+		elif(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
+			animation_player.play(RUNNING_ANIMATION,1)
+		else:
+			animation_player.play(IDLE_ANIMATION,1)
+	elif(mode == PlayerMode.GAME_OVER):
+		linear_velocity = Vector3.ZERO
+		animation_player.play(DEATH_ANIMATION,1)
 	
 
 	#for immersive third person movement
@@ -97,18 +129,12 @@ func _physics_process(delta: float) -> void:
 				#rotation.y = lerp_angle(rotation.y , targetRotation, delta * TURN_SPEED)
 		#linear_velocity.x = forward.x * (abs(movement.z) * FORWARD_SPEED * delta)
 		#linear_velocity.z = forward.z * (abs(movement.z) * FORWARD_SPEED * delta)
-			
-	#Animations
-	if( linear_velocity.y > 0.5 ):
-		animation_player.play(JUMP_UP_ANIMATION,1)
-	elif(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
-		animation_player.play(RUNNING_ANIMATION,1)
-	else:
-		animation_player.play(IDLE_ANIMATION,1)
+
+
 		
 		
 func _input(event: InputEvent) -> void:
-	if(canMove):
+	if(mode == PlayerMode.ADVENTURE):
 		if Input.is_action_just_pressed("Forward"):
 			movement.z = 1;
 		elif Input.is_action_just_released("Forward"):
