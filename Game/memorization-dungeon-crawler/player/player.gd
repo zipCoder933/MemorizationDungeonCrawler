@@ -65,10 +65,18 @@ func _global_adventure_mode():
 		print("Adventure mode")
 		mode = PlayerMode.ADVENTURE
 
+func get_normalized_mouse() -> Vector2:
+	var mouse_pos = get_viewport().get_mouse_position()
+	var viewport_size = get_viewport().get_visible_rect().size
+	var centered_mouse = ((mouse_pos / viewport_size) - Vector2(0.5, 0.5)) * 2.0
+	return centered_mouse
+
+
 func _process(delta:float):
 	#Camera
-	camRotation.y = PI + rotation.y;
-	camRotation.x = -0.349;
+	var mouse = get_normalized_mouse()
+	camRotation.y = PI + rotation.y + (mouse.x * PI);
+	camRotation.x = -0.349  + (mouse.y * PI);
 	phantom_camera_3d.set_third_person_rotation(camRotation)
 
 	
