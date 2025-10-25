@@ -95,6 +95,7 @@ anchor_bottom = 1.0
 offset_bottom = 167.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/VBoxContainer/Panel/ScrollContainer"]
@@ -106,11 +107,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Multiplication "
 
-[node name="PLAY" type="Button" parent="CanvasLayer/ColorRect/LoadPanel/VBoxContainer/Panel/ScrollContainer/HBoxContainer"]
+[node name="playGame" type="Button" parent="CanvasLayer/ColorRect/LoadPanel/VBoxContainer/Panel/ScrollContainer/HBoxContainer"]
 layout_mode = 2
 text = "PLAY"
 
-[node name="TRASH" type="Button" parent="CanvasLayer/ColorRect/LoadPanel/VBoxContainer/Panel/ScrollContainer/HBoxContainer"]
+[node name="deleteGame" type="Button" parent="CanvasLayer/ColorRect/LoadPanel/VBoxContainer/Panel/ScrollContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "TRASH
