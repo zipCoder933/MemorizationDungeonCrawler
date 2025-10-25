@@ -23,7 +23,7 @@ var target_cam_offset:Vector2 = Vector2(0,0)
 var movement:Vector3 = Vector3.ZERO
 var is_on_floor:bool = false
 const FORWARD_SPEED = 300
-const TURN_SPEED = 4;
+
 const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
 var mode = PlayerMode.ADVENTURE
@@ -73,22 +73,16 @@ func get_normalized_mouse() -> Vector2:
 
 @onready var mouse_controller: MouseController = $MouseController
 
+const TURN_SPEED = 4;
 const MOUSE_SENSITIVITY = 0.06
 
 func _process(delta:float):
 	camRotation.x += -mouse_controller.mouse_delta.y * MOUSE_SENSITIVITY
-	camRotation.y += -mouse_controller.mouse_delta.x * MOUSE_SENSITIVITY
-	#var mouse = get_normalized_mouse()
-	#camRotation.y = PI + rotation.y + (mouse.x * PI);
-	#camRotation.x = -0.349;#  + (mouse.y * PI);
+	camRotation.y += (-mouse_controller.mouse_delta.x * MOUSE_SENSITIVITY) + (movement.x * delta * TURN_SPEED)
 	phantom_camera_3d.set_third_person_rotation(camRotation)
 
-	
 	if(mode == PlayerMode.GAME_OVER):
 		pass
-	elif(mode == PlayerMode.FACTS):
-		if(!animation_player.is_playing()):
-			animation_player.play(IDLE_ANIMATION,0.5)
 	else:
 		#Animations
 		if( linear_velocity.y > 0.5 ):
@@ -100,41 +94,37 @@ func _process(delta:float):
 
 
 func _physics_process(delta: float) -> void:
-	if(mode == PlayerMode.ADVENTURE):
+	if(mode == PlayerMode.ADVENTURE or mode == PlayerMode.FACTS):
 		var forwardDir = transform.basis.z.normalized()  # Godot's "forward" is -Z
+		
+		#if(mode == PlayerMode.ADVENTURE):
 		var forward_movement = max(abs(movement.z),abs(movement.x))
 		linear_velocity.x = forwardDir.x * (forward_movement * FORWARD_SPEED * delta)
 		linear_velocity.z = forwardDir.z * (forward_movement * FORWARD_SPEED * delta)
-		#rotation
-		if(movement.z > 0):
+		if(movement.z >= 0):
 			targetRotation = phantom_camera_3d.get_third_person_rotation().y + PI
 		else:
-			targetRotation += (movement.x * delta * TURN_SPEED)
-		
-		rotation.y = lerp_angle(rotation.y, targetRotation, 0.1)
-	elif(mode == PlayerMode.FACTS):
-		pass
-		#position = flash_card.position
-		#phantom_camera_3d.set_follow_targets([self,flash_card])
-		#targetRotation = flash_card.rotation.y+PI
-		#look_at(flash_card.global_position, Vector3.UP)
-		var target_pos = flash_card.global_position
-		var self_pos = global_transform.origin
-
-		# get direction (ignoring Y)
-		var dir = target_pos - self_pos
-		dir.y = 0
-		dir = dir.normalized()
-		var target_yaw = atan2(dir.x, dir.z)
-		rotation.y = target_yaw
-		#rotation.y = lerp_angle(rotation.y, targetRotation, 0.1)
+			targetRotation = phantom_camera_3d.get_third_person_rotation().y
+		#else: #TODO: ditch this?
+			#var forward_movement = max(abs(movement.z),abs(movement.x))
+			#linear_velocity.x = forwardDir.x * (movement.z * FORWARD_SPEED * delta)
+			#linear_velocity.z = forwardDir.z * (movement.z * FORWARD_SPEED * delta)
+			#var target_pos = flash_card.global_position
+			#var self_pos = global_transform.origin
+			## get direction (ignoring Y)
+			#var dir = target_pos - self_pos
+			#dir.y = 0
+			#dir = dir.normalized()
+			#var target_yaw = atan2(dir.x, dir.z)
+			#targetRotation = target_yaw
+		rotation.y = lerp_angle(rotation.y, targetRotation, 0.05)
 	else:
 		linear_velocity = Vector3.ZERO
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if(mode == PlayerMode.ADVENTURE):
+		if(mode != PlayerMode.GAME_OVER):
 			if Input.is_action_just_pressed("Forward"):
 				movement.z = 1;
 			elif Input.is_action_just_released("Forward"):

@@ -18,7 +18,7 @@ func _input(event):
 	# Capture mouse motion (like Minecraft)
 	if event is InputEventMouseMotion and mouse_locked:
 		mouse_delta = event.relative * sensitivity
-		print(mouse_delta)
+		#print(mouse_delta)
 
 	# ESC → release mouse
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:

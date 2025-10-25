@@ -1,8 +1,10 @@
 extends StaticBody3D
 class_name GoblinTrigger
 
-@onready var _3d_flashcard: WorldFlashCard = $"../3dFlashcard"
+@onready var _3d_flashcard: WorldFlashCard = %"3dFlashcard"
 @onready var _animation_player: AnimationPlayer = $"../AnimationPlayer"
+@onready var player:Player = get_tree().get_first_node_in_group("player");
+@onready var node_3d: Node3D = $"../Node3D"
 
 var isDead = false
 const CardsHandler = preload("uid://cc0wwewiey4d7")
@@ -13,8 +15,11 @@ func _single_drill(success):
 		_animation_player.play("TakeHit Retarget",0.2)
 
 func _finish_drill(success, count):
-	isDead = true
-	_animation_player.play("Death Retarget",0.2)
+	if(success > 0):
+		isDead = true
+		_animation_player.play("Death Retarget",0.2)
+		#Refull health
+		player.change_health(10)
 
 func _ready() -> void:
 	_3d_flashcard.finished_drill.connect(_finish_drill)
@@ -23,6 +28,14 @@ func _ready() -> void:
 func _process(delta):
 	if !isDead and !_animation_player.is_playing():
 		_animation_player.play("Idle Retarget")
+	
+	var target_pos = player.global_position
+	var self_pos = global_transform.origin
+	var dir = target_pos - self_pos
+	dir.y = 0
+	dir = dir.normalized()
+	var target_yaw = atan2(dir.x, dir.z)
+	node_3d.rotation.y = target_yaw
 
 func trigger():
 	if(isDead):

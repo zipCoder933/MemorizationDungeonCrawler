@@ -3946,6 +3946,9 @@ script = ExtResource("2_reyqm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
 shape = SubResource("SphereShape3D_s4b0v")
 
-[node name="3dFlashcard" parent="." instance=ExtResource("2_s4b0v")]
-transform = Transform3D(0.5882354, 0, 0, 0, 0.5882354, 0, 0, 0, 0.5882354, 0, 0.59976906, 0.89232737)
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="3dFlashcard" parent="Node3D" instance=ExtResource("2_s4b0v")]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5997691, 0.8923274)
 texture = SubResource("ViewportTexture_reyqm")
