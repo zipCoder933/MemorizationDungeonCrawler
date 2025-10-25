@@ -38,20 +38,20 @@ func change_health(amt):
 	if(health > MAX_HEALTH):
 		health = MAX_HEALTH
 	if(health < 0):
-		gameOver()
+		Globals.game_over.emit()
 	health_changed.emit(health)
-	
-func gameOver():
-	Globals.game_over.emit()
-	mode = PlayerMode.GAME_OVER
-	animation_player.play(DEATH_ANIMATION,1)
 
 func _ready():
 	print("PHANTOM CAMERA ",phantom_camera_3d)
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
+	Globals.game_over.connect(_game_over)
 	Globals.adventure_mode.connect(_global_adventure_mode)
 
 var target:WorldFlashCard = null
+
+func _game_over():
+	mode = PlayerMode.GAME_OVER
+	animation_player.play(DEATH_ANIMATION,1)
 
 func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 	target = target2
@@ -59,13 +59,13 @@ func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 	mode = PlayerMode.FACTS
 
 func _global_adventure_mode():
-	print("Adventure mode")
-	mode = PlayerMode.ADVENTURE
+	if(health > 0):
+		print("Adventure mode")
+		mode = PlayerMode.ADVENTURE
 
 func _process(delta:float):
 	if(mode == PlayerMode.GAME_OVER):
 		linear_velocity = Vector3.ZERO
-		animation_player.play(DEATH_ANIMATION,1)
 	else:
 		var forwardDir = transform.basis.z.normalized();
 		if Input.is_action_pressed("Camera Left"):
@@ -77,8 +77,7 @@ func _process(delta:float):
 		elif(abs(movement.x) == 0): 	#Are we moving left or right?
 			cam_offset.y = lerp(cam_offset.y, target_cam_offset.y, cameraSensitivity*delta)
 		cam_offset.x = lerp(cam_offset.x, target_cam_offset.x, cameraSensitivity*delta)
-	
-	#The camera orientation influences the player
+		#The camera orientation influences the player
 		camRotation.y = PI + cam_offset.y;
 		camRotation.x = -0.349 + cam_offset.x;# + (normalized_pos.y * cameraSensitivity)
 		phantom_camera_3d.set_third_person_rotation(camRotation)
@@ -92,37 +91,25 @@ func _process(delta:float):
 
 
 func _physics_process(delta: float) -> void:
-	#For top down third person movement
-	#if(mode == PlayerMode.ADVENTURE):
-	var forwardDir = transform.basis.z.normalized()  # Godot's "forward" is -Z
-	
-	var steering = (movement.x * PI/2)
-	
-	#Are we going backwards?
-	if(movement.z < 0):
-		targetRotation = phantom_camera_3d.get_third_person_rotation().y + steering
-	else: #Are we going forwards?
-		targetRotation = phantom_camera_3d.get_third_person_rotation().y + PI + steering
-	rotation.y = lerp_angle(rotation.y , targetRotation, delta * TURN_SPEED)
-	
-	
-	var forward_movement = max(abs(movement.x), abs(movement.z))
-	linear_velocity.x = forwardDir.x * (forward_movement * FORWARD_SPEED * delta)
-	linear_velocity.z = forwardDir.z * (forward_movement * FORWARD_SPEED * delta)
-		
-	#elif(mode == PlayerMode.FACTS):
-		#linear_velocity = Vector3.ZERO
-		#var dir = (target.position - position).normalized()
-		#rotation.y = atan2(dir.x, dir.z) + PI
-		#if( linear_velocity.y > 0.5 ):
-			#animation_player.play(JUMP_UP_ANIMATION,1)
-		#elif(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
-			#animation_player.play(RUNNING_ANIMATION,1)
-		#else:
-			#animation_player.play(IDLE_ANIMATION,1)
-	#elif(mode == PlayerMode.GAME_OVER):
-		#linear_velocity = Vector3.ZERO
-		#animation_player.play(DEATH_ANIMATION,1)
+	if(mode == PlayerMode.ADVENTURE):
+		var forwardDir = transform.basis.z.normalized()  # Godot's "forward" is -Z
+		var steering = (movement.x * PI/2)
+		#Are we going backwards?
+		if(movement.z < 0):
+			targetRotation = phantom_camera_3d.get_third_person_rotation().y + steering
+		else: #Are we going forwards?
+			targetRotation = phantom_camera_3d.get_third_person_rotation().y + PI + steering
+		rotation.y = lerp_angle(rotation.y , targetRotation, delta * TURN_SPEED)
+		var forward_movement = max(abs(movement.x), abs(movement.z))
+		linear_velocity.x = forwardDir.x * (forward_movement * FORWARD_SPEED * delta)
+		linear_velocity.z = forwardDir.z * (forward_movement * FORWARD_SPEED * delta)		
+	elif(mode == PlayerMode.FACTS):
+		linear_velocity = Vector3.ZERO
+		var dir = (target.position - position).normalized()
+		rotation.y = atan2(dir.x, dir.z) + PI
+	elif(mode == PlayerMode.GAME_OVER):
+		linear_velocity = Vector3.ZERO
+		animation_player.play(DEATH_ANIMATION,1)
 
 
 

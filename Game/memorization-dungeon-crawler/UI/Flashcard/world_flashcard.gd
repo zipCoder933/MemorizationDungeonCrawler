@@ -85,13 +85,13 @@ func _nextCard(succeed:bool):
 	#If we did not succeed, lower the players health
 	if(!succeed):
 		player.change_health( - currentQuestion.fail_health_loss)
-	
 	questions.remove_at(0)
 	if(questions.size() > 0):
 		_drill(questions[0])
 	else:
 		finished_drill.emit(succeeded, deckSize)
-		Globals.adventure_mode.emit()
+		if(player.health > 0):
+			Globals.adventure_mode.emit()
 		visible = false
 	if(anyKeyPressed):
 		can_accept_input = false
