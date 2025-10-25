@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dielyc0jswjtq"]
+
+[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="1_y0hrg"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vncuc"]
+viewport_path = NodePath("SubViewport")
+
+[node name="CardTest" type="Node3D"]
+
+[node name="Sprite3D" parent="." instance=ExtResource("1_y0hrg")]
+texture = SubResource("ViewportTexture_vncuc")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)

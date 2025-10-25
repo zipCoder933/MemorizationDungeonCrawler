@@ -19,12 +19,6 @@ signal single_drill
 
 var succeeded:int = 0
 var questions:Array#[Question];
- #= [ 
-	#Question.new(false, "5+5", "10", 5),
-	#Question.new(false, "10+10", "20", 5),
-	#Question.new(false, "15+15", "30", 5),
-	#Question.new(false, "20+20", "40", 5)
-	 #]
 
 func drill(questions2:Array):
 	print("Drilling player on ",questions2.size()," cards.")
@@ -68,6 +62,12 @@ func _ready():
 	answer.text=""
 	color_rect.color = DEFAULT_COLOR
 	visible = false
+	drill([ 
+	Question.new(false, "5+5", "10", 5),
+	Question.new(false, "10+10", "20", 5),
+	Question.new(false, "15+15", "30", 5),
+	Question.new(false, "20+20", "40", 5)
+	 ])
 
 func _nextCard(succeed:bool):
 	if(succeed):
