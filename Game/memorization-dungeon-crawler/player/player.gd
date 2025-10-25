@@ -38,10 +38,11 @@ func _ready():
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
 	Globals.adventure_mode.connect(_global_adventure_mode)
 
-func _global_fact_answering_mode():#target:Vector3
-	print("Fact mode")
-	#var direction = (target - position).normalized()
-	#targetRotation = direction.angle()
+var target:WorldFlashCard = null
+
+func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
+	target = target2
+	print("Fact mode ",target)
 	canMove = false
 
 func _global_adventure_mode():
@@ -62,10 +63,16 @@ func _process(delta:float):
 
 func _physics_process(delta: float) -> void:
 	#For top down third person movement
-	linear_velocity.x = movement.x * FORWARD_SPEED * delta;
-	linear_velocity.z = movement.z  * FORWARD_SPEED * delta;
-	targetRotation = atan2(linear_velocity.x, linear_velocity.z)
-	rotation.y = lerp_angle(rotation.y, targetRotation, TURN_LERP_SPEED)
+	if(canMove):
+		linear_velocity.x = movement.x * FORWARD_SPEED * delta;
+		linear_velocity.z = movement.z  * FORWARD_SPEED * delta;
+		targetRotation = atan2(linear_velocity.x, linear_velocity.z)
+		rotation.y = lerp_angle(rotation.y, targetRotation, TURN_LERP_SPEED)
+	else:
+		linear_velocity = Vector3.ZERO
+		var dir = (target.position - position).normalized()
+		rotation.y = atan2(dir.x, dir.z) + PI
+	
 
 	#for immersive third person movement
 	#var forward = transform.basis.z.normalized()  # Godot's "forward" is -Z

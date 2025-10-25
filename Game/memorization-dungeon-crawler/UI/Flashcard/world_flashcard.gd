@@ -1,4 +1,5 @@
 extends Sprite3D
+class_name WorldFlashCard
 
 @onready var progress_bar: ProgressBar = $SubViewport/Control/ColorRect/VBoxContainer/ProgressBar
 @onready var question_image: TextureRect = $SubViewport/Control/ColorRect/VBoxContainer/question/questionImage
@@ -22,7 +23,7 @@ var succeeded:int = 0
 var questions:Array#[Question];
 
 func drill(questions2:Array):
-	Globals.fact_answering_mode.emit()
+	Globals.fact_answering_mode.emit(self)
 	print("Drilling player on ",questions2.size()," cards.")
 	questions = questions2;
 	succeeded = 0

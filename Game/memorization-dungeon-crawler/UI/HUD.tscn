@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfj67b4iujjtf"]
+
+[ext_resource type="Texture2D" uid="uid://ch714bgi1e00f" path="res://assets/textures/health_indicator.png" id="1_yixhe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4idxp"]
+content_margin_left = 22.0
+bg_color = Color(0, 0, 0, 0.41960785)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3xbc"]
+bg_color = Color(1, 0.28764555, 0.22208649, 1)
+
+[node name="PlayerHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DamageBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -231.00003
+offset_top = 8.0
+offset_right = 49.0
+offset_bottom = 24.0
+grow_horizontal = 0
+scale = Vector2(0.7999998, 1.0515778)
+size_flags_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_4idxp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o3xbc")
+max_value = 1.0
+value = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthIndicator" type="Sprite2D" parent="CanvasLayer/DamageBar"]
+position = Vector2(-19.99997, 7.607616)
+scale = Vector2(0.18346822, 0.13957556)
+texture = ExtResource("1_yixhe")
