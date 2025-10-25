@@ -6,7 +6,7 @@ const RUNNING_ANIMATION = "running Retarget"
 const JUMP_UP_ANIMATION = "jump up Retarget"
 const IDLE_ANIMATION = "Idle Retarget"
 const DEATH_ANIMATION = "death Retarget"
-const HIT_ANIMATION = ["hit1 Retarget", "hit2 Retarget", "hit3 Retarget"]
+const HIT_ANIMATION = ["hit1 Retarget","hit2 Retarget","hit3 Retarget"]
 
 enum PlayerMode{
 	ADVENTURE,
@@ -23,7 +23,7 @@ var target_cam_offset:Vector2 = Vector2(0,0)
 var movement:Vector3 = Vector3.ZERO
 var is_on_floor:bool = false
 const FORWARD_SPEED = 300
-const TURN_SPEED = 2;
+const TURN_SPEED = 4;
 const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
 var mode = PlayerMode.ADVENTURE
@@ -35,7 +35,7 @@ var health:float = 1
 
 func change_health(amt):
 	if(amt < 0):
-		animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)],0.1, 3.0)
+		animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.5, 2.0)
 	health = health + amt
 	if(health > MAX_HEALTH):
 		health = MAX_HEALTH
@@ -57,8 +57,8 @@ func _game_over():
 
 func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 	flash_card = target2
-	print("Fact mode ",flash_card)
 	mode = PlayerMode.FACTS
+	animation_player.play(IDLE_ANIMATION,0.5)
 
 func _global_adventure_mode():
 	if(health > 0):
@@ -66,21 +66,18 @@ func _global_adventure_mode():
 		mode = PlayerMode.ADVENTURE
 
 func _process(delta:float):
-	if(mode == PlayerMode.GAME_OVER): #GAME OVER
-		linear_velocity = Vector3.ZERO
-		position = flash_card.position
-		rotation.y = flash_card.rotation.y
-	elif(mode == PlayerMode.FACTS): #FACTS
+	#Camera
+	camRotation.y = PI + rotation.y;
+	camRotation.x = -0.349;
+	phantom_camera_3d.set_third_person_rotation(camRotation)
+
+	
+	if(mode == PlayerMode.GAME_OVER):
+		pass
+	elif(mode == PlayerMode.FACTS):
 		if(!animation_player.is_playing()):
-			animation_player.play(IDLE_ANIMATION,1)
-	else: #ADVENTURE
-		#Use the arrow keys to move the camera back and fourth
-		cam_offset.y += movement.x * TURN_SPEED * delta;
-		camRotation.y = cam_offset.y;
-		camRotation.x = -0.349 + cam_offset.x;
-		phantom_camera_3d.set_third_person_rotation(camRotation)
-		#ROTATION
-		rotation.y = phantom_camera_3d.get_third_person_rotation().y + PI
+			animation_player.play(IDLE_ANIMATION,0.5)
+	else:
 		#Animations
 		if( linear_velocity.y > 0.5 ):
 			animation_player.play(JUMP_UP_ANIMATION,1)
@@ -90,36 +87,25 @@ func _process(delta:float):
 			animation_player.play(IDLE_ANIMATION,1)
 
 
-
 func _physics_process(delta: float) -> void:
 	if(mode == PlayerMode.ADVENTURE):
-		#FORWARD
 		var forwardDir = transform.basis.z.normalized()  # Godot's "forward" is -Z
-		var forward_movement = movement.z #We go forward
+		var forward_movement = movement.z
 		linear_velocity.x = forwardDir.x * (forward_movement * FORWARD_SPEED * delta)
 		linear_velocity.z = forwardDir.z * (forward_movement * FORWARD_SPEED * delta)
+		#rotation
+		targetRotation += (movement.x * delta * TURN_SPEED)
+		rotation.y = lerp_angle(rotation.y, targetRotation, 0.1)
+	elif(mode == PlayerMode.FACTS):
+		pass
+		#phantom_camera_3d.set_follow_targets([self,flash_card])
+		#targetRotation = flash_card.rotation.y+PI
+		#rotation.y = lerp_angle(rotation.y, targetRotation, 0.1)
 	else:
 		linear_velocity = Vector3.ZERO
 
 
-
-#var target_cam_start_position:Vector2
-#var click_start_position:Vector2
-#var relative_mouse_coords:Vector2
-
 func _input(event: InputEvent) -> void:
-	#TODO: Mouse movements
-	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		#if event.pressed:
-			#click_start_position = event.position
-			#target_cam_start_position = target_cam_offset
-	## Check for mouse movement while a drag is likely happening
-	#if event is InputEventMouseMotion:
-		#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			#relative_mouse_coords = event.position - click_start_position
-			#print("Relative Drag Coordinates: ", relative_mouse_coords)
-			#target_cam_offset.x = (relative_mouse_coords.y/1000) - target_cam_start_position.y
-			#target_cam_offset.y = (relative_mouse_coords.x/1000) - target_cam_start_position.x
 	if event is InputEventKey:
 		if(mode == PlayerMode.ADVENTURE):
 			if Input.is_action_just_pressed("Forward"):
