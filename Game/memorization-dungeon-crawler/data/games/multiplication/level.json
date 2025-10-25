@@ -1,0 +1,77 @@
+{
+  "seed": 13242,
+  "starting_answer_speed_sec": 10,
+  "goal_answer_speed_sec": 2,
+  "dungeons": [
+	{
+	  "name": "Dungeon 1",
+	  "theme": "Jungle",
+	  "boss_name": "Da Boss",
+	  "themed_cards": ["1s", "2s"],
+	  "themed_drill_levels": 4,
+	  "complete_drill_levels": 0
+	},
+	{
+	  "name": "Dungeon 2",
+	  "theme": "Jungle",
+	  "boss_name": "Bossmania",
+	  "themed_cards": ["3s", "4s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 1
+	},
+	{
+	  "name": "Dungeon 3",
+	  "theme": "Jungle",
+	  "boss_name": "Bossmania",
+	  "themed_cards": ["5s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 1
+	},
+	{
+	  "name": "Dungeon 4",
+	  "theme": "machine",
+	  "boss_name": "Bossmania",
+	  "themed_cards": ["6s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 1
+	},
+	{
+	  "name": "Dungeon 5",
+	  "theme": "machine",
+	  "boss_name": "Bossmania",
+	  "themed_cards": ["7s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 1
+	},
+	{
+	  "name": "Dungeon 6",
+	  "theme": "machine",
+	  "boss_name": "Bossmania",
+	  "themed_cards": ["8s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 1
+	},
+	{
+	  "name": "Dungeon 7",
+	  "theme": "dungeon",
+	  "boss_name": "Bossmania",
+	  "themed_cards": ["9s", "10s", "11s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 1
+	},
+	{
+	  "name": "Dungeon 8",
+	  "theme": "dungeon",
+	  "boss_name": "Bossmania",
+	  "themed_cards": ["12s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 1
+	}
+  ],
+  "final_dungeon": {
+	"name": "The Final Dungeon",
+	"theme": "dungeon",
+	"complete_drill_levels": 3,
+	"boss_name": "The one above all"
+  }
+}
