@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://do43srcrnuwks"]
+[gd_scene load_steps=5 format=3 uid="uid://do43srcrnuwks"]
 
 [ext_resource type="Script" uid="uid://cv786nwq3plkd" path="res://UI/Flashcard/world_flashcard.gd" id="1_fljia"]
 [ext_resource type="PackedScene" uid="uid://cynckudprgttu" path="res://UI/Flashcard/flashcard.tscn" id="1_n55g1"]
@@ -6,7 +6,10 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_rs4bw"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="BoxMesh" id="BoxMesh_fljia"]
+
 [node name="3dFlashcard" type="Sprite3D"]
+billboard = 1
 texture = SubResource("ViewportTexture_rs4bw")
 script = ExtResource("1_fljia")
 
@@ -16,5 +19,8 @@ size = Vector2i(190, 220)
 
 [node name="Control" parent="SubViewport" instance=ExtResource("1_n55g1")]
 script = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_fljia")
 
 [editable path="SubViewport/Control"]

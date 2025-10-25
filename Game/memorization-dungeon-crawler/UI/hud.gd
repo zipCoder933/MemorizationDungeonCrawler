@@ -7,7 +7,7 @@ extends Control
 func _ready():
 	player.health_changed.connect(_player_health_changed)
 	Globals.game_over.connect(_game_over)
-	
+
 func _player_health_changed(health:float):
 	damage_bar.value = clamp(health, 0, Player.MAX_HEALTH)
 
