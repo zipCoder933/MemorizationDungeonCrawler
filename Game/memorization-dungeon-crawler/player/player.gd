@@ -6,7 +6,7 @@ const RUNNING_ANIMATION = "running Retarget"
 const JUMP_UP_ANIMATION = "jump up Retarget"
 const IDLE_ANIMATION = "Idle Retarget"
 const DEATH_ANIMATION = "death Retarget"
-
+const HIT_ANIMATION = ["hit1 Retarget", "hit2 Retarget", "hit3 Retarget"]
 
 enum PlayerMode{
 	ADVENTURE,
@@ -23,7 +23,7 @@ var target_cam_offset:Vector2 = Vector2(0,0)
 var movement:Vector3 = Vector3.ZERO
 var is_on_floor:bool = false
 const FORWARD_SPEED = 300
-const TURN_SPEED = 15;
+const TURN_SPEED = 2;
 const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
 var mode = PlayerMode.ADVENTURE
@@ -34,6 +34,8 @@ const MAX_HEALTH = 1
 var health:float = 1
 
 func change_health(amt):
+	if(amt < 0):
+		animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)],0.1, 3.0)
 	health = health + amt
 	if(health > MAX_HEALTH):
 		health = MAX_HEALTH
@@ -64,24 +66,21 @@ func _global_adventure_mode():
 		mode = PlayerMode.ADVENTURE
 
 func _process(delta:float):
-	if(mode == PlayerMode.GAME_OVER):
+	if(mode == PlayerMode.GAME_OVER): #GAME OVER
 		linear_velocity = Vector3.ZERO
 		position = flash_card.position
 		rotation.y = flash_card.rotation.y
-	else:
-		if Input.is_action_pressed("Camera Left"):
-			cam_offset.y += 0.05
-			target_cam_offset.y = cam_offset.y
-		elif Input.is_action_pressed("Camera Right"):
-			cam_offset.y -= 0.05
-			target_cam_offset.y = cam_offset.y
-		elif(abs(movement.x) == 0): #Are we moving left or right?
-			cam_offset.y = lerp(cam_offset.y, target_cam_offset.y, cameraSensitivity*delta)
-		cam_offset.x = lerp(cam_offset.x, target_cam_offset.x, cameraSensitivity*delta)
-		#The camera orientation influences the player
-		camRotation.y = PI + cam_offset.y;
-		camRotation.x = -0.349 + cam_offset.x;# + (normalized_pos.y * cameraSensitivity)
+	elif(mode == PlayerMode.FACTS): #FACTS
+		if(!animation_player.is_playing()):
+			animation_player.play(IDLE_ANIMATION,1)
+	else: #ADVENTURE
+		#Use the arrow keys to move the camera back and fourth
+		cam_offset.y += movement.x * TURN_SPEED * delta;
+		camRotation.y = cam_offset.y;
+		camRotation.x = -0.349 + cam_offset.x;
 		phantom_camera_3d.set_third_person_rotation(camRotation)
+		#ROTATION
+		rotation.y = phantom_camera_3d.get_third_person_rotation().y + PI
 		#Animations
 		if( linear_velocity.y > 0.5 ):
 			animation_player.play(JUMP_UP_ANIMATION,1)
@@ -91,19 +90,14 @@ func _process(delta:float):
 			animation_player.play(IDLE_ANIMATION,1)
 
 
+
 func _physics_process(delta: float) -> void:
 	if(mode == PlayerMode.ADVENTURE):
+		#FORWARD
 		var forwardDir = transform.basis.z.normalized()  # Godot's "forward" is -Z
-		var steering = (movement.x * PI/2)
-		#Are we going backwards?
-		if(movement.z < 0):
-			targetRotation = phantom_camera_3d.get_third_person_rotation().y + steering
-		else: #Are we going forwards?
-			targetRotation = phantom_camera_3d.get_third_person_rotation().y + PI + steering
-		rotation.y = lerp_angle(rotation.y , targetRotation, delta * TURN_SPEED)
-		var forward_movement = max(abs(movement.x), abs(movement.z))
+		var forward_movement = movement.z #We go forward
 		linear_velocity.x = forwardDir.x * (forward_movement * FORWARD_SPEED * delta)
-		linear_velocity.z = forwardDir.z * (forward_movement * FORWARD_SPEED * delta)		
+		linear_velocity.z = forwardDir.z * (forward_movement * FORWARD_SPEED * delta)
 	else:
 		linear_velocity = Vector3.ZERO
 
