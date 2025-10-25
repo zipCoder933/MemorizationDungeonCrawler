@@ -1,20 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4y3srd4o2pb3"]
+[gd_scene load_steps=8 format=3 uid="uid://b4y3srd4o2pb3"]
 
+[ext_resource type="Script" uid="uid://bh4f3dnixa8xl" path="res://levels/level.gd" id="1_aevpi"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_n5p7m"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_eelho"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_aevpi"]
 [ext_resource type="PackedScene" uid="uid://dd73ane4iqj87" path="res://player/player.tscn" id="4_n5p7m"]
-[ext_resource type="PackedScene" uid="uid://bvoe5plbouam2" path="res://levels/environment/floor/floor.tscn" id="5_eelho"]
-[ext_resource type="PackedScene" uid="uid://bpunwt6bwc3bm" path="res://levels/environment/wall/wall.tscn" id="6_aevpi"]
-[ext_resource type="PackedScene" uid="uid://bdnosseu7fsm" path="res://levels/environment/door/door.tscn" id="7_0oum7"]
+[ext_resource type="PackedScene" uid="uid://17b24tvmkjco" path="res://levels/LevelGenerator.tscn" id="8_o5d2f"]
 
 [sub_resource type="Resource" id="Resource_0oum7"]
 script = ExtResource("4_aevpi")
 
 [node name="Level" type="Node3D"]
+script = ExtResource("1_aevpi")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0331488, 1.8772333, 2.767119)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.973, 4)
 script = ExtResource("3_eelho")
 follow_mode = 6
 follow_target = NodePath("../Player")
@@ -27,7 +27,7 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0331488, 1.8772333, 2.767119)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.973, 4)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 process_priority = 300
@@ -35,18 +35,9 @@ process_physics_priority = 300
 script = ExtResource("2_n5p7m")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="StaticBody3D" parent="." instance=ExtResource("5_eelho")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2889023, 0, 3.251708)
-
 [node name="Player" parent="." node_paths=PackedStringArray("phantom_camera_3d") instance=ExtResource("4_n5p7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0331488, 0.7522333, 0.76711893)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.848, 2)
 phantom_camera_3d = NodePath("../PhantomCamera3D")
-
-[node name="wall" parent="." instance=ExtResource("6_aevpi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
-
-[node name="Door" parent="." instance=ExtResource("7_0oum7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6340475, -0.03555858, 1.2157931)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.901508, 0.024285711, -0.4320805, 0.26702994, 0.75447875, 0.5995474, 0.340556, -0.6558752, 0.6736835, -3.0613227, 1.8557096, -3.074823)
@@ -54,3 +45,5 @@ light_energy = 2.829
 
 [node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.901508, 0.03110703, 0.431643, 0.26702997, -0.8248837, -0.49825892, 0.3405559, 0.56444603, -0.7519458, -5.9382224, 2.8218932, -5.025458)
+
+[node name="LevelGenerator" parent="." instance=ExtResource("8_o5d2f")]
