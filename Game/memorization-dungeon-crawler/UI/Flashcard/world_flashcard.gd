@@ -15,12 +15,14 @@ const DEFAULT_COLOR = Color(0.617, 0.688, 0.694, 0.5)
 signal finished_drill
 signal single_drill
 
+const GLOBAL_NODE = preload("uid://d364dmqkqu5a0")
 
 
 var succeeded:int = 0
 var questions:Array#[Question];
 
 func drill(questions2:Array):
+	Globals.fact_answering_mode.emit()
 	print("Drilling player on ",questions2.size()," cards.")
 	questions = questions2;
 	succeeded = 0
@@ -82,6 +84,7 @@ func _nextCard(succeed:bool):
 		_drill(questions[0])
 	else:
 		finished_drill.emit(succeeded)
+		Globals.adventure_mode.emit()
 		visible = false
 	if(anyKeyPressed):
 		can_accept_input = false

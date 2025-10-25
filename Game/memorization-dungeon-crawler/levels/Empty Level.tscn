@@ -15,12 +15,11 @@ script = ExtResource("3_io462")
 [node name="Level" type="Node3D"]
 script = ExtResource("1_l4y0c")
 
-[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "follow_targets")]
+[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.973, 4)
 script = ExtResource("2_6awyk")
 follow_mode = 6
 follow_target = NodePath("../Player")
-follow_targets = [NodePath("../Player"), NodePath("../Door")]
 tween_resource = SubResource("Resource_0oum7")
 follow_offset = Vector3(0, 1.125, 0)
 follow_distance = 2.0

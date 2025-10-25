@@ -21,6 +21,7 @@ const TURN_LERP_SPEED = 0.2
 const TURN_SPEED = 5;
 const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
+var canMove:bool = true
 
 #health
 signal health_changed
@@ -34,6 +35,18 @@ func change_health(amt):
 	
 func _ready():
 	print("PHANTOM CAMERA ",phantom_camera_3d)
+	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
+	Globals.adventure_mode.connect(_global_adventure_mode)
+
+func _global_fact_answering_mode():#target:Vector3
+	print("Fact mode")
+	#var direction = (target - position).normalized()
+	#targetRotation = direction.angle()
+	canMove = false
+
+func _global_adventure_mode():
+	print("Adventure mode")
+	canMove = true
 
 func _process(delta:float):
 	#update camera pan/tilt around the player
@@ -76,7 +89,7 @@ func _physics_process(delta: float) -> void:
 				#rotation.y = lerp_angle(rotation.y , targetRotation, delta * TURN_SPEED)
 		#linear_velocity.x = forward.x * (abs(movement.z) * FORWARD_SPEED * delta)
 		#linear_velocity.z = forward.z * (abs(movement.z) * FORWARD_SPEED * delta)
-		
+			
 	#Animations
 	if( linear_velocity.y > 0.5 ):
 		animation_player.play(JUMP_UP_ANIMATION,1)
@@ -87,35 +100,38 @@ func _physics_process(delta: float) -> void:
 		
 		
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Forward"):
-		movement.z = 1;
-	elif Input.is_action_just_released("Forward"):
-		movement.z = 0;
-		
-	if Input.is_action_just_pressed("Backward"):
-		movement.z = -1;
-		targetRotation = rotation.y+PI;
-	elif Input.is_action_just_released("Backward"):
-		movement.z = 0;
-		
-	if Input.is_action_just_pressed("Left"):
-		movement.x = 1;
-		if(movement.z == 0):
-			targetRotation = rotation.y+PI/2
-	elif Input.is_action_just_released("Left"):
-		movement.x = 0;
-		
-	if Input.is_action_just_pressed("Right"):
-		movement.x = -1;
-		if(movement.z == 0):
-			targetRotation = rotation.y-PI/2
-	elif Input.is_action_just_released("Right"):
-		movement.x = 0;
-		
-	if is_on_floor == true and Input.is_action_just_pressed("Jump"):
-		animation_player.play(JUMP_UP_ANIMATION,1)
-		apply_central_impulse(Vector3(0, 10, 0))
-		is_on_floor = false
+	if(canMove):
+		if Input.is_action_just_pressed("Forward"):
+			movement.z = 1;
+		elif Input.is_action_just_released("Forward"):
+			movement.z = 0;
+			
+		if Input.is_action_just_pressed("Backward"):
+			movement.z = -1;
+			targetRotation = rotation.y+PI;
+		elif Input.is_action_just_released("Backward"):
+			movement.z = 0;
+			
+		if Input.is_action_just_pressed("Left"):
+			movement.x = 1;
+			if(movement.z == 0):
+				targetRotation = rotation.y+PI/2
+		elif Input.is_action_just_released("Left"):
+			movement.x = 0;
+			
+		if Input.is_action_just_pressed("Right"):
+			movement.x = -1;
+			if(movement.z == 0):
+				targetRotation = rotation.y-PI/2
+		elif Input.is_action_just_released("Right"):
+			movement.x = 0;
+			
+		if is_on_floor == true and Input.is_action_just_pressed("Jump"):
+			animation_player.play(JUMP_UP_ANIMATION,1)
+			apply_central_impulse(Vector3(0, 10, 0))
+			is_on_floor = false
+	else:
+		movement = Vector3.ZERO
 
 func _on_body_entered(body: Node) -> void:
 	if body is Floor:
