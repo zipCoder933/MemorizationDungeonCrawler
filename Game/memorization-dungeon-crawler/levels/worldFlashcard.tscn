@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://do43srcrnuwks"]
+
+[ext_resource type="PackedScene" uid="uid://cynckudprgttu" path="res://UI/Flashcard/flashcard.tscn" id="1_n55g1"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rs4bw"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Sprite3D" type="Sprite3D"]
+texture = SubResource("ViewportTexture_rs4bw")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(190, 220)
+
+[node name="Control" parent="SubViewport" instance=ExtResource("1_n55g1")]

@@ -19,7 +19,7 @@ var is_on_floor:bool = false
 const FORWARD_SPEED = 300
 const TURN_LERP_SPEED = 0.2
 const TURN_SPEED = 5;
-const PLAYER_STEER_MOUSE:bool = true
+const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
 
 #health
@@ -36,7 +36,6 @@ func _ready():
 	print("PHANTOM CAMERA ",phantom_camera_3d)
 
 func _process(delta:float):
-	print("PHANTOM CAMERA ",phantom_camera_3d)
 	#update camera pan/tilt around the player
 	var screen_size = get_viewport().get_visible_rect().size
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -50,37 +49,35 @@ func _process(delta:float):
 	
 func _physics_process(delta: float) -> void:
 	#For top down third person movement
-	#linear_velocity.x = movement.x * SPEED * delta;
-	#linear_velocity.z = movement.z  * SPEED * delta;
-	#targetRotation = atan2(linear_velocity.x, linear_velocity.z)
-	#rotation.y = lerp_angle(rotation.y, targetRotation, ROTATION_LERP_SPEED)
+	linear_velocity.x = movement.x * FORWARD_SPEED * delta;
+	linear_velocity.z = movement.z  * FORWARD_SPEED * delta;
+	targetRotation = atan2(linear_velocity.x, linear_velocity.z)
+	rotation.y = lerp_angle(rotation.y, targetRotation, TURN_LERP_SPEED)
 
 	#for immersive third person movement
-	
-	var forward = transform.basis.z.normalized()  # Godot's "forward" is -Z
-
-	if(movement.z == 0):
-		rotation.y = lerp_angle(rotation.y , targetRotation, delta * TURN_SPEED)
-		linear_velocity.x = forward.x * (abs(movement.x) * FORWARD_SPEED * delta)
-		linear_velocity.z = forward.z * (abs(movement.x) * FORWARD_SPEED * delta)
-	else:
-		if(PLAYER_STEER_MOUSE):
-			var steering = (movement.x * movement.z * PI/2)
-			if(movement.z < 0):
-				targetRotation = phantom_camera_3d.get_third_person_rotation().y + steering
-			else:
-				targetRotation = phantom_camera_3d.get_third_person_rotation().y + PI + steering
-			rotation.y = lerp_angle(rotation.y , targetRotation, delta * TURN_SPEED)
-		else:
-			if(movement.z >= 0):
-				targetRotation = rotation.y
-				rotation.y += movement.x * movement.z * delta * TURN_SPEED
-			else:
-				rotation.y = lerp_angle(rotation.y , targetRotation, delta * TURN_SPEED)
-		linear_velocity.x = forward.x * (abs(movement.z) * FORWARD_SPEED * delta)
-		linear_velocity.z = forward.z * (abs(movement.z) * FORWARD_SPEED * delta)
-
-
+	#var forward = transform.basis.z.normalized()  # Godot's "forward" is -Z
+	#if(movement.z == 0):
+		#rotation.y = lerp_angle(rotation.y , targetRotation, delta * TURN_SPEED)
+		#linear_velocity.x = forward.x * (abs(movement.x) * FORWARD_SPEED * delta)
+		#linear_velocity.z = forward.z * (abs(movement.x) * FORWARD_SPEED * delta)
+	#else:
+		#if(PLAYER_STEER_MOUSE):
+			#var steering = (movement.x * movement.z * PI/2)
+			#if(movement.z < 0):
+				#targetRotation = phantom_camera_3d.get_third_person_rotation().y + steering
+			#else:
+				#targetRotation = phantom_camera_3d.get_third_person_rotation().y + PI + steering
+			#rotation.y = lerp_angle(rotation.y , targetRotation, delta * TURN_SPEED)
+		#else:
+			#if(movement.z >= 0):
+				#targetRotation = rotation.y
+				#rotation.y += movement.x * movement.z * delta * TURN_SPEED
+			#else:
+				#rotation.y = lerp_angle(rotation.y , targetRotation, delta * TURN_SPEED)
+		#linear_velocity.x = forward.x * (abs(movement.z) * FORWARD_SPEED * delta)
+		#linear_velocity.z = forward.z * (abs(movement.z) * FORWARD_SPEED * delta)
+		
+	#Animations
 	if( linear_velocity.y > 0.5 ):
 		animation_player.play(JUMP_UP_ANIMATION,1)
 	elif(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
@@ -116,11 +113,9 @@ func _input(event: InputEvent) -> void:
 		movement.x = 0;
 		
 	if is_on_floor == true and Input.is_action_just_pressed("Jump"):
-		print("Jump")
 		animation_player.play(JUMP_UP_ANIMATION,1)
 		apply_central_impulse(Vector3(0, 10, 0))
 		is_on_floor = false
-
 
 func _on_body_entered(body: Node) -> void:
 	if body is Floor:
