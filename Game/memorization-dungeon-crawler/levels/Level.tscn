@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4y3srd4o2pb3"]
+[gd_scene load_steps=9 format=3 uid="uid://b4y3srd4o2pb3"]
 
 [ext_resource type="Script" uid="uid://bh4f3dnixa8xl" path="res://levels/level.gd" id="1_aevpi"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_n5p7m"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_eelho"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_aevpi"]
-[ext_resource type="PackedScene" uid="uid://dd73ane4iqj87" path="res://player/Player.tscn" id="4_n5p7m"]
+[ext_resource type="PackedScene" path="res://player/Player.tscn" id="4_n5p7m"]
+[ext_resource type="AudioStream" uid="uid://8ne210lubb5v" path="res://assets/sounds/music/Background1.ogg" id="7_0oum7"]
 [ext_resource type="PackedScene" uid="uid://17b24tvmkjco" path="res://levels/LevelGenerator.tscn" id="8_o5d2f"]
 
 [sub_resource type="Resource" id="Resource_0oum7"]
@@ -41,9 +42,16 @@ phantom_camera_3d = NodePath("../PhantomCamera3D")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.901508, 0.024285711, -0.4320805, 0.26702994, 0.75447875, 0.5995474, 0.340556, -0.6558752, 0.6736835, -3.0613227, 1.8557096, -3.074823)
-light_energy = 2.829
+light_energy = 0.5
 
 [node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.901508, 0.03110703, 0.431643, 0.26702997, -0.8248837, -0.49825892, 0.3405559, 0.56444603, -0.7519458, -5.9382224, 2.8218932, -5.025458)
+light_energy = 0.5
 
 [node name="LevelGenerator" parent="." instance=ExtResource("8_o5d2f")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_0oum7")
+volume_db = 2.0
+autoplay = true
+parameters/looping = true

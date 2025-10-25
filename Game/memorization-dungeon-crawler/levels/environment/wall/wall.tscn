@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpunwt6bwc3bm"]
+[gd_scene load_steps=7 format=3 uid="uid://bpunwt6bwc3bm"]
 
 [ext_resource type="Texture2D" uid="uid://oxj6462r64m" path="res://assets/models/door/medeval/door frame_seaworn_stone_tiles_diff_4k.jpg" id="1_5vrq6"]
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/environment/wall/wall.gd" id="1_x7e51"]
+[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://assets/models/pillar/pillar.glb" id="3_ctcnh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1, 5, 5)
@@ -24,3 +25,6 @@ shape = SubResource("BoxShape3D_xfbw5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 material_override = SubResource("StandardMaterial3D_x7e51")
 mesh = SubResource("BoxMesh_5vrq6")
+
+[node name="pillar" parent="." instance=ExtResource("3_ctcnh")]
+transform = Transform3D(1.4, 0, 0, 0, 1.02, 0, 0, 0, 1.4, 0, 0, 2.5)

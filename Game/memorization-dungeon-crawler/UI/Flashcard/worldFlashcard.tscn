@@ -21,6 +21,7 @@ size = Vector2i(190, 220)
 script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_fljia")
 
 [editable path="SubViewport/Control"]

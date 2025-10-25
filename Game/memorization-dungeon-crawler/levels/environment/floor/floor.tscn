@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvoe5plbouam2"]
 
 [ext_resource type="Script" uid="uid://bj2u0j6bfrtoq" path="res://levels/environment/floor/floor.gd" id="1_bbej7"]
-[ext_resource type="Texture2D" uid="uid://cotmv8sagi6dx" path="res://assets/textures/cracked_concrete_diff_1k.jpg" id="2_mrk8i"]
+[ext_resource type="Texture2D" uid="uid://b7momwxoijh6j" path="res://assets/textures/cracked_concrete_diff_1k.jpg" id="2_mrk8i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wwqpw"]
 size = Vector3(250, 1, 250)
