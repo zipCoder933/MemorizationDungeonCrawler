@@ -109,7 +109,6 @@ func _physics_process(delta: float) -> void:
 		rotation.y = atan2(dir.x, dir.z) + PI
 	elif(mode == PlayerMode.GAME_OVER):
 		linear_velocity = Vector3.ZERO
-		animation_player.play(DEATH_ANIMATION,1)
 
 
 
