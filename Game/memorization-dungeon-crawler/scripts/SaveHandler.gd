@@ -1,8 +1,9 @@
 extends Node
 class_name SaveHandler
+static var saves:Array[SaveEntry] = []
 
-static var SAVE_FILE = "res://data/saveData.json"
-static var saves: Array[SaveEntry] = []
+static var currentGame:SaveEntry
+static var currentLevel:Level
 
 static func load_from_file(file_path: String) -> void:
 	saves.clear()

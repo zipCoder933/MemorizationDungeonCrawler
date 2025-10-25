@@ -127,5 +127,14 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_phg2d")
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 12
+text = "CREDIT: Sam, Luke, Danny, Gavin, Mixamo for animations and Knight Model, toro ardido modelos 3d sketchfab for Goblin model, Chatgpt for small code help, Phantom Camera from Godot addons"
+
 [connection signal="pressed" from="CanvasLayer/ColorRect/Buttons/NewButton" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

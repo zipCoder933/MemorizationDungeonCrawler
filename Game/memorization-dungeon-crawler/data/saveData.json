@@ -1,9 +1,9 @@
 {
 	"games": [
 		{
-			"completed_level": 0,
-			"name": "asdf",
-			"path": "res://data/games/multiplication/"
+			"completed_level": 2,
+			"name": "addy",
+			"path": "res://data/games/addition/"
 		}
 	]
 }

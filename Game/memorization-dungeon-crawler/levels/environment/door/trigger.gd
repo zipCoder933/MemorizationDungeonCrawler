@@ -17,7 +17,7 @@ func _ready():
 func open_door(open2:bool):
 	if(!door.open):
 		_3d_flashcard.drill([ 
-			CardsHandler.randomCardInCurrentLevel().toQuestion(1,LevelsHandler.current_level)
+			CardsHandler.randomCardInCurrentLevel().toQuestion(1,SaveHandler.currentLevel)
 		 ])
 
 func _on_d_flashcard_finished_drill(succeeded:int, questions:int) -> void:

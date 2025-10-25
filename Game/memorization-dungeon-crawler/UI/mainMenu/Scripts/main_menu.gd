@@ -13,7 +13,7 @@ func reload():
 	get_tree().reload_current_scene()
 
 func _ready():
-	SaveHandler.load_from_file(SaveHandler.SAVE_FILE)
+	SaveHandler.load_from_file(Globals.SAVE_FILE)
 	#start_game(SaveHandler.saves[0].path);
 	for entry in SaveHandler.saves:
 		var node = GAME_ENTRY.instantiate()

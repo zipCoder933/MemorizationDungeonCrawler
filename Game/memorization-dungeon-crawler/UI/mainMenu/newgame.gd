@@ -29,5 +29,5 @@ func _on_start_button_pressed() -> void:
 	
 	var save1 = SaveEntry.new(name_box.text, template_dir, 0)
 	SaveHandler.saves.append(save1)
-	SaveHandler.save_to_file(SaveHandler.SAVE_FILE)
+	SaveHandler.save_to_file(Globals.SAVE_FILE)
 	get_tree().change_scene_to_file("res://UI/mainMenu/main_menu.tscn")

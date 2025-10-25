@@ -8,9 +8,6 @@ static var goal_speed
 static var midgame_start_speed
 static var midgame_goal_speed
 
-#The level we are currently on
-static var current_level = null
-
 func _ready():
 	pass
 	#load_levels("res://data/games/multiplication/level.json")  # path to your JSON file

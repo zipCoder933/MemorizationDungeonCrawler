@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cynckudprgttu"]
+[gd_scene load_steps=5 format=3 uid="uid://cynckudprgttu"]
 
 [ext_resource type="Texture2D" uid="uid://dbh04hasfvvly" path="res://icon.svg" id="1_4or87"]
-[ext_resource type="Script" uid="uid://dpwndab3fxwor" path="res://UI/Flashcard/flashcard.gd" id="1_m84yh"]
-[ext_resource type="FontFile" uid="uid://bcq6fcy50kxjx" path="res://assets/fonts/Varela_Round/VarelaRound-Regular.ttf" id="2_m84yh"]
+[ext_resource type="FontFile" uid="uid://d4l36d7861osl" path="res://assets/fonts/UnifrakturCook/UnifrakturCook-Bold.ttf" id="2_4or87"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7h1a"]
 bg_color = Color(0.099985994, 0.099985994, 0.099985994, 1)
@@ -15,7 +14,6 @@ expand_margin_bottom = 5.0
 [node name="Panel" type="Panel"]
 offset_right = 190.0
 offset_bottom = 220.0
-script = ExtResource("1_m84yh")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -57,15 +55,17 @@ stretch_mode = 3
 
 [node name="questionLabel" type="Label" parent="ColorRect/VBoxContainer/question"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_m84yh")
+theme_override_fonts/font = ExtResource("2_4or87")
+theme_override_font_sizes/font_size = 32
 text = "adfasdfasdf"
 
 [node name="answer" type="Label" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
-theme_override_fonts/font = ExtResource("2_m84yh")
-text = "This is test input"
+theme_override_fonts/font = ExtResource("2_4or87")
+theme_override_font_sizes/font_size = 24
+text = "an"
 horizontal_alignment = 1
 
 [node name="BPadding" type="MarginContainer" parent="ColorRect/VBoxContainer"]

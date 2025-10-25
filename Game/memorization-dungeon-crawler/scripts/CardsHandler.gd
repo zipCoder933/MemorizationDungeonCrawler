@@ -5,10 +5,10 @@ const LevelsHandler = preload("uid://bte11e0fapqes")
 
 #An easier alternative
 static func randomCardInCurrentLevel() -> Card:
-	if(LevelsHandler.current_level == null):
+	if(SaveHandler.currentGame == null):
 		assert(false, "Level is Null!")
 	#Get the tags of the current level
-	var tags = LevelsHandler.current_level.cardTags
+	var tags = SaveHandler.currentLevel.cardTags
 	#Get a random tag from that pile
 	var tag = tags[randi_range(0,tags.size()-1)]
 	#print("TAGS: ",tags)

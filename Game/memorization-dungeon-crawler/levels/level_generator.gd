@@ -3,9 +3,8 @@ extends Node3D
 const DOOR = preload("uid://bdnosseu7fsm")
 const FLOOR = preload("uid://bvoe5plbouam2")
 const WALL = preload("uid://bpunwt6bwc3bm")
-const ARENA_ENEMIES:Array = [
-	preload("uid://bqoufhp54uwue") #Goblin
-]
+const AREA_ENEMY = preload("uid://bqoufhp54uwue")
+const ARENA_BOSS = preload("uid://bobtcptejmn2a")
 
 """
 The level data
@@ -88,22 +87,27 @@ func is_area_clear(x: int, z: int, radius: int) -> bool:
 				return false
 	return true
 
-func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, testMode:bool) -> bool:
+func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, testMode:bool, boss:bool) -> bool:
 	var final = moveIn(Vector3(x,0,z),direction)
 	x = final.x;
 	z = final.z;
 	
 	if !testMode:
-		var instance = ARENA_ENEMIES[randi_range(0,ARENA_ENEMIES.size()-1)].instantiate()
+		var instance
+		if(boss):
+			instance = ARENA_BOSS.instantiate()
+		else:
+			instance = AREA_ENEMY.instantiate()
+		
 		var enemyPos = Vector3(x+0.5,0,z+0.5)
 		if(direction == Direction.ZPOS):
-			instance.rotation.y = PI/2
+			#instance.rotation.y = PI/2
 			enemyPos.z += 1
 		elif(direction == Direction.ZNEG):
-			instance.rotation.y = -(PI/2)
+			#instance.rotation.y = -(PI/2)
 			enemyPos.z -= 1
 		elif(direction == Direction.XPOS):
-			instance.rotation.y = PI
+			#instance.rotation.y = PI
 			enemyPos.x += 1
 		else:
 			enemyPos.x -= 1
@@ -261,9 +265,9 @@ func pathDirection(direction:Direction, length:int, placeDoors:bool, idea_path) 
 			idea_path.append(PathStep.new(Vector3i(place),placeDoors))
 	return madeBox
 
-const DOOR_LIKELYHOOD = 0.0
+const DOOR_LIKELYHOOD = 0.2
 
-func path(path_start:Vector3, path_end:Vector3, max_failures:int, arenaSize:int, failedLevelSurvival:float) -> int:
+func path(path_start:Vector3, path_end:Vector3, max_failures:int, arenaSize:int, failedLevelSurvival:float, boss:bool) -> int:
 	place = path_start
 	var stepsTaken = 0
 	var failures = 0
@@ -301,10 +305,13 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, arenaSize:int,
 			box(step.path_pos.x,step.path_pos.z,false,false,step.placeDoor)
 		
 		#Only place the arena if we didnt fail
-		if(stepsTaken > 0 and failures < max_failures and arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, true)):
-			arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, false)
+		if(stepsTaken > 0 and failures < max_failures and arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, true, false)):
+			arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, false, boss)
+			if(!boss):
+				Globals.totalArenas += 1
 	
 	return stepsTaken
+
 
 
 const arenaSize = 1;
@@ -313,17 +320,19 @@ const start_pos = Vector3(0,0,0)
 const main_path_end = Vector3(20,0,20)
 
 func _ready():
+	Globals.completedArenas = 0
+	Globals.totalArenas = 0
 	box(start_pos.x, start_pos.z, true, true, false)
 	#arena(start_pos.x-2,start_pos.z, 1,1, Direction.XPOS, false)
-	print("MAIN: ", path(start_pos, main_path_end,25,arenaSize+2, 1))
+	print("MAIN: ", path(start_pos, main_path_end,25,arenaSize+2, 1, true))
 	
-	for i in range(0,200):
+	for i in range(0,100):
 		place = searched.keys()[randi_range(0,searched.keys().size()-1)]
 		var direction =Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()  # to the right
-		var length = randi_range(5,50)
+		var length = randi_range(5,20)
 		var end_pls:Vector3 = (Vector3(place) + direction * length)
 		if is_area_clear(end_pls.x, end_pls.z, (arenaSize) + CLOSENESS_TO_END_PATH_END + 2):
-			var steps = path(place, end_pls, 5, arenaSize, 0.2)
+			var steps = path(place, end_pls, 5, arenaSize, 0.2, false)
 
 	_place_floors(searched, 250)
 

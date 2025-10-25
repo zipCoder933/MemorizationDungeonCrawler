@@ -1,10 +1,15 @@
 extends StaticBody3D
 class_name GoblinTrigger
 
-@onready var _3d_flashcard: WorldFlashCard = %"3dFlashcard"
-@onready var _animation_player: AnimationPlayer = $"../AnimationPlayer"
+@export var _3d_flashcard: WorldFlashCard
+@export var _animation_player: AnimationPlayer
+@export var node_3d: Node3D
+
 @onready var player:Player = get_tree().get_first_node_in_group("player");
-@onready var node_3d: Node3D = $"../Node3D"
+
+@export var damage:float = 0.5
+@export var speed:float = 0.8
+@export var cardNumber:int = 10
 
 var isDead = false
 const CardsHandler = preload("uid://cc0wwewiey4d7")
@@ -16,10 +21,11 @@ func _single_drill(success):
 
 func _finish_drill(success, count):
 	if(success > 0):
+		Globals.completedArenas += 1
 		isDead = true
 		_animation_player.play("Death Retarget",0.2)
 		#Refull health
-		player.change_health(10)
+		player.change_health(0.8)
 
 func _ready() -> void:
 	_3d_flashcard.finished_drill.connect(_finish_drill)
@@ -42,11 +48,7 @@ func trigger():
 		return
 	print("You should not have come")
 
-	_3d_flashcard.drill([
-		CardsHandler.randomCardInCurrentLevel().toQuestion(1, LevelsHandler.current_level, 0.2),
-		CardsHandler.randomCardInCurrentLevel().toQuestion(1, LevelsHandler.current_level, 0.2),
-		CardsHandler.randomCardInCurrentLevel().toQuestion(1, LevelsHandler.current_level, 0.2),
-		CardsHandler.randomCardInCurrentLevel().toQuestion(0.7, LevelsHandler.current_level, 0.2),
-		CardsHandler.randomCardInCurrentLevel().toQuestion(0.7, LevelsHandler.current_level, 0.2),
-		CardsHandler.randomCardInCurrentLevel().toQuestion(0.5, LevelsHandler.current_level, 0.2)
-	])
+	var cards:Array = []
+	for i in range(0,cardNumber):
+		cards.append(CardsHandler.randomCardInCurrentLevel().toQuestion(speed, SaveHandler.currentLevel, damage))
+	_3d_flashcard.drill(cards)

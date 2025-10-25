@@ -11,7 +11,7 @@ const HIT_ANIMATION = ["hit1 Retarget","hit2 Retarget","hit3 Retarget"]
 enum PlayerMode{
 	ADVENTURE,
 	FACTS,
-	GAME_OVER
+	GAME_OVER, VICTORY
 }
 #camera
 @export var phantom_camera_3d: PhantomCamera3D
@@ -22,7 +22,7 @@ var target_cam_offset:Vector2 = Vector2(0,0)
 #movement
 var movement:Vector3 = Vector3.ZERO
 var is_on_floor:bool = false
-const FORWARD_SPEED = 300
+const FORWARD_SPEED = 400
 
 const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
@@ -39,7 +39,7 @@ func change_health(amt):
 	health = health + amt
 	if(health > MAX_HEALTH):
 		health = MAX_HEALTH
-	if(health < 0):
+	if(health <= 0):
 		Globals.game_over.emit()
 	health_changed.emit(health)
 
@@ -48,12 +48,19 @@ func _ready():
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
 	Globals.game_over.connect(_game_over)
 	Globals.adventure_mode.connect(_global_adventure_mode)
+	Globals.victory.connect(_victory)
 
 var flash_card:WorldFlashCard = null
+
+func _victory():
+	mode = PlayerMode.VICTORY
+	animation_player.play("Armature|mixamo_com|Layer0_002 Retarget",1)
+	mouse_controller.unlock_mouse_forever()
 
 func _game_over():
 	mode = PlayerMode.GAME_OVER
 	animation_player.play(DEATH_ANIMATION,1)
+	mouse_controller.unlock_mouse_forever()
 
 func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 	flash_card = target2

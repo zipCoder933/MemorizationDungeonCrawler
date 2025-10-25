@@ -16,6 +16,7 @@ script = ExtResource("1_ad0hl")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+visible = false
 offset_left = -280.0
 offset_right = 1124.0
 offset_bottom = 512.0
@@ -138,10 +139,9 @@ offset_left = 24.0
 offset_top = 128.0
 offset_right = 200.0
 offset_bottom = 216.0
-item_count = 3
+item_count = 2
 item_0/text = "Multiplication"
 item_1/text = "Addition"
-item_2/text = "Subtraction"
 
 [connection signal="pressed" from="CanvasLayer/ColorRect/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/StartButton" to="." method="_on_start_button_pressed"]

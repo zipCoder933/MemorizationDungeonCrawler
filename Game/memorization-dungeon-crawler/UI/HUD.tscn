@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfj67b4iujjtf"]
+[gd_scene load_steps=6 format=3 uid="uid://bfj67b4iujjtf"]
 
 [ext_resource type="Script" uid="uid://qn46exgdgmle" path="res://UI/hud.gd" id="1_ijstf"]
 [ext_resource type="Texture2D" uid="uid://ch714bgi1e00f" path="res://assets/textures/health_indicator.png" id="1_yixhe"]
+[ext_resource type="FontFile" uid="uid://l2eim6vo1a7j" path="res://assets/fonts/New_Rocker/NewRocker-Regular.ttf" id="3_4n7mi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4idxp"]
 content_margin_left = 22.0
@@ -81,4 +82,70 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Back To Home"
 
+[node name="VictoryPanel" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.25
+offset_top = -81.0
+offset_right = 124.25
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VictoryPanel"]
+layout_mode = 0
+offset_right = 248.75
+offset_bottom = 79.0
+text = "VICTORY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="back" type="Button" parent="CanvasLayer/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back To Home"
+
+[node name="Next" type="Button" parent="CanvasLayer/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -65.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Next Level
+"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 288.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("3_4n7mi")
+text = "COMPLETED ARENAS 0/0"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 390.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("3_4n7mi")
+theme_override_font_sizes/font_size = 12
+text = "(ALL MINIBOSSES MUST BE COMPLETED BEFORE
+THE FINAL BOSS!)"
+
 [connection signal="pressed" from="CanvasLayer/GameOverPanel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VictoryPanel/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/VictoryPanel/Next" to="." method="_on_next_pressed"]
