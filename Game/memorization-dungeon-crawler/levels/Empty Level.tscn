@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b814qo7tsdd6q"]
+[gd_scene load_steps=11 format=3 uid="uid://b814qo7tsdd6q"]
 
 [ext_resource type="Script" uid="uid://bh4f3dnixa8xl" path="res://levels/level.gd" id="1_l4y0c"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_6awyk"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bvoe5plbouam2" path="res://levels/environment/floor/floor.tscn" id="6_6awyk"]
 [ext_resource type="PackedScene" uid="uid://bpunwt6bwc3bm" path="res://levels/environment/wall/wall.tscn" id="7_io462"]
 [ext_resource type="PackedScene" uid="uid://bdnosseu7fsm" path="res://levels/environment/door/door.tscn" id="8_io462"]
+[ext_resource type="PackedScene" uid="uid://bqoufhp54uwue" path="res://levels/enemies/medeval/goblin.tscn" id="9_36vw8"]
 
 [sub_resource type="Resource" id="Resource_0oum7"]
 script = ExtResource("3_io462")
@@ -59,3 +60,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1530104, 0, -0.20921612)
 
 [node name="Door" parent="." instance=ExtResource("8_io462")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9699564, -0.06306267, 9.081865)
+
+[node name="goblin" parent="." instance=ExtResource("9_36vw8")]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -6.2274237, 0.79041517, 10.347638)

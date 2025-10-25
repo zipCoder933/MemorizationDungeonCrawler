@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rkbax"]
 
-[node name="Player" type="RigidBody3D"]
+[node name="Player" type="RigidBody3D" groups=["player"]]
 collision_mask = 10
 axis_lock_angular_x = true
 axis_lock_angular_z = true
@@ -144,7 +144,8 @@ bones/67/position = Vector3(4.636823e-08, 0.16699943, -1.5471647e-06)
 bones/67/rotation = Quaternion(0.35826504, -0.02070278, -0.016171021, 0.9332503)
 bones/68/position = Vector3(-5.591101e-08, 0.0711999, -6.5209684e-07)
 
-[node name="PlayerHUD" parent="." instance=ExtResource("3_g1dw6")]
+[node name="PlayerHUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g1dw6")]
+player = NodePath("..")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

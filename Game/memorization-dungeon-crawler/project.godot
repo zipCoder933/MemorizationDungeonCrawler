@@ -33,6 +33,10 @@ project/assembly_name="MemorizationDungeonCrawler"
 
 enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
+[global_group]
+
+player=""
+
 [input]
 
 Forward={

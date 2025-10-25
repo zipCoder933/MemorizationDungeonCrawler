@@ -5,6 +5,7 @@ var question: String
 var is_image:bool
 var answer_text: String
 var time_limit: float
+var fail_health_loss:float
 
 func answerEquals(ans: String) -> bool:
 	print("User entered:", ans, " answer: ", answer_text)
@@ -30,9 +31,10 @@ func is_numeric(s: String) -> bool:
 		return false
 	return s.is_valid_float() or s.is_valid_int()
 
-
-func _init(isImage:bool, q: String = "", ans: String = "", time: float = 0.0):
+	
+func _init(isImage:bool, q: String = "", ans: String = "", time: float = 0.0, _fail_health_loss:float = 0.0):
 	is_image = isImage
 	question = q
+	fail_health_loss = _fail_health_loss
 	answer_text = ans
 	time_limit = time

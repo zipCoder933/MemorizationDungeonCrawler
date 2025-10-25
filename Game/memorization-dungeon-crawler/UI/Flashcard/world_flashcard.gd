@@ -6,7 +6,7 @@ class_name WorldFlashCard
 @onready var question_label: Label = $SubViewport/Control/ColorRect/VBoxContainer/question/questionLabel
 @onready var answer: Label = $SubViewport/Control/ColorRect/VBoxContainer/answer
 @onready var color_rect: ColorRect = $SubViewport/Control/ColorRect
-
+@onready var player = get_tree().get_nodes_in_group("player")[0]
 
 var time_left_ms:float
 var start_time:int
@@ -32,7 +32,7 @@ func drill(questions2:Array):
 
 func _drill(q:Question):
 	visible = true
-	print("Visible,",visible)
+	print("QUESITON: ",q.question)
 	progress_bar.value = 1
 	time_left_ms = q.time_limit * 1000
 	start_time = Time.get_ticks_msec()
@@ -82,6 +82,10 @@ func _nextCard(succeed:bool):
 	if(succeed):
 		succeeded += 1
 	single_drill.emit(succeed)
+	#If we did not succeed, lower the players health
+	if(!succeed):
+		player.change_health( - currentQuestion.fail_health_loss)
+	
 	questions.remove_at(0)
 	if(questions.size() > 0):
 		_drill(questions[0])

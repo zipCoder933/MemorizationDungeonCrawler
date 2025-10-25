@@ -25,12 +25,14 @@ var canMove:bool = true
 
 #health
 signal health_changed
+const MAX_HEALTH = 1
 var health:float = 1
 
 func change_health(amt):
 	health = health + amt
 	if(health > 1):
 		health = 1
+	print("HEALTH: ",health)
 	health_changed.emit(health)
 	
 func _ready():
@@ -59,7 +61,6 @@ func _process(delta:float):
 	camRotation.y = 180 + rad_to_deg(cameraHorizontalOffset) + (normalized_pos.x * cameraSensitivity)
 	camRotation.x = -20 + (normalized_pos.y * cameraSensitivity)
 	phantom_camera_3d.set_third_person_rotation_degrees(camRotation)
-
 
 func _physics_process(delta: float) -> void:
 	#For top down third person movement
@@ -145,3 +146,5 @@ func _on_body_entered(body: Node) -> void:
 		is_on_floor = true
 	elif body is DoorTrigger:
 		body.open_door(true)
+	elif body is GoblinTrigger:
+		body.trigger()

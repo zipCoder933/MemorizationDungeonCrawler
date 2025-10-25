@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfj67b4iujjtf"]
+[gd_scene load_steps=5 format=3 uid="uid://bfj67b4iujjtf"]
 
+[ext_resource type="Script" uid="uid://qn46exgdgmle" path="res://UI/hud.gd" id="1_ijstf"]
 [ext_resource type="Texture2D" uid="uid://ch714bgi1e00f" path="res://assets/textures/health_indicator.png" id="1_yixhe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4idxp"]
@@ -21,6 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ijstf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

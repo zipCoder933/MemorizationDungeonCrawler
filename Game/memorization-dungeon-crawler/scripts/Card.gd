@@ -15,9 +15,9 @@ func _init(_type: String, _question: String, _answer: String, _tags: Array):
 	answer = _answer
 	tags = _tags
 
-func toQuestion(timeMultiplier:float, level:Level):
+func toQuestion(timeMultiplier:float, level:Level, fail_health_loss:float = 0.0):
 	var isImage = type == "image";
-	return Question.new(isImage, question, answer, level.time_to_answer_sec * timeMultiplier)
+	return Question.new(isImage, question, answer, level.time_to_answer_sec * timeMultiplier, fail_health_loss)
 
 func toString() -> String:
 	return "%s: %s = %s [%s]" % [type, question, answer, ", ".join(tags)]
