@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://o164qtonnr5o"]
 
 [ext_resource type="Script" uid="uid://3axsagpubaea" path="res://UI/mainMenu/newgame.gd" id="1_ad0hl"]
-[ext_resource type="Texture2D" uid="uid://bvepl5nfew4th" path="res://UI/mainMenu/menubg_placeholder.jpg" id="1_o1joj"]
+[ext_resource type="Texture2D" uid="uid://bvepl5nfew4th" path="res://assets/menubg_placeholder.jpg" id="1_o1joj"]
 [ext_resource type="FontFile" uid="uid://bcq6fcy50kxjx" path="res://assets/fonts/Varela_Round/VarelaRound-Regular.ttf" id="2_0fahj"]
 
 [node name="Newgame" type="Control"]
@@ -16,13 +16,14 @@ script = ExtResource("1_ad0hl")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-visible = false
-offset_left = -280.0
-offset_right = 1124.0
-offset_bottom = 512.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 texture = ExtResource("1_o1joj")
-expand_mode = 2
-stretch_mode = 4
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 8
@@ -30,13 +31,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -115.5
-offset_top = -114.0
-offset_right = 108.5
-offset_bottom = 158.0
+offset_left = -170.125
+offset_top = -153.5
+offset_right = 170.125
+offset_bottom = 153.5
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.105882354, 0.105882354, 0.105882354, 0.43529412)
+color = Color(0.105882354, 0.105882354, 0.105882354, 0.57254905)
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/ColorRect"]
 layout_mode = 1
@@ -74,10 +75,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -72.0
-offset_top = -88.0
-offset_right = 72.0
-offset_bottom = -57.0
+offset_left = -146.0
+offset_top = -106.0
+offset_right = 150.0
+offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0.3764706)
@@ -136,12 +137,13 @@ text = "✔️"
 [node name="templateBox" type="ItemList" parent="CanvasLayer/ColorRect"]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 128.0
-offset_right = 200.0
-offset_bottom = 216.0
-item_count = 2
+offset_top = 143.5
+offset_right = 323.125
+offset_bottom = 255.5
+item_count = 3
 item_0/text = "Multiplication"
 item_1/text = "Addition"
+item_2/text = "Subtraction"
 
 [connection signal="pressed" from="CanvasLayer/ColorRect/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/StartButton" to="." method="_on_start_button_pressed"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfj67b4iujjtf"]
+[gd_scene load_steps=10 format=3 uid="uid://bfj67b4iujjtf"]
 
 [ext_resource type="Script" uid="uid://qn46exgdgmle" path="res://UI/hud.gd" id="1_ijstf"]
 [ext_resource type="Texture2D" uid="uid://ch714bgi1e00f" path="res://assets/textures/health_indicator.png" id="1_yixhe"]
 [ext_resource type="FontFile" uid="uid://l2eim6vo1a7j" path="res://assets/fonts/New_Rocker/NewRocker-Regular.ttf" id="3_4n7mi"]
+[ext_resource type="StyleBox" uid="uid://bxp67n10n2pan" path="res://styles/translucent_box.tres" id="3_uk570"]
+[ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="5_f2wx0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4idxp"]
 content_margin_left = 22.0
@@ -16,6 +18,11 @@ corner_detail = 20
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3xbc"]
 bg_color = Color(1, 0.28764555, 0.22208649, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2wx0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_f2wx0"]
+
 [node name="PlayerHUD" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -23,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_f2wx0")
 script = ExtResource("1_ijstf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -62,11 +70,13 @@ offset_right = 124.25
 offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_f2wx0")
+theme_override_styles/panel = ExtResource("3_uk570")
 
 [node name="Label" type="Label" parent="CanvasLayer/GameOverPanel"]
 layout_mode = 0
 offset_right = 248.75
-offset_bottom = 79.0
+offset_bottom = 117.0
 text = "GAME OVER!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -95,12 +105,14 @@ offset_right = 124.25
 offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_f2wx0")
+theme_override_styles/panel = ExtResource("3_uk570")
 
 [node name="Label" type="Label" parent="CanvasLayer/VictoryPanel"]
 layout_mode = 0
 offset_right = 248.75
-offset_bottom = 79.0
-text = "VICTORY"
+offset_bottom = 85.0
+text = "Victory!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -113,7 +125,7 @@ anchor_bottom = 1.0
 offset_top = -27.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Back To Home"
+text = "Main Menu"
 
 [node name="Next" type="Button" parent="CanvasLayer/VictoryPanel"]
 layout_mode = 1
@@ -121,8 +133,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -65.0
-offset_bottom = -34.0
+offset_top = -85.0
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Next Level
@@ -146,6 +158,88 @@ theme_override_font_sizes/font_size = 12
 text = "(ALL MINIBOSSES MUST BE COMPLETED BEFORE
 THE FINAL BOSS!)"
 
+[node name="MenuPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.25
+offset_top = -81.0
+offset_right = 124.25
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_f2wx0")
+theme_override_styles/panel = ExtResource("3_uk570")
+
+[node name="Label" type="Label" parent="MenuPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 117.0
+grow_horizontal = 2
+theme = ExtResource("5_f2wx0")
+text = "Game Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="home" type="Button" parent="MenuPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_f2wx0")
+text = "Main Menu"
+
+[node name="flashcardPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f2wx0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="flashcardPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="flashcardQuestion" type="Label" parent="flashcardPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "QUESTION"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="flashcardAnswer" type="Label" parent="flashcardPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ANSWER"
+horizontal_alignment = 1
+
+[node name="flashcardTime" type="ProgressBar" parent="flashcardPanel/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_f2wx0")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
 [connection signal="pressed" from="CanvasLayer/GameOverPanel/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VictoryPanel/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/VictoryPanel/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="MenuPanel/home" to="." method="_on_home_pressed"]

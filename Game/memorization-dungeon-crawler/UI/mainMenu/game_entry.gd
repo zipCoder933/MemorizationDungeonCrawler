@@ -5,7 +5,6 @@ const LevelsHandler = preload("uid://bte11e0fapqes")
 @onready var label: Label = %Label
 var entry:SaveEntry
 
-
 func setDetails(_entry:SaveEntry):
 	entry = _entry
 	print("ENTRY:",entry)

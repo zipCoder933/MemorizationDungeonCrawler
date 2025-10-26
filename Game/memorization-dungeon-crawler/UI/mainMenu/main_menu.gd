@@ -4,10 +4,10 @@ extends Control
 const CardsHandler = preload("uid://cc0wwewiey4d7")
 const LevelsHandler = preload("uid://bte11e0fapqes")
 const SaveHandler = preload("uid://bgwdh30vglopu")
-
+@onready var v_box_container: VBoxContainer = %VBoxContainer
+@onready var loading: Panel = %Loading
 
 const GAME_ENTRY = preload("uid://cw3i736uj4aib")
-@onready var v_box_container: VBoxContainer = $CanvasLayer/ColorRect/LoadPanel/VBoxContainer/Panel/ScrollContainer/VBoxContainer
 
 func reload():
 	get_tree().reload_current_scene()

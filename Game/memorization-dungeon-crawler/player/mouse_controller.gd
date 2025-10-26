@@ -5,6 +5,7 @@ var mouse_delta := Vector2.ZERO      # mouse movement this frame
 var sensitivity := 0.1
 var mouse_locked := false
 var letGoOfMouse = false
+@export var playerHUD:HUD
 
 func unlock_mouse_forever():
 	unlock_mouse()
@@ -20,19 +21,20 @@ func _process(delta):
 	mouse_delta = Vector2.ZERO
 
 func _input(event):
+	if playerHUD.panelsVisible():
+		unlock_mouse()
+	else:
+		lock_mouse()
+
+	if event is InputEventMouseButton and event.pressed and not mouse_locked:
+		if(not playerHUD.panelsVisible()):
+			lock_mouse()
+	
 	# Capture mouse motion (like Minecraft)
 	if event is InputEventMouseMotion and mouse_locked:
 		mouse_delta = event.relative * sensitivity
-		#print(mouse_delta)
+	
 
-	# ESC → release mouse
-	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
-		unlock_mouse()
-
-	# recapture mouse on click
-	if event is InputEventMouseButton and event.pressed and not mouse_locked:
-		if(!letGoOfMouse):
-			lock_mouse()
 
 func _notification(what):
 	if what == NOTIFICATION_APPLICATION_FOCUS_IN:

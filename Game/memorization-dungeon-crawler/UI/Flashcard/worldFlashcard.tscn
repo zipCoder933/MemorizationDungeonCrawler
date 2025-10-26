@@ -17,7 +17,6 @@ transparent_bg = true
 size = Vector2i(190, 220)
 
 [node name="Control" parent="SubViewport" instance=ExtResource("1_n55g1")]
-script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
