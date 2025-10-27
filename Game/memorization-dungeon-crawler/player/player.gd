@@ -35,7 +35,7 @@ var health:float = 1
 
 func change_health(amt):
 	if(amt < 0):
-		animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.5, 2.0)
+		animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.5, 0.2)
 	health = health + amt
 	if(health > MAX_HEALTH):
 		health = MAX_HEALTH
@@ -85,6 +85,7 @@ const MOUSE_SENSITIVITY = 0.06
 
 func _process(delta:float):
 	camRotation.x += -mouse_controller.mouse_delta.y * MOUSE_SENSITIVITY
+	camRotation.x = clamp(camRotation.x, -PI/3, PI/3)
 	camRotation.y += (-mouse_controller.mouse_delta.x * MOUSE_SENSITIVITY) + (movement.x * delta * TURN_SPEED)
 	phantom_camera_3d.set_third_person_rotation(camRotation)
 
@@ -92,11 +93,11 @@ func _process(delta:float):
 		pass
 	else:
 		#Animations
-		if( linear_velocity.y > 0.5 ):
-			animation_player.play(JUMP_UP_ANIMATION,1)
+		if(linear_velocity.y > 0.5 ):
+			animation_player.play(JUMP_UP_ANIMATION,0.1)
 		elif(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
-			animation_player.play(RUNNING_ANIMATION,1)
-		else:
+			animation_player.play(RUNNING_ANIMATION,0.1)
+		elif(!animation_player.is_playing()):
 			animation_player.play(IDLE_ANIMATION,1)
 
 
@@ -136,12 +137,14 @@ func _input(event: InputEvent) -> void:
 				movement.z = 1;
 			elif Input.is_action_just_released("Forward"):
 				movement.z = 0;
+				animation_player.play(IDLE_ANIMATION,1)
 				
 			if Input.is_action_just_pressed("Backward"):
 				movement.z = -1;
 				targetRotation = rotation.y+PI;
 			elif Input.is_action_just_released("Backward"):
 				movement.z = 0;
+				animation_player.play(IDLE_ANIMATION,1)
 				
 			if Input.is_action_just_pressed("Left"):
 				movement.x = 1;
@@ -149,6 +152,7 @@ func _input(event: InputEvent) -> void:
 					targetRotation = rotation.y+PI/2
 			elif Input.is_action_just_released("Left"):
 				movement.x = 0;
+				animation_player.play(IDLE_ANIMATION,1)
 				target_cam_offset.y = rotation.y
 				
 			if Input.is_action_just_pressed("Right"):
@@ -157,6 +161,7 @@ func _input(event: InputEvent) -> void:
 					targetRotation = rotation.y-PI/2
 			elif Input.is_action_just_released("Right"):
 				movement.x = 0;
+				animation_player.play(IDLE_ANIMATION,1)
 				target_cam_offset.y = rotation.y
 				
 			if is_on_floor == true and Input.is_action_just_pressed("Jump"):

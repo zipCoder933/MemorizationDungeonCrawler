@@ -1,4 +1,6 @@
 extends Control
+class_name MainMenu
+
 @onready var start_button: Button = $CanvasLayer/ColorRect/Buttons/StartButton
 
 const CardsHandler = preload("uid://cc0wwewiey4d7")
@@ -6,6 +8,14 @@ const LevelsHandler = preload("uid://bte11e0fapqes")
 const SaveHandler = preload("uid://bgwdh30vglopu")
 @onready var v_box_container: VBoxContainer = %VBoxContainer
 @onready var loading: Panel = %Loading
+
+func load_game(entry:SaveEntry):
+	loading.visible = true
+	do_later(0.1, func(): Globals.start_game(entry))
+
+func do_later(seconds: float, action: Callable):
+	await get_tree().create_timer(seconds).timeout
+	action.call()
 
 const GAME_ENTRY = preload("uid://cw3i736uj4aib")
 
@@ -24,7 +34,6 @@ func _ready():
 
 func _on_start_button_pressed() -> void:
 	print("hi")
-
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()

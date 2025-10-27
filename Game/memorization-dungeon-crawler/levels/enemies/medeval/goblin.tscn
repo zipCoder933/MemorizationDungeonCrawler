@@ -4,6 +4,12 @@
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/enemies/medeval/goblinTrigger.gd" id="2_reyqm"]
 [ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="2_s4b0v"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_s4b0v"]
+radius = 2.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_reyqm"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwv4x"]
 resource_name = "Material__106"
 transparency = 4
@@ -20,7 +26,7 @@ emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 8.9
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_871xy"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_reyqm"]
 resource_name = "goblin_Gretchin"
 _surfaces = [{
 "aabb": AABB(-0.8743303, -0.007793122, -0.19898216, 1.7444236, 1.4673052, 0.66393226),
@@ -54,7 +60,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Skin" id="Skin_w8xgg"]
+[sub_resource type="Skin" id="Skin_0gu5m"]
 resource_name = "Skin"
 bind_count = 33
 bind/0/name = &"mixamorig_Hips"
@@ -1781,7 +1787,6 @@ tracks/37/keys = PackedFloat32Array(0, 1, 0.28250587, -0.026595563, 0.007834477,
 [sub_resource type="Animation" id="Animation_b4rxb"]
 resource_name = "Idle2 Retarget"
 length = 6.0
-loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -3686,19 +3691,37 @@ _data = {
 &"TakeHit Retarget": SubResource("Animation_14kcs")
 }
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_s4b0v"]
-radius = 2.0
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_reyqm"]
-viewport_path = NodePath("SubViewport")
-
 [node name="goblin" type="Node3D"]
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
 
-[node name="Goblin" type="Node3D" parent="."]
+[node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "node_3d")]
+script = ExtResource("2_reyqm")
+_3d_flashcard = NodePath("../Node3D/3dFlashcard")
+_animation_player = NodePath("../Node3D/goblin/AnimationPlayer")
+node_3d = NodePath("../Node3D")
+damage = 0.25
+cardNumber = 6
+idle_animation = "Idle Retarget"
+punch_animation = "Punch Retarget"
+take_hit_animation = "TakeHit Retarget"
+death_animation = "Death Retarget"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
+shape = SubResource("SphereShape3D_s4b0v")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="3dFlashcard" parent="Node3D" instance=ExtResource("2_s4b0v")]
+unique_name_in_owner = true
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.5997692, 0.8923275)
+texture = SubResource("ViewportTexture_reyqm")
+
+[node name="goblin" type="Node3D" parent="Node3D"]
+
+[node name="Goblin" type="Node3D" parent="Node3D/goblin"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Goblin"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Node3D/goblin/Goblin"]
 bones/0/name = "mixamorig_Hips"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 5.5511146e-16, -5.5511146e-16, 0, 1, 0, -1, 0, -0.00092494965, 0.018714841, -0.68430287)
@@ -3931,27 +3954,11 @@ bones/32/position = Vector3(1.5294063e-08, 0.09182789, 5.820766e-10)
 bones/32/rotation = Quaternion(5.92554e-08, 6.502669e-07, 6.798655e-08, 1)
 bones/32/scale = Vector3(1, 1, 0.99999994)
 
-[node name="Gretchin" type="MeshInstance3D" parent="Goblin/Skeleton3D"]
-mesh = SubResource("ArrayMesh_871xy")
-skin = SubResource("Skin_w8xgg")
+[node name="Gretchin" type="MeshInstance3D" parent="Node3D/goblin/Goblin/Skeleton3D"]
+mesh = SubResource("ArrayMesh_reyqm")
+skin = SubResource("Skin_0gu5m")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D/goblin"]
 libraries = {
 &"": SubResource("AnimationLibrary_v2wei")
 }
-
-[node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "node_3d")]
-script = ExtResource("2_reyqm")
-_3d_flashcard = NodePath("../Node3D/3dFlashcard")
-_animation_player = NodePath("../AnimationPlayer")
-node_3d = NodePath("../Node3D")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
-shape = SubResource("SphereShape3D_s4b0v")
-
-[node name="Node3D" type="Node3D" parent="."]
-
-[node name="3dFlashcard" parent="Node3D" instance=ExtResource("2_s4b0v")]
-unique_name_in_owner = true
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.5997692, 0.8923275)
-texture = SubResource("ViewportTexture_reyqm")

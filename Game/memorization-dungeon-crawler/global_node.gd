@@ -37,14 +37,17 @@ func start_game(entry:SaveEntry, goToLevel:bool = true):
 	print("Loaded %d levels" % LevelsHandler.levels.size())
 	_load_level_current_game()
 	if(goToLevel):
-		get_tree().change_scene_to_file("res://levels/Level.tscn")
+		go_to_level()
 	
 func next_level(goToLevel:bool = true):
 	SaveHandler.currentGame.completed_level+=1
 	SaveHandler.save_to_file(Globals.SAVE_FILE)
 	_load_level_current_game()
 	if(goToLevel):
-		get_tree().change_scene_to_file("res://levels/Level.tscn")
+		go_to_level()
+
+func go_to_level():
+	get_tree().change_scene_to_file("res://levels/Level.tscn")
 
 func _load_level_current_game():
 	if(SaveHandler.currentGame.completed_level > LevelsHandler.levels.size()-1):

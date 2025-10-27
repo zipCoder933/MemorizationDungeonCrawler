@@ -11,7 +11,8 @@ class_name WorldFlashCard
 var time_left_ms:float
 var start_time:int
 const DELAY_NEXT_CARD_MS = 500
-const DEFAULT_COLOR = Color(0.617, 0.688, 0.694, 0.5)
+const DEFAULT_COLOR = Color(0.617, 0.688, 0.694, 0.2)
+const FAILED_COLOR = Color(0.973, 0.0, 0.245, 0.6)
 
 signal finished_drill
 signal single_drill
@@ -104,7 +105,7 @@ func _process(delta:float):
 		var ms = Time.get_ticks_msec()
 		var timeLeft = remap(ms-start_time, 0, time_left_ms, 1, 0)
 		if(timeLeft < 0):
-			color_rect.color = Color(0.973, 0.0, 0.245, 0.5)
+			color_rect.color = FAILED_COLOR
 		if(ms-start_time > time_left_ms + DELAY_NEXT_CARD_MS):
 			_nextCard(false)
 		progress_bar.value = timeLeft

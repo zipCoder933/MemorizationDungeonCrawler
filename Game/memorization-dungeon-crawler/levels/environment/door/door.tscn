@@ -9,7 +9,7 @@
 size = Vector3(1.3112488, 5, 1.1327026)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_45plq"]
-size = Vector3(3.1680908, 5.339203, 0.5579834)
+size = Vector3(3.1680908, 5, 0.5579834)
 
 [node name="Door" type="StaticBody3D"]
 collision_layer = 2
@@ -34,7 +34,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1.02, 0, -1, 0, -4.371139e-08, 0
 collision_layer = 2
 
 [node name="doorCollision" type="CollisionShape3D" parent="door mesh/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7030783, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5816658, 0)
 shape = SubResource("BoxShape3D_45plq")
 
 [node name="trigger" parent="." node_paths=PackedStringArray("door") instance=ExtResource("4_wsbsg")]

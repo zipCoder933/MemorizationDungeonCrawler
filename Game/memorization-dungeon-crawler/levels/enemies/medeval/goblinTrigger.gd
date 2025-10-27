@@ -10,6 +10,10 @@ class_name GoblinTrigger
 @export var damage:float = 0.5
 @export var speed:float = 0.8
 @export var cardNumber:int = 10
+@export var idle_animation:String
+@export var punch_animation:String
+@export var take_hit_animation:String
+@export var death_animation:String
 
 var isDead = false
 const CardsHandler = preload("uid://cc0wwewiey4d7")
@@ -17,13 +21,15 @@ const LevelsHandler = preload("uid://bte11e0fapqes")
 
 func _single_drill(success):
 	if(success):
-		_animation_player.play("TakeHit Retarget",0.2)
+		_animation_player.play(take_hit_animation,0.2)
+	else:
+		_animation_player.play(punch_animation,0.2)
 
 func _finish_drill(success, count):
 	if(success > 0):
 		Globals.completedArenas += 1
 		isDead = true
-		_animation_player.play("Death Retarget",0.2)
+		_animation_player.play(death_animation,0.2)
 		#Refull health
 		player.change_health(0.8)
 
@@ -33,7 +39,7 @@ func _ready() -> void:
 
 func _process(delta):
 	if !isDead and !_animation_player.is_playing():
-		_animation_player.play("Idle Retarget")
+		_animation_player.play(idle_animation,0.2)
 	
 	var target_pos = player.global_position
 	var self_pos = global_transform.origin

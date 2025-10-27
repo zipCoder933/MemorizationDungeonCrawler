@@ -1,8 +1,9 @@
 extends Node3D
 
 @onready var _3d_flashcard: WorldFlashCard = %"3dFlashcard"
-@onready var trigger: GoblinTrigger = $trigger
-@onready var collision_shape_3d: CollisionShape3D = $trigger/CollisionShape3D
+@onready var trigger: GoblinTrigger = %trigger
+@onready var collision_shape_3d: CollisionShape3D = %CollisionShape3D
+
 
 
 func _ready():

@@ -5,3 +5,4 @@
 [resource]
 default_font = ExtResource("1_pjbn5")
 default_font_size = 25
+Button/constants/icon_max_width = 40

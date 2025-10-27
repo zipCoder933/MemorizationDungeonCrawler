@@ -14,7 +14,7 @@ collision_layer = 4
 script = ExtResource("1_fhmch")
 
 [node name="3dFlashcard" parent="." groups=["3dCard"] instance=ExtResource("2_thcpj")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5638473, 1.7055924, 0)
+transform = Transform3D(-3.4969112e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.4969112e-08, -0.5638473, 1.9474933, 0)
 texture = SubResource("ViewportTexture_ctaek")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

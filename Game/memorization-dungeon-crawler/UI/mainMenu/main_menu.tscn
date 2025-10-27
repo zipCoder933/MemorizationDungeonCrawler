@@ -22,6 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+theme = ExtResource("2_aqn84")
 script = ExtResource("1_gmjeq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -41,6 +42,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [node name="LoadPanel" type="Panel" parent="CanvasLayer/ColorRect"]
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -59,6 +61,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 6
@@ -87,6 +90,16 @@ metadata/_edit_use_anchors_ = true
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/Panel/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/LoadPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("2_aqn84")
+text = "Saved Games"
+horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
 custom_minimum_size = Vector2(0, 30)
@@ -138,7 +151,38 @@ texture = ExtResource("3_6kmto")
 expand_mode = 1
 stretch_mode = 4
 
+[node name="Loading" type="Panel" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+z_index = 100
+z_as_relative = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.25
+offset_top = -81.0
+offset_right = 124.25
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_aqn84")
+theme_override_styles/panel = ExtResource("4_57qux")
+
+[node name="Label" type="Label" parent="CanvasLayer/Loading"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TextureRect" type="TextureRect" parent="."]
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -159,34 +203,6 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 12
 text = "CREDIT: Sam, Luke, Danny, Gavin, Mixamo for animations and Knight Model, toro ardido modelos 3d sketchfab for Goblin model, Chatgpt for small code help, Phantom Camera from Godot addons"
 horizontal_alignment = 1
-
-[node name="Loading" type="Panel" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -124.25
-offset_top = -81.0
-offset_right = 124.25
-offset_bottom = 81.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = ExtResource("4_57qux")
-
-[node name="Label" type="Label" parent="Loading"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "LOADING"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="pressed" from="CanvasLayer/ColorRect/Buttons/NewButton" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

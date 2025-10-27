@@ -46,9 +46,9 @@ func _notification(what):
 func lock_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	mouse_locked = true
-	print("🟢 Mouse locked")
+	#print("🟢 Mouse locked")
 
 func unlock_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_locked = false
-	print("🔴 Mouse unlocked")
+	#print("🔴 Mouse unlocked")

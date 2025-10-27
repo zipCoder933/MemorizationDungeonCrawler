@@ -87,27 +87,19 @@ func is_area_clear(x: int, z: int, radius: int) -> bool:
 				return false
 	return true
 
-func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, testMode:bool, boss:bool) -> bool:
+func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, testMode:bool, enemy:Resource) -> bool:
 	var final = moveIn(Vector3(x,0,z),direction)
 	x = final.x;
 	z = final.z;
 	
-	if !testMode:
-		var instance
-		if(boss):
-			instance = ARENA_BOSS.instantiate()
-		else:
-			instance = AREA_ENEMY.instantiate()
-		
+	if !testMode and enemy !=null:
+		var instance = enemy.instantiate()
 		var enemyPos = Vector3(x+0.5,0,z+0.5)
 		if(direction == Direction.ZPOS):
-			#instance.rotation.y = PI/2
 			enemyPos.z += 1
 		elif(direction == Direction.ZNEG):
-			#instance.rotation.y = -(PI/2)
 			enemyPos.z -= 1
 		elif(direction == Direction.XPOS):
-			#instance.rotation.y = PI
 			enemyPos.x += 1
 		else:
 			enemyPos.x -= 1
@@ -267,7 +259,7 @@ func pathDirection(direction:Direction, length:int, placeDoors:bool, idea_path) 
 
 const DOOR_LIKELYHOOD = 0.2
 
-func path(path_start:Vector3, path_end:Vector3, max_failures:int, arenaSize:int, failedLevelSurvival:float, boss:bool) -> int:
+func path(path_start:Vector3, path_end:Vector3, max_failures:int, starting_arena_size:int, arenaSize:int, failedLevelSurvival:float, boss:bool) -> int:
 	place = path_start
 	var stepsTaken = 0
 	var failures = 0
@@ -288,6 +280,15 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, arenaSize:int,
 		if(place.is_equal_approx(path_end)):
 			break;
 		if pathDirection(direction,randi_range(1,4),placeDoors,idea_path):
+			if(stepsTaken == 0 and starting_arena_size > 0):
+				if direction == Direction.XPOS:
+					arena(start_pos.x+1,start_pos.z, starting_arena_size,starting_arena_size, Direction.XNEG, false,null)
+				elif direction == Direction.XNEG:
+					arena(start_pos.x-1,start_pos.z, starting_arena_size,starting_arena_size, Direction.XPOS, false,null)
+				elif direction == Direction.ZPOS:
+					arena(start_pos.x,start_pos.z+1, starting_arena_size,starting_arena_size, Direction.ZNEG, false,null)
+				else:
+					arena(start_pos.x,start_pos.z-1, starting_arena_size,starting_arena_size, Direction.ZPOS, false,null)
 			lastSuccesfullDirection = direction
 			stepsTaken +=1
 			failures = 0
@@ -305,9 +306,11 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, arenaSize:int,
 			box(step.path_pos.x,step.path_pos.z,false,false,step.placeDoor)
 		
 		#Only place the arena if we didnt fail
-		if(stepsTaken > 0 and failures < max_failures and arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, true, false)):
-			arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, false, boss)
-			if(!boss):
+		if(stepsTaken > 0 and failures < max_failures and arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, true, null)):
+			if(boss):
+				arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, false, ARENA_BOSS)
+			else:
+				arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, false, AREA_ENEMY)
 				Globals.totalArenas += 1
 	
 	return stepsTaken
@@ -317,23 +320,27 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, arenaSize:int,
 const arenaSize = 1;
 const CLOSENESS_TO_END_PATH_END = 6;
 const start_pos = Vector3(0,0,0)
-const main_path_end = Vector3(20,0,20)
+const main_path_end = Vector3(30,0,30)
+const FAILED_LEVEL_SURVIVAL = 0.3
 
 func _ready():
 	Globals.completedArenas = 0
 	Globals.totalArenas = 0
-	box(start_pos.x, start_pos.z, true, true, false)
-	#arena(start_pos.x-2,start_pos.z, 1,1, Direction.XPOS, false)
-	print("MAIN: ", path(start_pos, main_path_end,25,arenaSize+2, 1, true))
-	
-	for i in range(0,100):
+	#box(start_pos.x, start_pos.z, true, true, false)
+	print("MAIN PATH: ", path(start_pos, main_path_end, 25, 1, arenaSize+2, 1, true))
+	#arena(start_pos.x-2,start_pos.z, 1,1, Direction.XPOS, false,null)
+		
+	var number_arenas = randi_range(1,2) #Place brahcnes with arenas
+	for i in range(0,200):
 		place = searched.keys()[randi_range(0,searched.keys().size()-1)]
-		var direction =Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()  # to the right
+		var direction = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()  # to the right
 		var length = randi_range(5,20)
 		var end_pls:Vector3 = (Vector3(place) + direction * length)
 		if is_area_clear(end_pls.x, end_pls.z, (arenaSize) + CLOSENESS_TO_END_PATH_END + 2):
-			var steps = path(place, end_pls, 5, arenaSize, 0.2, false)
-
+			var steps = path(place, end_pls, 5, 0, arenaSize, FAILED_LEVEL_SURVIVAL, false)
+		if(Globals.totalArenas >= number_arenas):
+			break
+	
 	_place_floors(searched, 250)
 
 
