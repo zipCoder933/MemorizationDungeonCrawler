@@ -5,7 +5,7 @@ var question: String
 var is_image:bool
 var answer_text: String
 var time_limit: float
-var fail_health_loss:float
+var fail_health_loss:float =0
 
 func answerEquals(ans: String) -> bool:
 	print("User entered:", ans, " answer: ", answer_text)

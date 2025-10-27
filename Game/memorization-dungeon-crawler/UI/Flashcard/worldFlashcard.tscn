@@ -16,10 +16,11 @@ script = ExtResource("1_fljia")
 transparent_bg = true
 size = Vector2i(190, 220)
 
-[node name="Control" parent="SubViewport" instance=ExtResource("1_n55g1")]
+[node name="CardUI" parent="SubViewport" instance=ExtResource("1_n55g1")]
+unique_name_in_owner = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("BoxMesh_fljia")
 
-[editable path="SubViewport/Control"]
+[editable path="SubViewport/CardUI"]

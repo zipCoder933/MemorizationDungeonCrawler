@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cynckudprgttu"]
+[gd_scene load_steps=6 format=3 uid="uid://cynckudprgttu"]
 
 [ext_resource type="Texture2D" uid="uid://dbh04hasfvvly" path="res://icon.svg" id="1_4or87"]
+[ext_resource type="Script" uid="uid://flme5w8omao0" path="res://UI/Flashcard/flashcard.gd" id="1_m84yh"]
 [ext_resource type="FontFile" uid="uid://d4l36d7861osl" path="res://assets/fonts/UnifrakturCook/UnifrakturCook-Bold.ttf" id="2_4or87"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7h1a"]
@@ -11,11 +12,13 @@ expand_margin_bottom = 5.0
 bg_color = Color(0.84234446, 0.33606395, 0.32887432, 1)
 expand_margin_bottom = 5.0
 
-[node name="Panel" type="Panel"]
+[node name="CardUI" type="Panel"]
 offset_right = 190.0
 offset_bottom = 220.0
+script = ExtResource("1_m84yh")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="background" type="ColorRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.9062763, 0.6835817, 0.36372063, 0.25490198)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,31 +35,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="ColorRect/VBoxContainer"]
+[node name="timeLeftBar" type="ProgressBar" parent="background/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_b7h1a")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gdqdw")
-value = 100.0
+max_value = 1.0
+value = 1.0
 show_percentage = false
 
-[node name="TPadding" type="MarginContainer" parent="ColorRect/VBoxContainer"]
+[node name="TPadding" type="MarginContainer" parent="background/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.18
 
-[node name="question" type="CenterContainer" parent="ColorRect/VBoxContainer"]
+[node name="question" type="CenterContainer" parent="background/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="questionImage" type="TextureRect" parent="ColorRect/VBoxContainer/question"]
+[node name="questionImage" type="TextureRect" parent="background/VBoxContainer/question"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture = ExtResource("1_4or87")
 stretch_mode = 3
 
-[node name="questionLabel" type="Label" parent="ColorRect/VBoxContainer/question"]
+[node name="questionLabel" type="Label" parent="background/VBoxContainer/question"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_4or87")
 theme_override_font_sizes/font_size = 32
@@ -64,7 +71,8 @@ text = "adfasdfasdf
 asdf
 asdf"
 
-[node name="answer" type="Label" parent="ColorRect/VBoxContainer"]
+[node name="answerLabel" type="Label" parent="background/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
@@ -73,7 +81,7 @@ theme_override_font_sizes/font_size = 24
 text = "an"
 horizontal_alignment = 1
 
-[node name="BPadding" type="MarginContainer" parent="ColorRect/VBoxContainer"]
+[node name="BPadding" type="MarginContainer" parent="background/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.07

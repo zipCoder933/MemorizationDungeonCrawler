@@ -98,7 +98,7 @@ func _process(delta:float):
 		elif(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
 			animation_player.play(RUNNING_ANIMATION,0.1)
 		elif(!animation_player.is_playing()):
-			animation_player.play(IDLE_ANIMATION,1)
+			animation_player.play(IDLE_ANIMATION,0.21)
 
 
 func _physics_process(delta: float) -> void:
@@ -131,20 +131,20 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
+	if event is InputEventKey or event is InputEventMouse:
 		if(mode != PlayerMode.GAME_OVER):
 			if Input.is_action_just_pressed("Forward"):
 				movement.z = 1;
 			elif Input.is_action_just_released("Forward"):
 				movement.z = 0;
-				animation_player.play(IDLE_ANIMATION,1)
+				animation_player.play(IDLE_ANIMATION,0.21)
 				
 			if Input.is_action_just_pressed("Backward"):
 				movement.z = -1;
 				targetRotation = rotation.y+PI;
 			elif Input.is_action_just_released("Backward"):
 				movement.z = 0;
-				animation_player.play(IDLE_ANIMATION,1)
+				animation_player.play(IDLE_ANIMATION,0.21)
 				
 			if Input.is_action_just_pressed("Left"):
 				movement.x = 1;
@@ -152,7 +152,7 @@ func _input(event: InputEvent) -> void:
 					targetRotation = rotation.y+PI/2
 			elif Input.is_action_just_released("Left"):
 				movement.x = 0;
-				animation_player.play(IDLE_ANIMATION,1)
+				animation_player.play(IDLE_ANIMATION,0.21)
 				target_cam_offset.y = rotation.y
 				
 			if Input.is_action_just_pressed("Right"):
@@ -161,7 +161,7 @@ func _input(event: InputEvent) -> void:
 					targetRotation = rotation.y-PI/2
 			elif Input.is_action_just_released("Right"):
 				movement.x = 0;
-				animation_player.play(IDLE_ANIMATION,1)
+				animation_player.play(IDLE_ANIMATION,0.21)
 				target_cam_offset.y = rotation.y
 				
 			if is_on_floor == true and Input.is_action_just_pressed("Jump"):

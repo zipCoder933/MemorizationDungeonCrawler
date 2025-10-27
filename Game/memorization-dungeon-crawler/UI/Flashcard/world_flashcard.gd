@@ -1,18 +1,8 @@
 extends Sprite3D
 class_name WorldFlashCard
 
-@onready var progress_bar: ProgressBar = $SubViewport/Control/ColorRect/VBoxContainer/ProgressBar
-@onready var question_image: TextureRect = $SubViewport/Control/ColorRect/VBoxContainer/question/questionImage
-@onready var question_label: Label = $SubViewport/Control/ColorRect/VBoxContainer/question/questionLabel
-@onready var answer: Label = $SubViewport/Control/ColorRect/VBoxContainer/answer
-@onready var color_rect: ColorRect = $SubViewport/Control/ColorRect
-@onready var player = get_tree().get_nodes_in_group("player")[0]
-
-var time_left_ms:float
-var start_time:int
-const DELAY_NEXT_CARD_MS = 500
-const DEFAULT_COLOR = Color(0.617, 0.688, 0.694, 0.2)
-const FAILED_COLOR = Color(0.973, 0.0, 0.245, 0.6)
+var player:Player
+@onready var card_ui: FlashcardUI = %CardUI
 
 signal finished_drill
 signal single_drill
@@ -24,120 +14,41 @@ var succeeded:int = 0
 var questions:Array#[Question];
 
 func drill(questions2:Array):
+	visible = true
 	Globals.fact_answering_mode.emit(self)
 	print("Drilling player on ",questions2.size()," cards.")
 	deckSize = questions2.size()
 	questions = questions2;
 	succeeded = 0
-	_drill(questions[0])
+	card_ui.signal_next_card.connect(_nextCard)
+	#Globals.signal_flashcard_answer_changed.connect(_flashcardAnswerChanged)
+	Globals.signal_flashcard_submit_answer.connect(_flashcardAnswerSubmitted)
+	Globals.new_flashcard_question(questions[0])
 
-func _makeVisible():
-	visible = true
-
-func _drill(q:Question):
-	_makeVisible()
-	print("QUESITON: ",q.question)
-	progress_bar.value = 1
-	time_left_ms = q.time_limit * 1000
-	start_time = Time.get_ticks_msec()
-	if(q.is_image):
-		question_image.visible = true
-		question_label.visible = false
-		#var img = Image.new()
-		#var err = img.load(q.question)  # or an absolute path
-		#if err == OK:
-			#var tex = ImageTexture.create_from_image(img)
-			#$Sprite3D.texture = tex
-		#else:
-			#push_error("Failed to load image!")
-		#question_image.texture = Texture2D.new(q.question)
-	else:
-		question_image.visible = false
-		question_label.visible = true
-		question_label.text = q.question
-	currentQuestion = q
-	color_rect.color = DEFAULT_COLOR
-	answer.text=""
-	if(anyKeyPressed):
-		can_accept_input = false
-
-var can_accept_input = false
-var currentQuestion:Question;
-var anyKeyPressed = false
+func _flashcardAnswerSubmitted(question:Question, answer:String):
+	var success = question.answerEquals(answer)
+	_nextCard(question, success)
 
 func _ready():
-	progress_bar.min_value = 0
-	progress_bar.max_value = 1
-	progress_bar.value = 0.5
-	question_image.visible = false
-	question_label.text = ""
-	answer.text=""
-	color_rect.color = DEFAULT_COLOR
+	var list = get_tree().get_nodes_in_group("player")
+	if list.size() > 0:
+		player = list[0]
 	visible = false
-	#drill([ 
-	#Question.new(false, "5+5", "10", 5),
-	#Question.new(false, "10+10", "20", 5),
-	#Question.new(false, "15+15", "30", 5),
-	#Question.new(false, "20+20", "40", 5)
-	 #])
 
-func _nextCard(succeed:bool):
+func _nextCard(question:Question, succeed:bool):
 	print("Succeeded: ",succeed)
 	if(succeed):
 		succeeded += 1
 	single_drill.emit(succeed)
 	#If we did not succeed, lower the players health
-	if(!succeed):
-		player.change_health( - currentQuestion.fail_health_loss)
+	if(!succeed and player !=null):
+		player.change_health( - question.fail_health_loss)
 	questions.remove_at(0)
 	if(questions.size() > 0):
-		_drill(questions[0])
+		Globals.new_flashcard_question(questions[0])
 	else:
 		finished_drill.emit(succeeded, deckSize)
-		if(player.health > 0):
+		if(player !=null and player.health > 0):
 			Globals.adventure_mode.emit()
 		visible = false
-	if(anyKeyPressed):
-		can_accept_input = false
-		
-func _process(delta:float):
-	if(questions.size() > 0 and currentQuestion != null and visible):
-		var ms = Time.get_ticks_msec()
-		var timeLeft = remap(ms-start_time, 0, time_left_ms, 1, 0)
-		if(timeLeft < 0):
-			color_rect.color = FAILED_COLOR
-		if(ms-start_time > time_left_ms + DELAY_NEXT_CARD_MS):
-			_nextCard(false)
-		progress_bar.value = timeLeft
-
-var ignored_keys = [
-	Key.KEY_SPACE,
-	Key.KEY_ENTER,
-	Key.KEY_UP, Key.KEY_DOWN, Key.KEY_LEFT, Key.KEY_RIGHT,
-	Key.KEY_SHIFT, Key.KEY_CTRL, Key.KEY_ALT,
-	Key.KEY_TAB, Key.KEY_ESCAPE, Key.KEY_BACKSPACE
-]
-
-func _input(event):
-	if questions.size() > 0 and visible and currentQuestion != null and event is InputEventKey:
-		if event.pressed:#ANY key pressed
-			anyKeyPressed = true
-			if not event.echo and can_accept_input:
-				if event.keycode == KEY_MINUS:
-					answer.text += "-"
-				elif event.keycode == KEY_PLUS:
-					answer.text += "+"
-				elif event.keycode == KEY_BACKSPACE:
-					if answer.text.length() > 0:
-						answer.text = answer.text.substr(0, answer.text.length() - 1)
-				elif event.keycode == KEY_ENTER:
-					_nextCard(currentQuestion.answerEquals(answer.text))
-				elif !(event.keycode in ignored_keys):
-					var char = event.as_text()
-					if(char != null):
-						answer.text += char
-				if(currentQuestion.answerEquals(answer.text)):
-					_nextCard(true)
-		else:#Any key released
-			anyKeyPressed = false
-			can_accept_input=true #If the player is on the button when we start the quiz, we cant answer until the player lifts the key off the button
+		Globals.clear_flashcard()

@@ -3,15 +3,10 @@ class_name HUD
 @export var player:Player
 @onready var damage_bar: ProgressBar = $CanvasLayer/DamageBar
 @onready var label: Label = $CanvasLayer/Label
-
 @onready var game_over_panel: Panel = $CanvasLayer/GameOverPanel
 @onready var victory_panel: Panel = $CanvasLayer/VictoryPanel
-@onready var menu_panel: Panel = $MenuPanel
-#@export var mouse_controller:MouseController
-@onready var flashcard_panel: Panel = $flashcardPanel
-@onready var flashcard_question: Label = %flashcardQuestion
-@onready var flashcard_answer: Label = %flashcardAnswer
-@onready var flashcard_time: ProgressBar = $flashcardPanel/VBoxContainer/flashcardTime
+@onready var card_ui: FlashcardUI = %CardUI
+@onready var menu_panel: Panel = %MenuPanel
 
 const LevelsHandler = preload("uid://bte11e0fapqes")
 const SaveHandler = preload("uid://bgwdh30vglopu")
@@ -20,16 +15,6 @@ func panelsVisible():
 	return game_over_panel.visible or victory_panel.visible or menu_panel.visible
 
 var current_question:Question
-
-func hudQuestion(q:Question):
-	current_question = q
-	if(q == null):
-		flashcard_panel.visible = false
-	else:
-		flashcard_time.value = 1
-		flashcard_panel.visible = true
-		flashcard_question.text = q.question
-		flashcard_question.text = q.answer_text
 
 func _ready():
 	player.health_changed.connect(_player_health_changed)
@@ -43,6 +28,7 @@ func _input(event):
 
 func _process(delta):
 	label.text = "COMPLETED ARENAS "+str(Globals.completedArenas)+" / "+str(Globals.totalArenas) 
+	card_ui.visible = Globals.has_flashcard()
 
 func _player_health_changed(health:float):
 	damage_bar.value = clamp(health, 0, Player.MAX_HEALTH)
