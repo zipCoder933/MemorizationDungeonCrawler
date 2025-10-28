@@ -4,10 +4,8 @@ extends Node3D
 @onready var trigger: GoblinTrigger = %trigger
 @onready var collision_shape_3d: CollisionShape3D = %CollisionShape3D
 
-
-
 func _ready():
-	_3d_flashcard.finished_drill.connect(_finished_drill)
+	Globals.signal_flashcard_finished_drill.connect(_finished_drill)
 
 #Disable the orc boss until we have completed all bosses
 func _process(delta: float) -> void:

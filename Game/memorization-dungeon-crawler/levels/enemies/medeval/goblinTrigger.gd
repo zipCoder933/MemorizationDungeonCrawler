@@ -34,8 +34,8 @@ func _finish_drill(success, count):
 		player.change_health(0.8)
 
 func _ready() -> void:
-	_3d_flashcard.finished_drill.connect(_finish_drill)
-	_3d_flashcard.single_drill.connect(_single_drill)
+	Globals.signal_flashcard_finished_drill.connect(_finish_drill)
+	Globals.signal_flashcard_single_drill.connect(_single_drill)
 
 func _process(delta):
 	if !isDead and !_animation_player.is_playing():

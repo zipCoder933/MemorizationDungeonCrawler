@@ -70,6 +70,10 @@ var ignored_keys = [
 static var _current_flashcard_question:Question
 static var current_flashcard_answer:String
 static var _has_flashcard:bool
+static var deckSize:int = 0
+static var succeeded:int = 0
+static var questions:Array#[Question];
+static var _flashcardNode
 
 func has_flashcard():
 	return _current_flashcard_question!=null and _has_flashcard
@@ -78,18 +82,53 @@ func get_flashcard_question():
 	return _current_flashcard_question
 
 func clear_flashcard():
+	_flashcardNode.visible = false
 	_has_flashcard = false
 
 func new_flashcard_question(current_flashcard_question2:Question):
 	_current_flashcard_question = current_flashcard_question2
 	current_flashcard_answer = ""
 	_has_flashcard=true
+	_flashcardNode.visible = true
 	signal_new_flashcard.emit(_current_flashcard_question)
 	signal_flashcard_answer_changed.emit(current_flashcard_answer)
 
 signal signal_new_flashcard
-signal signal_flashcard_submit_answer
+signal signal_flashcard_single_drill
+signal signal_flashcard_finished_drill
 signal signal_flashcard_answer_changed
+
+func _getPlayer() -> Player:
+	var list = get_tree().get_nodes_in_group("player")
+	if list.size() > 0:
+		return list[0]
+	return null
+
+func drill_flashcards(questions2:Array, flashcardElement:Node3D):
+	_flashcardNode = flashcardElement
+	fact_answering_mode.emit(flashcardElement)
+	print("Drilling player on ",questions2.size()," cards.")
+	deckSize = questions2.size()
+	questions = questions2;
+	succeeded = 0
+	new_flashcard_question(questions[0])
+
+func submit_flashcard(succeed:bool):
+	var player =  _getPlayer()
+	if(succeed):
+		succeeded += 1
+	signal_flashcard_single_drill.emit(succeed)
+	#If we did not succeed, lower the players health
+	if(!succeed and player !=null):
+		player.change_health( - get_flashcard_question().fail_health_loss)
+	questions.remove_at(0)
+	if(questions.size() > 0):
+		new_flashcard_question(questions[0])
+	else:
+		signal_flashcard_finished_drill.emit(succeeded, deckSize)
+		if(player !=null and player.health > 0):
+			adventure_mode.emit()
+		clear_flashcard()
 
 func _input(event):
 	if has_flashcard():
@@ -103,17 +142,11 @@ func _input(event):
 					if current_flashcard_answer.length() > 0:
 						current_flashcard_answer = current_flashcard_answer.substr(0, current_flashcard_answer.length() - 1)
 				elif event.keycode == KEY_ENTER:
-					signal_flashcard_submit_answer.emit(get_flashcard_question(), current_flashcard_answer)
-					clear_flashcard()
+					submit_flashcard(get_flashcard_question().answerEquals(current_flashcard_answer))
 				elif !(event.keycode in ignored_keys):
 					if(event.as_text() != null):
 						current_flashcard_answer += event.as_text()
 				
 				if(get_flashcard_question().answerEquals(current_flashcard_answer)):
-					signal_flashcard_submit_answer.emit(get_flashcard_question(), current_flashcard_answer)
-					clear_flashcard()
+					submit_flashcard(true)
 				signal_flashcard_answer_changed.emit(current_flashcard_answer)
-					#print("ANSER: ",current_flashcard_answer)
-			#else:#Any key released
-				#anyKeyPressed = false
-				#can_accept_input=true #If the player is on the button when we start the quiz, we cant answer until the player lifts the key off the button

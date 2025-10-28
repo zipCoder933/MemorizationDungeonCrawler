@@ -16,7 +16,6 @@ var can_accept_input = false
 var anyKeyPressed = false
 var answer:String
 
-signal signal_next_card
 
 func _drill(q:Question):
 	print("QUESITON: ",q.question)
@@ -55,7 +54,7 @@ func _process(delta:float):
 		if(timeLeft < 0):
 			background.color = FAILED_COLOR
 		if(ms-start_time >  q.time_limit * 1000 + DELAY_NEXT_CARD_MS):
-			signal_next_card.emit(q, false)
+			Globals.submit_flashcard(false)
 		time_left_bar.value = timeLeft
 
 func _flashcardAnswerChanged(answer:String):
