@@ -36,7 +36,7 @@ var health:float = 1
 
 func change_health(amt):
 	if(amt < 0):
-		animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.5)
+		animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.5, 2)
 	health = health + amt
 	if(health > MAX_HEALTH):
 		health = MAX_HEALTH
