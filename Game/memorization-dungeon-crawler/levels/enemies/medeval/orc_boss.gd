@@ -5,13 +5,13 @@ extends Node3D
 @onready var collision_shape_3d: CollisionShape3D = %CollisionShape3D
 
 func _ready():
-	Globals.signal_flashcard_finished_drill.connect(_finished_drill)
+	_3d_flashcard.signal_flashcard_finished_drill.connect(_finished_drill)
 
 #Disable the orc boss until we have completed all bosses
 func _process(delta: float) -> void:
 	collision_shape_3d.disabled = Globals.completedArenas < Globals.totalArenas
 	
 func _finished_drill(success, all):
-	if(success > 0):
-		print("Made it!")
-		Globals.victory.emit()
+		print("Finished King Orc drill! You win!")
+		if(success > 0):
+			Globals.victory.emit()

@@ -73,7 +73,7 @@ static var _has_flashcard:bool
 static var deckSize:int = 0
 static var succeeded:int = 0
 static var questions:Array#[Question];
-static var _flashcardNode
+static var _flashcardNode:WorldFlashCard
 
 func has_flashcard():
 	return _current_flashcard_question!=null and _has_flashcard
@@ -90,7 +90,12 @@ func new_flashcard_question(current_flashcard_question2:Question):
 	current_flashcard_answer = ""
 	_has_flashcard=true
 	_flashcardNode.visible = true
-	signal_new_flashcard.emit(_current_flashcard_question)
+	print("new quesiton")
+	
+	_flashcardNode.signal_new_flashcard.emit(_current_flashcard_question)
+	signal_new_flashcard.emit(_flashcardNode, _current_flashcard_question)
+	
+	_flashcardNode.signal_flashcard_answer_changed.emit(current_flashcard_answer)
 	signal_flashcard_answer_changed.emit(current_flashcard_answer)
 
 signal signal_new_flashcard
@@ -104,9 +109,12 @@ func _getPlayer() -> Player:
 		return list[0]
 	return null
 
-func drill_flashcards(questions2:Array, flashcardElement:Node3D):
+#Drill the player on flashcards
+#Question2 = the questions
+#flashcardElement the node to assign to the flashcards
+func drill_flashcards(questions2:Array, flashcardElement:WorldFlashCard):
 	_flashcardNode = flashcardElement
-	fact_answering_mode.emit(flashcardElement)
+	fact_answering_mode.emit(_flashcardNode)
 	print("Drilling player on ",questions2.size()," cards.")
 	deckSize = questions2.size()
 	questions = questions2;
@@ -117,7 +125,10 @@ func submit_flashcard(succeed:bool):
 	var player =  _getPlayer()
 	if(succeed):
 		succeeded += 1
-	signal_flashcard_single_drill.emit(succeed)
+
+	_flashcardNode.signal_flashcard_single_drill.emit(succeed)
+	signal_flashcard_single_drill.emit(_flashcardNode, succeed)
+	
 	#If we did not succeed, lower the players health
 	if(!succeed and player !=null):
 		player.change_health( - get_flashcard_question().fail_health_loss)
@@ -125,7 +136,8 @@ func submit_flashcard(succeed:bool):
 	if(questions.size() > 0):
 		new_flashcard_question(questions[0])
 	else:
-		signal_flashcard_finished_drill.emit(succeeded, deckSize)
+		_flashcardNode.signal_flashcard_finished_drill.emit(succeeded, deckSize)
+		signal_flashcard_finished_drill.emit(_flashcardNode, succeeded, deckSize)
 		if(player !=null and player.health > 0):
 			adventure_mode.emit()
 		clear_flashcard()
@@ -149,4 +161,5 @@ func _input(event):
 				
 				if(get_flashcard_question().answerEquals(current_flashcard_answer)):
 					submit_flashcard(true)
+				_flashcardNode.signal_flashcard_answer_changed.emit(current_flashcard_answer)
 				signal_flashcard_answer_changed.emit(current_flashcard_answer)

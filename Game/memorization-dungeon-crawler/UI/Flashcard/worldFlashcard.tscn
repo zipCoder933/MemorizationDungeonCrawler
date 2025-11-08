@@ -8,7 +8,7 @@ viewport_path = NodePath("SubViewport")
 
 [sub_resource type="BoxMesh" id="BoxMesh_fljia"]
 
-[node name="3dFlashcard" type="Sprite3D"]
+[node name="WorldFlashcard" type="Sprite3D"]
 texture = SubResource("ViewportTexture_rs4bw")
 script = ExtResource("1_fljia")
 
@@ -16,8 +16,9 @@ script = ExtResource("1_fljia")
 transparent_bg = true
 size = Vector2i(190, 220)
 
-[node name="CardUI" parent="SubViewport" instance=ExtResource("1_n55g1")]
+[node name="CardUI" parent="SubViewport" node_paths=PackedStringArray("worldFlashcardNode") instance=ExtResource("1_n55g1")]
 unique_name_in_owner = true
+worldFlashcardNode = NodePath("../..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

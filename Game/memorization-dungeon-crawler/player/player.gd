@@ -7,6 +7,7 @@ const JUMP_UP_ANIMATION = "jump up Retarget"
 const IDLE_ANIMATION = "Idle Retarget"
 const DEATH_ANIMATION = "death Retarget"
 const HIT_ANIMATION = ["hit1 Retarget","hit2 Retarget","hit3 Retarget"]
+const VICTORY_ANIMATION = "Armature|mixamo_com|Layer0_002 Retarget"
 
 enum PlayerMode{
 	ADVENTURE,
@@ -35,7 +36,7 @@ var health:float = 1
 
 func change_health(amt):
 	if(amt < 0):
-		animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.5, 0.2)
+		animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.5)
 	health = health + amt
 	if(health > MAX_HEALTH):
 		health = MAX_HEALTH
@@ -54,7 +55,7 @@ var flash_card:WorldFlashCard = null
 
 func _victory():
 	mode = PlayerMode.VICTORY
-	animation_player.play("Armature|mixamo_com|Layer0_002 Retarget",1)
+	animation_player.play(VICTORY_ANIMATION,1)
 	mouse_controller.unlock_mouse_forever()
 
 func _game_over():
@@ -69,7 +70,6 @@ func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 
 func _global_adventure_mode():
 	if(health > 0):
-		print("Adventure mode")
 		mode = PlayerMode.ADVENTURE
 
 func get_normalized_mouse() -> Vector2:

@@ -37,6 +37,7 @@ func _game_over():
 	game_over_panel.visible = true
 
 func _victory():
+	print("VICTORY EVENT CALLED")
 	victory_panel.visible = true
 
 #back to home

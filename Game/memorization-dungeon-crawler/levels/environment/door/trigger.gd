@@ -7,7 +7,7 @@ const LevelsHandler = preload("uid://bte11e0fapqes")
 @onready var _3d_flashcard: Sprite3D = $"3dFlashcard"
 
 func _ready():
-	Globals.signal_flashcard_finished_drill.connect(_on_d_flashcard_finished_drill)
+	_3d_flashcard.signal_flashcard_finished_drill.connect(_on_d_flashcard_finished_drill)
 
 func open_door(open2:bool):
 	if(!door.open):
@@ -16,6 +16,5 @@ func open_door(open2:bool):
 		 ], _3d_flashcard)
 
 func _on_d_flashcard_finished_drill(succeeded:int, questions:int) -> void:
-	print("succeeded=",succeeded," questions=", questions)
 	if(succeeded >= questions):
 		door.setOpen(true)

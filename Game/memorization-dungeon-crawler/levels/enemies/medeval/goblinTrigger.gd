@@ -1,6 +1,7 @@
 extends StaticBody3D
 class_name GoblinTrigger
 
+const SHRINK_SPEED:float = 1
 @export var _3d_flashcard: WorldFlashCard
 @export var _animation_player: AnimationPlayer
 @export var node_3d: Node3D
@@ -34,8 +35,8 @@ func _finish_drill(success, count):
 		player.change_health(0.8)
 
 func _ready() -> void:
-	Globals.signal_flashcard_finished_drill.connect(_finish_drill)
-	Globals.signal_flashcard_single_drill.connect(_single_drill)
+	_3d_flashcard.signal_flashcard_finished_drill.connect(_finish_drill)
+	_3d_flashcard.signal_flashcard_single_drill.connect(_single_drill)
 
 func _process(delta):
 	if !isDead and !_animation_player.is_playing():
@@ -43,11 +44,21 @@ func _process(delta):
 	
 	var target_pos = player.global_position
 	var self_pos = global_transform.origin
-	var dir = target_pos - self_pos
-	dir.y = 0
-	dir = dir.normalized()
-	var target_yaw = atan2(dir.x, dir.z)
-	node_3d.rotation.y = target_yaw
+	
+	if isDead: #Point towards the player
+		if(!_animation_player.is_playing()):
+			node_3d.scale = Vector3(
+				node_3d.scale.x - SHRINK_SPEED * delta,
+			 	node_3d.scale.y - SHRINK_SPEED * delta, 
+				node_3d.scale.z - SHRINK_SPEED * delta)
+		if(node_3d.scale.y <= 0): #Delete this node
+			node_3d.queue_free()
+	else:
+		var dir = target_pos - self_pos
+		dir.y = 0
+		dir = dir.normalized()
+		var target_yaw = atan2(dir.x, dir.z)
+		node_3d.rotation.y = target_yaw
 
 func trigger():
 	if(isDead):
@@ -57,4 +68,4 @@ func trigger():
 	var cards:Array = []
 	for i in range(0,cardNumber):
 		cards.append(CardsHandler.randomCardInCurrentLevel().toQuestion(speed, SaveHandler.currentLevel, damage))
-	_3d_flashcard.drill(cards)
+	Globals.drill_flashcards(cards, _3d_flashcard)

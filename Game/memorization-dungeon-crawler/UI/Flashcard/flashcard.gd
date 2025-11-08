@@ -5,6 +5,7 @@ class_name FlashcardUI
 @onready var question_label: Label = %questionLabel
 @onready var answer_label: Label = %answerLabel
 @onready var background: ColorRect = %background
+@export var worldFlashcardNode:WorldFlashCard;
 
 const DEFAULT_COLOR = Color(0.617, 0.688, 0.694, 0.2)
 const FAILED_COLOR = Color(0.973, 0.0, 0.245, 0.6)
@@ -15,13 +16,15 @@ const DELAY_NEXT_CARD_MS = 500
 var can_accept_input = false
 var anyKeyPressed = false
 var answer:String
+var q:Question
 
+func _drill_global(node:WorldFlashCard, q2:Question):
+	_drill(q2)
 
-func _drill(q:Question):
-	print("QUESITON: ",q.question)
+#Put up a new flashcard
+func _drill(q2:Question):
 	time_left_bar.value = 1
-	start_time = Time.get_ticks_msec()
-	if(q.is_image):
+	if(q2.is_image):
 		question_image.visible = true
 		question_label.visible = false
 		#var img = Image.new()
@@ -35,26 +38,43 @@ func _drill(q:Question):
 	else:
 		question_image.visible = false
 		question_label.visible = true
-		question_label.text = q.question
+		question_label.text = q2.question
 	background.color = DEFAULT_COLOR
 	answer_label.text = ""
 	if(anyKeyPressed):
 		can_accept_input = false
+	start_time = Time.get_ticks_msec()
+	q = q2
+
+func _submitted_global(node:WorldFlashCard, success:bool):
+	_submitted(success)
+
+func _submitted(success:bool):
+	q = null
+	start_time = Time.get_ticks_msec()
 
 func _ready():
 	Globals.signal_flashcard_answer_changed.connect(_flashcardAnswerChanged)
-	Globals.signal_new_flashcard.connect(_drill)
+	
+	if(worldFlashcardNode == null):
+		Globals.signal_flashcard_single_drill.connect(_submitted_global)
+		Globals.signal_new_flashcard.connect(_drill_global)
+	else:
+		worldFlashcardNode.signal_flashcard_single_drill.connect(_submitted)
+		worldFlashcardNode.signal_new_flashcard.connect(_drill)
 
 func _process(delta:float):
-	if(Globals.has_flashcard()):
-		var q = Globals.get_flashcard_question()
-		var ms = Time.get_ticks_msec()
-		var timeLeft = remap(ms-start_time, 0,  q.time_limit * 1000, 1, 0)
-		#print("T: ",ms-start_time," ",timeLeft)
-		if(timeLeft < 0):
-			background.color = FAILED_COLOR
-		if(ms-start_time >  q.time_limit * 1000 + DELAY_NEXT_CARD_MS):
+	if(q != null && Globals.has_flashcard()):
+		var timeElapsed = Time.get_ticks_msec()-start_time
+		var timeLimitMS = q.time_limit * 1000
+		var timeLeft = remap(timeElapsed, 0, timeLimitMS, 1, 0)
+		#print("Time elapsed: ",timeElapsed," Time MS: ",timeLimitMS)
+		
+		if(timeElapsed > timeLimitMS + DELAY_NEXT_CARD_MS):
 			Globals.submit_flashcard(false)
+		elif(timeElapsed > timeLimitMS):
+			background.color = FAILED_COLOR
+		
 		time_left_bar.value = timeLeft
 
 func _flashcardAnswerChanged(answer:String):

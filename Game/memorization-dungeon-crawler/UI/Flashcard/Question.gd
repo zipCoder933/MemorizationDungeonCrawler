@@ -38,3 +38,10 @@ func _init(isImage:bool, q: String = "", ans: String = "", time: float = 0.0, _f
 	fail_health_loss = _fail_health_loss
 	answer_text = ans
 	time_limit = time
+
+
+func toString() -> String:
+	if(is_image):
+		return "image: "+str(question)+", answer: "+str(answer_text)+", time: "+str(time_limit)+"s";
+	else:
+		return "question: "+str(question)+", answer: "+str(answer_text)+", time: "+str(time_limit)+"s";
