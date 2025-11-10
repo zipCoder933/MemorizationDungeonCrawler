@@ -7,6 +7,7 @@ class_name HUD
 @onready var victory_panel: Panel = $CanvasLayer/VictoryPanel
 @onready var card_ui: FlashcardUI = %CardUI
 @onready var menu_panel: Panel = %MenuPanel
+@onready var level_indicator: Label = %"level indicator"
 
 const LevelsHandler = preload("uid://bte11e0fapqes")
 const SaveHandler = preload("uid://bgwdh30vglopu")
@@ -20,6 +21,7 @@ func _ready():
 	player.health_changed.connect(_player_health_changed)
 	Globals.game_over.connect(_game_over)
 	Globals.victory.connect(_victory)
+	level_indicator.text = "LEVEL " + str(SaveHandler.currentGame.completed_level)
 
 func _input(event):
 	if event is InputEventKey:

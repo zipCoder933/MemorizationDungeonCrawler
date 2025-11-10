@@ -8,7 +8,7 @@ const IDLE_ANIMATION = "Idle Retarget"
 const DEATH_ANIMATION = "death Retarget"
 const HIT_ANIMATION = ["hit1 Retarget","hit2 Retarget","hit3 Retarget"]
 const VICTORY_ANIMATION = "Armature|mixamo_com|Layer0_002 Retarget"
-
+var mode:PlayerMode = PlayerMode.ADVENTURE
 enum PlayerMode{
 	ADVENTURE,
 	FACTS,
@@ -27,7 +27,7 @@ const FORWARD_SPEED = 400
 
 const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
-var mode = PlayerMode.ADVENTURE
+
 
 #health
 signal health_changed
@@ -40,9 +40,10 @@ func change_health(amt):
 	health = health + amt
 	if(health > MAX_HEALTH):
 		health = MAX_HEALTH
-	if(health <= 0):
+	if( health <= 0 ):
 		Globals.game_over.emit()
 	health_changed.emit(health)
+
 
 func _ready():
 	print("PHANTOM CAMERA ",phantom_camera_3d)

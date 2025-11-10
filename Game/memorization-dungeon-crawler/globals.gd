@@ -143,22 +143,18 @@ func submit_flashcard(succeed:bool):
 		clear_flashcard()
 
 func _input(event):
-	if has_flashcard():
+	if _getPlayer() != null and _getPlayer().mode == Player.PlayerMode.FACTS and has_flashcard():
 		if event is InputEventKey:
 			if event.pressed and not event.echo:
-				if event.keycode == KEY_MINUS:
-					current_flashcard_answer += "-"
-				elif event.keycode == KEY_PLUS:
-					current_flashcard_answer += "+"
-				elif event.keycode == KEY_BACKSPACE:
-					if current_flashcard_answer.length() > 0:
-						current_flashcard_answer = current_flashcard_answer.substr(0, current_flashcard_answer.length() - 1)
+				if event.keycode == KEY_BACKSPACE:
+					current_flashcard_answer = ""
+					#if current_flashcard_answer.length() > 0:
+						#current_flashcard_answer = current_flashcard_answer.substr(0, current_flashcard_answer.length() - 1)
 				elif event.keycode == KEY_ENTER:
 					submit_flashcard(get_flashcard_question().answerEquals(current_flashcard_answer))
-				elif !(event.keycode in ignored_keys):
-					if(event.as_text() != null):
-						current_flashcard_answer += event.as_text()
-				
+				elif !(event.keycode in ignored_keys) and char(event.unicode) != null\
+						and get_flashcard_question().is_valid_key(event, current_flashcard_answer):
+						current_flashcard_answer += char(event.unicode)
 				if(get_flashcard_question().answerEquals(current_flashcard_answer)):
 					submit_flashcard(true)
 				_flashcardNode.signal_flashcard_answer_changed.emit(current_flashcard_answer)

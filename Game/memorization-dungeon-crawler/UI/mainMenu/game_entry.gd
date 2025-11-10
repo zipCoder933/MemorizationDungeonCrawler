@@ -1,7 +1,7 @@
 extends HBoxContainer
 const SaveHandler = preload("uid://bgwdh30vglopu")
 const LevelsHandler = preload("uid://bte11e0fapqes")
-
+@onready var level: Label = %level
 @onready var label: Label = %Label
 var entry:SaveEntry
 @onready var menu:MainMenu = get_tree().get_nodes_in_group("main menu")[0]
@@ -9,8 +9,8 @@ var entry:SaveEntry
 
 func setDetails(_entry:SaveEntry):
 	entry = _entry
-	print("ENTRY:",entry)
 	label.text = entry.name
+	level.text = " (lvl "+ str(entry.completed_level) +")"
 	
 func _on_play_game_pressed() -> void:
 	menu.load_game(entry)

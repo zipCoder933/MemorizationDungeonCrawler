@@ -22,6 +22,8 @@ func _on_start_button_pressed() -> void:
 		template_dir = "res://data/games/addition/"
 	elif selected_index == 2:#subtraction
 		template_dir = "res://data/games/subtraction/"
+	elif selected_index == 3:#music
+		template_dir = "res://data/games/music/"
 
 	print("NAME: ",name_box.text," TEMPLATE: ",template_dir)
 	

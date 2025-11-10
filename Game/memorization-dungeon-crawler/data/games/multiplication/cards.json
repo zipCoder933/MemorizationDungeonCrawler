@@ -7,7 +7,7 @@
 				"1s",
 				"1s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 2,
@@ -16,7 +16,7 @@
 				"1s",
 				"2s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 3,
@@ -25,7 +25,7 @@
 				"1s",
 				"3s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 4,
@@ -34,7 +34,7 @@
 				"1s",
 				"4s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 5,
@@ -43,7 +43,7 @@
 				"1s",
 				"5s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 6,
@@ -52,7 +52,7 @@
 				"1s",
 				"6s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 7,
@@ -61,7 +61,7 @@
 				"1s",
 				"7s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 8,
@@ -70,7 +70,7 @@
 				"1s",
 				"8s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 9,
@@ -79,7 +79,7 @@
 				"1s",
 				"9s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 10,
@@ -88,7 +88,7 @@
 				"1s",
 				"10s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 11,
@@ -97,7 +97,7 @@
 				"1s",
 				"11s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 12,
@@ -106,7 +106,7 @@
 				"1s",
 				"12s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 2,
@@ -115,7 +115,7 @@
 				"2s",
 				"1s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 4,
@@ -124,7 +124,7 @@
 				"2s",
 				"2s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 6,
@@ -133,7 +133,7 @@
 				"2s",
 				"3s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 8,
@@ -142,7 +142,7 @@
 				"2s",
 				"4s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 10,
@@ -151,7 +151,7 @@
 				"2s",
 				"5s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 12,
@@ -160,7 +160,7 @@
 				"2s",
 				"6s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 14,
@@ -169,7 +169,7 @@
 				"2s",
 				"7s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 16,
@@ -178,7 +178,7 @@
 				"2s",
 				"8s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 18,
@@ -187,7 +187,7 @@
 				"2s",
 				"9s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 20,
@@ -196,7 +196,7 @@
 				"2s",
 				"10s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 22,
@@ -205,7 +205,7 @@
 				"2s",
 				"11s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 24,
@@ -214,7 +214,7 @@
 				"2s",
 				"12s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 3,
@@ -223,7 +223,7 @@
 				"3s",
 				"1s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 6,
@@ -232,7 +232,7 @@
 				"3s",
 				"2s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 9,
@@ -241,7 +241,7 @@
 				"3s",
 				"3s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 12,
@@ -250,7 +250,7 @@
 				"3s",
 				"4s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 15,
@@ -259,7 +259,7 @@
 				"3s",
 				"5s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 18,
@@ -268,7 +268,7 @@
 				"3s",
 				"6s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 21,
@@ -277,7 +277,7 @@
 				"3s",
 				"7s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 24,
@@ -286,7 +286,7 @@
 				"3s",
 				"8s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 27,
@@ -295,7 +295,7 @@
 				"3s",
 				"9s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 30,
@@ -304,7 +304,7 @@
 				"3s",
 				"10s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 33,
@@ -313,7 +313,7 @@
 				"3s",
 				"11s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 36,
@@ -322,7 +322,7 @@
 				"3s",
 				"12s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 4,
@@ -331,7 +331,7 @@
 				"4s",
 				"1s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 8,
@@ -340,7 +340,7 @@
 				"4s",
 				"2s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 12,
@@ -349,7 +349,7 @@
 				"4s",
 				"3s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 16,
@@ -358,7 +358,7 @@
 				"4s",
 				"4s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 20,
@@ -367,7 +367,7 @@
 				"4s",
 				"5s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 24,
@@ -376,7 +376,7 @@
 				"4s",
 				"6s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 28,
@@ -385,7 +385,7 @@
 				"4s",
 				"7s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 32,
@@ -394,7 +394,7 @@
 				"4s",
 				"8s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 36,
@@ -403,7 +403,7 @@
 				"4s",
 				"9s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 40,
@@ -412,7 +412,7 @@
 				"4s",
 				"10s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 44,
@@ -421,7 +421,7 @@
 				"4s",
 				"11s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 48,
@@ -430,7 +430,7 @@
 				"4s",
 				"12s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 5,
@@ -439,7 +439,7 @@
 				"5s",
 				"1s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 10,
@@ -448,7 +448,7 @@
 				"5s",
 				"2s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 15,
@@ -457,7 +457,7 @@
 				"5s",
 				"3s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 20,
@@ -466,7 +466,7 @@
 				"5s",
 				"4s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 25,
@@ -475,7 +475,7 @@
 				"5s",
 				"5s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 30,
@@ -484,7 +484,7 @@
 				"5s",
 				"6s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 35,
@@ -493,7 +493,7 @@
 				"5s",
 				"7s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 40,
@@ -502,7 +502,7 @@
 				"5s",
 				"8s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 45,
@@ -511,7 +511,7 @@
 				"5s",
 				"9s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 50,
@@ -520,7 +520,7 @@
 				"5s",
 				"10s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 55,
@@ -529,7 +529,7 @@
 				"5s",
 				"11s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 60,
@@ -538,7 +538,7 @@
 				"5s",
 				"12s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 6,
@@ -547,7 +547,7 @@
 				"6s",
 				"1s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 12,
@@ -556,7 +556,7 @@
 				"6s",
 				"2s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 18,
@@ -565,7 +565,7 @@
 				"6s",
 				"3s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 24,
@@ -574,7 +574,7 @@
 				"6s",
 				"4s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 30,
@@ -583,7 +583,7 @@
 				"6s",
 				"5s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 36,
@@ -592,7 +592,7 @@
 				"6s",
 				"6s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 42,
@@ -601,7 +601,7 @@
 				"6s",
 				"7s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 48,
@@ -610,7 +610,7 @@
 				"6s",
 				"8s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 54,
@@ -619,7 +619,7 @@
 				"6s",
 				"9s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 60,
@@ -628,7 +628,7 @@
 				"6s",
 				"10s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 66,
@@ -637,7 +637,7 @@
 				"6s",
 				"11s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 72,
@@ -646,7 +646,7 @@
 				"6s",
 				"12s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 7,
@@ -655,7 +655,7 @@
 				"7s",
 				"1s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 14,
@@ -664,7 +664,7 @@
 				"7s",
 				"2s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 21,
@@ -673,7 +673,7 @@
 				"7s",
 				"3s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 28,
@@ -682,7 +682,7 @@
 				"7s",
 				"4s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 35,
@@ -691,7 +691,7 @@
 				"7s",
 				"5s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 42,
@@ -700,7 +700,7 @@
 				"7s",
 				"6s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 49,
@@ -709,7 +709,7 @@
 				"7s",
 				"7s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 56,
@@ -718,7 +718,7 @@
 				"7s",
 				"8s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 63,
@@ -727,7 +727,7 @@
 				"7s",
 				"9s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 70,
@@ -736,7 +736,7 @@
 				"7s",
 				"10s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 77,
@@ -745,7 +745,7 @@
 				"7s",
 				"11s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 84,
@@ -754,7 +754,7 @@
 				"7s",
 				"12s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 8,
@@ -763,7 +763,7 @@
 				"8s",
 				"1s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 16,
@@ -772,7 +772,7 @@
 				"8s",
 				"2s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 24,
@@ -781,7 +781,7 @@
 				"8s",
 				"3s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 32,
@@ -790,7 +790,7 @@
 				"8s",
 				"4s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 40,
@@ -799,7 +799,7 @@
 				"8s",
 				"5s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 48,
@@ -808,7 +808,7 @@
 				"8s",
 				"6s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 56,
@@ -817,7 +817,7 @@
 				"8s",
 				"7s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 64,
@@ -826,7 +826,7 @@
 				"8s",
 				"8s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 72,
@@ -835,7 +835,7 @@
 				"8s",
 				"9s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 80,
@@ -844,7 +844,7 @@
 				"8s",
 				"10s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 88,
@@ -853,7 +853,7 @@
 				"8s",
 				"11s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 96,
@@ -862,7 +862,7 @@
 				"8s",
 				"12s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 9,
@@ -871,7 +871,7 @@
 				"9s",
 				"1s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 18,
@@ -880,7 +880,7 @@
 				"9s",
 				"2s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 27,
@@ -889,7 +889,7 @@
 				"9s",
 				"3s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 36,
@@ -898,7 +898,7 @@
 				"9s",
 				"4s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 45,
@@ -907,7 +907,7 @@
 				"9s",
 				"5s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 54,
@@ -916,7 +916,7 @@
 				"9s",
 				"6s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 63,
@@ -925,7 +925,7 @@
 				"9s",
 				"7s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 72,
@@ -934,7 +934,7 @@
 				"9s",
 				"8s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 81,
@@ -943,7 +943,7 @@
 				"9s",
 				"9s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 90,
@@ -952,7 +952,7 @@
 				"9s",
 				"10s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 99,
@@ -961,7 +961,7 @@
 				"9s",
 				"11s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 108,
@@ -970,7 +970,7 @@
 				"9s",
 				"12s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 10,
@@ -979,7 +979,7 @@
 				"10s",
 				"1s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 20,
@@ -988,7 +988,7 @@
 				"10s",
 				"2s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 30,
@@ -997,7 +997,7 @@
 				"10s",
 				"3s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 40,
@@ -1006,7 +1006,7 @@
 				"10s",
 				"4s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 50,
@@ -1015,7 +1015,7 @@
 				"10s",
 				"5s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 60,
@@ -1024,7 +1024,7 @@
 				"10s",
 				"6s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 70,
@@ -1033,7 +1033,7 @@
 				"10s",
 				"7s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 80,
@@ -1042,7 +1042,7 @@
 				"10s",
 				"8s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 90,
@@ -1051,7 +1051,7 @@
 				"10s",
 				"9s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 100,
@@ -1060,7 +1060,7 @@
 				"10s",
 				"10s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 110,
@@ -1069,7 +1069,7 @@
 				"10s",
 				"11s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 120,
@@ -1078,7 +1078,7 @@
 				"10s",
 				"12s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 11,
@@ -1087,7 +1087,7 @@
 				"11s",
 				"1s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 22,
@@ -1096,7 +1096,7 @@
 				"11s",
 				"2s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 33,
@@ -1105,7 +1105,7 @@
 				"11s",
 				"3s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 44,
@@ -1114,7 +1114,7 @@
 				"11s",
 				"4s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 55,
@@ -1123,7 +1123,7 @@
 				"11s",
 				"5s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 66,
@@ -1132,7 +1132,7 @@
 				"11s",
 				"6s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 77,
@@ -1141,7 +1141,7 @@
 				"11s",
 				"7s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 88,
@@ -1150,7 +1150,7 @@
 				"11s",
 				"8s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 99,
@@ -1159,7 +1159,7 @@
 				"11s",
 				"9s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 110,
@@ -1168,7 +1168,7 @@
 				"11s",
 				"10s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 121,
@@ -1177,7 +1177,7 @@
 				"11s",
 				"11s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 132,
@@ -1186,7 +1186,7 @@
 				"11s",
 				"12s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 12,
@@ -1195,7 +1195,7 @@
 				"12s",
 				"1s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 24,
@@ -1204,7 +1204,7 @@
 				"12s",
 				"2s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 36,
@@ -1213,7 +1213,7 @@
 				"12s",
 				"3s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 48,
@@ -1222,7 +1222,7 @@
 				"12s",
 				"4s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 60,
@@ -1231,7 +1231,7 @@
 				"12s",
 				"5s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 72,
@@ -1240,7 +1240,7 @@
 				"12s",
 				"6s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 84,
@@ -1249,7 +1249,7 @@
 				"12s",
 				"7s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 96,
@@ -1258,7 +1258,7 @@
 				"12s",
 				"8s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 108,
@@ -1267,7 +1267,7 @@
 				"12s",
 				"9s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 120,
@@ -1276,7 +1276,7 @@
 				"12s",
 				"10s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 132,
@@ -1285,7 +1285,7 @@
 				"12s",
 				"11s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		},
 		{
 			"Answer": 144,
@@ -1294,7 +1294,7 @@
 				"12s",
 				"12s"
 			],
-			"Type": "number"
+			"Type": "natural"
 		}
 	]
 }
