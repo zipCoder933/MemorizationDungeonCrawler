@@ -1,476 +1,476 @@
 {
-    "Cards": [
-        {
-            "Answer": "c",
-            "Question": "/images/bass_024_C1.png",
-            "Tags": [
+	"Cards": [
+		{
+			"Answer": "c",
+			"Question": "/images/bass_024_C1.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "d",
-            "Question": "/images/bass_026_D1.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "d",
+			"Question": "/images/bass_026_D1.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "e",
-            "Question": "/images/bass_028_E1.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "e",
+			"Question": "/images/bass_028_E1.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "f",
-            "Question": "/images/bass_029_F1.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "f",
+			"Question": "/images/bass_029_F1.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "g",
-            "Question": "/images/bass_031_G1.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "g",
+			"Question": "/images/bass_031_G1.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "a",
-            "Question": "/images/bass_033_A1.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "a",
+			"Question": "/images/bass_033_A1.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "b",
-            "Question": "/images/bass_035_B1.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "b",
+			"Question": "/images/bass_035_B1.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "c",
-            "Question": "/images/bass_036_C2.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "c",
+			"Question": "/images/bass_036_C2.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "d",
-            "Question": "/images/bass_038_D2.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "d",
+			"Question": "/images/bass_038_D2.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "e",
-            "Question": "/images/bass_040_E2.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "e",
+			"Question": "/images/bass_040_E2.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "f",
-            "Question": "/images/bass_041_F2.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "f",
+			"Question": "/images/bass_041_F2.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "g",
-            "Question": "/images/bass_043_G2.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "g",
+			"Question": "/images/bass_043_G2.png",
+			"Tags": [
                 "bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "a",
-            "Question": "/images/bass_045_A2.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "a",
+			"Question": "/images/bass_045_A2.png",
+			"Tags": [
                 "bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "b",
-            "Question": "/images/bass_047_B2.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "b",
+			"Question": "/images/bass_047_B2.png",
+			"Tags": [
                 "bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "c",
-            "Question": "/images/bass_048_C3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "c",
+			"Question": "/images/bass_048_C3.png",
+			"Tags": [
                 "bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "d",
-            "Question": "/images/bass_050_D3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "d",
+			"Question": "/images/bass_050_D3.png",
+			"Tags": [
                 "bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "e",
-            "Question": "/images/bass_052_E3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "e",
+			"Question": "/images/bass_052_E3.png",
+			"Tags": [
                 "bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "f",
-            "Question": "/images/bass_053_F3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "f",
+			"Question": "/images/bass_053_F3.png",
+			"Tags": [
                 "bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "g",
-            "Question": "/images/bass_055_G3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "g",
+			"Question": "/images/bass_055_G3.png",
+			"Tags": [
                 "bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "a",
-            "Question": "/images/bass_057_A3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "a",
+			"Question": "/images/bass_057_A3.png",
+			"Tags": [
                 "bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "b",
-            "Question": "/images/bass_059_B3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "b",
+			"Question": "/images/bass_059_B3.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "c",
-            "Question": "/images/bass_060_C4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "c",
+			"Question": "/images/bass_060_C4.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "d",
-            "Question": "/images/bass_062_D4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "d",
+			"Question": "/images/bass_062_D4.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "e",
-            "Question": "/images/bass_064_E4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "e",
+			"Question": "/images/bass_064_E4.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "f",
-            "Question": "/images/bass_065_F4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "f",
+			"Question": "/images/bass_065_F4.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "g",
-            "Question": "/images/bass_067_G4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "g",
+			"Question": "/images/bass_067_G4.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "a",
-            "Question": "/images/bass_069_A4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "a",
+			"Question": "/images/bass_069_A4.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "b",
-            "Question": "/images/bass_071_B4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "b",
+			"Question": "/images/bass_071_B4.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "c",
-            "Question": "/images/bass_072_C5.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "c",
+			"Question": "/images/bass_072_C5.png",
+			"Tags": [
                 "outer-bass"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "b",
-            "Question": "/images/treble_047_B2.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "b",
+			"Question": "/images/treble_047_B2.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "c",
-            "Question": "/images/treble_048_C3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "c",
+			"Question": "/images/treble_048_C3.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "d",
-            "Question": "/images/treble_050_D3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "d",
+			"Question": "/images/treble_050_D3.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "e",
-            "Question": "/images/treble_052_E3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "e",
+			"Question": "/images/treble_052_E3.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "f",
-            "Question": "/images/treble_053_F3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "f",
+			"Question": "/images/treble_053_F3.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "g",
-            "Question": "/images/treble_055_G3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "g",
+			"Question": "/images/treble_055_G3.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "a",
-            "Question": "/images/treble_057_A3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "a",
+			"Question": "/images/treble_057_A3.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "b",
-            "Question": "/images/treble_059_B3.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "b",
+			"Question": "/images/treble_059_B3.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "c",
-            "Question": "/images/treble_060_C4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "c",
+			"Question": "/images/treble_060_C4.png",
+			"Tags": [
                 "treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "d",
-            "Question": "/images/treble_062_D4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "d",
+			"Question": "/images/treble_062_D4.png",
+			"Tags": [
                 "treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "e",
-            "Question": "/images/treble_064_E4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "e",
+			"Question": "/images/treble_064_E4.png",
+			"Tags": [
                 "treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "f",
-            "Question": "/images/treble_065_F4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "f",
+			"Question": "/images/treble_065_F4.png",
+			"Tags": [
                 "treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "g",
-            "Question": "/images/treble_067_G4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "g",
+			"Question": "/images/treble_067_G4.png",
+			"Tags": [
                 "treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "a",
-            "Question": "/images/treble_069_A4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "a",
+			"Question": "/images/treble_069_A4.png",
+			"Tags": [
                 "treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "b",
-            "Question": "/images/treble_071_B4.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "b",
+			"Question": "/images/treble_071_B4.png",
+			"Tags": [
                 "treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "c",
-            "Question": "/images/treble_072_C5.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "c",
+			"Question": "/images/treble_072_C5.png",
+			"Tags": [
                 "treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "d",
-            "Question": "/images/treble_074_D5.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "d",
+			"Question": "/images/treble_074_D5.png",
+			"Tags": [
                 "treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "e",
-            "Question": "/images/treble_076_E5.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "e",
+			"Question": "/images/treble_076_E5.png",
+			"Tags": [
                 "treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "f",
-            "Question": "/images/treble_077_F5.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "f",
+			"Question": "/images/treble_077_F5.png",
+			"Tags": [
                 "treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "g",
-            "Question": "/images/treble_079_G5.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "g",
+			"Question": "/images/treble_079_G5.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "a",
-            "Question": "/images/treble_081_A5.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "a",
+			"Question": "/images/treble_081_A5.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "b",
-            "Question": "/images/treble_083_B5.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "b",
+			"Question": "/images/treble_083_B5.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "c",
-            "Question": "/images/treble_084_C6.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "c",
+			"Question": "/images/treble_084_C6.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "d",
-            "Question": "/images/treble_086_D6.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "d",
+			"Question": "/images/treble_086_D6.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "e",
-            "Question": "/images/treble_088_E6.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "e",
+			"Question": "/images/treble_088_E6.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "f",
-            "Question": "/images/treble_089_F6.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "f",
+			"Question": "/images/treble_089_F6.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "g",
-            "Question": "/images/treble_091_G6.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "g",
+			"Question": "/images/treble_091_G6.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "a",
-            "Question": "/images/treble_093_A6.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "a",
+			"Question": "/images/treble_093_A6.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "b",
-            "Question": "/images/treble_095_B6.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "b",
+			"Question": "/images/treble_095_B6.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        },
-        {
-            "Answer": "c",
-            "Question": "/images/treble_096_C7.png",
-            "Tags": [
+			],
+			"Type": "image"
+		},
+		{
+			"Answer": "c",
+			"Question": "/images/treble_096_C7.png",
+			"Tags": [
                 "outer-treble"
-            ],
-            "Type": "image"
-        }
-    ]
+			],
+			"Type": "image"
+		}
+	]
 }

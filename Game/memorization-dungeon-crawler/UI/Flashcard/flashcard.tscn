@@ -57,7 +57,6 @@ size_flags_vertical = 10
 
 [node name="questionImage" type="TextureRect" parent="background/VBoxContainer/question"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 texture = ExtResource("1_4or87")
 stretch_mode = 3
@@ -67,18 +66,17 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_4or87")
 theme_override_font_sizes/font_size = 32
-text = "adfasdfasdf
-asdf
-asdf"
+text = "BASIC
+question"
 
 [node name="answerLabel" type="Label" parent="background/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 10
 theme_override_fonts/font = ExtResource("2_4or87")
 theme_override_font_sizes/font_size = 24
-text = "an"
+text = "Answer
+answer"
 horizontal_alignment = 1
 
 [node name="BPadding" type="MarginContainer" parent="background/VBoxContainer"]

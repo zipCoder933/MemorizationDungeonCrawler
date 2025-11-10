@@ -22,29 +22,33 @@ func _drill_global(node:WorldFlashCard, q2:Question):
 	_drill(q2)
 
 #Put up a new flashcard
-func _drill(q2:Question):
+func _drill(q2: Question):
 	time_left_bar.value = 1
-	if(q2.is_image):
+
+	if q2.is_image:
 		question_image.visible = true
 		question_label.visible = false
-		#var img = Image.new()
-		#var err = img.load(q.question)  # or an absolute path
-		#if err == OK:
-			#var tex = ImageTexture.create_from_image(img)
-			#$Sprite3D.texture = tex
-		#else:
-			#push_error("Failed to load image!")
-		#question_image.texture = Texture2D.new(q.question)
+
+		var img = Image.new()
+		var path = (q2.question)  # ensure valid path
+		var err = img.load(path)
+		if err == OK:
+			var tex = ImageTexture.create_from_image(img)
+			question_image.texture = tex
+		else:
+			push_error("❌ Failed to load image at: " + path)
 	else:
 		question_image.visible = false
 		question_label.visible = true
 		question_label.text = q2.question
+
 	background.color = DEFAULT_COLOR
 	answer_label.text = ""
-	if(anyKeyPressed):
+	if anyKeyPressed:
 		can_accept_input = false
 	start_time = Time.get_ticks_msec()
 	q = q2
+
 
 func _submitted_global(node:WorldFlashCard, success:bool):
 	_submitted(success)
