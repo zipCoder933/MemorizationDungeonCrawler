@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://uj3f7wqkmd6o" path="res://assets/models/potion/Cylinder.png" id="2_riv36"]
 [ext_resource type="Texture2D" uid="uid://bnxw5vlpg4p3k" path="res://assets/models/potion/specular.png" id="3_pu4js"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_d53ku"]
-height = 0.6345825
-radius = 0.23486328
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_riv36"]
+height = 0.58740234
+radius = 0.18408203
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_d53ku"]
-radius = 1.0
+radius = 0.98803616
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_di3uv"]
 albedo_texture = ExtResource("2_riv36")
@@ -22,17 +22,23 @@ collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20657349, 0)
-shape = SubResource("CylinderShape3D_d53ku")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17173767, 0)
+shape = SubResource("CylinderShape3D_riv36")
 
 [node name="trigger" type="StaticBody3D" parent="."]
 collision_layer = 4
 script = ExtResource("1_riv36")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18461692, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075942576, 0)
 shape = SubResource("SphereShape3D_d53ku")
 
 [node name="Potion" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 mesh = ExtResource("1_pya2e")
 surface_material_override/0 = SubResource("StandardMaterial3D_di3uv")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.96990234, 0.0008284265, 0.9786537, 1)
+light_energy = 2.709
+omni_range = 4.0

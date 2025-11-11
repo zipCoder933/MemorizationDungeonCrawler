@@ -1,5 +1,5 @@
 extends Node
-class_name GlobalEvents
+#class_name GlobalScript
 
 static var CARD_MISSING_IMAGE = "res://assets/icons/card_missing_image.png"
 static var totalArenas = 0
@@ -53,6 +53,22 @@ func next_level(goToLevel:bool = true):
 	if(goToLevel):
 		go_to_level()
 
+func map(value, from_min, from_max, to_min, to_max):
+	return to_min + (value - from_min) * (to_max - to_min) / (from_max - from_min)
+
+func map_clamp(value, from_min, from_max, to_min, to_max):
+	return clamp(to_min + (value - from_min) * (to_max - to_min) / (from_max - from_min),to_min,to_max)
+
+
+#Spawn
+const POTION = preload("uid://c4iomrx46ssjc")
+func spawn_potion(pos:Vector3):
+	var instance = POTION.instantiate()
+	instance.global_position = Vector3(pos)
+	add_child(instance)
+	instance.linear_velocity = Vector3(0,10,0)
+	
+
 func go_to_level():
 	get_tree().change_scene_to_file("res://levels/Level.tscn")
 
@@ -81,6 +97,8 @@ static var deckSize:int = 0
 static var succeeded:int = 0
 static var questions:Array#[Question];
 static var _flashcardNode:WorldFlashCard
+static var failed_flashcards:Array[Question]
+static var _allow_end_on_failure = false
 
 func has_flashcard():
 	return _current_flashcard_question!=null and _has_flashcard
@@ -129,6 +147,7 @@ func drill_flashcards(quantity:int, flashcardElement:WorldFlashCard):
 
 func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard):
 	_flashcardNode = flashcardElement
+	_allow_end_on_failure = questions2.size() == 1
 	fact_answering_mode.emit(_flashcardNode)
 	print("Drilling player on ",questions2.size()," cards.")
 	deckSize = questions2.size()
@@ -150,16 +169,24 @@ func submit_flashcard(succeed:bool):
 	questions.remove_at(0)
 	
 	if(!succeed):
+		failed_flashcards.append(_current_flashcard_question)
 		await get_tree().create_timer(1).timeout
 	
 	if(questions.size() > 0):
 		new_flashcard_question(questions[0])
 	else:
+		#If we want the last one to be good, we will just keep reviewing missed cards until then
+		if(!succeed and !_allow_end_on_failure and failed_flashcards.size() > 0):
+				new_flashcard_question(failed_flashcards[0])
+				failed_flashcards.pop_back()
+				return
+
 		_flashcardNode.signal_flashcard_finished_drill.emit(succeeded, deckSize)
 		signal_flashcard_finished_drill.emit(_flashcardNode, succeeded, deckSize)
 		if(player !=null and player.health > 0):
 			adventure_mode.emit()
 		clear_flashcard()
+
 
 func _input(event):
 	if (_getPlayer() == null or _getPlayer().mode == Player.PlayerMode.FACTS) and has_flashcard():

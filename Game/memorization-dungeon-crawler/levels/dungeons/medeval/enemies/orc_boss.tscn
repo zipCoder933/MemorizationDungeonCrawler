@@ -1738,6 +1738,7 @@ _data = {
 
 [node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "node_3d")]
 unique_name_in_owner = true
+collision_layer = 4
 script = ExtResource("2_7tcax")
 _3d_flashcard = NodePath("../Node3D/3dFlashcard")
 _animation_player = NodePath("../Node3D/orc_boss/AnimationPlayer")

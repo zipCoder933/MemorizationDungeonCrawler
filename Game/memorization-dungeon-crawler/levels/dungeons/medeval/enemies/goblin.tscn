@@ -3695,6 +3695,7 @@ _data = {
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
 
 [node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "node_3d")]
+collision_layer = 4
 script = ExtResource("2_reyqm")
 _3d_flashcard = NodePath("../Node3D/3dFlashcard")
 _animation_player = NodePath("../Node3D/goblin/AnimationPlayer")

@@ -319,19 +319,20 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, starting_arena
 const arenaSize = 1;
 const CLOSENESS_TO_END_PATH_END = 6;
 const FAILED_LEVEL_SURVIVAL = 0.3
-const DOOR_LIKELYHOOD = 0.2
-const DRILLS_TO_ARENA =3
+const DOOR_LIKELYHOOD = 0.22
+const DRILLS_TO_ARENA = 3 #How many total drills * card_review_number makes 1 arena in the map?
 
 func _ready():
-	
+	print("Generating level...")
 	var level = SaveHandler.currentLevel
 	var arenas_average = 5
 	if( level !=null):
 		var cards = CardsHandler.card_count(level.card_tags)
 		var total_drills = level.card_review_number * cards
-		var arenas_average = total_drills / DRILLS_TO_ARENA
+		arenas_average = total_drills / DRILLS_TO_ARENA
+		print("Arena average: ",arenas_average)
 	
-	var number_arenas = randi_range(1,2) #Place brahcnes with arenas
+	var number_arenas = clamp(randi_range(arenas_average-3,arenas_average+3), 4, 50)
 	var min_path_length = 5
 	var max_path_length = 20
 	var start_pos = Vector3(0,0,0)
@@ -345,8 +346,6 @@ func _ready():
 	#box(start_pos.x, start_pos.z, true, true, false)
 	print("MAIN PATH: ", path(start_pos, main_path_end, 25, 1, arenaSize+2, 1, true))
 	#arena(start_pos.x-2,start_pos.z, 1,1, Direction.XPOS, false,null)
-		
-
 	
 	for i in range(0,200):
 		place = searched.keys()[randi_range(0,searched.keys().size()-1)]

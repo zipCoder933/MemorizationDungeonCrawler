@@ -61,7 +61,7 @@ offset_top = 16.0
 offset_right = 288.0
 offset_bottom = 48.0
 theme_override_fonts/font = ExtResource("3_4n7mi")
-text = "COMPLETED ARENAS 0/0"
+text = "COMPLETED ARENAS -/-"
 
 [node name="Label2" type="Label" parent="CanvasLayer"]
 offset_left = 16.0
@@ -217,7 +217,7 @@ offset_bottom = 32.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3_4n7mi")
 theme_override_font_sizes/font_size = 12
-text = "LEVEL 0"
+text = "LEVEL --"
 horizontal_alignment = 1
 vertical_alignment = 1
 

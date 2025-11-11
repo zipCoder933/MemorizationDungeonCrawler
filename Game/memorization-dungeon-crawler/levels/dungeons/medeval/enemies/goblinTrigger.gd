@@ -32,8 +32,6 @@ func _finish_drill(success, count):
 		Globals.completedArenas += 1
 		isDead = true
 		_animation_player.play(death_animation,0.2)
-		#Refull health
-		player.change_health(0.8)
 
 func _ready() -> void:
 	_3d_flashcard.signal_flashcard_finished_drill.connect(_finish_drill)
@@ -56,6 +54,8 @@ func _process(delta):
 			 	node_3d.scale.y - SHRINK_SPEED * delta, 
 				node_3d.scale.z - SHRINK_SPEED * delta)
 		if(node_3d.scale.y <= 0): #Delete this node
+			var p = Vector3(node_3d.global_position.x,node_3d.global_position.y,node_3d.global_position.z)
+			Globals.spawn_potion(p)
 			node_3d.queue_free()
 	else:
 		var dir = target_pos - self_pos

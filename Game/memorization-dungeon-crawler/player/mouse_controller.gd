@@ -12,7 +12,6 @@ func unlock_mouse_forever():
 	letGoOfMouse = true
 
 func _ready():
-	print("Mouse controller ready 😎")
 	lock_mouse()
 
 func _process(delta):
