@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bdnosseu7fsm"]
 
 [ext_resource type="PackedScene" uid="uid://bkeiga1qgtt2g" path="res://assets/models/door/medeval/door frame.glb" id="1_45plq"]
-[ext_resource type="Script" uid="uid://b6gsly6ywnrfy" path="res://levels/environment/door/door.gd" id="1_k7fuj"]
+[ext_resource type="Script" uid="uid://b6gsly6ywnrfy" path="res://levels/dungeons/medeval/environment/door/door.gd" id="1_k7fuj"]
 [ext_resource type="PackedScene" uid="uid://y4f1l2qd7mo7" path="res://assets/models/door/medeval/door.glb" id="2_k7fuj"]
-[ext_resource type="PackedScene" uid="uid://bxect7ofq1jbm" path="res://levels/environment/door/DoorTrigger.tscn" id="4_wsbsg"]
+[ext_resource type="PackedScene" uid="uid://bxect7ofq1jbm" path="res://levels/dungeons/medeval/environment/door/DoorTrigger.tscn" id="4_wsbsg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xgmq8"]
 size = Vector3(1.3112488, 5, 1.1327026)

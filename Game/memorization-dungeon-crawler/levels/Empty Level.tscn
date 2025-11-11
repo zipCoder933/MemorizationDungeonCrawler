@@ -1,15 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://b814qo7tsdd6q"]
+[gd_scene load_steps=13 format=3 uid="uid://b814qo7tsdd6q"]
 
 [ext_resource type="Script" uid="uid://qnek84emx4ad" path="res://levels/empty_level.gd" id="1_xvfop"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_6awyk"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_io462"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_36vw8"]
 [ext_resource type="PackedScene" uid="uid://3cmqyetfdyvt" path="res://player/Player.tscn" id="5_xvfop"]
-[ext_resource type="PackedScene" uid="uid://bvoe5plbouam2" path="res://levels/environment/floor/floor.tscn" id="6_6awyk"]
-[ext_resource type="PackedScene" uid="uid://bpunwt6bwc3bm" path="res://levels/environment/wall/wall.tscn" id="7_io462"]
-[ext_resource type="PackedScene" uid="uid://bdnosseu7fsm" path="res://levels/environment/door/door.tscn" id="8_io462"]
-[ext_resource type="PackedScene" uid="uid://bqoufhp54uwue" path="res://levels/enemies/medeval/goblin.tscn" id="9_36vw8"]
-[ext_resource type="PackedScene" uid="uid://bobtcptejmn2a" path="res://levels/enemies/medeval/orc_boss.tscn" id="10_xvfop"]
+[ext_resource type="PackedScene" uid="uid://bvoe5plbouam2" path="res://levels/dungeons/medeval/environment/floor/floor.tscn" id="6_6awyk"]
+[ext_resource type="PackedScene" uid="uid://bpunwt6bwc3bm" path="res://levels/dungeons/medeval/environment/wall/wall.tscn" id="7_io462"]
+[ext_resource type="PackedScene" uid="uid://bdnosseu7fsm" path="res://levels/dungeons/medeval/environment/door/door.tscn" id="8_io462"]
+[ext_resource type="PackedScene" uid="uid://bqoufhp54uwue" path="res://levels/dungeons/medeval/enemies/goblin.tscn" id="9_36vw8"]
+[ext_resource type="PackedScene" uid="uid://bobtcptejmn2a" path="res://levels/dungeons/medeval/enemies/orc_boss.tscn" id="10_xvfop"]
+[ext_resource type="PackedScene" uid="uid://c4iomrx46ssjc" path="res://levels/universal/potion/potion.tscn" id="11_asn8m"]
 
 [sub_resource type="Resource" id="Resource_0oum7"]
 script = ExtResource("3_io462")
@@ -253,3 +254,75 @@ transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, -19.07626)
 
 [node name="orc_boss" parent="." instance=ExtResource("10_xvfop")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3465507, 0.2559439, 21.796957)
+
+[node name="potion" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2377577, 2.6058052, 0.17240429)
+
+[node name="potion2" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2377577, 2.6058052, -1.0727916)
+
+[node name="potion3" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0625262, 2.6058052, 0.17240429)
+
+[node name="potion4" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0625262, 2.6058052, -1.0727916)
+
+[node name="potion5" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033122063, 2.6058052, 0.17240429)
+
+[node name="potion6" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033122063, 2.6058052, -1.0727916)
+
+[node name="potion7" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2377577, 2.6058052, -2.0769718)
+
+[node name="potion8" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2377577, 2.6058052, -3.3221676)
+
+[node name="potion9" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0625262, 2.6058052, -2.0769718)
+
+[node name="potion10" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0625262, 2.6058052, -3.3221676)
+
+[node name="potion11" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033122063, 2.6058052, -2.0769718)
+
+[node name="potion12" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033122063, 2.6058052, -3.3221676)
+
+[node name="potion13" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2377577, 3.7547858, -2.0769718)
+
+[node name="potion14" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2377577, 3.7547858, -3.3221676)
+
+[node name="potion15" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0625262, 3.7547858, -2.0769718)
+
+[node name="potion16" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0625262, 3.7547858, -3.3221676)
+
+[node name="potion17" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033122063, 3.7547858, -2.0769718)
+
+[node name="potion18" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033122063, 3.7547858, -3.3221676)
+
+[node name="potion19" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2377577, 3.7547858, 0.18747878)
+
+[node name="potion20" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2377577, 3.7547858, -1.0577171)
+
+[node name="potion21" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0625262, 3.7547858, 0.18747878)
+
+[node name="potion22" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0625262, 3.7547858, -1.0577171)
+
+[node name="potion23" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033122063, 3.7547858, 0.18747878)
+
+[node name="potion24" parent="." instance=ExtResource("11_asn8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033122063, 3.7547858, -1.0577171)

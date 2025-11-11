@@ -13,8 +13,16 @@ func _init():
 
 static var used_cards = {}  # tag -> list of last N used cards
 
-static func get_random_cards(cardTags:Array[String], quantity: int, unique_facts: int = 2) -> Array[Card]:
-	var tags = cardTags
+
+static func card_count(tags:Array[String]) -> int:
+	var size = 0
+	for tag in tags:
+		if(tag_dict.has(tag)):
+			size += tag_dict[tag].size()
+	return size
+
+static func get_random_cards(card_tags:Array[String], quantity: int, unique_facts: int = 2) -> Array[Card]:
+	var tags = card_tags
 	
 	var all_available: Array[Card] = []
 	var card_tag_map: Dictionary = {}  # card -> tag

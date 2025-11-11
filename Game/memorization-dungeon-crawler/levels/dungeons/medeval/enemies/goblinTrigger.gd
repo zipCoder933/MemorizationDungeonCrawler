@@ -70,6 +70,6 @@ func trigger():
 	print("You should not have come")
 	
 	var questions:Array[Question] = []
-	for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.cardTags, cardNumber):
+	for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, cardNumber):
 		questions.append(card.toQuestion(speed, SaveHandler.currentLevel, damage))
 	Globals.drill_questions(questions, _3d_flashcard)

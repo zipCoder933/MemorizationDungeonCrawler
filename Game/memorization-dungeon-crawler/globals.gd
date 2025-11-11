@@ -123,7 +123,7 @@ func _getPlayer() -> Player:
 
 func drill_flashcards(quantity:int, flashcardElement:WorldFlashCard):
 	var questions:Array[Question] = []
-	for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.cardTags, quantity):
+	for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, quantity):
 		questions.append(card.toQuestion(1, SaveHandler.currentLevel))
 	drill_questions(questions, flashcardElement)
 

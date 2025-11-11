@@ -34,6 +34,16 @@ signal health_changed
 const MAX_HEALTH = 1
 var health:float = 1
 
+#func set_health(value:float):
+	#if(value < 0):
+		#animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.5, 2)
+	#health = health + amt
+	#if(health > MAX_HEALTH):
+		#health = MAX_HEALTH
+	#if( health <= 0 ):
+		#Globals.game_over_event()
+	#health_changed.emit(health)
+
 func change_health(amt):
 	if(amt < 0):
 		animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.5, 2)
@@ -179,3 +189,5 @@ func _on_body_entered(body: Node) -> void:
 		body.open_door(true)
 	elif body is GoblinTrigger:
 		body.trigger()
+	elif body is PotionTrigger:
+		change_health(1)

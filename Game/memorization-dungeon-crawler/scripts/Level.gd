@@ -10,10 +10,11 @@ var theme: LevelTheme = LevelTheme.DUNGEON
 var boss_name: String = ""          # default empty
 var time_to_answer_sec: float = 30  # default 30 sec
 var levelType: LevelType = LevelType.STANDARD
-var cardTags: Array[String] = [] #If we dont specify tags, we just use all of them!!!
+var card_tags: Array[String] = [] #If we dont specify tags, we just use all of them!!!
+var card_review_number:int = 1 #How many times we want to review each card
 
 # Constructor
-func _init(_name: String, _theme: String, _levelType: LevelType = LevelType.STANDARD, _boss_name: String = "", _time_to_answer_sec: float = 30.0, _cardTags: Array[String] = []):
+func _init(_name: String, _theme: String, _card_review_number:int, _levelType: LevelType = LevelType.STANDARD, _boss_name: String = "", _time_to_answer_sec: float = 30.0, _card_tags: Array[String] = []):
 	level_name = _name
 	
 	# Convert string to enum
@@ -23,10 +24,11 @@ func _init(_name: String, _theme: String, _levelType: LevelType = LevelType.STAN
 			theme = LevelTheme[themeName]
 			break  # stop once we found a match
 	
+	card_review_number = _card_review_number
 	levelType = _levelType
 	boss_name = _boss_name
 	time_to_answer_sec = _time_to_answer_sec
-	cardTags = _cardTags.duplicate()
+	card_tags = _card_tags.duplicate()
 
 
 func toString() -> String:
@@ -34,5 +36,5 @@ func toString() -> String:
 	var type_name = LevelType.keys()[levelType]
 
 	return "Level: \"%s\" |\t Time-Sec: %.2f |\t Theme: %s |\t Level-Type: %s |\t Boss-name: \"%s\" |\t Card-Tags: [%s]" % [
-		level_name, time_to_answer_sec, theme_name, type_name, boss_name,  ", ".join(cardTags)
+		level_name, time_to_answer_sec, theme_name, type_name, boss_name,  ", ".join(card_tags)
 	]

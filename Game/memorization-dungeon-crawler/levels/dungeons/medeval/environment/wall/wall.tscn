@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bpunwt6bwc3bm"]
 
 [ext_resource type="Texture2D" uid="uid://oxj6462r64m" path="res://assets/models/door/medeval/door frame_seaworn_stone_tiles_diff_4k.jpg" id="1_5vrq6"]
-[ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/environment/wall/wall.gd" id="1_x7e51"]
+[ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/dungeons/medeval/environment/wall/wall.gd" id="1_x7e51"]
 [ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://assets/models/pillar/pillar.glb" id="3_ctcnh"]
 [ext_resource type="PackedScene" uid="uid://ef8ir25xwge2" path="res://assets/sconce.glb" id="4_gicrq"]
 

@@ -320,8 +320,17 @@ const arenaSize = 1;
 const CLOSENESS_TO_END_PATH_END = 6;
 const FAILED_LEVEL_SURVIVAL = 0.3
 const DOOR_LIKELYHOOD = 0.2
+const DRILLS_TO_ARENA =3
 
 func _ready():
+	
+	var level = SaveHandler.currentLevel
+	var arenas_average = 5
+	if( level !=null):
+		var cards = CardsHandler.card_count(level.card_tags)
+		var total_drills = level.card_review_number * cards
+		var arenas_average = total_drills / DRILLS_TO_ARENA
+	
 	var number_arenas = randi_range(1,2) #Place brahcnes with arenas
 	var min_path_length = 5
 	var max_path_length = 20

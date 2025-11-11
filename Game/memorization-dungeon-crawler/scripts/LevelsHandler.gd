@@ -82,16 +82,19 @@ static func load_from_file(file_path: String):
 				Level.LevelType.STANDARD))
 		levels.append(makeLevel(final, goal_speed, learnedTags, Level.LevelType.BOSS))
 
-static func makeLevel(dungeon:Variant, speed_seconds:float, cardTags:Array, levelType: Level.LevelType) -> Level:
+static func makeLevel(dungeon:Variant, speed_seconds:float, card_tags:Array, levelType: Level.LevelType) -> Level:
 
 	
 	var typed_cards: Array[String] = []
-	for c in cardTags:
+	for c in card_tags:
 		typed_cards.append(str(c))  # ensure every element is a string
+	
+	var card_review_number = 1
 	
 	var level =  Level.new(
 		dungeon.get("name", "Unknown Dungeon"),
 		dungeon.get("theme", "Unknown Theme"),
+		card_review_number,
 		levelType,
 		dungeon.get("boss_name", ""),
 		speed_seconds,  # or any logic to set time_to_answer_sec

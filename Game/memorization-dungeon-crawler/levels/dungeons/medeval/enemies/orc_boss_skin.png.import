@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3oasyo8amf4d"
-path.s3tc="res://.godot/imported/orc_boss_skin.png-ee46c08e27439bee530312e33668427c.s3tc.ctex"
+path.s3tc="res://.godot/imported/orc_boss_skin.png-c37c64ad14ec43aed41593fbbf51643e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://levels/enemies/medeval/orc_boss_skin.png"
-dest_files=["res://.godot/imported/orc_boss_skin.png-ee46c08e27439bee530312e33668427c.s3tc.ctex"]
+source_file="res://levels/dungeons/medeval/enemies/orc_boss_skin.png"
+dest_files=["res://.godot/imported/orc_boss_skin.png-c37c64ad14ec43aed41593fbbf51643e.s3tc.ctex"]
 
 [params]
 

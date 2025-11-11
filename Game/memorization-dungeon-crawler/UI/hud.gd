@@ -21,7 +21,7 @@ func _ready():
 	player.health_changed.connect(_player_health_changed)
 	Globals.signal_game_over.connect(_game_over)
 	Globals.signal_victory.connect(_victory)
-	level_indicator.text = "LEVEL " + str(SaveHandler.currentGame.completed_level)+": "+SaveHandler.currentLevel.level_name
+	#level_indicator.text = "LEVEL " + str(SaveHandler.currentGame.completed_level)+": "+SaveHandler.currentLevel.level_name
 
 func _input(event):
 	if event is InputEventKey:

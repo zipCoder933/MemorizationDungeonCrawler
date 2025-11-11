@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://mq1b7cpa6p04"
-path="res://.godot/imported/orc_boss.glb-790bed4e1b9197b705d5276f8b6fc5fa.scn"
+path="res://.godot/imported/orc_boss.glb-1956cee6c416a430bf2f3a6016943176.scn"
 
 [deps]
 
-source_file="res://levels/enemies/medeval/orc_boss.glb"
-dest_files=["res://.godot/imported/orc_boss.glb-790bed4e1b9197b705d5276f8b6fc5fa.scn"]
+source_file="res://levels/dungeons/medeval/enemies/orc_boss.glb"
+dest_files=["res://.godot/imported/orc_boss.glb-1956cee6c416a430bf2f3a6016943176.scn"]
 
 [params]
 
