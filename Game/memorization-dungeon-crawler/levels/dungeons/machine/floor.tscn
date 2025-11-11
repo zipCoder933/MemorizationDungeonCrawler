@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnaul2xojagn2"]
+
+[ext_resource type="Script" uid="uid://bj2u0j6bfrtoq" path="res://levels/universal/floor/floor.gd" id="1_py3u3"]
+[ext_resource type="Texture2D" uid="uid://5w3rhbwjquk0" path="res://assets/dungeons/machine/floor.png" id="2_py3u3"]
+[ext_resource type="Texture2D" uid="uid://bm6468j2kqrrs" path="res://assets/dungeons/machine/ceiling.png" id="3_lfra8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwqpw"]
+size = Vector3(250, 1, 250)
+
+[sub_resource type="QuadMesh" id="QuadMesh_yo1sm"]
+size = Vector2(250, 250)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yo1sm"]
+albedo_texture = ExtResource("2_py3u3")
+uv1_triplanar = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_bbej7"]
+flip_faces = true
+size = Vector2(250, 250)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ljw3t"]
+albedo_texture = ExtResource("3_lfra8")
+uv1_triplanar = true
+
+[node name="StaticBody3D" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_py3u3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_wwqpw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_yo1sm")
+surface_material_override/0 = SubResource("StandardMaterial3D_yo1sm")
+
+[node name="ceiling" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.044931, 0)
+mesh = SubResource("QuadMesh_bbej7")
+surface_material_override/0 = SubResource("StandardMaterial3D_ljw3t")
