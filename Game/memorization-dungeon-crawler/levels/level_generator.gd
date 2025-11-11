@@ -231,7 +231,7 @@ func alreadyPathHere(path_steps:Array[PathStep],target_pos:Vector3i) -> bool:
 			return true
 	return false
 
-func pathDirection(direction:Direction, length:int, placeDoors:bool, idea_path) -> bool:
+func path_direction(direction:Direction, length:int, placeDoors:bool, idea_path) -> bool:
 	var madeBox = false
 	for j in range(length):
 		var tPlace = moveIn(place,direction)#Move temporarily
@@ -257,7 +257,6 @@ func pathDirection(direction:Direction, length:int, placeDoors:bool, idea_path) 
 			idea_path.append(PathStep.new(Vector3i(place),placeDoors))
 	return madeBox
 
-const DOOR_LIKELYHOOD = 0.2
 
 func path(path_start:Vector3, path_end:Vector3, max_failures:int, starting_arena_size:int, arenaSize:int, failedLevelSurvival:float, boss:bool) -> int:
 	place = path_start
@@ -279,16 +278,16 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, starting_arena
 			placeDoors = randf() < DOOR_LIKELYHOOD
 		if(place.is_equal_approx(path_end)):
 			break;
-		if pathDirection(direction,randi_range(1,4),placeDoors,idea_path):
+		if path_direction(direction,randi_range(1,4),placeDoors,idea_path):
 			if(stepsTaken == 0 and starting_arena_size > 0):
 				if direction == Direction.XPOS:
-					arena(start_pos.x+1,start_pos.z, starting_arena_size,starting_arena_size, Direction.XNEG, false,null)
+					arena(path_start.x+1,path_start.z, starting_arena_size,starting_arena_size, Direction.XNEG, false,null)
 				elif direction == Direction.XNEG:
-					arena(start_pos.x-1,start_pos.z, starting_arena_size,starting_arena_size, Direction.XPOS, false,null)
+					arena(path_start.x-1,path_start.z, starting_arena_size,starting_arena_size, Direction.XPOS, false,null)
 				elif direction == Direction.ZPOS:
-					arena(start_pos.x,start_pos.z+1, starting_arena_size,starting_arena_size, Direction.ZNEG, false,null)
+					arena(path_start.x,path_start.z+1, starting_arena_size,starting_arena_size, Direction.ZNEG, false,null)
 				else:
-					arena(start_pos.x,start_pos.z-1, starting_arena_size,starting_arena_size, Direction.ZPOS, false,null)
+					arena(path_start.x,path_start.z-1, starting_arena_size,starting_arena_size, Direction.ZPOS, false,null)
 			lastSuccesfullDirection = direction
 			stepsTaken +=1
 			failures = 0
@@ -319,22 +318,31 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, starting_arena
 
 const arenaSize = 1;
 const CLOSENESS_TO_END_PATH_END = 6;
-const start_pos = Vector3(0,0,0)
-const main_path_end = Vector3(30,0,30)
 const FAILED_LEVEL_SURVIVAL = 0.3
+const DOOR_LIKELYHOOD = 0.2
 
 func _ready():
+	var number_arenas = randi_range(1,2) #Place brahcnes with arenas
+	var min_path_length = 5
+	var max_path_length = 20
+	var start_pos = Vector3(0,0,0)
+	
+	var main_path_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()
+	var main_path_length = randi_range(5,10)
+	var main_path_end =(Vector3(start_pos) + main_path_dir * main_path_length)
+	
 	Globals.completedArenas = 0
 	Globals.totalArenas = 0
 	#box(start_pos.x, start_pos.z, true, true, false)
 	print("MAIN PATH: ", path(start_pos, main_path_end, 25, 1, arenaSize+2, 1, true))
 	#arena(start_pos.x-2,start_pos.z, 1,1, Direction.XPOS, false,null)
 		
-	var number_arenas = randi_range(1,2) #Place brahcnes with arenas
+
+	
 	for i in range(0,200):
 		place = searched.keys()[randi_range(0,searched.keys().size()-1)]
 		var direction = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()  # to the right
-		var length = randi_range(5,20)
+		var length = randi_range(min_path_length,max_path_length)
 		var end_pls:Vector3 = (Vector3(place) + direction * length)
 		if is_area_clear(end_pls.x, end_pls.z, (arenaSize) + CLOSENESS_TO_END_PATH_END + 2):
 			var steps = path(place, end_pls, 5, 0, arenaSize, FAILED_LEVEL_SURVIVAL, false)

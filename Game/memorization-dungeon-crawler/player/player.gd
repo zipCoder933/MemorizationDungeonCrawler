@@ -41,14 +41,14 @@ func change_health(amt):
 	if(health > MAX_HEALTH):
 		health = MAX_HEALTH
 	if( health <= 0 ):
-		Globals.game_over.emit()
+		Globals.game_over_event()
 	health_changed.emit(health)
 
 
 func _ready():
 	print("PHANTOM CAMERA ",phantom_camera_3d)
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
-	Globals.game_over.connect(_game_over)
+	Globals.signal_game_over.connect(_game_over)
 	Globals.adventure_mode.connect(_global_adventure_mode)
 	Globals.victory.connect(_victory)
 

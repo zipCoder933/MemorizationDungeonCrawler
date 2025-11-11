@@ -7,7 +7,7 @@ static var completedArenas = 0
 
 signal fact_answering_mode
 signal adventure_mode
-signal game_over
+signal signal_game_over
 signal victory
 
 static var SAVE_FILE
@@ -20,7 +20,6 @@ func _ready():
 	print("Global loaded!")
 	SAVE_FILE = ProjectSettings.globalize_path("user://save.json")
 	print("SAVE FILE: ", SAVE_FILE)
-	
 	#Write the new file if not exist
 	if not FileAccess.file_exists(SAVE_FILE):
 		print("Writing file...")
@@ -29,7 +28,10 @@ func _ready():
 		file.close()
 		print("✨ Created empty JSON file at:", ProjectSettings.globalize_path(SAVE_FILE))
 
-	
+func game_over_event():
+	signal_game_over.emit()
+	questions.clear()
+	clear_flashcard()
 
 func start_game(entry:SaveEntry, goToLevel:bool = true):
 	SaveHandler.currentGame = entry
@@ -83,7 +85,8 @@ func get_flashcard_question():
 	return _current_flashcard_question
 
 func clear_flashcard():
-	_flashcardNode.visible = false
+	if(has_flashcard()):
+		_flashcardNode.visible = false
 	_has_flashcard = false
 
 func new_flashcard_question(current_flashcard_question2:Question):
@@ -113,7 +116,14 @@ func _getPlayer() -> Player:
 #Drill the player on flashcards
 #Question2 = the questions
 #flashcardElement the node to assign to the flashcards
-func drill_flashcards(questions2:Array, flashcardElement:WorldFlashCard):
+
+func drill_flashcards(quantity:int, flashcardElement:WorldFlashCard):
+	var questions:Array[Question] = []
+	for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.cardTags, quantity):
+		questions.append(card.toQuestion(1, SaveHandler.currentLevel))
+	drill_questions(questions, flashcardElement)
+
+func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard):
 	_flashcardNode = flashcardElement
 	fact_answering_mode.emit(_flashcardNode)
 	print("Drilling player on ",questions2.size()," cards.")

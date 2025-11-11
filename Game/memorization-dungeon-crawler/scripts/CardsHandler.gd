@@ -1,21 +1,5 @@
 class_name CardsHandler extends Node
-
-
 const LevelsHandler = preload("uid://bte11e0fapqes")
-
-#An easier alternative
-static func randomCardInCurrentLevel() -> Card:
-	if(SaveHandler.currentGame == null):
-		assert(false, "Level is Null!")
-	#Get the tags of the current level
-	var tags = SaveHandler.currentLevel.cardTags
-	#Get a random tag from that pile
-	var tag = tags[randi_range(0,tags.size()-1)]
-	#print("TAGS: ",tags)
-	#Get a card from the tag
-	return CardsHandler.randomCard(tag)
-	
-#======================================================
 
 #A hashmap (dictionary)
 static var tag_dict = {}
@@ -26,38 +10,68 @@ static var UNIQUE_IN_N_FACTS:int = 2; # We dont want cards to be repeated too qu
 
 func _init():
 	pass
-	#openCards("res://persistentData/multiplication/cards.json")
-
 
 static var used_cards = {}  # tag -> list of last N used cards
-static func randomCard(tag: String) -> Card:
-	if not tag_dict.has(tag):
-		return null  # Tag doesn't exist
 
-	# Initialize used_cards list for this tag if needed
-	if not used_cards.has(tag):
-		used_cards[tag] = []
+static func get_random_cards(cardTags:Array[String], quantity: int, unique_facts: int = 2) -> Array[Card]:
+	var tags = cardTags
+	
+	var all_available: Array[Card] = []
+	var card_tag_map: Dictionary = {}  # card -> tag
 
-	# Get available cards that haven't been used recently
-	var available = []
-	for c in tag_dict[tag]:
-		if not c in used_cards[tag]:
-			available.append(c)
+	# Collect available cards from all tags
+	for tag in tags:
+		if not tag_dict.has(tag):
+			continue
 
-	# If all cards are in used_cards, reset memory
-	if available.size() == 0:
-		used_cards[tag] = []
-		available = tag_dict[tag].duplicate()
+		if not used_cards.has(tag):
+			used_cards[tag] = []
 
-	# Pick a random card from available ones
-	var picked = available[randi() % available.size()]
+		var available: Array[Card] = []
+		for c in tag_dict[tag]:
+			if not used_cards[tag].has(c):
+				available.append(c)
 
-	# Add to used_cards, and trim to last N
-	used_cards[tag].append(picked)
-	if used_cards[tag].size() > UNIQUE_IN_N_FACTS:
-		used_cards[tag].pop_front()  # remove oldest
+		# If all cards used, reset memory
+		if available.is_empty():
+			used_cards[tag] = []
+			available = tag_dict[tag].duplicate()
 
-	return picked
+		# Add to global pool
+		for c in available:
+			all_available.append(c)
+			card_tag_map[c] = tag
+
+	if all_available.is_empty():
+		return []
+
+	var picked_cards: Array[Card] = []
+
+	#If quantity is 0, set the quanity to all of them
+	if(quantity == 0):
+		unique_facts = 0 #Set unique facts to 0 (We dont need to worry about uniqueness if we are doing everything)
+		quantity = all_available.size() 
+	
+	# Randomly pick across all available cards
+	for i in range(quantity):
+		if all_available.is_empty():
+			break
+
+		var index = randi() % all_available.size()
+		var picked: Card = all_available[index]
+		picked_cards.append(picked)
+
+		var picked_tag = card_tag_map[picked]
+		used_cards[picked_tag].append(picked)
+
+		# Trim history for that tag
+		if unique_facts > 0 and used_cards[picked_tag].size() > unique_facts:
+			used_cards[picked_tag].pop_front()
+
+		all_available.remove_at(index)
+
+	return picked_cards
+
 
 
 static func load_from_file(jsonFile):
@@ -108,7 +122,7 @@ static func load_from_file(jsonFile):
 		else:
 			print("Oops! JSON parsing failed!")
 	else:
-		print("Couldn't open file 😭")
+		print("Couldn't open cards.json file 😭")
 
 
 

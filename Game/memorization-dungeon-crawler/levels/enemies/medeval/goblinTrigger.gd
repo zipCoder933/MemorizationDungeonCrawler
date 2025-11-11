@@ -68,8 +68,8 @@ func trigger():
 	if(isDead):
 		return
 	print("You should not have come")
-
-	var cards:Array = []
-	for i in range(0,cardNumber):
-		cards.append(CardsHandler.randomCardInCurrentLevel().toQuestion(speed, SaveHandler.currentLevel, damage))
-	Globals.drill_flashcards(cards, _3d_flashcard)
+	
+	var questions:Array[Question] = []
+	for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.cardTags, cardNumber):
+		questions.append(card.toQuestion(speed, SaveHandler.currentLevel, damage))
+	Globals.drill_questions(questions, _3d_flashcard)

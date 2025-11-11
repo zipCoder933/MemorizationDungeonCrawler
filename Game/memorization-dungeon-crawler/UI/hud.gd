@@ -19,7 +19,7 @@ var current_question:Question
 
 func _ready():
 	player.health_changed.connect(_player_health_changed)
-	Globals.game_over.connect(_game_over)
+	Globals.signal_game_over.connect(_game_over)
 	Globals.victory.connect(_victory)
 	level_indicator.text = "LEVEL " + str(SaveHandler.currentGame.completed_level)+": "+SaveHandler.currentLevel.level_name
 

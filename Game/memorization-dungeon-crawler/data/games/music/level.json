@@ -1,7 +1,7 @@
 {
   "seed": 0,
-  "starting_answer_speed_sec": 10,
-  "goal_answer_speed_sec": 2,
+  "starting_answer_speed_sec": 8,
+  "goal_answer_speed_sec": 0.25,
   "name": "Treble and Base",
   "dungeons": [
 	{
