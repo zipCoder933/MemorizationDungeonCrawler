@@ -7,8 +7,8 @@ class_name FlashcardUI
 @onready var background: ColorRect = %background
 @export var worldFlashcardNode:WorldFlashCard;
 
-const DEFAULT_COLOR = Color(0.617, 0.688, 0.694, 0.2)
-const FAILED_COLOR = Color(0.973, 0.0, 0.245, 0.6)
+const DEFAULT_COLOR = Color(0.194, 0.194, 0.194, 0.8)
+const FAILED_COLOR = Color(0.973, 0.0, 0.245, 0.8)
 
 var start_time:int
 const DELAY_NEXT_CARD_MS = 500

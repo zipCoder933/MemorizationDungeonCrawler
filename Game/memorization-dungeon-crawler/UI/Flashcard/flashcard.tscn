@@ -1,8 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cynckudprgttu"]
+[gd_scene load_steps=7 format=3 uid="uid://cynckudprgttu"]
 
 [ext_resource type="Script" uid="uid://flme5w8omao0" path="res://UI/Flashcard/flashcard.gd" id="1_m84yh"]
 [ext_resource type="FontFile" uid="uid://d4l36d7861osl" path="res://assets/fonts/UnifrakturCook/UnifrakturCook-Bold.ttf" id="2_4or87"]
 [ext_resource type="Texture2D" uid="uid://cav21ee0vt4bs" path="res://assets/icons/card_missing_image.png" id="2_m84yh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m84yh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7h1a"]
 bg_color = Color(0.099985994, 0.099985994, 0.099985994, 1)
@@ -15,6 +22,7 @@ expand_margin_bottom = 5.0
 [node name="CardUI" type="Panel"]
 offset_right = 190.0
 offset_bottom = 220.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_m84yh")
 script = ExtResource("1_m84yh")
 
 [node name="background" type="ColorRect" parent="."]

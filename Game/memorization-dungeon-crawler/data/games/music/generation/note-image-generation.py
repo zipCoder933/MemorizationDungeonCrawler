@@ -16,8 +16,12 @@ import argparse
 from PIL import Image, ImageDraw, ImageFont
 
 # =========================================================
-# CONFIGURATION
+# CONFIG
 # =========================================================
+INVERT_CLEFTS = True  # If True, inverts clef image colors
+BACKGROUND_COLOR = (0, 0, 0, 0)  # RGBA white
+NOTE_STAFF_COLOR = (255,255,255)  # Black by default
+
 IMG_W, IMG_H = 200, 200
 MARGIN = 0
 STAFF_LEFT = 0
@@ -65,18 +69,18 @@ def diatonic_distance(ref_midi: int, target_midi: int) -> int:
 def draw_staff(draw, top_y, left_x):
     for i in range(STAFF_LINES):
         y = top_y + i * LINE_SPACING
-        draw.line((left_x, y, IMG_W - MARGIN, y), fill=(0,0,0), width=1)
+        draw.line((left_x, y, IMG_W - MARGIN, y), fill=NOTE_STAFF_COLOR, width=1)
 
 def draw_notehead(draw, x, y):
     w, h = 18, 12
     bbox = [x - w//2, y - h//2, x + w//2, y + h//2]
-    draw.ellipse(bbox, fill="black", outline="black")
+    draw.ellipse(bbox, fill=NOTE_STAFF_COLOR, outline=NOTE_STAFF_COLOR)
 
 # =========================================================
 # MAIN DRAWING FUNCTION
 # =========================================================
 def generate_note_image(clef: str, midi: int, out_path: str, show_name=False):
-    img = Image.new("RGB", (IMG_W, IMG_H), "white")
+    img = Image.new("RGBA", (IMG_W, IMG_H), BACKGROUND_COLOR)
     draw = ImageDraw.Draw(img)
 
     # Load clef image
@@ -84,6 +88,14 @@ def generate_note_image(clef: str, midi: int, out_path: str, show_name=False):
     if not os.path.exists(clef_img_path):
         raise FileNotFoundError(f"Missing {clef_img_path}")
     clef_img = Image.open(clef_img_path).convert("RGBA")
+    if INVERT_CLEFTS:
+        r, g, b, a = clef_img.split()
+        rgb_inverted = Image.merge("RGB", (
+            Image.eval(r, lambda p: 255 - p),
+            Image.eval(g, lambda p: 255 - p),
+            Image.eval(b, lambda p: 255 - p)
+        ))
+        clef_img = Image.merge("RGBA", (*rgb_inverted.split(), a))
 
     # Compute staff layout
     staff_height = (STAFF_LINES - 1) * LINE_SPACING
@@ -116,24 +128,24 @@ def generate_note_image(clef: str, midi: int, out_path: str, show_name=False):
         for p in range(pos_steps, bottom_line_pos):
             if p % 2 == 0:
                 y = staff_bottom_y - (p * STEP_HEIGHT)
-                draw.line((note_x - 20, y, note_x + 20, y), fill="black", width=2)
+                draw.line((note_x - 20, y, note_x + 20, y), fill=NOTE_STAFF_COLOR, width=2)
     elif pos_steps > top_line_pos:
         for p in range(top_line_pos + 1, pos_steps + 1):
             if p % 2 == 0:
                 y = staff_bottom_y - (p * STEP_HEIGHT)
-                draw.line((note_x - 20, y, note_x + 20, y), fill="black", width=2)
+                draw.line((note_x - 20, y, note_x + 20, y), fill=NOTE_STAFF_COLOR, width=2)
 
     # Draw notehead and stem
     draw_notehead(draw, note_x, note_y)
     if pos_steps <= 4:
-        draw.line((note_x + 9, note_y - 4, note_x + 9, note_y - 30), fill="black", width=2)
+        draw.line((note_x + 9, note_y - 4, note_x + 9, note_y - 30), fill=NOTE_STAFF_COLOR, width=2)
     else:
-        draw.line((note_x - 9, note_y + 4, note_x - 9, note_y + 30), fill="black", width=2)
+        draw.line((note_x - 9, note_y + 4, note_x - 9, note_y + 30), fill=NOTE_STAFF_COLOR, width=2)
 
     # Optional label
     if show_name:
         name = midi_to_name(midi)
-        draw.text((MARGIN, IMG_H - 20), f"{clef.upper()} {midi:03d} {name}", font=FONT, fill="black")
+        draw.text((MARGIN, IMG_H - 20), f"{clef.upper()} {midi:03d} {name}", font=FONT, fill=NOTE_STAFF_COLOR)
 
     os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
     img.save(out_path, "PNG")
@@ -144,7 +156,7 @@ def generate_note_image(clef: str, midi: int, out_path: str, show_name=False):
 def main():
     parser = argparse.ArgumentParser(description="Generate single-note staff images using clef PNGs on the staff.")
     parser.add_argument("--clef", choices=["treble", "bass"], required=True)
-    parser.add_argument("--min-midi", type=int, default=21)
+    parser.add_argument("--min-midi", type=int, default=11)
     parser.add_argument("--max-midi", type=int, default=108)
     parser.add_argument("--out", required=True)
     parser.add_argument("--show-name", action="store_true")
