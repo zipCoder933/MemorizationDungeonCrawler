@@ -134,6 +134,10 @@ func submit_flashcard(succeed:bool):
 	if(!succeed and player !=null):
 		player.change_health( - get_flashcard_question().fail_health_loss)
 	questions.remove_at(0)
+	
+	if(!succeed):
+		await get_tree().create_timer(1).timeout
+	
 	if(questions.size() > 0):
 		new_flashcard_question(questions[0])
 	else:
@@ -144,21 +148,21 @@ func submit_flashcard(succeed:bool):
 		clear_flashcard()
 
 func _input(event):
-	if has_flashcard():
+	if (_getPlayer() == null or _getPlayer().mode == Player.PlayerMode.FACTS) and has_flashcard():
 		if event is InputEventKey:
 			if event.pressed and not event.echo:
-				if event.keycode == KEY_MINUS:
-					current_flashcard_answer += "-"
-				elif event.keycode == KEY_PLUS:
-					current_flashcard_answer += "+"
-				elif event.keycode == KEY_BACKSPACE:
-					if current_flashcard_answer.length() > 0:
-						current_flashcard_answer = current_flashcard_answer.substr(0, current_flashcard_answer.length() - 1)
+				if event.keycode == KEY_BACKSPACE:
+					current_flashcard_answer = ""
+					#if current_flashcard_answer.length() > 0:
+						#current_flashcard_answer = current_flashcard_answer.substr(0, current_flashcard_answer.length() - 1)
 				elif event.keycode == KEY_ENTER:
 					submit_flashcard(get_flashcard_question().answerEquals(current_flashcard_answer))
 				elif !(event.keycode in ignored_keys):
-					if(event.as_text() != null):
-						current_flashcard_answer += event.as_text()
+					var ch := char(event.unicode)
+					if(event.as_text() != null and _current_flashcard_question.is_valid_key(event,current_flashcard_answer)):
+						current_flashcard_answer += ch
+					if(current_flashcard_answer.length() >= get_flashcard_question().max_answer_chars):
+						submit_flashcard(get_flashcard_question().answerEquals(current_flashcard_answer))
 				
 				if(get_flashcard_question().answerEquals(current_flashcard_answer)):
 					submit_flashcard(true)

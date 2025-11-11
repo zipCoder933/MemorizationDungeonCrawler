@@ -99,6 +99,7 @@ Jump={
 [physics]
 
 3d/default_gravity=19.799999999999997
+3d/physics_interpolation/scene_traversal="Legacy"
 
 [rendering]
 

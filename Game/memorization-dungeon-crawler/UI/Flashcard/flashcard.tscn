@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://flme5w8omao0" path="res://UI/Flashcard/flashcard.gd" id="1_m84yh"]
 [ext_resource type="FontFile" uid="uid://d4l36d7861osl" path="res://assets/fonts/UnifrakturCook/UnifrakturCook-Bold.ttf" id="2_4or87"]
-[ext_resource type="Texture2D" uid="uid://ch714bgi1e00f" path="res://assets/textures/health_indicator.png" id="2_m84yh"]
+[ext_resource type="Texture2D" uid="uid://cav21ee0vt4bs" path="res://assets/icons/card_missing_image.png" id="2_m84yh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7h1a"]
 bg_color = Color(0.099985994, 0.099985994, 0.099985994, 1)
@@ -68,8 +68,6 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_4or87")
 theme_override_font_sizes/font_size = 32
-text = "BASIC
-question"
 
 [node name="answerLabel" type="Label" parent="background/VBoxContainer"]
 unique_name_in_owner = true

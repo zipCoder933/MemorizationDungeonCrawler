@@ -59,6 +59,8 @@ func _submitted_global(node:WorldFlashCard, success:bool):
 func _submitted(success:bool):
 	q = null
 	start_time = Time.get_ticks_msec()
+	if(!success):
+		background.color = FAILED_COLOR
 
 func _ready():
 	Globals.signal_flashcard_answer_changed.connect(_flashcardAnswerChanged)

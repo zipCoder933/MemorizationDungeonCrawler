@@ -9,9 +9,7 @@ var question: String
 var answer: String
 var tags: Array
 var is_image: bool
-
-#We need to record the directory the card is in to load the image properly
-var directory: String
+var directory: String #The directory of the cards.json file
 
 func _init(_directory: String, _type: String, _question: String, _is_image:bool,  _answer: String, _tags: Array):
 	type = _type.to_lower().strip_edges()
