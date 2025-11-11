@@ -1,5 +1,4 @@
 class_name CardsHandler extends Node
-const LevelsHandler = preload("uid://bte11e0fapqes")
 
 #A hashmap (dictionary)
 static var tag_dict = {}

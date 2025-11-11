@@ -2,10 +2,6 @@ extends Control
 class_name MainMenu
 
 @onready var start_button: Button = $CanvasLayer/ColorRect/Buttons/StartButton
-
-const CardsHandler = preload("uid://cc0wwewiey4d7")
-const LevelsHandler = preload("uid://bte11e0fapqes")
-const SaveHandler = preload("uid://bgwdh30vglopu")
 @onready var v_box_container: VBoxContainer = %VBoxContainer
 @onready var loading: Panel = %Loading
 

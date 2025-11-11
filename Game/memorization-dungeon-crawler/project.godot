@@ -18,10 +18,10 @@ config/icon="res://icon.svg"
 [autoload]
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
-Globals="*res://Globals.tscn"
-CardsHandlerNode="*res://scripts/CardsHandler.gd"
-LevelsHandlerNode="*res://scripts/LevelsHandler.gd"
-SaveHandlerNode="*res://scripts/SaveHandler.gd"
+Globals="*res://global/GlobalNode.tscn"
+LevelsHandler="*res://global/levels/LevelsHandlerNode.tscn"
+SaveHandlerGlobal="*res://global/saves/SaveHandlerNode.tscn"
+CardsHandlerGlobal="*res://global/cards/CardsHandlerNode.tscn"
 
 [display]
 

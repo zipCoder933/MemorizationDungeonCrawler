@@ -11,9 +11,6 @@ signal signal_game_over
 signal signal_victory
 
 static var SAVE_FILE
-const SaveHandler = preload("uid://bgwdh30vglopu")
-const LevelsHandler = preload("uid://bte11e0fapqes")
-const CardsHandler = preload("uid://cc0wwewiey4d7")
 
 
 func _ready():

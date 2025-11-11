@@ -1,6 +1,4 @@
 extends HBoxContainer
-const SaveHandler = preload("uid://bgwdh30vglopu")
-const LevelsHandler = preload("uid://bte11e0fapqes")
 @onready var level: Label = %level
 @onready var label: Label = %Label
 var entry:SaveEntry
