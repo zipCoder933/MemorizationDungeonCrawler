@@ -4,8 +4,11 @@ const SaveHandler = preload("uid://bgwdh30vglopu")
 @onready var name_box: LineEdit = $CanvasLayer/ColorRect/nameBox
 @onready var template_box: ItemList = $CanvasLayer/ColorRect/templateBox
 
+func _go_home():
+	get_tree().change_scene_to_file("res://UI/mainMenu/main/main_menu.tscn")
+
 func _on_cancel_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://UI/mainMenu/main_menu.tscn")
+	_go_home();
 	
 
 func _on_start_button_pressed() -> void:
@@ -30,4 +33,4 @@ func _on_start_button_pressed() -> void:
 	var save1 = SaveEntry.new(name_box.text, template_dir, 0)
 	SaveHandler.saves.append(save1)
 	SaveHandler.save_to_file(Globals.SAVE_FILE)
-	get_tree().change_scene_to_file("res://UI/mainMenu/main_menu.tscn")
+	_go_home()

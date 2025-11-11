@@ -132,49 +132,48 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey or event is InputEventMouse:
+	if event is InputEventKey:
 		if(mode != PlayerMode.GAME_OVER):
-			if Input.is_action_just_pressed("Forward"):
-				movement.z = 1;
-			elif Input.is_action_just_released("Forward"):
-				movement.z = 0;
-				animation_player.play(IDLE_ANIMATION,0.21)
+			var canUseWASD:bool = mode != PlayerMode.FACTS
+			if(event.pressed):
+				if Input.is_action_just_pressed("Forward") or (canUseWASD and event.keycode == KEY_W):
+					movement.z = 1;
+				elif Input.is_action_just_pressed("Backward")  or (canUseWASD and event.keycode == KEY_S):
+					movement.z = -1;
+					targetRotation = rotation.y+PI;
+				elif Input.is_action_just_pressed("Left")  or (canUseWASD and event.keycode == KEY_A):
+					movement.x = 1;
+					if(movement.z == 0):
+						targetRotation = rotation.y+PI/2
+				elif Input.is_action_just_pressed("Right")  or (canUseWASD and event.keycode == KEY_D):
+					movement.x = -1;
+					if(movement.z == 0):
+						targetRotation = rotation.y-PI/2
+			else:
+				if Input.is_action_just_released("Forward")  or (event.keycode == KEY_W):
+					movement.z = 0;
+					animation_player.play(IDLE_ANIMATION,0.21)
+				elif Input.is_action_just_released("Backward")  or (event.keycode == KEY_S):
+					movement.z = 0;
+					animation_player.play(IDLE_ANIMATION,0.21)
+				elif Input.is_action_just_released("Left")  or (event.keycode == KEY_A):
+					movement.x = 0;
+					animation_player.play(IDLE_ANIMATION,0.21)
+					target_cam_offset.y = rotation.y
+				elif Input.is_action_just_released("Right")  or (event.keycode == KEY_D):
+					movement.x = 0;
+					animation_player.play(IDLE_ANIMATION,0.21)
+					target_cam_offset.y = rotation.y
 				
-			if Input.is_action_just_pressed("Backward"):
-				movement.z = -1;
-				targetRotation = rotation.y+PI;
-			elif Input.is_action_just_released("Backward"):
-				movement.z = 0;
-				animation_player.play(IDLE_ANIMATION,0.21)
-				
-			if Input.is_action_just_pressed("Left"):
-				movement.x = 1;
-				if(movement.z == 0):
-					targetRotation = rotation.y+PI/2
-			elif Input.is_action_just_released("Left"):
-				movement.x = 0;
-				animation_player.play(IDLE_ANIMATION,0.21)
-				target_cam_offset.y = rotation.y
-				
-			if Input.is_action_just_pressed("Right"):
-				movement.x = -1;
-				if(movement.z == 0):
-					targetRotation = rotation.y-PI/2
-			elif Input.is_action_just_released("Right"):
-				movement.x = 0;
-				animation_player.play(IDLE_ANIMATION,0.21)
-				target_cam_offset.y = rotation.y
-				
-			if is_on_floor == true and Input.is_action_just_pressed("Jump"):
-				animation_player.play(JUMP_UP_ANIMATION,1)
-				apply_central_impulse(Vector3(0, 10, 0))
-				is_on_floor = false
+			#if is_on_floor == true and Input.is_action_just_pressed("Jump"):
+				#animation_player.play(JUMP_UP_ANIMATION,1)
+				#apply_central_impulse(Vector3(0, 10, 0))
+				#is_on_floor = false
 		else:
 			movement = Vector3.ZERO
 
 func _on_body_entered(body: Node) -> void:
 	if body is Floor:
-		print("Floor")
 		is_on_floor = true
 	elif body is DoorTrigger:
 		body.open_door(true)

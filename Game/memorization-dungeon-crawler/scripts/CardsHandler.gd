@@ -72,12 +72,27 @@ static func load_from_file(jsonFile):
 		if data:#If we can get json data
 			var cards = data["Cards"]
 			print("Loading Deck:")
+			var base_dir =  jsonFile.get_base_dir()
+			
 			for c in cards:
-				var card = Card.new(
-									c["Type"],
-									c["Question"],
+				var question = ""
+				var isImage:bool = false
+				
+				if c.has("Question"):
+					question = c["Question"]
+				elif(c.has("QuestionImage")):
+					isImage=true
+					question = find_best_image_path(base_dir, c["QuestionImage"])
+				
+				var tags = c["Tags"]
+				var type = c["Type"]
+					
+				var card = Card.new(base_dir, 
+									type,
+									question,
+									isImage,
 									str(c["Answer"]),  # 🪄 convert to string here
-									c["Tags"]
+									tags
 								)
 
 				for tag in card.tags:
@@ -94,3 +109,31 @@ static func load_from_file(jsonFile):
 			print("Oops! JSON parsing failed!")
 	else:
 		print("Couldn't open file 😭")
+
+
+
+static func find_best_image_path(base_dir:String, base_path: String) -> String:
+	var img := Image.new()
+
+	# --- Clean the input path ---
+	if(base_path.begins_with("res://")):
+		base_path = base_path.lstrip("res://")
+	
+	if(base_path.begins_with("/")):
+		base_path = base_path.lstrip("/")
+		
+	# --- Build both possibilities ---
+	var possible_paths := [
+		"res://" + base_dir + "/" +base_path,
+		 base_dir + "/" +base_path
+	]
+
+	# --- Try both paths in order ---
+	for path in possible_paths:
+		var err = img.load(path)
+		if err == OK:
+			return path  # success! use this one
+
+	# --- If nothing worked ---
+	push_error("❌ Could not find valid image path for: " + base_path)
+	return ""  # indicate failure

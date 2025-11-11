@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://cpl08t4hcotn"]
 
-[ext_resource type="Script" uid="uid://bnoxfrvj5kcx6" path="res://UI/mainMenu/main_menu.gd" id="1_gmjeq"]
-[ext_resource type="Texture2D" uid="uid://bvepl5nfew4th" path="res://assets/menubg_placeholder.jpg" id="1_phg2d"]
+[ext_resource type="Script" uid="uid://bnoxfrvj5kcx6" path="res://UI/mainMenu/main/main_menu.gd" id="1_gmjeq"]
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="2_aqn84"]
 [ext_resource type="Texture2D" uid="uid://dg8j5ptwrgu52" path="res://assets/textures/Cogni-crawl_final.png" id="3_6kmto"]
 [ext_resource type="StyleBox" uid="uid://bxp67n10n2pan" path="res://styles/translucent_box.tres" id="4_57qux"]
+[ext_resource type="PackedScene" uid="uid://laf057gsoqjg" path="res://UI/mainMenu/backdrop.tscn" id="5_aqn84"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqn84"]
 bg_color = Color(0.22745098, 0.22745098, 0.22745098, 0.7019608)
@@ -141,16 +141,19 @@ theme_override_colors/font_hover_color = Color(0.9999996, 0.8732861, 0.570126, 1
 theme_override_styles/hover = SubResource("StyleBoxFlat_u7vwk")
 text = "Quit"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect"]
+[node name="logo" type="TextureRect" parent="CanvasLayer/ColorRect"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -91.5
-offset_top = -83.0
-offset_right = 76.5
-offset_bottom = 85.0
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -315.5
+offset_right = 84.0
+offset_bottom = -147.5
 grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_6kmto")
 expand_mode = 1
 stretch_mode = 4
@@ -185,20 +188,6 @@ text = "Loading..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
-z_as_relative = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -704.0
-offset_top = -452.0
-offset_right = 704.0
-offset_bottom = 452.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_phg2d")
-
 [node name="credit" type="Label" parent="."]
 visible = false
 layout_mode = 1
@@ -212,6 +201,8 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 12
 text = "CREDIT: Sam, Luke, Danny, Gavin, Mixamo for animations and Knight Model, toro ardido modelos 3d sketchfab for Goblin model, Chatgpt for small code help, Phantom Camera from Godot addons"
 horizontal_alignment = 1
+
+[node name="Backdrop" parent="." instance=ExtResource("5_aqn84")]
 
 [connection signal="pressed" from="CanvasLayer/ColorRect/Buttons/NewButton" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

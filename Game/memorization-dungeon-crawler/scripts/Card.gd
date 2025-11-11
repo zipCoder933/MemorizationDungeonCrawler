@@ -8,21 +8,27 @@ var type: String
 var question: String
 var answer: String
 var tags: Array
+var is_image: bool
 
-func _init(_type: String, _question: String, _answer: String, _tags: Array):
+#We need to record the directory the card is in to load the image properly
+var directory: String
+
+func _init(_directory: String, _type: String, _question: String, _is_image:bool,  _answer: String, _tags: Array):
 	type = _type.to_lower().strip_edges()
 	question = _question
+	directory = _directory
 	answer = _answer
+	is_image  = _is_image
 	tags = _tags
 
+
 func toQuestion(timeMultiplier:float, level:Level, fail_health_loss:float = 0.0):
-	var isImage = type == "image";
 	var isNumeric = false
 	var allowNegative = true
 	var allowDecimal = true
 	var allowedKeys = ""
+	var maxChars = 10
 
-	
 	if type == "number" or type == "numerical":
 		isNumeric = true
 	elif type == "integer":
@@ -35,9 +41,12 @@ func toQuestion(timeMultiplier:float, level:Level, fail_health_loss:float = 0.0)
 		allowDecimal = false
 	elif type == "notes":
 		allowedKeys = "abcdefg"
+		maxChars = 1
+	elif type == "text":
+		maxChars = 50
 	
-	return Question.new(isImage, question, answer, level.time_to_answer_sec * timeMultiplier, fail_health_loss, \
-		isNumeric, allowNegative, allowDecimal, allowedKeys)
+	return Question.new(is_image, question, answer, level.time_to_answer_sec * timeMultiplier, fail_health_loss, \
+		isNumeric, allowNegative, allowDecimal, allowedKeys,maxChars)
 
 func toString() -> String:
 	return "%s: %s = %s [%s]" % [type, question, answer, ", ".join(tags)]

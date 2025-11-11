@@ -1,6 +1,7 @@
 extends Node
 class_name GlobalEvents
 
+static var CARD_MISSING_IMAGE = "res://assets/icons/card_missing_image.png"
 static var totalArenas = 0
 static var completedArenas = 0
 
@@ -90,7 +91,7 @@ func new_flashcard_question(current_flashcard_question2:Question):
 	current_flashcard_answer = ""
 	_has_flashcard=true
 	_flashcardNode.visible = true
-	print("new quesiton")
+	print("new_flashcard_question: ",current_flashcard_question2.toString())
 	
 	_flashcardNode.signal_new_flashcard.emit(_current_flashcard_question)
 	signal_new_flashcard.emit(_flashcardNode, _current_flashcard_question)
@@ -143,18 +144,22 @@ func submit_flashcard(succeed:bool):
 		clear_flashcard()
 
 func _input(event):
-	if _getPlayer() != null and _getPlayer().mode == Player.PlayerMode.FACTS and has_flashcard():
+	if has_flashcard():
 		if event is InputEventKey:
 			if event.pressed and not event.echo:
-				if event.keycode == KEY_BACKSPACE:
-					current_flashcard_answer = ""
-					#if current_flashcard_answer.length() > 0:
-						#current_flashcard_answer = current_flashcard_answer.substr(0, current_flashcard_answer.length() - 1)
+				if event.keycode == KEY_MINUS:
+					current_flashcard_answer += "-"
+				elif event.keycode == KEY_PLUS:
+					current_flashcard_answer += "+"
+				elif event.keycode == KEY_BACKSPACE:
+					if current_flashcard_answer.length() > 0:
+						current_flashcard_answer = current_flashcard_answer.substr(0, current_flashcard_answer.length() - 1)
 				elif event.keycode == KEY_ENTER:
 					submit_flashcard(get_flashcard_question().answerEquals(current_flashcard_answer))
-				elif !(event.keycode in ignored_keys) and char(event.unicode) != null\
-						and get_flashcard_question().is_valid_key(event, current_flashcard_answer):
-						current_flashcard_answer += char(event.unicode)
+				elif !(event.keycode in ignored_keys):
+					if(event.as_text() != null):
+						current_flashcard_answer += event.as_text()
+				
 				if(get_flashcard_question().answerEquals(current_flashcard_answer)):
 					submit_flashcard(true)
 				_flashcardNode.signal_flashcard_answer_changed.emit(current_flashcard_answer)

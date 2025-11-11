@@ -5,7 +5,7 @@
   "name": "Treble and Base",
   "dungeons": [
 	{
-	  "name": "Treble Dungeon",
+	  "name": "The Treble Dungeon",
 	  "theme": "Dungeon",
 	  "boss_name": "Da Boss",
 	  "themed_cards": ["treble"],

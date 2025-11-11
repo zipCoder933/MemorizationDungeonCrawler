@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://laf057gsoqjg"]
+
+[ext_resource type="Texture2D" uid="uid://bvepl5nfew4th" path="res://assets/menubg_placeholder.jpg" id="1_abkjh"]
+
+[node name="Backdrop" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -682.0
+offset_top = -453.0
+offset_right = 726.0
+offset_bottom = 451.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("1_abkjh")
