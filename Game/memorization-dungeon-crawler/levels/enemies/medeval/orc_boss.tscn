@@ -1739,9 +1739,6 @@ _data = {
 [node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "node_3d")]
 unique_name_in_owner = true
 script = ExtResource("2_7tcax")
-_3d_flashcard = NodePath("../Node3D/3dFlashcard")
-_animation_player = NodePath("../Node3D/orc_boss/AnimationPlayer")
-node_3d = NodePath("../Node3D")
 damage = 1.0
 speed = 0.75
 cardNumber = 0
@@ -1749,6 +1746,9 @@ idle_animation = "Idle Retarget"
 punch_animation = "Punch Retarget"
 take_hit_animation = "TakeHit Retarget"
 death_animation = "Death Retarget"
+_3d_flashcard = NodePath("../Node3D/3dFlashcard")
+_animation_player = NodePath("../Node3D/orc_boss/AnimationPlayer")
+node_3d = NodePath("../Node3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
 unique_name_in_owner = true

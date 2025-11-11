@@ -8,7 +8,7 @@ static var completedArenas = 0
 signal fact_answering_mode
 signal adventure_mode
 signal signal_game_over
-signal victory
+signal signal_victory
 
 static var SAVE_FILE
 const SaveHandler = preload("uid://bgwdh30vglopu")
@@ -32,6 +32,10 @@ func game_over_event():
 	signal_game_over.emit()
 	questions.clear()
 	clear_flashcard()
+
+func victory_event():
+	await get_tree().create_timer(1).timeout
+	signal_victory.emit()
 
 func start_game(entry:SaveEntry, goToLevel:bool = true):
 	SaveHandler.currentGame = entry

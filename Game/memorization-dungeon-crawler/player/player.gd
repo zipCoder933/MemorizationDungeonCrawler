@@ -50,7 +50,7 @@ func _ready():
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
 	Globals.signal_game_over.connect(_game_over)
 	Globals.adventure_mode.connect(_global_adventure_mode)
-	Globals.victory.connect(_victory)
+	Globals.signal_victory.connect(_victory)
 
 var flash_card:WorldFlashCard = null
 

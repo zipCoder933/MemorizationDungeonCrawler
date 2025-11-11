@@ -20,7 +20,7 @@ var current_question:Question
 func _ready():
 	player.health_changed.connect(_player_health_changed)
 	Globals.signal_game_over.connect(_game_over)
-	Globals.victory.connect(_victory)
+	Globals.signal_victory.connect(_victory)
 	level_indicator.text = "LEVEL " + str(SaveHandler.currentGame.completed_level)+": "+SaveHandler.currentLevel.level_name
 
 func _input(event):
@@ -51,7 +51,7 @@ func _on_home_pressed() -> void:
 	go_home()
 
 func go_home():
-	get_tree().change_scene_to_file("res://UI/mainMenu/main_menu.tscn")
+	get_tree().change_scene_to_file("res://UI/mainMenu/main/main_menu.tscn")
 
 func _on_next_pressed() -> void:
 	Globals.next_level()
