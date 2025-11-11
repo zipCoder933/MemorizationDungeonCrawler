@@ -329,6 +329,7 @@ func _ready():
 	if( level !=null):
 		var cards = CardsHandler.card_count(level.card_tags)
 		var total_drills = level.card_review_number * cards
+		print("Total drills: ",total_drills)
 		arenas_average = total_drills / DRILLS_TO_ARENA
 		print("Arena average: ",arenas_average)
 	

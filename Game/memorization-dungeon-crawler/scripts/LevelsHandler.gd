@@ -89,7 +89,7 @@ static func makeLevel(dungeon:Variant, speed_seconds:float, card_tags:Array, lev
 	for c in card_tags:
 		typed_cards.append(str(c))  # ensure every element is a string
 	
-	var card_review_number = 1
+	var card_review_number = 3
 	
 	var level =  Level.new(
 		dungeon.get("name", "Unknown Dungeon"),

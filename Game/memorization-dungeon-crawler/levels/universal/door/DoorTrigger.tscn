@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxect7ofq1jbm"]
 
-[ext_resource type="Script" uid="uid://b68we0kyy51am" path="res://levels/dungeons/medeval/environment/door/trigger.gd" id="1_fhmch"]
+[ext_resource type="Script" uid="uid://b68we0kyy51am" path="res://levels/universal/door/trigger.gd" id="1_fhmch"]
 [ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="2_thcpj"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ctaek"]
