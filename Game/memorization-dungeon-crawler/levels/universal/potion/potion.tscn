@@ -10,7 +10,7 @@ height = 0.58740234
 radius = 0.18408203
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_d53ku"]
-radius = 0.98803616
+radius = 1.3111457
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_di3uv"]
 albedo_texture = ExtResource("2_riv36")

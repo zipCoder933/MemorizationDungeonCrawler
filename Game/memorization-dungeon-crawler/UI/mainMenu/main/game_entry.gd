@@ -17,3 +17,6 @@ func _on_delete_game_pressed() -> void:
 	SaveHandler.saves.erase(entry)
 	SaveHandler.save_to_file(Globals.SAVE_FILE)
 	menu.reload()
+
+func _on_view_mastery_pressed() -> void:
+	get_tree().change_scene_to_file("res://UI/mainMenu/mastery/mastery.tscn")

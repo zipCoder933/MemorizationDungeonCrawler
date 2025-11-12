@@ -326,7 +326,7 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, starting_arena
 const arenaSize = 1;
 const CLOSENESS_TO_END_PATH_END = 6;
 const FAILED_LEVEL_SURVIVAL = 0.3
-const DOOR_LIKELYHOOD = 0.22
+const DOOR_LIKELYHOOD = 0.3
 const DRILLS_TO_ARENA = 3 #How many total drills * card_review_number makes 1 arena in the map?
 
 func _ready():

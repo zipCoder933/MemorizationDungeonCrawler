@@ -2,8 +2,8 @@ extends Control
 class_name MainMenu
 
 @onready var start_button: Button = $CanvasLayer/ColorRect/Buttons/StartButton
-@onready var v_box_container: VBoxContainer = %VBoxContainer
 @onready var loading: Panel = %Loading
+@onready var v_box_container: VBoxContainer = $CanvasLayer/ColorRect/LoadPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer
 
 #Load the game
 func load_game(entry:SaveEntry):

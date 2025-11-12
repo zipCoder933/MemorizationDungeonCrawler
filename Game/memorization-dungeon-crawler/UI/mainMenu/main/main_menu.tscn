@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpl08t4hcotn"]
+[gd_scene load_steps=7 format=3 uid="uid://cpl08t4hcotn"]
 
 [ext_resource type="Script" uid="uid://bnoxfrvj5kcx6" path="res://UI/mainMenu/main/main_menu.gd" id="1_gmjeq"]
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="2_aqn84"]
@@ -8,14 +8,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqn84"]
 bg_color = Color(0.22745098, 0.22745098, 0.22745098, 0.7019608)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7vwk"]
-bg_color = Color(0.6, 0.6, 0.6, 0.39607844)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.86038303, 0.30664748, 0, 1)
 
 [node name="Main Menu" type="Control" groups=["main menu"]]
 layout_mode = 3
@@ -55,7 +47,7 @@ anchor_bottom = 0.5
 offset_left = -260.25
 offset_top = -136.5
 offset_right = 260.25
-offset_bottom = 136.5
+offset_bottom = 138.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_aqn84")
@@ -71,27 +63,23 @@ grow_vertical = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 3
+theme_override_constants/margin_bottom = 14
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer"]
-unique_name_in_owner = true
+[node name="Panel" type="Panel" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 167.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
-metadata/_edit_use_anchors_ = true
+vertical_scroll_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/Panel/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/Panel/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -121,11 +109,11 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("2_aqn84")
 alignment = 1
 
 [node name="NewButton" type="Button" parent="CanvasLayer/ColorRect/Buttons"]
 layout_mode = 2
-theme = ExtResource("2_aqn84")
 theme_override_colors/font_color = Color(1, 0.7764706, 0.039215688, 1)
 theme_override_colors/font_focus_color = Color(1, 0.8156863, 0.3372549, 1)
 theme_override_colors/font_hover_color = Color(0.9999998, 0.87847877, 0.58870065, 1)
@@ -134,11 +122,9 @@ text = "New Game
 
 [node name="QuitButton" type="Button" parent="CanvasLayer/ColorRect/Buttons"]
 layout_mode = 2
-theme = ExtResource("2_aqn84")
 theme_override_colors/font_color = Color(1, 0.7764706, 0.039215688, 1)
 theme_override_colors/font_focus_color = Color(0.9999997, 0.8137702, 0.3384247, 1)
 theme_override_colors/font_hover_color = Color(0.9999996, 0.8732861, 0.570126, 1)
-theme_override_styles/hover = SubResource("StyleBoxFlat_u7vwk")
 text = "Quit"
 
 [node name="logo" type="TextureRect" parent="CanvasLayer/ColorRect"]
