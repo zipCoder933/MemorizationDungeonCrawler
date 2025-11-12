@@ -22,10 +22,10 @@ const LevelsHandler = preload("uid://bte11e0fapqes")
 
 func _single_drill(success):
 	if(success):
+		_animation_player.stop()
 		_animation_player.play(take_hit_animation,0.2)
 	else:
 		pass
-		#_animation_player.play(punch_animation,0.2)
 
 func _finish_drill(success, count):
 	if(success > 0):

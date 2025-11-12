@@ -126,7 +126,7 @@ signal signal_flashcard_single_drill
 signal signal_flashcard_finished_drill
 signal signal_flashcard_answer_changed
 
-func _getPlayer() -> Player:
+func get_player() -> Player:
 	var list = get_tree().get_nodes_in_group("player")
 	if list.size() > 0:
 		return list[0]
@@ -153,7 +153,7 @@ func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard
 	new_flashcard_question(questions[0])
 
 func submit_flashcard(succeed:bool):
-	var player =  _getPlayer()
+	var player =  get_player()
 	var accuracy = 0
 	var time_ms = _flashcardNode.get_time_elapsed_MS()
 	if(succeed):
@@ -201,7 +201,7 @@ func submit_flashcard(succeed:bool):
 
 
 func _input(event):
-	if (_getPlayer() == null or _getPlayer().mode == Player.PlayerMode.FACTS) and has_flashcard():
+	if (get_player() == null or get_player().mode == Player.PlayerMode.FACTS) and has_flashcard():
 		if event is InputEventKey:
 			if event.pressed and not event.echo:
 				if event.keycode == KEY_BACKSPACE:

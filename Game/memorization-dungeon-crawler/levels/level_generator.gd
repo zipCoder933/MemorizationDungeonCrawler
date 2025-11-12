@@ -1,16 +1,6 @@
 extends Node3D
 
-#medeval
-#const DOOR = preload("uid://bdnosseu7fsm")
-#const FLOOR = preload("uid://bvoe5plbouam2")
-#const WALL = preload("uid://bpunwt6bwc3bm")
-const AREA_ENEMY = preload("uid://bqoufhp54uwue")
-const ARENA_BOSS = preload("uid://bobtcptejmn2a")
 
-#machine
-const DOOR = preload("uid://bv0qtxxmmlnu")
-const FLOOR = preload("uid://cnaul2xojagn2")
-const WALL = preload("uid://c16k18ck0f1hj")
 
 
 """
@@ -323,6 +313,14 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, starting_arena
 
 
 
+
+#Nodes
+var DOOR;
+var FLOOR;
+var WALL;
+var AREA_ENEMY;
+var ARENA_BOSS;
+
 const arenaSize = 1;
 const CLOSENESS_TO_END_PATH_END = 6;
 const FAILED_LEVEL_SURVIVAL = 0.3
@@ -330,10 +328,24 @@ const DOOR_LIKELYHOOD = 0.3
 const DRILLS_TO_ARENA = 3 #How many total drills * card_review_number makes 1 arena in the map?
 
 func _ready():
+	#Medeval level
+	DOOR = preload("uid://bdnosseu7fsm")
+	FLOOR = preload("uid://bvoe5plbouam2")
+	WALL = preload("uid://bpunwt6bwc3bm")
+	AREA_ENEMY = preload("uid://bqoufhp54uwue")
+	ARENA_BOSS = preload("uid://bobtcptejmn2a")
+	
 	print("Generating level...")
 	var level = SaveHandler.currentLevel
 	var arenas_average = 5
 	if( level !=null):
+		#Set the theme
+		if(level.theme == Level.LevelTheme.MACHINE):
+			DOOR = preload("uid://bv0qtxxmmlnu")
+			FLOOR = preload("uid://cnaul2xojagn2")
+			WALL = preload("uid://c16k18ck0f1hj")
+		
+		#Calculate how many arenas we want
 		var cards = CardsHandler.card_count(level.card_tags)
 		var total_drills = level.card_review_number * cards
 		print("Total drills: ",total_drills)

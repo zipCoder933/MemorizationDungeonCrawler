@@ -196,6 +196,3 @@ func _on_body_entered(body: Node) -> void:
 		body.open_door(true)
 	elif body is GoblinTrigger:
 		body.trigger()
-	elif body is PotionTrigger:
-		set_health(1)
-		body.delete_potion()

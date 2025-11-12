@@ -18,7 +18,7 @@ roughness_texture = ExtResource("3_pu4js")
 roughness_texture_channel = 4
 
 [node name="potion" type="RigidBody3D"]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
