@@ -1,13 +1,13 @@
 {
   "seed": 0,
-  "starting_answer_speed_sec": 8,
+  "starting_answer_speed_sec": 5,
   "goal_answer_speed_sec": 0.25,
   "name": "Treble and Base",
   "dungeons": [
 	{
 	  "name": "The Treble Dungeon",
 	  "theme": "Dungeon",
-	  "boss_name": "Da Boss",
+	  "boss_name": "",
 	  "themed_cards": ["treble"],
 	  "themed_drill_levels": 1,
 	  "complete_drill_levels": 0
@@ -15,7 +15,7 @@
 	{
 	  "name": "Bass Dungeon",
 	  "theme": "Jungle",
-	  "boss_name": "Bossmania",
+	  "boss_name": "",
 	  "themed_cards": ["bass"],
 	  "themed_drill_levels": 1,
 	  "complete_drill_levels": 1
@@ -23,7 +23,7 @@
 	{
 	  "name": "Treble and Bass",
 	  "theme": "Jungle",
-	  "boss_name": "Bossmania",
+	  "boss_name": "",
 	  "themed_cards": ["treble", "bass"],
 	  "themed_drill_levels": 1,
 	  "complete_drill_levels": 1
@@ -31,7 +31,7 @@
 	{
 	  "name": "Outer treble",
 	  "theme": "machine",
-	  "boss_name": "Bossmania",
+	  "boss_name": "",
 	  "themed_cards": ["outer-treble", "treble"],
 	  "themed_drill_levels": 1,
 	  "complete_drill_levels": 1
@@ -39,7 +39,7 @@
 	{
 	  "name": "Outer bass",
 	  "theme": "machine",
-	  "boss_name": "Bossmania",
+	  "boss_name": "",
 	  "themed_cards": ["outer-bass", "bass"],
 	  "themed_drill_levels": 1,
 	  "complete_drill_levels": 1
@@ -47,7 +47,7 @@
 	{
 	  "name": "Everything",
 	  "theme": "dungeon",
-	  "boss_name": "Bossmania",
+	  "boss_name": "",
 	  "themed_cards": [],
 	  "themed_drill_levels": 0,
 	  "complete_drill_levels": 3

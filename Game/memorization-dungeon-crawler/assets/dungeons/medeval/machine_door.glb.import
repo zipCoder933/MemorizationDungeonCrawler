@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bs572yb3kvjyl"
-path="res://.godot/imported/machine_door.glb-c6f45d978b0490f77c8d8cea13517dbd.scn"
+path="res://.godot/imported/machine_door.glb-df63acafb7ecee534867b0a590ee5be9.scn"
 
 [deps]
 
-source_file="res://assets/dungeons/machine_door.glb"
-dest_files=["res://.godot/imported/machine_door.glb-c6f45d978b0490f77c8d8cea13517dbd.scn"]
+source_file="res://assets/dungeons/medeval/machine_door.glb"
+dest_files=["res://.godot/imported/machine_door.glb-df63acafb7ecee534867b0a590ee5be9.scn"]
 
 [params]
 
