@@ -26,20 +26,20 @@ theme_override_font_sizes/font_size = 16
 text = "lvl"
 horizontal_alignment = 2
 
-[node name="viewMastery" type="Button" parent="."]
-layout_mode = 2
-theme = ExtResource("2_mfodh")
-icon = ExtResource("3_sf3sr")
-
 [node name="playGame" type="Button" parent="."]
 layout_mode = 2
 theme = ExtResource("2_mfodh")
 icon = ExtResource("3_u12em")
 
+[node name="viewMastery" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("2_mfodh")
+icon = ExtResource("3_sf3sr")
+
 [node name="deleteGame" type="Button" parent="."]
 layout_mode = 2
 icon = ExtResource("4_504eg")
 
-[connection signal="pressed" from="viewMastery" to="." method="_on_view_mastery_pressed"]
 [connection signal="pressed" from="playGame" to="." method="_on_play_game_pressed"]
+[connection signal="pressed" from="viewMastery" to="." method="_on_view_mastery_pressed"]
 [connection signal="pressed" from="deleteGame" to="." method="_on_delete_game_pressed"]

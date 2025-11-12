@@ -6,17 +6,17 @@ var is_image:bool
 var answer_text: String
 var time_limit: float
 var fail_health_loss:float = 0
-
 var key_whitelist:String = ""
-
+var card:Card
 var key_requires_numeric = false
 var allow_negative = false
 var allow_decimal = false
 var max_answer_chars = 50
 
-func _init(isImage:bool, q: String = "", ans: String = "", time: float = 0.0, _fail_health_loss:float = 0.0,\
+func _init(_card:Card, isImage:bool, q: String = "", ans: String = "", time: float = 0.0, _fail_health_loss:float = 0.0,\
 			 _key_requires_numeric = false, _allow_negative=false, _allow_decimal=false,\
 			 _key_whitelist = "", _max_answer_chars = 50):
+	card = _card
 	is_image = isImage
 	question = q
 	fail_health_loss = _fail_health_loss

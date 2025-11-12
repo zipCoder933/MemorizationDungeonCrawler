@@ -51,7 +51,9 @@ func _on_back_pressed() -> void:
 func _on_home_pressed() -> void:
 	go_home()
 
+#Save and quit
 func go_home():
+	SaveHandler.save_to_file(Globals.SAVE_FILE)
 	get_tree().change_scene_to_file("res://UI/mainMenu/main/main_menu.tscn")
 
 func _on_next_pressed() -> void:

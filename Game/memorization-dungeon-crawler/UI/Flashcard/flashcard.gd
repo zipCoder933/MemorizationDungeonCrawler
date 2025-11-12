@@ -72,11 +72,15 @@ func _ready():
 		worldFlashcardNode.signal_flashcard_single_drill.connect(_submitted)
 		worldFlashcardNode.signal_new_flashcard.connect(_drill)
 
+	
+func get_time_elapsed_MS() -> int:
+	return Time.get_ticks_msec() - start_time
+
 func _process(delta:float):
 	if(q != null && Globals.has_flashcard()):
-		var timeElapsed = Time.get_ticks_msec()-start_time
+		var timeElapsed = get_time_elapsed_MS()
 		var timeLimitMS = q.time_limit * 1000
-		var timeLeft = remap(timeElapsed, 0, timeLimitMS, 1, 0)
+		time_left_bar.value = remap(timeElapsed, 0, timeLimitMS, 1, 0)
 		#print("Time elapsed: ",timeElapsed," Time MS: ",timeLimitMS)
 		
 		if(timeElapsed > timeLimitMS + DELAY_NEXT_CARD_MS):
@@ -84,7 +88,7 @@ func _process(delta:float):
 		elif(timeElapsed > timeLimitMS):
 			background.color = FAILED_COLOR
 		
-		time_left_bar.value = timeLeft
+		
 
 func _flashcardAnswerChanged(answer:String):
 	answer_label.text = answer

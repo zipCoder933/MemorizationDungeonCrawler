@@ -154,9 +154,24 @@ func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard
 
 func submit_flashcard(succeed:bool):
 	var player =  _getPlayer()
+	var accuracy = 0
+	var time_ms = _flashcardNode.get_time_elapsed_MS()
 	if(succeed):
+		accuracy = 100
 		succeeded += 1
 
+	#Record speed and accuracy	
+	print("time: ",time_ms," accuracy: ",accuracy)
+	for tag in _current_flashcard_question.card.tags:
+		var existing_entry:SaveEntry.CardMastery = SaveHandler.currentGame.tag_mastery.get(tag, null)
+		if existing_entry:
+			existing_entry.update_accuracy(accuracy)
+			existing_entry.update_speed(time_ms)
+			print("Entry size: ",SaveHandler.currentGame.tag_mastery.size())
+			print("tag=",tag," accuracy=",existing_entry.average_accuracy," time ms=",existing_entry.average_speed)
+		else:
+			SaveHandler.currentGame.tag_mastery[tag] = SaveEntry.CardMastery.new(time_ms, accuracy,1)
+	
 	_flashcardNode.signal_flashcard_single_drill.emit(succeed)
 	signal_flashcard_single_drill.emit(_flashcardNode, succeed)
 	

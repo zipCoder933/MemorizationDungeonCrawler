@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba4xtnhu7h7l5"]
+
+[ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="1_r5w7c"]
+[ext_resource type="Script" uid="uid://dwq0wobokqiea" path="res://UI/mainMenu/mastery/mastery_entry.gd" id="2_jjily"]
+
+[node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(0, 85)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.16000001
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_jjily")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="mastery entry" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_r5w7c")
+
+[node name="tag" type="Label" parent="MarginContainer/mastery entry"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "tag"
+
+[node name="mastery" type="Label" parent="MarginContainer/mastery entry"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "speed
+mastery
+level"
+horizontal_alignment = 2

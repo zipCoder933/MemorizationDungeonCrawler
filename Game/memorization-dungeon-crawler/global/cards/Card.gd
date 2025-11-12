@@ -43,7 +43,7 @@ func toQuestion(timeMultiplier:float, level:Level, fail_health_loss:float = 0.0)
 	elif type == "text":
 		maxChars = 50
 	
-	return Question.new(is_image, question, answer, level.time_to_answer_sec * timeMultiplier, fail_health_loss, \
+	return Question.new(self, is_image, question, answer, level.time_to_answer_sec * timeMultiplier, fail_health_loss, \
 		isNumeric, allowNegative, allowDecimal, allowedKeys,maxChars)
 
 func toString() -> String:

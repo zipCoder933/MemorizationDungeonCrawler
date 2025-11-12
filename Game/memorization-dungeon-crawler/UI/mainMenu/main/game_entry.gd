@@ -19,4 +19,5 @@ func _on_delete_game_pressed() -> void:
 	menu.reload()
 
 func _on_view_mastery_pressed() -> void:
+	MasteryPage.saveEntry = entry
 	get_tree().change_scene_to_file("res://UI/mainMenu/mastery/mastery.tscn")

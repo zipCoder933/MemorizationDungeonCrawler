@@ -11,5 +11,8 @@ var player:Player
 
 const GLOBAL_NODE = preload("uid://d364dmqkqu5a0")
 
+func get_time_elapsed_MS() -> int:
+	return card_ui.get_time_elapsed_MS()
+
 func _ready():
 	visible = false
