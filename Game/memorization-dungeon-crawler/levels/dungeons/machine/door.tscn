@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bv0qtxxmmlnu"]
 
 [ext_resource type="Script" uid="uid://b6gsly6ywnrfy" path="res://levels/universal/door/door.gd" id="1_fjdfu"]
-[ext_resource type="PackedScene" uid="uid://y4f1l2qd7mo7" path="res://assets/dungeons/medeval/door/door.glb" id="3_p4s41"]
+[ext_resource type="PackedScene" uid="uid://cddma1hwdxk1o" path="res://assets/dungeons/machine/door/machine_door.glb" id="2_fjdfu"]
 [ext_resource type="PackedScene" uid="uid://bxect7ofq1jbm" path="res://levels/universal/door/DoorTrigger.tscn" id="4_0p2nb"]
-[ext_resource type="PackedScene" uid="uid://snvf40gjew1h" path="res://assets/dungeons/machine/machine_door_frame.glb" id="4_fjdfu"]
+[ext_resource type="PackedScene" uid="uid://snvf40gjew1h" path="res://assets/dungeons/machine/door/machine_door_frame.glb" id="4_fjdfu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xgmq8"]
 size = Vector3(1.3112488, 5, 1.1327026)
@@ -11,9 +11,10 @@ size = Vector3(1.3112488, 5, 1.1327026)
 [sub_resource type="BoxShape3D" id="BoxShape3D_45plq"]
 size = Vector3(3.1680908, 5, 0.5579834)
 
-[node name="Door" type="StaticBody3D"]
+[node name="Door" type="StaticBody3D" node_paths=PackedStringArray("door")]
 collision_layer = 2
 script = ExtResource("1_fjdfu")
+door = NodePath("machine_door2")
 
 [node name="wall sides" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 2.0156207)
@@ -23,14 +24,14 @@ shape = SubResource("BoxShape3D_xgmq8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005783081, 2.5, -2.007875)
 shape = SubResource("BoxShape3D_xgmq8")
 
-[node name="door mesh" parent="." instance=ExtResource("3_p4s41")]
-unique_name_in_owner = true
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1.02, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+[node name="machine_door2" parent="." instance=ExtResource("2_fjdfu")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="door mesh"]
+[node name="StaticBody3D" type="StaticBody3D" parent="machine_door2"]
+transform = Transform3D(1, 0, 0, 0, 1.02, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 2
 
-[node name="doorCollision" type="CollisionShape3D" parent="door mesh/StaticBody3D"]
+[node name="doorCollision" type="CollisionShape3D" parent="machine_door2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5816658, 0)
 shape = SubResource("BoxShape3D_45plq")
 
@@ -43,3 +44,13 @@ door = NodePath("..")
 
 [node name="machine_door_frame" parent="." instance=ExtResource("4_fjdfu")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.724599, 3.671871, -0.06947413)
+light_color = Color(0.92170423, 0, 0.45492965, 1)
+omni_range = 1.9239378
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7441474, 3.671871, -0.06947413)
+light_color = Color(0.92170423, 0, 0.45492965, 1)
+omni_range = 1.9239378

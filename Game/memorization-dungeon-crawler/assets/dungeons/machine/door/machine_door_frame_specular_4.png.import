@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbgdi83hn3hnb"
-path.s3tc="res://.godot/imported/machine_door_frame_machine_frame.png-e1ff0448bc88189e1ea68b33149d48b6.s3tc.ctex"
+uid="uid://b5hibbajfdnm6"
+path.s3tc="res://.godot/imported/machine_door_frame_specular_4.png-458c661862724f34f081727236e9eafd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "6fd5a188cdfa8b6a2fcd5fb601c605ff"
+"md5": "a32181f49fb1c63d0b7eec2e04b9f700"
 }
 
 [deps]
 
-source_file="res://assets/dungeons/machine/machine_door_frame_machine_frame.png"
-dest_files=["res://.godot/imported/machine_door_frame_machine_frame.png-e1ff0448bc88189e1ea68b33149d48b6.s3tc.ctex"]
+source_file="res://assets/dungeons/machine/door/machine_door_frame_specular_4.png"
+dest_files=["res://.godot/imported/machine_door_frame_specular_4.png-458c661862724f34f081727236e9eafd.s3tc.ctex"]
 
 [params]
 

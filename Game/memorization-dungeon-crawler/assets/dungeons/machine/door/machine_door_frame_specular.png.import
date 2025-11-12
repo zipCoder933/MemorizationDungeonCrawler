@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxk46t67b3oso"
-path="res://.godot/imported/machine wall_specular.png-60c5224bafdd5149d6e35574ee8cb886.ctex"
+uid="uid://10tmo1yo43lj"
+path="res://.godot/imported/machine_door_frame_specular.png-be0a2b0ba90b43f867001ecd262daa1c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -13,8 +13,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/dungeons/machine/wall/machine wall_specular.png"
-dest_files=["res://.godot/imported/machine wall_specular.png-60c5224bafdd5149d6e35574ee8cb886.ctex"]
+source_file="res://assets/dungeons/machine/door/machine_door_frame_specular.png"
+dest_files=["res://.godot/imported/machine_door_frame_specular.png-be0a2b0ba90b43f867001ecd262daa1c.ctex"]
 
 [params]
 

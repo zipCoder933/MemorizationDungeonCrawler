@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cnaul2xojagn2"]
 
 [ext_resource type="Script" uid="uid://bj2u0j6bfrtoq" path="res://levels/universal/floor/floor.gd" id="1_py3u3"]
-[ext_resource type="Texture2D" uid="uid://5w3rhbwjquk0" path="res://assets/dungeons/machine/floor.png" id="2_py3u3"]
+[ext_resource type="Texture2D" uid="uid://cbkjmeh4ajbcx" path="res://assets/dungeons/machine/grate.jpg" id="2_py3u3"]
 [ext_resource type="Texture2D" uid="uid://bm6468j2kqrrs" path="res://assets/dungeons/machine/ceiling.png" id="3_lfra8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wwqpw"]

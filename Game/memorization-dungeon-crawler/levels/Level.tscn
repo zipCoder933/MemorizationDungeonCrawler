@@ -53,5 +53,4 @@ light_energy = 0.5
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_0oum7")
 volume_db = 2.0
-autoplay = true
 parameters/looping = true

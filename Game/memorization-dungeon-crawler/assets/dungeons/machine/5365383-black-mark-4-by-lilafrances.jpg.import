@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mjhflk2d1wn7"
-path.s3tc="res://.godot/imported/machine wall_machine_wall.png-74fd14e498199fcd23a779be1671a0a3.s3tc.ctex"
+uid="uid://5jxe5tab6nu"
+path.s3tc="res://.godot/imported/5365383-black-mark-4-by-lilafrances.jpg-8f7dc49f930f30ab869b5d28e66b419a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "12a5d9d76a6cd22b8341c71aa80907d6"
-}
 
 [deps]
 
-source_file="res://assets/dungeons/machine/wall/machine wall_machine_wall.png"
-dest_files=["res://.godot/imported/machine wall_machine_wall.png-74fd14e498199fcd23a779be1671a0a3.s3tc.ctex"]
+source_file="res://assets/dungeons/machine/5365383-black-mark-4-by-lilafrances.jpg"
+dest_files=["res://.godot/imported/5365383-black-mark-4-by-lilafrances.jpg-8f7dc49f930f30ab869b5d28e66b419a.s3tc.ctex"]
 
 [params]
 

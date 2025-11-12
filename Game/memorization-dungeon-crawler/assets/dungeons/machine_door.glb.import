@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://snvf40gjew1h"
-path="res://.godot/imported/machine_door_frame.glb-d55abcfa0af334bc917d0b48d07a2527.scn"
+uid="uid://bs572yb3kvjyl"
+path="res://.godot/imported/machine_door.glb-c6f45d978b0490f77c8d8cea13517dbd.scn"
 
 [deps]
 
-source_file="res://assets/dungeons/machine/machine_door_frame.glb"
-dest_files=["res://.godot/imported/machine_door_frame.glb-d55abcfa0af334bc917d0b48d07a2527.scn"]
+source_file="res://assets/dungeons/machine_door.glb"
+dest_files=["res://.godot/imported/machine_door.glb-c6f45d978b0490f77c8d8cea13517dbd.scn"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c16k18ck0f1hj"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_gif2k"]
-[ext_resource type="PackedScene" uid="uid://6tjw4y884i07" path="res://assets/dungeons/machine/wall/machine wall.glb" id="2_e2grf"]
+[ext_resource type="PackedScene" uid="uid://blkshemftova" path="res://assets/dungeons/machine/wall/machine wall.glb" id="2_e2grf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1, 5, 5)
@@ -14,12 +14,5 @@ script = ExtResource("1_gif2k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("BoxShape3D_xfbw5")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.226122, 4.6981764, -0.16882432)
-light_color = Color(0.5297349, 0.7981217, 1, 1)
-light_indirect_energy = 3.1
-light_size = 1.0
-omni_range = 5.034739
-
 [node name="machine wall" parent="." instance=ExtResource("2_e2grf")]
-transform = Transform3D(-4.2539625e-08, 0, 0.76331866, 0, 1, 0, -0.97319317, 0, -3.336572e-08, 0, 0, 0)
+transform = Transform3D(-4.2539625e-08, 0, 0.572489, 0, 1, 0, -0.97319317, 0, -2.5024288e-08, 0, 0, 0)
