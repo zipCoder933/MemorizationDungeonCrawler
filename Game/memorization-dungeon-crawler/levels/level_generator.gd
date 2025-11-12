@@ -1,16 +1,16 @@
 extends Node3D
 
 #medeval
-#const DOOR = preload("uid://bdnosseu7fsm")
-#const FLOOR = preload("uid://bvoe5plbouam2")
-#const WALL = preload("uid://bpunwt6bwc3bm")
+const DOOR = preload("uid://bdnosseu7fsm")
+const FLOOR = preload("uid://bvoe5plbouam2")
+const WALL = preload("uid://bpunwt6bwc3bm")
 const AREA_ENEMY = preload("uid://bqoufhp54uwue")
 const ARENA_BOSS = preload("uid://bobtcptejmn2a")
 
 #machine
-const DOOR = preload("uid://bv0qtxxmmlnu")
-const FLOOR = preload("uid://cnaul2xojagn2")
-const WALL = preload("uid://c16k18ck0f1hj")
+#const DOOR = preload("uid://bv0qtxxmmlnu")
+#const FLOOR = preload("uid://cnaul2xojagn2")
+#const WALL = preload("uid://c16k18ck0f1hj")
 
 
 """

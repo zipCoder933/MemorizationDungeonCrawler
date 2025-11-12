@@ -11,9 +11,10 @@ size = Vector3(1.3112488, 5, 1.1327026)
 [sub_resource type="BoxShape3D" id="BoxShape3D_45plq"]
 size = Vector3(3.1680908, 5, 0.5579834)
 
-[node name="Door" type="StaticBody3D"]
+[node name="Door" type="StaticBody3D" node_paths=PackedStringArray("door")]
 collision_layer = 2
 script = ExtResource("1_vfp6w")
+door = NodePath("door mesh")
 
 [node name="wall sides" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 2.0156207)
