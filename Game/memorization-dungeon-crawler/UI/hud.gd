@@ -8,9 +8,11 @@ class_name HUD
 @onready var card_ui: FlashcardUI = %CardUI
 @onready var menu_panel: Panel = %MenuPanel
 @onready var level_indicator: Label = %"level indicator"
+@onready var loading_panel: Panel = $CanvasLayer/LoadingPanel
 
 const LevelsHandler = preload("uid://bte11e0fapqes")
 const SaveHandler = preload("uid://bgwdh30vglopu")
+var fade_speed = 0.5
 
 func panelsVisible():
 	return game_over_panel.visible or victory_panel.visible or menu_panel.visible
@@ -18,6 +20,10 @@ func panelsVisible():
 var current_question:Question
 
 func _ready():
+	loading_panel.modulate.a = 1
+	victory_panel.modulate.a = 0
+	victory_panel.visible = false
+	loading_panel.visible = true
 	player.health_changed.connect(_player_health_changed)
 	Globals.signal_game_over.connect(_game_over)
 	Globals.signal_victory.connect(_victory)
@@ -32,6 +38,13 @@ func _input(event):
 func _process(delta):
 	label.text = "COMPLETED ARENAS "+str(Globals.completedArenas)+" / "+str(Globals.totalArenas) 
 	card_ui.visible = Globals.has_flashcard()
+	
+	if(victory_panel.visible):
+		victory_panel.modulate.a = victory_panel.modulate.a + (fade_speed * delta)
+	
+	loading_panel.modulate.a = loading_panel.modulate.a - (fade_speed * delta)
+	if(loading_panel.modulate.a <= 0):
+		loading_panel.visible = false
 
 func _player_health_changed(health:float):
 	damage_bar.value = clamp(health, 0, Player.MAX_HEALTH)

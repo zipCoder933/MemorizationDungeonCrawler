@@ -14,9 +14,7 @@ func _on_play_game_pressed() -> void:
 	menu.load_game(entry)
 
 func _on_delete_game_pressed() -> void:
-	SaveHandler.saves.erase(entry)
-	SaveHandler.save_to_file(Globals.SAVE_FILE)
-	menu.reload()
+	menu.confirm_deletion(entry)
 
 func _on_view_mastery_pressed() -> void:
 	MasteryPage.saveEntry = entry

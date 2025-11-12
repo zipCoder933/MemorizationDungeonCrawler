@@ -182,9 +182,7 @@ func _input(event: InputEvent) -> void:
 					animation_player.play(IDLE_ANIMATION,0.21)
 					target_cam_offset.y = rotation.y
 				
-			if is_on_floor == true and Input.is_action_just_pressed("Jump"):
-				print("POTION")
-				Globals.spawn_potion(Vector3(position.x+3,position.y,position.z))
+			#if is_on_floor == true and Input.is_action_just_pressed("Jump"):
 				#animation_player.play(JUMP_UP_ANIMATION,1)
 				#apply_central_impulse(Vector3(0, 10, 0))
 				#is_on_floor = false

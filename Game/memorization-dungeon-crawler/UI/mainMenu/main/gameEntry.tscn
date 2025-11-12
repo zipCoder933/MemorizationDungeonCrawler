@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://g4v5hbt16l3v" path="res://UI/mainMenu/main/game_entry.gd" id="1_0u46w"]
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="2_mfodh"]
-[ext_resource type="Texture2D" uid="uid://bwubhy0hqb535" path="res://assets/icons/cancel.png" id="3_sf3sr"]
 [ext_resource type="Texture2D" uid="uid://b7jboaou87df4" path="res://assets/icons/play.png" id="3_u12em"]
 [ext_resource type="Texture2D" uid="uid://d375xiknot62j" path="res://assets/icons/trash.png" id="4_504eg"]
+[ext_resource type="Texture2D" uid="uid://c2ocq6anou3ru" path="res://assets/icons/checklist.png" id="4_sf3sr"]
 
 [node name="gameEntry" type="HBoxContainer"]
 offset_right = 427.0
@@ -34,7 +34,7 @@ icon = ExtResource("3_u12em")
 [node name="viewMastery" type="Button" parent="."]
 layout_mode = 2
 theme = ExtResource("2_mfodh")
-icon = ExtResource("3_sf3sr")
+icon = ExtResource("4_sf3sr")
 
 [node name="deleteGame" type="Button" parent="."]
 layout_mode = 2

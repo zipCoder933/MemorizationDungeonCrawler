@@ -3,7 +3,25 @@ class_name MainMenu
 
 @onready var start_button: Button = $CanvasLayer/ColorRect/Buttons/StartButton
 @onready var loading: Panel = %Loading
-@onready var v_box_container: VBoxContainer = $CanvasLayer/ColorRect/LoadPanel/MarginContainer/Panel/ScrollContainer/VBoxContainer
+@onready var delete_confirm: Panel = %DeleteConfirm
+@onready var v_box_container: VBoxContainer = %VBoxContainer
+
+var delete_entry:SaveEntry
+
+func confirm_deletion(_delete_entry:SaveEntry):
+	delete_confirm.visible = true
+	delete_entry = _delete_entry
+
+func _on_delete_no_pressed() -> void:
+	delete_entry = null
+	delete_confirm.visible=false
+	
+func _on_delete_yes_pressed() -> void:
+	delete_confirm.visible=false
+	if( delete_entry!=null):
+		SaveHandler.saves.erase(delete_entry)
+		SaveHandler.save_to_file(Globals.SAVE_FILE)
+	reload()
 
 #Load the game
 func load_game(entry:SaveEntry):
@@ -21,6 +39,8 @@ func reload():
 	get_tree().reload_current_scene()
 
 func _ready():
+	delete_confirm.visible=false
+	loading.visible=false
 	SaveHandler.load_from_file(Globals.SAVE_FILE)
 	for entry in SaveHandler.saves:
 		var node = GAME_ENTRY.instantiate()

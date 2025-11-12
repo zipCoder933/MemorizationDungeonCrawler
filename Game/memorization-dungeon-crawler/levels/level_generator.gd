@@ -1,16 +1,16 @@
 extends Node3D
 
 #medeval
-const DOOR = preload("uid://bdnosseu7fsm")
-const FLOOR = preload("uid://bvoe5plbouam2")
-const WALL = preload("uid://bpunwt6bwc3bm")
+#const DOOR = preload("uid://bdnosseu7fsm")
+#const FLOOR = preload("uid://bvoe5plbouam2")
+#const WALL = preload("uid://bpunwt6bwc3bm")
 const AREA_ENEMY = preload("uid://bqoufhp54uwue")
 const ARENA_BOSS = preload("uid://bobtcptejmn2a")
 
 #machine
-#const DOOR = preload("uid://bv0qtxxmmlnu")
-#const FLOOR = preload("uid://cnaul2xojagn2")
-#const WALL = preload("uid://c16k18ck0f1hj")
+const DOOR = preload("uid://bv0qtxxmmlnu")
+const FLOOR = preload("uid://cnaul2xojagn2")
+const WALL = preload("uid://c16k18ck0f1hj")
 
 
 """
@@ -346,7 +346,7 @@ func _ready():
 	var start_pos = Vector3(0,0,0)
 	
 	var main_path_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()
-	var main_path_length = randi_range(5,10)
+	var main_path_length = randi_range(10,20)
 	var main_path_end =(Vector3(start_pos) + main_path_dir * main_path_length)
 	
 	Globals.completedArenas = 0
