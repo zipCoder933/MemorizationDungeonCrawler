@@ -1,0 +1,44 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://8lbioit80xdh"
+path.s3tc="res://.godot/imported/weed_plant_02_1k5_weed_plant_02_nor_gl.png-735408ec21ede36a3fa8e04a09262aa3.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "e27d2a5dc4a1c710c2d634d15c00028c"
+}
+
+[deps]
+
+source_file="res://assets/dungeons/jungle/weeds/weed_plant_02_1k5_weed_plant_02_nor_gl.png"
+dest_files=["res://.godot/imported/weed_plant_02_1k5_weed_plant_02_nor_gl.png-735408ec21ede36a3fa8e04a09262aa3.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://assets/dungeons/jungle/weed_plant_02_1k5_weed_plant_02_nor_gl.png"
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

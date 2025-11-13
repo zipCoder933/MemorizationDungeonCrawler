@@ -1,0 +1,615 @@
+[gd_scene load_steps=11 format=3 uid="uid://b61v8qf2ipthl"]
+
+[ext_resource type="Script" uid="uid://bj2u0j6bfrtoq" path="res://levels/universal/floor/floor.gd" id="1_brjb2"]
+[ext_resource type="Texture2D" uid="uid://b7momwxoijh6j" path="res://assets/dungeons/medeval/cracked_concrete_diff_1k.jpg" id="2_m45uv"]
+[ext_resource type="PackedScene" uid="uid://dxkbrjihfjmqe" path="res://assets/dungeons/jungle/weeds/weed_plant_02_1k2.glb" id="3_qshba"]
+[ext_resource type="PackedScene" uid="uid://b2u7iaju07rpe" path="res://assets/dungeons/jungle/weeds/weed_plant_02_1k3.glb" id="4_1mhd2"]
+[ext_resource type="PackedScene" uid="uid://d0bed3a5cn532" path="res://assets/dungeons/jungle/weeds/weed_plant_02_1k4.glb" id="5_0c3yy"]
+[ext_resource type="PackedScene" uid="uid://ciomeofhey5dr" path="res://assets/dungeons/jungle/weeds/weed_plant_02_1k5.glb" id="6_5aweq"]
+[ext_resource type="PackedScene" uid="uid://bn3hk4r1g0utt" path="res://assets/dungeons/jungle/weeds/weed_plant_02_1k.glb" id="7_y3ime"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwqpw"]
+size = Vector3(250, 1, 250)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pgxbp"]
+size = Vector2(50, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yo1sm"]
+albedo_texture = ExtResource("2_m45uv")
+uv1_triplanar = true
+
+[node name="FloorAndCeiling" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_brjb2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_wwqpw")
+
+[node name="floor" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = SubResource("PlaneMesh_pgxbp")
+surface_material_override/0 = SubResource("StandardMaterial3D_yo1sm")
+
+[node name="weed_plant_02_1k2" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, 19.17788, 0.0009997966, -16.774717)
+
+[node name="weed_plant_02_1k3" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(3.9996965, 0, -4.712445, 0, 6.180996, 0, 4.712445, 0, 3.9996965, 23.609581, 0.0015672353, -18.413889)
+
+[node name="weed_plant_02_1k4" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(4.0679493, 0, -4.7928605, 0, 6.286472, 0, 4.7928605, 0, 4.0679493, 21.306746, 0.00030620024, -15.445801)
+
+[node name="weed_plant_02_1k5" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(2.8089895, 0, -3.3095527, 0, 4.3409176, 0, 3.3095527, 0, 2.8089895, 20.48205, 0.0034620026, -17.4)
+
+[node name="weed_plant_02_1k" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(1.4527147, 0, -1.7115891, 0, 2.244976, 0, 1.7115891, 0, 1.4527147, 18.577185, 0.008563121, -16.66461)
+
+[node name="weed_plant_02_1k11" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, 19.17788, 0.0009997966, -8.18861)
+
+[node name="weed_plant_02_1k12" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, 21.069984, 0.0015672353, -8.947108)
+
+[node name="weed_plant_02_1k13" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 21.842724, 0.00030620035, -5.2707696)
+
+[node name="weed_plant_02_1k14" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, 19.81917, 0.0034620026, -5.906568)
+
+[node name="weed_plant_02_1k15" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, 19.147205, 0.008563121, -3.978414)
+
+[node name="weed_plant_02_1k23" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 21.842724, 0.00030620035, -22.519678)
+
+[node name="weed_plant_02_1k24" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, 19.81917, 0.0034620026, -23.155478)
+
+[node name="weed_plant_02_1k25" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, 19.147205, 0.008563121, -21.227324)
+
+[node name="weed_plant_02_1k31" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, 4.5019264, 0.0009997966, -16.774717)
+
+[node name="weed_plant_02_1k32" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, 6.3940315, 0.0015672353, -17.533215)
+
+[node name="weed_plant_02_1k33" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 7.166771, 0.00030620035, -13.856876)
+
+[node name="weed_plant_02_1k34" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, 5.143217, 0.0034620026, -14.492674)
+
+[node name="weed_plant_02_1k35" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, 4.4712524, 0.008563121, -12.56452)
+
+[node name="weed_plant_02_1k36" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, 10.857887, 0.0009997966, -16.774717)
+
+[node name="weed_plant_02_1k37" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, 12.749993, 0.0015672353, -17.533215)
+
+[node name="weed_plant_02_1k38" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 13.522733, 0.00030620035, -13.856876)
+
+[node name="weed_plant_02_1k39" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, 11.499179, 0.0034620026, -14.492674)
+
+[node name="weed_plant_02_1k40" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, 10.827215, 0.008563121, -12.56452)
+
+[node name="weed_plant_02_1k41" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, 4.5019264, 0.0009997966, -8.18861)
+
+[node name="weed_plant_02_1k42" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, 6.3940315, 0.0015672353, -8.947108)
+
+[node name="weed_plant_02_1k43" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 7.166771, 0.00030620035, -5.2707696)
+
+[node name="weed_plant_02_1k44" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, 5.143217, 0.0034620026, -5.906568)
+
+[node name="weed_plant_02_1k45" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, 4.4712524, 0.008563121, -3.978414)
+
+[node name="weed_plant_02_1k46" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, 10.857887, 0.0009997966, -8.18861)
+
+[node name="weed_plant_02_1k47" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, 12.749993, 0.0015672353, -8.947108)
+
+[node name="weed_plant_02_1k48" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 13.522733, 0.00030620035, -5.2707696)
+
+[node name="weed_plant_02_1k49" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, 11.499179, 0.0034620026, -5.906568)
+
+[node name="weed_plant_02_1k50" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, 10.827215, 0.008563121, -3.978414)
+
+[node name="weed_plant_02_1k53" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 7.166771, 0.00030620035, -22.519678)
+
+[node name="weed_plant_02_1k54" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, 5.143217, 0.0034620026, -23.155478)
+
+[node name="weed_plant_02_1k55" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, 4.4712524, 0.008563121, -21.227324)
+
+[node name="weed_plant_02_1k58" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 13.522733, 0.00030620035, -22.519678)
+
+[node name="weed_plant_02_1k59" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, 11.499179, 0.0034620026, -23.155478)
+
+[node name="weed_plant_02_1k60" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, 10.827215, 0.008563121, -21.227324)
+
+[node name="weed_plant_02_1k61" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -8.34778, 0.0009997966, -16.774717)
+
+[node name="weed_plant_02_1k62" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -6.455675, 0.0015672353, -17.533215)
+
+[node name="weed_plant_02_1k63" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -5.6829357, 0.00030620035, -13.856876)
+
+[node name="weed_plant_02_1k64" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -7.7064896, 0.0034620026, -14.492674)
+
+[node name="weed_plant_02_1k65" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -8.378454, 0.008563121, -12.56452)
+
+[node name="weed_plant_02_1k66" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -1.9918194, 0.0009997966, -16.774717)
+
+[node name="weed_plant_02_1k67" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -0.09971428, 0.0015672353, -17.533215)
+
+[node name="weed_plant_02_1k68" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 0.67302513, 0.00030620035, -13.856876)
+
+[node name="weed_plant_02_1k69" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -1.3505268, 0.0034620026, -14.492674)
+
+[node name="weed_plant_02_1k70" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -2.0224915, 0.008563121, -12.56452)
+
+[node name="weed_plant_02_1k71" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -8.34778, 0.0009997966, -8.18861)
+
+[node name="weed_plant_02_1k72" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -6.455675, 0.0015672353, -8.947108)
+
+[node name="weed_plant_02_1k73" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -5.6829357, 0.00030620035, -5.2707696)
+
+[node name="weed_plant_02_1k74" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -7.7064896, 0.0034620026, -5.906568)
+
+[node name="weed_plant_02_1k75" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -8.378454, 0.008563121, -3.978414)
+
+[node name="weed_plant_02_1k76" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -1.9918194, 0.0009997966, -8.18861)
+
+[node name="weed_plant_02_1k77" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -0.09971428, 0.0015672353, -8.947108)
+
+[node name="weed_plant_02_1k78" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 0.67302513, 0.00030620035, -5.2707696)
+
+[node name="weed_plant_02_1k79" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -1.3505268, 0.0034620026, -5.906568)
+
+[node name="weed_plant_02_1k80" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -2.0224915, 0.008563121, -3.978414)
+
+[node name="weed_plant_02_1k83" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -5.6829357, 0.00030620035, -22.519678)
+
+[node name="weed_plant_02_1k84" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -7.7064896, 0.0034620026, -23.155478)
+
+[node name="weed_plant_02_1k85" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -8.378454, 0.008563121, -21.227324)
+
+[node name="weed_plant_02_1k88" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 0.67302513, 0.00030620035, -22.519678)
+
+[node name="weed_plant_02_1k89" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -1.3505268, 0.0034620026, -23.155478)
+
+[node name="weed_plant_02_1k90" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -2.0224915, 0.008563121, -21.227324)
+
+[node name="weed_plant_02_1k91" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -23.023733, 0.0009997966, -16.774717)
+
+[node name="weed_plant_02_1k92" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -21.131628, 0.0015672353, -17.533215)
+
+[node name="weed_plant_02_1k93" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -20.358889, 0.00030620035, -13.856876)
+
+[node name="weed_plant_02_1k94" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -22.382442, 0.0034620026, -14.492674)
+
+[node name="weed_plant_02_1k95" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -23.054407, 0.008563121, -12.56452)
+
+[node name="weed_plant_02_1k96" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -16.667772, 0.0009997966, -16.774717)
+
+[node name="weed_plant_02_1k97" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -14.775666, 0.0015672353, -17.533215)
+
+[node name="weed_plant_02_1k98" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -14.002927, 0.00030620035, -13.856876)
+
+[node name="weed_plant_02_1k99" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -16.026482, 0.0034620026, -14.492674)
+
+[node name="weed_plant_02_1k100" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -16.698444, 0.008563121, -12.56452)
+
+[node name="weed_plant_02_1k101" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -23.023733, 0.0009997966, -8.18861)
+
+[node name="weed_plant_02_1k102" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -21.131628, 0.0015672353, -8.947108)
+
+[node name="weed_plant_02_1k103" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -20.358889, 0.00030620035, -5.2707696)
+
+[node name="weed_plant_02_1k104" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -22.382442, 0.0034620026, -5.906568)
+
+[node name="weed_plant_02_1k105" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -23.054407, 0.008563121, -3.978414)
+
+[node name="weed_plant_02_1k106" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -16.667772, 0.0009997966, -8.18861)
+
+[node name="weed_plant_02_1k107" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -14.775666, 0.0015672353, -8.947108)
+
+[node name="weed_plant_02_1k108" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -14.002927, 0.00030620035, -5.2707696)
+
+[node name="weed_plant_02_1k109" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -16.026482, 0.0034620026, -5.906568)
+
+[node name="weed_plant_02_1k110" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -16.698444, 0.008563121, -3.978414)
+
+[node name="weed_plant_02_1k113" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -20.358889, 0.00030620035, -22.519678)
+
+[node name="weed_plant_02_1k114" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -22.382442, 0.0034620026, -23.155478)
+
+[node name="weed_plant_02_1k115" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -23.054407, 0.008563121, -21.227324)
+
+[node name="weed_plant_02_1k118" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -14.002927, 0.00030620035, -22.519678)
+
+[node name="weed_plant_02_1k119" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -16.026482, 0.0034620026, -23.155478)
+
+[node name="weed_plant_02_1k120" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -16.698444, 0.008563121, -21.227324)
+
+[node name="weed_plant_02_1k121" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -8.34778, 0.0009997966, 9.850904)
+
+[node name="weed_plant_02_1k122" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -6.455675, 0.0015672353, 9.092407)
+
+[node name="weed_plant_02_1k123" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -5.6829357, 0.00030620035, 12.768745)
+
+[node name="weed_plant_02_1k124" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -7.7064896, 0.0034620026, 12.132948)
+
+[node name="weed_plant_02_1k125" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -8.378454, 0.008563121, 14.061102)
+
+[node name="weed_plant_02_1k126" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -1.9918194, 0.0009997966, 9.850904)
+
+[node name="weed_plant_02_1k127" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -0.09971428, 0.0015672353, 9.092407)
+
+[node name="weed_plant_02_1k128" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 0.67302513, 0.00030620035, 12.768745)
+
+[node name="weed_plant_02_1k129" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -1.3505268, 0.0034620026, 12.132948)
+
+[node name="weed_plant_02_1k130" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -2.0224915, 0.008563121, 14.061102)
+
+[node name="weed_plant_02_1k131" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -8.34778, 0.0009997966, 18.43701)
+
+[node name="weed_plant_02_1k132" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -6.455675, 0.0015672353, 17.678513)
+
+[node name="weed_plant_02_1k133" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -5.6829357, 0.00030620035, 21.354853)
+
+[node name="weed_plant_02_1k134" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -7.7064896, 0.0034620026, 20.719053)
+
+[node name="weed_plant_02_1k135" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -8.378454, 0.008563121, 22.647207)
+
+[node name="weed_plant_02_1k136" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -1.9918194, 0.0009997966, 18.43701)
+
+[node name="weed_plant_02_1k137" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -0.09971428, 0.0015672353, 17.678513)
+
+[node name="weed_plant_02_1k138" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 0.67302513, 0.00030620035, 21.354853)
+
+[node name="weed_plant_02_1k139" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -1.3505268, 0.0034620026, 20.719053)
+
+[node name="weed_plant_02_1k140" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -2.0224915, 0.008563121, 22.647207)
+
+[node name="weed_plant_02_1k141" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -8.34778, 0.0009997966, 1.1881013)
+
+[node name="weed_plant_02_1k142" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -6.455675, 0.0015672353, 0.42960405)
+
+[node name="weed_plant_02_1k143" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -5.6829357, 0.00030620035, 4.105944)
+
+[node name="weed_plant_02_1k144" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -7.7064896, 0.0034620026, 3.4701447)
+
+[node name="weed_plant_02_1k145" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -8.378454, 0.008563121, 5.3982987)
+
+[node name="weed_plant_02_1k146" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -1.9918194, 0.0009997966, 1.1881013)
+
+[node name="weed_plant_02_1k147" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -0.09971428, 0.0015672353, 0.42960405)
+
+[node name="weed_plant_02_1k148" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, 0.67302513, 0.00030620035, 4.105944)
+
+[node name="weed_plant_02_1k149" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -1.3505268, 0.0034620026, 3.4701447)
+
+[node name="weed_plant_02_1k150" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -2.0224915, 0.008563121, 5.3982987)
+
+[node name="weed_plant_02_1k151" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -23.023733, 0.0009997966, 9.850904)
+
+[node name="weed_plant_02_1k152" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -21.131628, 0.0015672353, 9.092407)
+
+[node name="weed_plant_02_1k153" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -20.358889, 0.00030620035, 12.768745)
+
+[node name="weed_plant_02_1k154" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -22.382442, 0.0034620026, 12.132948)
+
+[node name="weed_plant_02_1k155" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -23.054407, 0.008563121, 14.061102)
+
+[node name="weed_plant_02_1k156" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -16.667772, 0.0009997966, 9.850904)
+
+[node name="weed_plant_02_1k157" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -14.775666, 0.0015672353, 9.092407)
+
+[node name="weed_plant_02_1k158" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -14.002927, 0.00030620035, 12.768745)
+
+[node name="weed_plant_02_1k159" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -16.026482, 0.0034620026, 12.132948)
+
+[node name="weed_plant_02_1k160" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -16.698444, 0.008563121, 14.061102)
+
+[node name="weed_plant_02_1k161" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -23.023733, 0.0009997966, 18.43701)
+
+[node name="weed_plant_02_1k162" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(4.719697, 0, -3.9911368, 0, 6.180996, 0, 3.9911368, 0, 4.719697, -18.741453, 0.0015672353, 16.512554)
+
+[node name="weed_plant_02_1k163" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(4.800236, 0, -4.0592437, 0, 6.286472, 0, 4.0592437, 0, 4.800236, -20.525257, 0.00030620047, 19.818707)
+
+[node name="weed_plant_02_1k164" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(3.3146462, 0, -2.802978, 0, 4.3409176, 0, 2.802978, 0, 3.3146462, -21.659864, 0.0034620026, 18.026592)
+
+[node name="weed_plant_02_1k165" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(1.714223, 0, -1.4496057, 0, 2.244976, 0, 1.4496057, 0, 1.714223, -23.417994, 0.008563121, 19.065)
+
+[node name="weed_plant_02_1k166" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(2.4205549, 0, -2.0469038, 0, 3.17, 0, 2.0469038, 0, 2.4205549, -15.822704, 0.0009997964, 19.974089)
+
+[node name="weed_plant_02_1k167" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(4.719697, 0, -3.9911368, 0, 6.180996, 0, 3.9911368, 0, 4.719697, -13.888157, 0.0015672353, 20.616669)
+
+[node name="weed_plant_02_1k169" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(3.3146462, 0, -2.802978, 0, 4.3409176, 0, 2.802978, 0, 3.3146462, -16.806566, 0.0034620026, 22.130705)
+
+[node name="weed_plant_02_1k171" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -23.023733, 0.0009997966, 1.1881013)
+
+[node name="weed_plant_02_1k172" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -21.131628, 0.0015672353, 0.42960405)
+
+[node name="weed_plant_02_1k173" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -20.358889, 0.00030620035, 4.105944)
+
+[node name="weed_plant_02_1k174" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -22.382442, 0.0034620026, 3.4701447)
+
+[node name="weed_plant_02_1k175" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -23.054407, 0.008563121, 5.3982987)
+
+[node name="weed_plant_02_1k176" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(3.17, 0, 0, 0, 3.17, 0, 0, 0, 3.17, -16.667772, 0.0009997966, 1.1881013)
+
+[node name="weed_plant_02_1k177" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(6.180996, 0, 0, 0, 6.180996, 0, 0, 0, 6.180996, -14.775666, 0.0015672353, 0.42960405)
+
+[node name="weed_plant_02_1k178" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(6.286472, 0, 0, 0, 6.286472, 0, 0, 0, 6.286472, -14.002927, 0.00030620035, 4.105944)
+
+[node name="weed_plant_02_1k179" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(4.3409176, 0, 0, 0, 4.3409176, 0, 0, 0, 4.3409176, -16.026482, 0.0034620026, 3.4701447)
+
+[node name="weed_plant_02_1k180" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(2.244976, 0, 0, 0, 2.244976, 0, 0, 0, 2.244976, -16.698444, 0.008563121, 5.3982987)
+
+[node name="weed_plant_02_1k181" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(2.03628, 0, -2.4294987, 0, 3.17, 0, 2.4294987, 0, 2.03628, 19.228876, 0.0009997964, 12.856741)
+
+[node name="weed_plant_02_1k182" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(3.970423, 0, -4.7371354, 0, 6.180996, 0, 4.7371354, 0, 3.970423, 21.025602, 0.0015672353, 13.81963)
+
+[node name="weed_plant_02_1k183" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(4.0381765, 0, -4.8179727, 0, 6.286472, 0, 4.8179727, 0, 4.0381765, 18.704422, 0.00030620047, 16.77339)
+
+[node name="weed_plant_02_1k184" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(2.7884305, 0, -3.3268936, 0, 4.3409176, 0, 3.3268936, 0, 2.7884305, 17.89185, 0.0034620026, 14.814121)
+
+[node name="weed_plant_02_1k185" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(1.442082, 0, -1.7205571, 0, 2.244976, 0, 1.7205571, 0, 1.442082, 15.982464, 0.008563121, 15.537693)
+
+[node name="weed_plant_02_1k186" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(2.03628, 0, -2.4294987, 0, 3.17, 0, 2.4294987, 0, 2.03628, 23.311687, 0.0009997964, 17.72797)
+
+[node name="weed_plant_02_1k188" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(4.0381765, 0, -4.8179727, 0, 6.286472, 0, 4.8179727, 0, 4.0381765, 22.787235, 0.00030620047, 21.64462)
+
+[node name="weed_plant_02_1k189" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(2.7884305, 0, -3.3268936, 0, 4.3409176, 0, 3.3268936, 0, 2.7884305, 21.974663, 0.0034620026, 19.685352)
+
+[node name="weed_plant_02_1k190" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(1.442082, 0, -1.7205571, 0, 2.244976, 0, 1.7205571, 0, 1.442082, 20.065277, 0.008563121, 20.408924)
+
+[node name="weed_plant_02_1k191" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(2.03628, 0, -2.4294987, 0, 3.17, 0, 2.4294987, 0, 2.03628, 12.648456, 0.0009997964, 18.372108)
+
+[node name="weed_plant_02_1k192" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(3.970423, 0, -4.7371354, 0, 6.180996, 0, 4.7371354, 0, 3.970423, 14.445183, 0.0015672353, 19.334997)
+
+[node name="weed_plant_02_1k193" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(4.0381765, 0, -4.8179727, 0, 6.286472, 0, 4.8179727, 0, 4.0381765, 12.124001, 0.00030620047, 22.28876)
+
+[node name="weed_plant_02_1k194" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(2.7884305, 0, -3.3268936, 0, 4.3409176, 0, 3.3268936, 0, 2.7884305, 11.311429, 0.0034620026, 20.329489)
+
+[node name="weed_plant_02_1k195" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(1.442082, 0, -1.7205571, 0, 2.244976, 0, 1.7205571, 0, 1.442082, 9.402043, 0.008563121, 21.05306)
+
+[node name="weed_plant_02_1k205" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(1.442082, 0, -1.7205571, 0, 2.244976, 0, 1.7205571, 0, 1.442082, 22.621664, 0.008563121, 9.973059)
+
+[node name="weed_plant_02_1k211" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(2.03628, 0, -2.4294987, 0, 3.17, 0, 2.4294987, 0, 2.03628, 9.801635, 0.0009997964, 1.6090426)
+
+[node name="weed_plant_02_1k212" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(3.970423, 0, -4.7371354, 0, 6.180996, 0, 4.7371354, 0, 3.970423, 11.598362, 0.0015672353, 2.5719304)
+
+[node name="weed_plant_02_1k213" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(4.0381765, 0, -4.8179727, 0, 6.286472, 0, 4.8179727, 0, 4.0381765, 9.277181, 0.00030620047, 5.525692)
+
+[node name="weed_plant_02_1k214" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(2.7884305, 0, -3.3268936, 0, 4.3409176, 0, 3.3268936, 0, 2.7884305, 8.464609, 0.0034620026, 3.566422)
+
+[node name="weed_plant_02_1k215" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(1.442082, 0, -1.7205571, 0, 2.244976, 0, 1.7205571, 0, 1.442082, 6.5552235, 0.008563121, 4.2899942)
+
+[node name="weed_plant_02_1k216" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(2.03628, 0, -2.4294987, 0, 3.17, 0, 2.4294987, 0, 2.03628, 13.884448, 0.0009997964, 6.4802723)
+
+[node name="weed_plant_02_1k217" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(3.970423, 0, -4.7371354, 0, 6.180996, 0, 4.7371354, 0, 3.970423, 15.681175, 0.0015672353, 7.4431605)
+
+[node name="weed_plant_02_1k218" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(4.0381765, 0, -4.8179727, 0, 6.286472, 0, 4.8179727, 0, 4.0381765, 13.359995, 0.00030620047, 10.396921)
+
+[node name="weed_plant_02_1k219" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(2.7884305, 0, -3.3268936, 0, 4.3409176, 0, 3.3268936, 0, 2.7884305, 12.547421, 0.0034620026, 8.437653)
+
+[node name="weed_plant_02_1k220" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(1.442082, 0, -1.7205571, 0, 2.244976, 0, 1.7205571, 0, 1.442082, 10.638037, 0.008563121, 9.161224)
+
+[node name="weed_plant_02_1k221" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(2.03628, 0, -2.4294987, 0, 3.17, 0, 2.4294987, 0, 2.03628, 3.2212152, 0.0009997964, 7.124411)
+
+[node name="weed_plant_02_1k222" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(3.970423, 0, -4.7371354, 0, 6.180996, 0, 4.7371354, 0, 3.970423, 5.0179424, 0.0015672353, 8.087297)
+
+[node name="weed_plant_02_1k223" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(4.0381765, 0, -4.8179727, 0, 6.286472, 0, 4.8179727, 0, 4.0381765, 2.6967602, 0.00030620047, 11.041061)
+
+[node name="weed_plant_02_1k224" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(2.7884305, 0, -3.3268936, 0, 4.3409176, 0, 3.3268936, 0, 2.7884305, 1.8841896, 0.0034620026, 9.081789)
+
+[node name="weed_plant_02_1k225" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(1.442082, 0, -1.7205571, 0, 2.244976, 0, 1.7205571, 0, 1.442082, -0.02519703, 0.008563121, 9.805363)
+
+[node name="weed_plant_02_1k226" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(2.03628, 0, -2.4294987, 0, 3.17, 0, 2.4294987, 0, 2.03628, 7.3040285, 0.0009997964, 11.99564)
+
+[node name="weed_plant_02_1k227" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(3.970423, 0, -4.7371354, 0, 6.180996, 0, 4.7371354, 0, 3.970423, 9.100756, 0.0015672353, 12.9585285)
+
+[node name="weed_plant_02_1k228" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(4.0381765, 0, -4.8179727, 0, 6.286472, 0, 4.8179727, 0, 4.0381765, 6.7795734, 0.00030620047, 15.912291)
+
+[node name="weed_plant_02_1k229" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(2.7884305, 0, -3.3268936, 0, 4.3409176, 0, 3.3268936, 0, 2.7884305, 5.967002, 0.0034620026, 13.95302)
+
+[node name="weed_plant_02_1k230" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(1.442082, 0, -1.7205571, 0, 2.244976, 0, 1.7205571, 0, 1.442082, 4.057617, 0.008563121, 14.676594)
+
+[node name="weed_plant_02_1k231" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(2.03628, 0, -2.4294987, 0, 3.17, 0, 2.4294987, 0, 2.03628, 16.440836, 0.0009997964, -3.9555926)
+
+[node name="weed_plant_02_1k232" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(3.970423, 0, -4.7371354, 0, 6.180996, 0, 4.7371354, 0, 3.970423, 18.237564, 0.0015672353, -2.9927058)
+
+[node name="weed_plant_02_1k233" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(4.0381765, 0, -4.8179727, 0, 6.286472, 0, 4.8179727, 0, 4.0381765, 15.916381, 0.00030620047, -0.038942814)
+
+[node name="weed_plant_02_1k234" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(2.7884305, 0, -3.3268936, 0, 4.3409176, 0, 3.3268936, 0, 2.7884305, 15.10381, 0.0034620026, -1.9982133)
+
+[node name="weed_plant_02_1k235" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(1.442082, 0, -1.7205571, 0, 2.244976, 0, 1.7205571, 0, 1.442082, 13.194424, 0.008563121, -1.2746406)
+
+[node name="weed_plant_02_1k236" parent="." instance=ExtResource("3_qshba")]
+transform = Transform3D(2.03628, 0, -2.4294987, 0, 3.17, 0, 2.4294987, 0, 2.03628, 20.52365, 0.0009997964, 0.91563654)
+
+[node name="weed_plant_02_1k237" parent="." instance=ExtResource("4_1mhd2")]
+transform = Transform3D(3.970423, 0, -4.7371354, 0, 6.180996, 0, 4.7371354, 0, 3.970423, 22.320377, 0.0015672353, 1.8785243)
+
+[node name="weed_plant_02_1k238" parent="." instance=ExtResource("5_0c3yy")]
+transform = Transform3D(4.0381765, 0, -4.8179727, 0, 6.286472, 0, 4.8179727, 0, 4.0381765, 19.999195, 0.00030620047, 4.8322873)
+
+[node name="weed_plant_02_1k239" parent="." instance=ExtResource("6_5aweq")]
+transform = Transform3D(2.7884305, 0, -3.3268936, 0, 4.3409176, 0, 3.3268936, 0, 2.7884305, 19.186623, 0.0034620026, 2.8730168)
+
+[node name="weed_plant_02_1k240" parent="." instance=ExtResource("7_y3ime")]
+transform = Transform3D(1.442082, 0, -1.7205571, 0, 2.244976, 0, 1.7205571, 0, 1.442082, 17.277237, 0.008563121, 3.5965905)

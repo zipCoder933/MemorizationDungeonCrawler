@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_bkd6s"]
 [ext_resource type="Texture2D" uid="uid://wb3nmryb6vaj" path="res://assets/dungeons/medeval/variants/wall/8/texture.jpg" id="2_bkd6s"]
 [ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://assets/dungeons/medeval/pillar/pillar.glb" id="3_ggkle"]
-[ext_resource type="PackedScene" uid="uid://ef8ir25xwge2" path="res://assets/sconce.glb" id="4_j0uxg"]
+[ext_resource type="PackedScene" uid="uid://ef8ir25xwge2" path="res://assets/dungeons/medeval/sconce.glb" id="4_j0uxg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1, 5, 5)

@@ -326,7 +326,7 @@ func _material(prefix: String) -> StandardMaterial3D:
 
 #Nodes
 var DOOR;
-var FLOOR = preload("uid://bvoe5plbouam2")
+var FLOOR
 var WALL;
 var AREA_ENEMY;
 var ARENA_BOSS;
@@ -341,7 +341,8 @@ func _ready():
 	DOOR = preload("uid://bdnosseu7fsm")
 	AREA_ENEMY = preload("uid://bqoufhp54uwue")
 	ARENA_BOSS = preload("uid://bobtcptejmn2a")
-	
+	FLOOR = preload("uid://bvoe5plbouam2")
+	var floor_size=250
 
 	print("Generating level...")
 	var level = SaveHandler.currentLevel
@@ -353,10 +354,18 @@ func _ready():
 		if(level.theme == Level.LevelTheme.MACHINE):
 			DOOR = preload("uid://bv0qtxxmmlnu")
 			WALL = preload("uid://c16k18ck0f1hj")
+		elif(level.theme == Level.LevelTheme.JUNGLE):
+			floor_size=50
+			FLOOR = preload("uid://b61v8qf2ipthl")
+			DOOR = preload("uid://lfo3xvyqph2")
+			WALL = preload("uid://bul1mahgmqnrl")
+			FloorCeiling.ceiling_material = _material("res://assets/dungeons/medeval/variants/ceiling/3")
+			FloorCeiling.floor_material = _material("res://assets/dungeons/medeval/variants/floor/4")
 		elif(level.theme == Level.LevelTheme.DUNGEON):
 			var ceiling_prefix = "res://assets/dungeons/medeval/variants/ceiling/"
 			var floor_prefix = "res://assets/dungeons/medeval/variants/floor/"
 			var door_choices = [
+				preload("uid://bdnosseu7fsm"),
 				preload("uid://cybqn7iu5i8eg"),
 				preload("uid://diy6r0cvqqg7"),
 				preload("uid://dcpufpqme3c85"),
@@ -364,10 +373,10 @@ func _ready():
 				preload("uid://cn2023jpy6ffn"),
 				preload("uid://dleju5c66cvvu"),
 				preload("uid://djjvv1sa3ysk6"),
-				preload("uid://4s0h623tfp4i"),
-				preload("uid://bdnosseu7fsm")
+				preload("uid://4s0h623tfp4i")
 			]
 			var wall_choices = [
+				preload("uid://bpunwt6bwc3bm"),
 				preload("uid://0j4let3yj7fs"),
 				preload("uid://bhsk3kl4m1dfo"),
 				preload("uid://dqdax1p7cvkte"),
@@ -375,8 +384,8 @@ func _ready():
 				preload("uid://b45jee8rrmv3q"),
 				preload("uid://bcy3nul1q0sft"),
 				preload("uid://cd36i2ec1bcsg"),
-				preload("uid://ctgkom7yoctco"),
-				preload("uid://bpunwt6bwc3bm")
+				preload("uid://ctgkom7yoctco")
+				
 			]
 			var cdirs = DirAccess.open(ceiling_prefix).get_directories()
 			var fdirs = DirAccess.open(floor_prefix).get_directories()

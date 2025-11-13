@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6sf0cmw14tnc"
-path="res://.godot/imported/ceiling.jpg-3f05360a030265fa5b47149ad6ebd07a.ctex"
+uid="uid://l6hwrsdmlwpx"
+path="res://.godot/imported/pngtree-aged-brick-wall-covered-in-lush-green-virginia-creeper-vines-against-image_13583527.png-39b6e82c468a3c4430dba1b11421e796.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dungeons/medeval/variants/ceiling/1/ceiling.jpg"
-dest_files=["res://.godot/imported/ceiling.jpg-3f05360a030265fa5b47149ad6ebd07a.ctex"]
+source_file="res://assets/dungeons/jungle/pngtree-aged-brick-wall-covered-in-lush-green-virginia-creeper-vines-against-image_13583527.png"
+dest_files=["res://.godot/imported/pngtree-aged-brick-wall-covered-in-lush-green-virginia-creeper-vines-against-image_13583527.png-39b6e82c468a3c4430dba1b11421e796.ctex"]
 
 [params]
 

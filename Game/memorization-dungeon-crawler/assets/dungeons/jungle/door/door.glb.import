@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ef8ir25xwge2"
-path="res://.godot/imported/sconce.glb-022a0891e2dcb8296673a9e50ef22b74.scn"
+uid="uid://bvwem5tqb8tjf"
+path="res://.godot/imported/door.glb-32a56a30be83839da77fe92f045d21d0.scn"
 
 [deps]
 
-source_file="res://assets/sconce.glb"
-dest_files=["res://.godot/imported/sconce.glb-022a0891e2dcb8296673a9e50ef22b74.scn"]
+source_file="res://assets/dungeons/jungle/door/door.glb"
+dest_files=["res://.godot/imported/door.glb-32a56a30be83839da77fe92f045d21d0.scn"]
 
 [params]
 

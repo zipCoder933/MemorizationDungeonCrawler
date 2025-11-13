@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://oxj6462r64m" path="res://assets/dungeons/medeval/door/door frame_seaworn_stone_tiles_diff_4k.jpg" id="1_5vrq6"]
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_x7e51"]
 [ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://assets/dungeons/medeval/pillar/pillar.glb" id="3_ctcnh"]
-[ext_resource type="PackedScene" uid="uid://ef8ir25xwge2" path="res://assets/sconce.glb" id="4_gicrq"]
+[ext_resource type="PackedScene" uid="uid://ef8ir25xwge2" path="res://assets/dungeons/medeval/sconce.glb" id="4_gicrq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1, 5, 5)
@@ -28,7 +28,7 @@ material_override = SubResource("StandardMaterial3D_x7e51")
 mesh = SubResource("BoxMesh_5vrq6")
 
 [node name="pillar" parent="." instance=ExtResource("3_ctcnh")]
-transform = Transform3D(1.0288152, 0, 0, 0, 1.02, 0, 0, 0, 1.008, 0, 0, 2.5)
+transform = Transform3D(1.15, 0, 0, 0, 1.02, 0, 0, 0, 1.15, 0, 0, 2.5)
 
 [node name="sconce2" parent="." instance=ExtResource("4_gicrq")]
 transform = Transform3D(3.2783544e-07, 0, -2.5, 0, 2.5, 0, 2.5, 0, 3.2783544e-07, -0.74335897, 3, -0.1348089)
