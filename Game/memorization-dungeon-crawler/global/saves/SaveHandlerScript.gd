@@ -22,7 +22,7 @@ static func load_from_file(file_path: String) -> void:
 
 	print("Loading saves: ")
 	for entry_data in parsed.get("games", []):
-		var save = SaveEntry.CardMastery.from_dictionary(entry_data)
+		var save = SaveEntry.from_dictionary(entry_data)
 		print(save.toString())
 		saves.append(save)
 
@@ -40,9 +40,6 @@ static func save_to_file(file_path: String) -> void:
 	var root_data: Dictionary = {
 		"games": games_data
 	}
-
-	# 🪄 JSON.stringify(dictionary, indent, sort_keys)
-	# The second arg is indent (e.g. "\t" or "  ")
 	var json_string: String = JSON.stringify(root_data, "\t")
 
 	var file := FileAccess.open(file_path, FileAccess.WRITE)

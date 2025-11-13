@@ -10,6 +10,7 @@ size = Vector3(1, 5, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qgi6"]
 albedo_texture = ExtResource("2_v1tk0")
+uv1_scale = Vector3(2.955, 2.955, 2.955)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5vrq6"]
 size = Vector3(1, 5, 5)
@@ -34,6 +35,7 @@ mesh = SubResource("BoxMesh_5vrq6")
 transform = Transform3D(1.0288152, 0, 0, 0, 1.02, 0, 0, 0, 1.008, 0, 0, 2.5)
 
 [node name="Cube" parent="pillar" index="0"]
+transform = Transform3D(0.42246982, 0, -0.5034799, 0, 2.2497513, 0, 0.50347984, 0, 0.42246976, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_h5g5c")
 
 [node name="sconce2" parent="." instance=ExtResource("4_bjjms")]

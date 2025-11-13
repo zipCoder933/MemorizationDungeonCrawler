@@ -221,3 +221,9 @@ func _input(event):
 					submit_flashcard(true)
 				_flashcardNode.signal_flashcard_answer_changed.emit(current_flashcard_answer)
 				signal_flashcard_answer_changed.emit(current_flashcard_answer)
+
+static var rng = RandomNumberGenerator.new()
+
+static func random_deterministic(seed: int, y: int) -> RandomNumberGenerator:
+	rng.seed = int(hash(Vector2i(seed, y)))
+	return rng

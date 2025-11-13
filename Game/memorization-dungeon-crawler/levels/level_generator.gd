@@ -311,16 +311,18 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, starting_arena
 	
 	return stepsTaken
 
+func load_tex(base: String) -> Texture2D:
+	var tex = load(base + ".jpg")
+	return tex if tex else load(base + ".png")
 
-func _material(prefix:String) -> StandardMaterial3D:
+func _material(prefix: String) -> StandardMaterial3D:
 	var mat = StandardMaterial3D.new()
-	var texture =  load(prefix+"/texture.jpg")
-	var texture2 = load(prefix+"/normal.jpg")
-	mat.albedo_texture = texture
-	mat.normal_texture = texture2
+	mat.albedo_texture = load_tex(prefix + "/texture")
+	mat.normal_texture = load_tex(prefix + "/normal")
 	mat.texture_repeat = true
 	mat.uv1_scale = Vector3(40, 40, 1)
 	return mat
+
 
 #Nodes
 var DOOR;
@@ -333,61 +335,63 @@ const arenaSize = 1;
 const CLOSENESS_TO_END_PATH_END = 6;
 const FAILED_LEVEL_SURVIVAL = 0.3
 const DOOR_LIKELYHOOD = 0.3
-const DRILLS_TO_ARENA = 3 #How many total drills * card_review_number makes 1 arena in the map?
+const DRILLS_TO_ARENA = 8 #How many total drills * card_review_number makes 1 arena in the map?
 
 func _ready():
-	#Medeval level
 	DOOR = preload("uid://bdnosseu7fsm")
-	var door_choices = [
-		preload("uid://cybqn7iu5i8eg"),
-		preload("uid://diy6r0cvqqg7"),
-		preload("uid://dcpufpqme3c85"),
-		preload("uid://dfi5w6y8hlkr0"),
-		preload("uid://cn2023jpy6ffn"),
-		preload("uid://dleju5c66cvvu"),
-		preload("uid://djjvv1sa3ysk6"),
-		preload("uid://4s0h623tfp4i"),
-		preload("uid://bdnosseu7fsm")
-	]
-	var wall_choices = [
-		preload("uid://0j4let3yj7fs"),
-		preload("uid://bhsk3kl4m1dfo"),
-		preload("uid://dqdax1p7cvkte"),
-		preload("uid://kyolc7snufaa"),
-		preload("uid://b45jee8rrmv3q"),
-		preload("uid://bcy3nul1q0sft"),
-		preload("uid://cd36i2ec1bcsg"),
-		preload("uid://ctgkom7yoctco"),
-		preload("uid://bpunwt6bwc3bm")
-	]
-	var wall_choice = randi_range(0,wall_choices.size()-1)
-	WALL = wall_choices[wall_choice]
-	DOOR = door_choices[wall_choice]
 	AREA_ENEMY = preload("uid://bqoufhp54uwue")
 	ARENA_BOSS = preload("uid://bobtcptejmn2a")
 	
-	#Random ceiling and floor
-	var ceiling_prefix = "res://assets/dungeons/medeval/variants/ceiling/"
-	var floor_prefix = "res://assets/dungeons/medeval/variants/floor/"
-	var ceiling_files = DirAccess.open(ceiling_prefix).get_directories().size()
-	var floor_files = DirAccess.open(floor_prefix).get_directories().size()
-	
-	var path = ceiling_prefix+str(randi_range(1,ceiling_files))
-	print("ceiling texture: ",path)
-	FloorCeiling.ceiling_material = _material(path)
-	
-	path = floor_prefix+str(randi_range(1,floor_files))
-	print("floor texture: ",path)
-	FloorCeiling.floor_material = _material(path)
-	
+
 	print("Generating level...")
 	var level = SaveHandler.currentLevel
+	var game = SaveHandler.currentGame
 	var arenas_average = 5
 	if( level !=null):
+		var rd = Globals.random_deterministic(game.seed,game.completed_level)
 		#Set the theme
 		if(level.theme == Level.LevelTheme.MACHINE):
 			DOOR = preload("uid://bv0qtxxmmlnu")
 			WALL = preload("uid://c16k18ck0f1hj")
+		elif(level.theme == Level.LevelTheme.DUNGEON):
+			var ceiling_prefix = "res://assets/dungeons/medeval/variants/ceiling/"
+			var floor_prefix = "res://assets/dungeons/medeval/variants/floor/"
+			var door_choices = [
+				preload("uid://cybqn7iu5i8eg"),
+				preload("uid://diy6r0cvqqg7"),
+				preload("uid://dcpufpqme3c85"),
+				preload("uid://dfi5w6y8hlkr0"),
+				preload("uid://cn2023jpy6ffn"),
+				preload("uid://dleju5c66cvvu"),
+				preload("uid://djjvv1sa3ysk6"),
+				preload("uid://4s0h623tfp4i"),
+				preload("uid://bdnosseu7fsm")
+			]
+			var wall_choices = [
+				preload("uid://0j4let3yj7fs"),
+				preload("uid://bhsk3kl4m1dfo"),
+				preload("uid://dqdax1p7cvkte"),
+				preload("uid://kyolc7snufaa"),
+				preload("uid://b45jee8rrmv3q"),
+				preload("uid://bcy3nul1q0sft"),
+				preload("uid://cd36i2ec1bcsg"),
+				preload("uid://ctgkom7yoctco"),
+				preload("uid://bpunwt6bwc3bm")
+			]
+			var cdirs = DirAccess.open(ceiling_prefix).get_directories()
+			var fdirs = DirAccess.open(floor_prefix).get_directories()
+			var ceiling_choice = rd.randi_range(0, cdirs.size()-1) #Random ceiling
+			var floor_choice = rd.randi_range(0, fdirs.size()-1)#Random floor
+			var wall_choice = rd.randi_range(0,wall_choices.size()-1) #random wall
+			if(game.completed_level==0):
+				wall_choice=0
+				ceiling_choice=0
+				floor_choice=0
+			WALL = wall_choices[wall_choice]
+			DOOR = door_choices[wall_choice]
+			FloorCeiling.ceiling_material = _material(ceiling_prefix + cdirs[ceiling_choice])
+			FloorCeiling.floor_material = _material(floor_prefix + fdirs[floor_choice])
+
 		
 		#Calculate how many arenas we want
 		var cards = CardsHandler.card_count(level.card_tags)

@@ -92,8 +92,8 @@ static func makeLevel(dungeon:Variant, speed_seconds:float, card_tags:Array, lev
 	var card_review_number = 3
 	
 	var level =  Level.new(
-		dungeon.get("name", "Unknown Dungeon"),
-		dungeon.get("theme", "Unknown Theme"),
+		dungeon.get("name", ""),
+		dungeon.get("theme", ""),
 		card_review_number,
 		levelType,
 		dungeon.get("boss_name", ""),

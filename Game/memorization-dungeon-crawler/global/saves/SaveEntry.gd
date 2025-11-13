@@ -5,10 +5,11 @@ var name: String
 var path: String
 var completed_level: int
 var tag_mastery: Dictionary = {}  # tag (String) -> CardMastery
+var seed:int
 
-
-func _init(_name: String = "", _path: String = "", _completed_level: int = 0, _tag_mastery: Dictionary = {}):
+func _init(_name: String = "", _seed=0, _path: String = "", _completed_level: int = 0, _tag_mastery: Dictionary = {}):
 	name = _name
+	seed = _seed
 	path = _path
 	completed_level = _completed_level
 	tag_mastery = _tag_mastery
@@ -22,15 +23,35 @@ func to_dictionary() -> Dictionary:
 	
 	return {
 		"name": name,
+		"seed": seed,
 		"path": path,
 		"completed_level": completed_level,
 		"tag_mastery": mastery_data
 	}
 
+static func from_dictionary(data: Dictionary) -> SaveEntry:
+	var tag_mastery: Dictionary = {}
+	var tag_mastery_data = data.get("tag_mastery", {})
+
+	for tag in tag_mastery_data.keys():
+		var mastery_info = tag_mastery_data[tag]
+		var mastery = CardMastery.new(
+			mastery_info.get("average_speed", 0.0),
+			mastery_info.get("average_accuracy", 0.0),
+			mastery_info.get("attempts", 0)
+		)
+		tag_mastery[tag] = mastery
+
+	return SaveEntry.new(
+		data.get("name", ""),
+		data.get("seed", 0),
+		data.get("path", ""),
+		data.get("completed_level", 0),
+		tag_mastery
+	)
 
 func toString() -> String:
 	return "[SaveEntry: name='%s', path='%s', completed_level=%d, tag_mastery_count=%d]" % [name, path, completed_level, tag_mastery.size()]
-
 
 # Simple CardMastery class
 class CardMastery:
@@ -70,10 +91,7 @@ class CardMastery:
 		# Combine everything
 		var adjusted_mastery = pow(mastery * confidence, 1.2)
 		return adjusted_mastery
-
-
-
-
+		
 	func to_dictionary() -> Dictionary:
 		return {
 			"average_speed": average_speed,
@@ -81,24 +99,3 @@ class CardMastery:
 			"attempts": attempts,
 			"mastery_level": get_mastery_level()
 		}
-	
-
-	static func from_dictionary(data: Dictionary) -> SaveEntry:
-		var tag_mastery: Dictionary = {}
-		var tag_mastery_data = data.get("tag_mastery", {})
-
-		for tag in tag_mastery_data.keys():
-			var mastery_info = tag_mastery_data[tag]
-			var mastery = CardMastery.new(
-				mastery_info.get("average_speed", 0.0),
-				mastery_info.get("average_accuracy", 0.0),
-				mastery_info.get("attempts", 0)
-			)
-			tag_mastery[tag] = mastery
-
-		return SaveEntry.new(
-			data.get("name", ""),
-			data.get("path", ""),
-			data.get("completed_level", 0),
-			tag_mastery
-		)

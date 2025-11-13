@@ -1,7 +1,7 @@
 class_name Level
 extends Node
 
-enum LevelTheme {MACHINE, DUNGEON, JUNGLE}
+enum LevelTheme {MACHINE, DUNGEON}
 enum LevelType { STANDARD, BOSS }
 
 

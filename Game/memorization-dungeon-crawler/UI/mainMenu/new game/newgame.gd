@@ -30,7 +30,9 @@ func _on_start_button_pressed() -> void:
 
 	print("NAME: ",name_box.text," TEMPLATE: ",template_dir)
 	
-	var save1 = SaveEntry.new(name_box.text, template_dir, 0)
+	var seed = randi_range(-12233720365808,12233720368807)
+	print("seed: ",seed)
+	var save1 = SaveEntry.new(name_box.text, seed, template_dir, 0)
 	SaveHandler.saves.append(save1)
 	SaveHandler.save_to_file(Globals.SAVE_FILE)
 	_go_home()
