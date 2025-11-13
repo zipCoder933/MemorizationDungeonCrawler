@@ -84,6 +84,24 @@ func is_area_clear(x: int, z: int, radius: int) -> bool:
 				return false
 	return true
 
+func get_arena_center(x: int, z: int, x_radius: int, z_radius: int, direction: Direction) -> Vector3:
+	var cx = float(x)
+	var cz = float(z)
+	match direction:
+		Direction.ZPOS:
+			cz += 0.5 + x_radius      # move 1 forward for door gap, then half arena depth
+		Direction.ZNEG:
+			cz -= 0.5 + x_radius
+		Direction.XPOS:
+			cx += 0.5 + x_radius
+		Direction.XNEG:
+			cx -= 0.5 + x_radius
+	# Shift by +0.5 to center in the tile grid
+	return Vector3(cx + 0.5, 0, cz + 0.5)
+
+
+
+
 func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, testMode:bool, enemy:Resource) -> bool:
 	var final = moveIn(Vector3(x,0,z),direction)
 	x = final.x;
@@ -91,15 +109,7 @@ func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, t
 	
 	if !testMode and enemy !=null:
 		var instance = enemy.instantiate()
-		var enemyPos = Vector3(x+0.5,0,z+0.5)
-		if(direction == Direction.ZPOS):
-			enemyPos.z += 1
-		elif(direction == Direction.ZNEG):
-			enemyPos.z -= 1
-		elif(direction == Direction.XPOS):
-			enemyPos.x += 1
-		else:
-			enemyPos.x -= 1
+		var enemyPos = get_arena_center(x,z,x_radius,z_radius,direction)
 		instance.position = _format_vec3(enemyPos)
 		add_child(instance)
 	
@@ -147,6 +157,7 @@ func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, t
 					box(ox,oz,false,false, false)
 		if !testMode:
 			wall(x, z + 0.5, DOOR,direction)
+	
 	return true
 
 func _place_wall(x: float, z: float, dir:Direction, keepExistingWalls: bool=true, addDoors:bool = false) -> void:
@@ -255,7 +266,9 @@ func path_direction(direction:Direction, length:int, placeDoors:bool, idea_path)
 	return madeBox
 
 
-func path(path_start:Vector3, path_end:Vector3, max_failures:int, starting_arena_size:int, arenaSize:int, failedLevelSurvival:float, boss:bool) -> int:
+func path(path_start:Vector3, path_end:Vector3, max_failures:int, \
+		starting_arena_size:int, arenaSize:int, failedLevelSurvival:float, boss:bool,\
+		set_player_spawn_at_start:bool=false) -> int:
 	place = path_start
 	var stepsTaken = 0
 	var failures = 0
@@ -279,12 +292,24 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, starting_arena
 			if(stepsTaken == 0 and starting_arena_size > 0):
 				if direction == Direction.XPOS:
 					arena(path_start.x+1,path_start.z, starting_arena_size,starting_arena_size, Direction.XNEG, false,null)
+					if(set_player_spawn_at_start):
+						PLAYER_SPAWN = _format_vec3(\
+						get_arena_center(path_start.x+1,path_start.z, starting_arena_size,starting_arena_size, Direction.XNEG))
 				elif direction == Direction.XNEG:
 					arena(path_start.x-1,path_start.z, starting_arena_size,starting_arena_size, Direction.XPOS, false,null)
+					if(set_player_spawn_at_start):
+						PLAYER_SPAWN = _format_vec3(\
+						get_arena_center(path_start.x-1,path_start.z, starting_arena_size,starting_arena_size, Direction.XPOS))
 				elif direction == Direction.ZPOS:
 					arena(path_start.x,path_start.z+1, starting_arena_size,starting_arena_size, Direction.ZNEG, false,null)
+					if(set_player_spawn_at_start):
+						PLAYER_SPAWN = _format_vec3(\
+						get_arena_center(path_start.x,path_start.z+1, starting_arena_size,starting_arena_size, Direction.ZNEG))
 				else:
 					arena(path_start.x,path_start.z-1, starting_arena_size,starting_arena_size, Direction.ZPOS, false,null)
+					if(set_player_spawn_at_start):
+						PLAYER_SPAWN = _format_vec3(\
+						get_arena_center(path_start.x,path_start.z-1, starting_arena_size,starting_arena_size, Direction.ZPOS))
 			lastSuccesfullDirection = direction
 			stepsTaken +=1
 			failures = 0
@@ -323,7 +348,7 @@ func _material(prefix: String) -> StandardMaterial3D:
 	mat.uv1_scale = Vector3(40, 40, 1)
 	return mat
 
-
+var PLAYER_SPAWN:Vector3
 #Nodes
 var DOOR;
 var FLOOR
@@ -419,8 +444,12 @@ func _ready():
 	Globals.completedArenas = 0
 	Globals.totalArenas = 0
 	#box(start_pos.x, start_pos.z, true, true, false)
-	print("MAIN PATH: ", path(start_pos, main_path_end, 25, 1, arenaSize+2, 1, true))
+	print("MAIN PATH: ", path(start_pos, main_path_end, 25, 1, arenaSize+2, 1, true, true))
 	#arena(start_pos.x-2,start_pos.z, 1,1, Direction.XPOS, false,null)
+	
+	print("Center: ",PLAYER_SPAWN)
+	Globals.get_player().global_position.x = PLAYER_SPAWN.x
+	Globals.get_player().global_position.z = PLAYER_SPAWN.z
 	
 	for i in range(0,200):
 		place = searched.keys()[randi_range(0,searched.keys().size()-1)]

@@ -29,7 +29,7 @@
 	},
 	{
 	  "name": "Dungeon 4",
-	  "theme": "machine",
+	  "theme": "dungeon",
 	  "boss_name": "Bossmania",
 	  "themed_cards": ["6s"],
 	  "themed_drill_levels": 1,
@@ -61,7 +61,7 @@
 	},
 	{
 	  "name": "Dungeon 8",
-	  "theme": "dungeon",
+	  "theme": "Jungle",
 	  "boss_name": "Bossmania",
 	  "themed_cards": ["12s"],
 	  "themed_drill_levels": 1,
@@ -70,7 +70,7 @@
   ],
   "final_dungeon": {
 	"name": "The Final Dungeon",
-	"theme": "dungeon",
+	"theme": "Jungle",
 	"complete_drill_levels": 3,
 	"boss_name": "The one above all"
   }

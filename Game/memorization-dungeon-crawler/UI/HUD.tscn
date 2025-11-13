@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfj67b4iujjtf"]
+[gd_scene load_steps=13 format=3 uid="uid://bfj67b4iujjtf"]
 
 [ext_resource type="Script" uid="uid://qn46exgdgmle" path="res://UI/hud.gd" id="1_ijstf"]
 [ext_resource type="Texture2D" uid="uid://ch714bgi1e00f" path="res://assets/textures/health_indicator.png" id="1_yixhe"]
@@ -8,6 +8,9 @@
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="5_f2wx0"]
 [ext_resource type="PackedScene" uid="uid://cynckudprgttu" path="res://UI/Flashcard/flashcard.tscn" id="6_gppie"]
 [ext_resource type="Texture2D" uid="uid://dg8j5ptwrgu52" path="res://assets/textures/Cogni-crawl_final.png" id="7_2ptjp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md4fy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4idxp"]
 content_margin_left = 22.0
@@ -36,25 +39,42 @@ script = ExtResource("1_ijstf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="DamageBar" type="ProgressBar" parent="CanvasLayer"]
-anchors_preset = -1
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.034
-offset_left = -231.00003
-offset_top = 8.0
-offset_right = 49.0
-offset_bottom = 24.0
+offset_left = -236.0
+offset_top = 7.0
+offset_right = -7.0
+offset_bottom = 45.0
 grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_md4fy")
+
+[node name="DamageBar" type="ProgressBar" parent="CanvasLayer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -184.00005
+offset_top = -16.5
+offset_right = 40.50009
+offset_bottom = 13.454987
+grow_horizontal = 0
+grow_vertical = 2
 scale = Vector2(0.7999998, 1.0515778)
+size_flags_vertical = 12
+size_flags_stretch_ratio = 0.0
 theme = ExtResource("5_f2wx0")
+theme_override_font_sizes/font_size = 20
 theme_override_styles/background = SubResource("StyleBoxFlat_4idxp")
 theme_override_styles/fill = SubResource("StyleBoxFlat_o3xbc")
 max_value = 1.0
 value = 1.0
-metadata/_edit_use_anchors_ = true
 
-[node name="HealthIndicator" type="Sprite2D" parent="CanvasLayer/DamageBar"]
+[node name="HealthIndicator" type="Sprite2D" parent="CanvasLayer/Panel/DamageBar"]
 position = Vector2(-31.250015, 15.215232)
 scale = Vector2(0.29334688, 0.20563807)
 texture = ExtResource("1_yixhe")
@@ -87,16 +107,15 @@ offset_bottom = 0.0
 grow_vertical = 0
 
 [node name="GameOverPanel" type="Panel" parent="CanvasLayer"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -124.25
-offset_top = -81.0
+offset_top = -107.5
 offset_right = 124.25
-offset_bottom = 81.0
+offset_bottom = 107.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_f2wx0")
@@ -110,7 +129,8 @@ text = "GAME OVER!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/GameOverPanel"]
+[node name="quit" type="Button" parent="CanvasLayer/GameOverPanel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -120,6 +140,18 @@ offset_top = -27.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Save & Quit"
+
+[node name="try_again" type="Button" parent="CanvasLayer/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -82.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Try Again"
 
 [node name="VictoryPanel" type="Panel" parent="CanvasLayer"]
 visible = false
@@ -132,7 +164,8 @@ grow_vertical = 2
 theme = ExtResource("5_f2wx0")
 theme_override_styles/panel = ExtResource("3_uk570")
 
-[node name="Label" type="Label" parent="CanvasLayer/VictoryPanel"]
+[node name="VictoryText" type="Label" parent="CanvasLayer/VictoryPanel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -143,7 +176,7 @@ text = "Victory!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CogniCrawlFinal" type="Sprite2D" parent="CanvasLayer/VictoryPanel/Label"]
+[node name="CogniCrawlFinal" type="Sprite2D" parent="CanvasLayer/VictoryPanel/VictoryText"]
 position = Vector2(576, 184.00002)
 scale = Vector2(0.069335885, 0.069335885)
 texture = ExtResource("7_2ptjp")
@@ -245,7 +278,8 @@ text = "LEVEL --"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="CanvasLayer/GameOverPanel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverPanel/quit" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverPanel/try_again" to="." method="_on_try_again_pressed"]
 [connection signal="pressed" from="CanvasLayer/VictoryPanel/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/VictoryPanel/Next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuPanel/home" to="." method="_on_home_pressed"]

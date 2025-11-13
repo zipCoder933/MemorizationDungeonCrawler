@@ -1,7 +1,7 @@
 extends Control
 class_name HUD
 @export var player:Player
-@onready var damage_bar: ProgressBar = $CanvasLayer/DamageBar
+@onready var damage_bar: ProgressBar = %DamageBar
 @onready var label: Label = $CanvasLayer/Label
 @onready var game_over_panel: Panel = $CanvasLayer/GameOverPanel
 @onready var victory_panel: Panel = $CanvasLayer/VictoryPanel
@@ -20,6 +20,7 @@ func panelsVisible():
 var current_question:Question
 
 func _ready():
+	game_over_panel.visible=false
 	loading_panel.modulate.a = 1
 	victory_panel.modulate.a = 0
 	victory_panel.visible = false
@@ -52,22 +53,23 @@ func _player_health_changed(health:float):
 func _game_over():
 	game_over_panel.visible = true
 
+@onready var victory_text: Label = %VictoryText
+@onready var next: Button = $CanvasLayer/VictoryPanel/Next
+
 func _victory():
 	print("VICTORY EVENT CALLED")
+	if(SaveHandler.currentGame.completed_level >= LevelsHandler.levels.size()):
+		victory_text.text = "Game Complete!"
+		next.text = "Replay Final Level"
 	victory_panel.visible = true
 
-#back to home
 func _on_button_pressed() -> void:
-	go_home()
+	Globals.go_home()
 func _on_back_pressed() -> void:
-	go_home()
+	Globals.go_home()
 func _on_home_pressed() -> void:
-	go_home()
-
-#Save and quit
-func go_home():
-	SaveHandler.save_to_file(Globals.SAVE_FILE)
-	get_tree().change_scene_to_file("res://UI/mainMenu/main/main_menu.tscn")
-
+	Globals.go_home()
 func _on_next_pressed() -> void:
 	Globals.next_level()
+func _on_try_again_pressed() -> void:
+	Globals.redo_level()

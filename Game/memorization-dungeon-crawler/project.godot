@@ -11,14 +11,16 @@ config_version=5
 [application]
 
 config/name="MemorizationDungeonCrawler"
+config/description="A Flashcard Memorization Dungeon Crawler"
+config/version="beta 1.0"
 run/main_scene="uid://cpl08t4hcotn"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 boot_splash/fullsize=false
-config/icon="uid://bbn0n0yg17n1x"
+config/icon="uid://d260hqcqu35ev"
 config/macos_native_icon="uid://bbn0n0yg17n1x"
-config/windows_native_icon="res://icon.ico"
+config/windows_native_icon="res://assets/icon.ico"
 
 [autoload]
 

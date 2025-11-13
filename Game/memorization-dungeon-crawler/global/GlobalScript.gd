@@ -42,13 +42,28 @@ func start_game(entry:SaveEntry, goToLevel:bool = true):
 	_load_level_current_game()
 	if(goToLevel):
 		go_to_level()
-	
-func next_level(goToLevel:bool = true):
-	SaveHandler.currentGame.completed_level+=1
+
+func redo_level(goToLevel:bool = true):
 	SaveHandler.save_to_file(Globals.SAVE_FILE)
 	_load_level_current_game()
 	if(goToLevel):
 		go_to_level()
+
+func next_level(goToLevel:bool = true):
+	SaveHandler.currentGame.completed_level+=1
+	
+	if(SaveHandler.currentGame.completed_level > LevelsHandler.levels.size()):
+		#Just replay the final level again
+		SaveHandler.currentGame.completed_level = LevelsHandler.levels.size()
+		
+	SaveHandler.save_to_file(Globals.SAVE_FILE)
+	_load_level_current_game()
+	if(goToLevel):
+		go_to_level()
+
+func go_home():
+	SaveHandler.save_to_file(Globals.SAVE_FILE)
+	get_tree().change_scene_to_file("res://UI/mainMenu/main/main_menu.tscn")
 
 func map(value, from_min, from_max, to_min, to_max):
 	return to_min + (value - from_min) * (to_max - to_min) / (from_max - from_min)

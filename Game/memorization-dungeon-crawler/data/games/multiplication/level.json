@@ -5,7 +5,7 @@
   "dungeons": [
 	{
 	  "name": "Dungeon 1",
-	  "theme": "jungle",
+	  "theme": "Dungeon",
 	  "boss_name": "Da Boss",
 	  "themed_cards": ["1s", "2s"],
 	  "themed_drill_levels": 1,
@@ -29,7 +29,7 @@
 	},
 	{
 	  "name": "Dungeon 4",
-	  "theme": "machine",
+	  "theme": "Dungeon",
 	  "boss_name": "Bossmania",
 	  "themed_cards": ["6s"],
 	  "themed_drill_levels": 1,
@@ -37,7 +37,7 @@
 	},
 	{
 	  "name": "Dungeon 5",
-	  "theme": "machine",
+	  "theme": "Dungeon",
 	  "boss_name": "Bossmania",
 	  "themed_cards": ["7s"],
 	  "themed_drill_levels": 1,
@@ -45,7 +45,7 @@
 	},
 	{
 	  "name": "Dungeon 6",
-	  "theme": "machine",
+	  "theme": "Dungeon",
 	  "boss_name": "Bossmania",
 	  "themed_cards": ["8s"],
 	  "themed_drill_levels": 1,
@@ -53,7 +53,7 @@
 	},
 	{
 	  "name": "Dungeon 7",
-	  "theme": "dungeon",
+	  "theme": "Jungle",
 	  "boss_name": "Bossmania",
 	  "themed_cards": ["9s", "10s", "11s"],
 	  "themed_drill_levels": 1,
@@ -61,7 +61,7 @@
 	},
 	{
 	  "name": "Dungeon 8",
-	  "theme": "dungeon",
+	  "theme": "Jungle",
 	  "boss_name": "Bossmania",
 	  "themed_cards": ["12s"],
 	  "themed_drill_levels": 1,
