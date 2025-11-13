@@ -312,10 +312,10 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, starting_arena
 	return stepsTaken
 
 
-func _material(image:int) -> StandardMaterial3D:
+func _material(prefix:String) -> StandardMaterial3D:
 	var mat = StandardMaterial3D.new()
-	var texture =  load("res://assets/dungeons/medeval/variants/"+str(image)+"/texture.jpg")
-	var texture2 = load("res://assets/dungeons/medeval/variants/"+str(image)+"/normal.jpg")
+	var texture =  load(prefix+"/texture.jpg")
+	var texture2 = load(prefix+"/normal.jpg")
 	mat.albedo_texture = texture
 	mat.normal_texture = texture2
 	mat.texture_repeat = true
@@ -366,8 +366,19 @@ func _ready():
 	AREA_ENEMY = preload("uid://bqoufhp54uwue")
 	ARENA_BOSS = preload("uid://bobtcptejmn2a")
 	
-	FloorCeiling.floor_material = _material(randi_range(1,9))
-	FloorCeiling.ceiling_material = _material(randi_range(1,9))
+	#Random ceiling and floor
+	var ceiling_prefix = "res://assets/dungeons/medeval/variants/ceiling/"
+	var floor_prefix = "res://assets/dungeons/medeval/variants/floor/"
+	var ceiling_files = DirAccess.open(ceiling_prefix).get_directories().size()
+	var floor_files = DirAccess.open(floor_prefix).get_directories().size()
+	
+	var path = ceiling_prefix+str(randi_range(1,ceiling_files))
+	print("ceiling texture: ",path)
+	FloorCeiling.ceiling_material = _material(path)
+	
+	path = floor_prefix+str(randi_range(1,floor_files))
+	print("floor texture: ",path)
+	FloorCeiling.floor_material = _material(path)
 	
 	print("Generating level...")
 	var level = SaveHandler.currentLevel
