@@ -87,7 +87,8 @@ offset_bottom = 48.0
 theme_override_fonts/font = ExtResource("4_md4fy")
 text = "COMPLETED ARENAS -/-"
 
-[node name="Label2" type="Label" parent="CanvasLayer"]
+[node name="boss_info" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
 offset_left = 16.0
 offset_top = 48.0
 offset_right = 390.0

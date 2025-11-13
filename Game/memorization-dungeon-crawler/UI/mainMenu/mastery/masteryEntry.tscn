@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba4xtnhu7h7l5"]
+[gd_scene load_steps=4 format=3 uid="uid://ba4xtnhu7h7l5"]
 
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="1_r5w7c"]
 [ext_resource type="Script" uid="uid://dwq0wobokqiea" path="res://UI/mainMenu/mastery/mastery_entry.gd" id="2_jjily"]
+[ext_resource type="FontFile" uid="uid://l2eim6vo1a7j" path="res://assets/fonts/New_Rocker/NewRocker-Regular.ttf" id="3_lem88"]
 
 [node name="Panel" type="Panel"]
 custom_minimum_size = Vector2(0, 85)
@@ -27,6 +28,7 @@ theme_override_constants/margin_right = 8
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_r5w7c")
+theme_override_constants/separation = 15
 
 [node name="tag" type="Label" parent="MarginContainer/mastery entry"]
 unique_name_in_owner = true
@@ -38,8 +40,17 @@ text = "tag"
 [node name="mastery" type="Label" parent="MarginContainer/mastery entry"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_fonts/font = ExtResource("3_lem88")
+theme_override_font_sizes/font_size = 14
+text = "mastery"
+horizontal_alignment = 2
+
+[node name="stats" type="Label" parent="MarginContainer/mastery entry"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lem88")
+theme_override_font_sizes/font_size = 14
 text = "speed
-mastery
-level"
+accuracy
+attempts"
 horizontal_alignment = 2

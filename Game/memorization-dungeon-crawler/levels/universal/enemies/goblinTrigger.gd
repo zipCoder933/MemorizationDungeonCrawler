@@ -29,7 +29,6 @@ func _single_drill(success):
 
 func _finish_drill(success, count):
 	if(success > 0):
-		Globals.completedArenas += 1
 		isDead = true
 		_animation_player.play(death_animation,0.2)
 
@@ -56,6 +55,7 @@ func _process(delta):
 		if(node_3d.scale.y <= 0): #Delete this node
 			var p = Vector3(node_3d.global_position.x,node_3d.global_position.y,node_3d.global_position.z)
 			Globals.spawn_potion(p)
+			Globals.spawn_key(p)
 			node_3d.queue_free()
 	else:
 		var dir = target_pos - self_pos

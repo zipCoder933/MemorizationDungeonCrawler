@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b814qo7tsdd6q"]
+[gd_scene load_steps=14 format=3 uid="uid://b814qo7tsdd6q"]
 
 [ext_resource type="Script" uid="uid://qnek84emx4ad" path="res://levels/empty_level.gd" id="1_xvfop"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_6awyk"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bqoufhp54uwue" path="res://levels/dungeons/medeval/enemies/goblin.tscn" id="9_36vw8"]
 [ext_resource type="PackedScene" uid="uid://bobtcptejmn2a" path="res://levels/dungeons/medeval/enemies/orc_boss.tscn" id="10_xvfop"]
 [ext_resource type="PackedScene" uid="uid://c4iomrx46ssjc" path="res://levels/universal/potion/potion.tscn" id="11_asn8m"]
+[ext_resource type="PackedScene" uid="uid://cima58l8yrht0" path="res://levels/universal/key/key.tscn" id="12_0grop"]
 
 [sub_resource type="Resource" id="Resource_0oum7"]
 script = ExtResource("3_io462")
@@ -326,3 +327,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033122063, 3.7547858, 0.18
 
 [node name="potion24" parent="." instance=ExtResource("11_asn8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033122063, 3.7547858, -1.0577171)
+
+[node name="Key" parent="." instance=ExtResource("12_0grop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.434298, 1.1920929e-07, 2.4642081)
+
+[node name="Key2" parent="." instance=ExtResource("12_0grop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7977576, 1.1920929e-07, 2.4642081)
+
+[node name="Key3" parent="." instance=ExtResource("12_0grop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.434298, 1.1920929e-07, 1.8522682)
+
+[node name="Key4" parent="." instance=ExtResource("12_0grop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7977576, 1.1920929e-07, 1.8522682)
+
+[node name="Key5" parent="." instance=ExtResource("12_0grop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.434298, 1.1920929e-07, -0.55309343)
+
+[node name="Key6" parent="." instance=ExtResource("12_0grop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7977576, 1.1920929e-07, -0.55309343)

@@ -74,28 +74,25 @@ class CardMastery:
 		attempts += 1
 		average_speed = ((average_speed * (attempts - 1)) + new_speed) / attempts
 
-	const PERFECT_SPEED_MS := 200.0
-	const SLOW_SPEED_MS := 2000.0
 	const ATTEMPT_THRESHOLD := 5  # how many attempts needed for full confidence
 	
-	func get_mastery_level() -> float:
+	func get_mastery_level(slow_speed_ms:int, target_speed_ms:int) -> float:
 		# Normalize accuracy (0–100) to 0–1
 		var acc_factor = clamp(average_accuracy / 100.0, 0.0, 1.0)
 		# Normalize speed (ms) to 0–1 (fast = 1, slow = 0)
-		var speed_factor = clamp(1.0 - (average_speed / SLOW_SPEED_MS), 0.0, 1.0)
-		# Blend — accuracy matters more
-		var mastery = (acc_factor * 0.7) + (speed_factor * 0.3)
-		# Confidence factor based on attempts (0.0–1.0)
-		# If attempts < threshold, scale down mastery proportionally
-		var confidence = clamp(float(attempts) / ATTEMPT_THRESHOLD, 0.0, 1.0)
+		var speed_factor = clamp(Globals.map(average_speed, slow_speed_ms, target_speed_ms, 0, 1), 0,1)
+		#Confidence
+		#var confidence = clamp(Globals.map(average_speed, 0, 10, 0, 1), 0,1)
+		
+		var mastery = acc_factor * speed_factor
+
 		# Combine everything
-		var adjusted_mastery = pow(mastery * confidence, 1.2)
-		return adjusted_mastery
+		#var adjusted_mastery = pow(mastery * confidence, 1.2)
+		return mastery
 		
 	func to_dictionary() -> Dictionary:
 		return {
 			"average_speed": average_speed,
 			"average_accuracy": average_accuracy,
-			"attempts": attempts,
-			"mastery_level": get_mastery_level()
+			"attempts": attempts
 		}

@@ -373,6 +373,7 @@ func _ready():
 	var level = SaveHandler.currentLevel
 	var game = SaveHandler.currentGame
 	var arenas_average = 5
+	var includeBossfight = false
 	if( level !=null):
 		var rd = Globals.random_deterministic(game.seed,game.completed_level)
 		#Set the theme
@@ -410,6 +411,10 @@ func _ready():
 				preload("uid://ctgkom7yoctco")
 				
 			]
+			
+			if(level.levelType == Level.LevelType.BOSS):
+				includeBossfight = true
+			
 			var cdirs = DirAccess.open(ceiling_prefix).get_directories()
 			var fdirs = DirAccess.open(floor_prefix).get_directories()
 			var ceiling_choice = rd.randi_range(0, cdirs.size()-1) #Random ceiling
@@ -424,7 +429,6 @@ func _ready():
 			FloorCeiling.ceiling_material = _material(ceiling_prefix + cdirs[ceiling_choice])
 			FloorCeiling.floor_material = _material(floor_prefix + fdirs[floor_choice])
 
-		
 		#Calculate how many arenas we want
 		var cards = CardsHandler.card_count(level.card_tags)
 		var total_drills = level.card_review_number * cards
@@ -440,13 +444,16 @@ func _ready():
 	var main_path_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()
 	var main_path_length = randi_range(10,20)
 	var main_path_end =(Vector3(start_pos) + main_path_dir * main_path_length)
-	
-	Globals.completedArenas = 0
 	Globals.totalArenas = 0
 	#box(start_pos.x, start_pos.z, true, true, false)
-	print("MAIN PATH: ", path(start_pos, main_path_end, 25, 1, arenaSize+2, 1, true, true))
-	#arena(start_pos.x-2,start_pos.z, 1,1, Direction.XPOS, false,null)
+	if(includeBossfight):
+		print("BOSS PATH: ",\
+		 path(start_pos, main_path_end, 25, 1, arenaSize+2, 1, true, true))
+	else:
+		print("STANDARD PATH: ",\
+		 path(start_pos, main_path_end, 25, 1, arenaSize, 1, false, true))
 	
+	#arena(start_pos.x-2,start_pos.z, 1,1, Direction.XPOS, false,null)
 	print("Center: ",PLAYER_SPAWN)
 	Globals.get_player().global_position.x = PLAYER_SPAWN.x
 	Globals.get_player().global_position.z = PLAYER_SPAWN.z

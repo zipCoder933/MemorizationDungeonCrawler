@@ -14,25 +14,33 @@ enum PlayerMode{
 	FACTS,
 	GAME_OVER, VICTORY
 }
+
 #camera
 @export var phantom_camera_3d: PhantomCamera3D
 var camRotation = Vector3(0, 0, 0)
 const cameraSensitivity:float = 4;
 var cam_offset:Vector2 = Vector2(0,0)
 var target_cam_offset:Vector2 = Vector2(0,0)
+
 #movement
 var movement:Vector3 = Vector3.ZERO
 var is_on_floor:bool = false
 const FORWARD_SPEED = 400
-
 const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
 
 
-#health
+#health / status
 signal health_changed
 const MAX_HEALTH = 1
 var health:float = 1
+var keys:int = 0
+
+func obtain_key():
+	keys+=1
+	if( SaveHandler.currentLevel.levelType == Level.LevelType.STANDARD and\
+	keys >= Globals.totalArenas):
+		Globals.victory_event()
 
 func set_health(value:float):
 	if(health != value):
@@ -196,3 +204,7 @@ func _on_body_entered(body: Node) -> void:
 		body.open_door(true)
 	elif body is GoblinTrigger:
 		body.trigger()
+	elif body is KeyTrigger:
+		obtain_key()
+		body.delete_key()
+		

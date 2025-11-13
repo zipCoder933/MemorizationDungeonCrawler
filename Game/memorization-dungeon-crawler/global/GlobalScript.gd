@@ -3,7 +3,6 @@ extends Node
 
 static var CARD_MISSING_IMAGE = "res://assets/icons/card_missing_image.png"
 static var totalArenas = 0
-static var completedArenas = 0
 
 signal fact_answering_mode
 signal adventure_mode
@@ -79,7 +78,12 @@ func spawn_potion(pos:Vector3):
 	instance.global_position = Vector3(pos)
 	add_child(instance)
 	instance.linear_velocity = Vector3(0,10,0)
-	
+
+const KEY = preload("uid://cima58l8yrht0")
+func spawn_key(pos:Vector3):
+	var instance = KEY.instantiate()
+	instance.global_position = Vector3(pos)
+	add_child(instance)
 
 func go_to_level():
 	get_tree().change_scene_to_file("res://levels/Level.tscn")
@@ -175,8 +179,6 @@ func submit_flashcard(succeed:bool):
 		accuracy = 100
 		succeeded += 1
 
-	#Record speed and accuracy	
-	print("time: ",time_ms," accuracy: ",accuracy)
 	for tag in _current_flashcard_question.card.tags:
 		var existing_entry:SaveEntry.CardMastery = SaveHandler.currentGame.tag_mastery.get(tag, null)
 		if existing_entry:

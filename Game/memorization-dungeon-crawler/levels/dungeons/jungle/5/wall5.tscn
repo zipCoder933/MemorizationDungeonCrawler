@@ -10,7 +10,7 @@
 size = Vector3(1, 10, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ar0i"]
-size = Vector3(1.751709, 5.7478027, 2.1428528)
+size = Vector3(1.4119873, 5.7478027, 1.8219147)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2eu1"]
 albedo_texture = ExtResource("2_6ar0i")
@@ -36,7 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 shape = SubResource("BoxShape3D_xfbw5")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3758545, 2.3189697, 2.5706244)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20599365, 2.3891988, 2.4101553)
 shape = SubResource("BoxShape3D_6ar0i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -57,10 +57,10 @@ mesh = SubResource("QuadMesh_ag208")
 surface_material_override/0 = SubResource("StandardMaterial3D_ke0kl")
 
 [node name="Sketchfab_Scene2" parent="." instance=ExtResource("6_ke0kl")]
-transform = Transform3D(-3.3906247e-08, 0, 0.7756848, 0, 0.77568465, 0, -0.7756846, 0, -3.3906257e-08, -0.6356864, -0.07776594, 2.3324862)
+transform = Transform3D(-3.3906247e-08, 0, 0.7756848, 0, 0.77568465, 0, -0.7756846, 0, -3.3906257e-08, -0.3432181, -0.07776594, 2.3324864)
 
 [node name="Sketchfab_Scene3" parent="." instance=ExtResource("6_ke0kl")]
-transform = Transform3D(-0.7756846, 0, -6.7812515e-08, 0, 0.7756846, 0, 6.781249e-08, 0, -0.7756847, -0.026575089, -0.09152627, 2.9329348)
+transform = Transform3D(-0.7756846, 0, -6.7812515e-08, 0, 0.7756846, 0, 6.781249e-08, 0, -0.7756847, 0.15099454, -0.09152627, 2.797146)
 
 [node name="door2" parent="." instance=ExtResource("5_ag208")]
 transform = Transform3D(-7.1859446e-08, 0, 1.6439525, 0, 1.6439525, 0, -1.6439525, 0, -7.1859446e-08, 0.010050774, 1.2391367, -0.05108714)

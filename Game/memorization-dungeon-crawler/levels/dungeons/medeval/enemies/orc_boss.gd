@@ -9,9 +9,8 @@ func _ready():
 
 #Disable the orc boss until we have completed all bosses
 func _process(delta: float) -> void:
-	collision_shape_3d.disabled = Globals.completedArenas < Globals.totalArenas
+	collision_shape_3d.disabled = Globals.get_player().keys < Globals.totalArenas
 	
 func _finished_drill(success, all):
-		print("Finished King Orc drill! You win!")
 		if(success > 0):
-			Globals.victory.emit()
+			Globals.victory_event()

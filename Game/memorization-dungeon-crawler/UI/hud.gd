@@ -18,6 +18,7 @@ func panelsVisible():
 	return game_over_panel.visible or victory_panel.visible or menu_panel.visible
 
 var current_question:Question
+@onready var boss_info: Label = %boss_info
 
 func _ready():
 	game_over_panel.visible=false
@@ -28,6 +29,8 @@ func _ready():
 	player.health_changed.connect(_player_health_changed)
 	Globals.signal_game_over.connect(_game_over)
 	Globals.signal_victory.connect(_victory)
+	if(SaveHandler.currentLevel != null):
+		boss_info.visible = SaveHandler.currentLevel.levelType == Level.LevelType.BOSS
 	if( SaveHandler.currentGame !=null ):
 		level_indicator.text = "LEVEL " + str(SaveHandler.currentGame.completed_level)+": "+SaveHandler.currentLevel.level_name
 
@@ -37,7 +40,7 @@ func _input(event):
 			menu_panel.visible = !menu_panel.visible
 
 func _process(delta):
-	label.text = "COMPLETED ARENAS "+str(Globals.completedArenas)+" / "+str(Globals.totalArenas) 
+	label.text = "KEYS: "+str(player.keys)+" / "+str(Globals.totalArenas) 
 	card_ui.visible = Globals.has_flashcard()
 	
 	if(victory_panel.visible):

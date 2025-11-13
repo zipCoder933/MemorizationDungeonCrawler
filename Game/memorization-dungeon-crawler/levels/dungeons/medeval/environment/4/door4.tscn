@@ -18,6 +18,7 @@ size = Vector3(3.1680908, 5, 0.5579834)
 [node name="Door" type="StaticBody3D" node_paths=PackedStringArray("door")]
 collision_layer = 2
 script = ExtResource("1_1fwk3")
+slide_speed = 6
 door = NodePath("door mesh")
 
 [node name="wall sides" type="CollisionShape3D" parent="."]
