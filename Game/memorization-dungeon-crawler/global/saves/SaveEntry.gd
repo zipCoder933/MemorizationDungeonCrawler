@@ -55,12 +55,12 @@ func toString() -> String:
 
 # Simple CardMastery class
 class CardMastery:
-	var average_speed: float
+	var average_speed_ms: float
 	var average_accuracy: float
 	var attempts: int
 
 	func _init(_speed: float = 0.0, _accuracy: float = 0.0, _attempts: int = 0):
-		average_speed = _speed
+		average_speed_ms = _speed
 		average_accuracy = _accuracy
 		attempts = _attempts
 
@@ -69,30 +69,21 @@ class CardMastery:
 		attempts += 1
 		average_accuracy = ((average_accuracy * (attempts - 1)) + new_accuracy) / attempts
 
-
 	func update_speed(new_speed: float):
 		attempts += 1
-		average_speed = ((average_speed * (attempts - 1)) + new_speed) / attempts
+		average_speed_ms = ((average_speed_ms * (attempts - 1)) + new_speed) / attempts
 
-	const ATTEMPT_THRESHOLD := 5  # how many attempts needed for full confidence
-	
 	func get_mastery_level(slow_speed_ms:int, target_speed_ms:int) -> float:
 		# Normalize accuracy (0–100) to 0–1
 		var acc_factor = clamp(average_accuracy / 100.0, 0.0, 1.0)
 		# Normalize speed (ms) to 0–1 (fast = 1, slow = 0)
-		var speed_factor = clamp(Globals.map(average_speed, slow_speed_ms, target_speed_ms, 0, 1), 0,1)
-		#Confidence
-		#var confidence = clamp(Globals.map(average_speed, 0, 10, 0, 1), 0,1)
-		
+		var speed_factor = clamp(Globals.map(average_speed_ms, slow_speed_ms, target_speed_ms, 0, 1), 0,1)
 		var mastery = acc_factor * speed_factor
-
-		# Combine everything
-		#var adjusted_mastery = pow(mastery * confidence, 1.2)
 		return mastery
 		
 	func to_dictionary() -> Dictionary:
 		return {
-			"average_speed": average_speed,
+			"average_speed": average_speed_ms,
 			"average_accuracy": average_accuracy,
 			"attempts": attempts
 		}

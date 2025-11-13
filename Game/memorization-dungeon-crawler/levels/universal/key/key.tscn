@@ -5,13 +5,13 @@
 [ext_resource type="Script" uid="uid://dw10sq87feh0b" path="res://levels/universal/key/static_body_3d.gd" id="3_e1248"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bffha"]
-radius = 1.0435108
+radius = 1.0
 
 [node name="Key" type="Node3D"]
 script = ExtResource("1_bffha")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("2_e1248")]
-transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0.36959243, 0)
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0.19952273, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4

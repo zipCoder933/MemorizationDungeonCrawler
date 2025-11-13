@@ -204,7 +204,12 @@ func _on_body_entered(body: Node) -> void:
 		body.open_door(true)
 	elif body is GoblinTrigger:
 		body.trigger()
+	#elif body is KeyNode:
+		#print("Key1")
+		#obtain_key()
+		#body.queue_free()
 	elif body is KeyTrigger:
+		print("Obtained key!")
 		obtain_key()
 		body.delete_key()
 		

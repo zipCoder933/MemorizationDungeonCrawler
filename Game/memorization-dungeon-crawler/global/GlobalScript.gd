@@ -184,8 +184,6 @@ func submit_flashcard(succeed:bool):
 		if existing_entry:
 			existing_entry.update_accuracy(accuracy)
 			existing_entry.update_speed(time_ms)
-			print("Entry size: ",SaveHandler.currentGame.tag_mastery.size())
-			print("tag=",tag," accuracy=",existing_entry.average_accuracy," time ms=",existing_entry.average_speed)
 		else:
 			SaveHandler.currentGame.tag_mastery[tag] = SaveEntry.CardMastery.new(time_ms, accuracy,1)
 	
