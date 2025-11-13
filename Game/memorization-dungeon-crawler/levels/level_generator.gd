@@ -312,11 +312,19 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, starting_arena
 	return stepsTaken
 
 
-
+func _material(image:int) -> StandardMaterial3D:
+	var mat = StandardMaterial3D.new()
+	var texture =  load("res://assets/dungeons/medeval/variants/"+str(image)+"/texture.jpg")
+	var texture2 = load("res://assets/dungeons/medeval/variants/"+str(image)+"/normal.jpg")
+	mat.albedo_texture = texture
+	mat.normal_texture = texture2
+	mat.texture_repeat = true
+	mat.uv1_scale = Vector3(40, 40, 1)
+	return mat
 
 #Nodes
 var DOOR;
-var FLOOR;
+var FLOOR = preload("uid://bvoe5plbouam2")
 var WALL;
 var AREA_ENEMY;
 var ARENA_BOSS;
@@ -330,10 +338,36 @@ const DRILLS_TO_ARENA = 3 #How many total drills * card_review_number makes 1 ar
 func _ready():
 	#Medeval level
 	DOOR = preload("uid://bdnosseu7fsm")
-	FLOOR = preload("uid://bvoe5plbouam2")
-	WALL = preload("uid://bpunwt6bwc3bm")
+	var door_choices = [
+		preload("uid://cybqn7iu5i8eg"),
+		preload("uid://diy6r0cvqqg7"),
+		preload("uid://dcpufpqme3c85"),
+		preload("uid://dfi5w6y8hlkr0"),
+		preload("uid://cn2023jpy6ffn"),
+		preload("uid://dleju5c66cvvu"),
+		preload("uid://djjvv1sa3ysk6"),
+		preload("uid://4s0h623tfp4i"),
+		preload("uid://bdnosseu7fsm")
+	]
+	var wall_choices = [
+		preload("uid://0j4let3yj7fs"),
+		preload("uid://bhsk3kl4m1dfo"),
+		preload("uid://dqdax1p7cvkte"),
+		preload("uid://kyolc7snufaa"),
+		preload("uid://b45jee8rrmv3q"),
+		preload("uid://bcy3nul1q0sft"),
+		preload("uid://cd36i2ec1bcsg"),
+		preload("uid://ctgkom7yoctco"),
+		preload("uid://bpunwt6bwc3bm")
+	]
+	var wall_choice = randi_range(0,wall_choices.size()-1)
+	WALL = wall_choices[wall_choice]
+	DOOR = door_choices[wall_choice]
 	AREA_ENEMY = preload("uid://bqoufhp54uwue")
 	ARENA_BOSS = preload("uid://bobtcptejmn2a")
+	
+	FloorCeiling.floor_material = _material(randi_range(1,9))
+	FloorCeiling.ceiling_material = _material(randi_range(1,9))
 	
 	print("Generating level...")
 	var level = SaveHandler.currentLevel
@@ -342,7 +376,6 @@ func _ready():
 		#Set the theme
 		if(level.theme == Level.LevelTheme.MACHINE):
 			DOOR = preload("uid://bv0qtxxmmlnu")
-			FLOOR = preload("uid://cnaul2xojagn2")
 			WALL = preload("uid://c16k18ck0f1hj")
 		
 		#Calculate how many arenas we want

@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://kyolc7snufaa"]
+
+[ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_v1tk0"]
+[ext_resource type="Texture2D" uid="uid://kp2d542s0bnn" path="res://assets/dungeons/medeval/variants/wall/5/texture.jpg" id="2_v1tk0"]
+[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://assets/dungeons/medeval/pillar/pillar.glb" id="3_h5g5c"]
+[ext_resource type="PackedScene" uid="uid://ef8ir25xwge2" path="res://assets/sconce.glb" id="4_bjjms"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
+size = Vector3(1, 5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qgi6"]
+albedo_texture = ExtResource("2_v1tk0")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5vrq6"]
+size = Vector3(1, 5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h5g5c"]
+albedo_texture = ExtResource("2_v1tk0")
+
+[node name="wall" type="StaticBody3D"]
+collision_layer = 2
+script = ExtResource("1_v1tk0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_xfbw5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = SubResource("StandardMaterial3D_2qgi6")
+mesh = SubResource("BoxMesh_5vrq6")
+
+[node name="pillar" parent="." instance=ExtResource("3_h5g5c")]
+transform = Transform3D(1.0288152, 0, 0, 0, 1.02, 0, 0, 0, 1.008, 0, 0, 2.5)
+
+[node name="Cube" parent="pillar" index="0"]
+material_override = SubResource("StandardMaterial3D_h5g5c")
+
+[node name="sconce2" parent="." instance=ExtResource("4_bjjms")]
+transform = Transform3D(3.2783544e-07, 0, -2.5, 0, 2.5, 0, 2.5, 0, 3.2783544e-07, -0.74335897, 3, -0.1348089)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0309697, 4.046983, -0.16882432)
+light_color = Color(1, 0.6837473, 0.4634379, 1)
+light_energy = 2.0
+light_indirect_energy = 3.1
+omni_range = 5.034739
+
+[editable path="pillar"]

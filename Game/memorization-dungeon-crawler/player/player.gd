@@ -190,7 +190,7 @@ func _input(event: InputEvent) -> void:
 			movement = Vector3.ZERO
 
 func _on_body_entered(body: Node) -> void:
-	if body is Floor:
+	if body is FloorCeiling:
 		is_on_floor = true
 	elif body is DoorTrigger:
 		body.open_door(true)
