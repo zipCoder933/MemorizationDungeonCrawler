@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du8fuigagc8sb"
-path.s3tc="res://.godot/imported/texture.jpg-5ec4054d15f2079a59a255109f6ed79a.s3tc.ctex"
+uid="uid://eagby77t8qt6"
+path="res://.godot/imported/medieval_blocks_06_rough_4k.jpg-e8b13f2839493dbc22d3c2da2cb4b345.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dungeons/medeval/variants/floor/4/texture.jpg"
-dest_files=["res://.godot/imported/texture.jpg-5ec4054d15f2079a59a255109f6ed79a.s3tc.ctex"]
+source_file="res://assets/dungeons/jungle/6/medieval_blocks_06_rough_4k.jpg"
+dest_files=["res://.godot/imported/medieval_blocks_06_rough_4k.jpg-e8b13f2839493dbc22d3c2da2cb4b345.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -24,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -38,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

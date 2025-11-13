@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eagby77t8qt6"
-path="res://.godot/imported/medieval_blocks_06_rough_4k.jpg-c1ac67859629f1899fd447e27033d7a4.ctex"
+uid="uid://i0n8bpmjo6ff"
+path="res://.godot/imported/medieval_blocks_06_disp_4k.png-cc445e25a56f63a5c012d64a4f5422e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dungeons/medeval/variants/wall/6/medieval_blocks_06_rough_4k.jpg"
-dest_files=["res://.godot/imported/medieval_blocks_06_rough_4k.jpg-c1ac67859629f1899fd447e27033d7a4.ctex"]
+source_file="res://assets/dungeons/jungle/6/medieval_blocks_06_disp_4k.png"
+dest_files=["res://.godot/imported/medieval_blocks_06_disp_4k.png-cc445e25a56f63a5c012d64a4f5422e1.ctex"]
 
 [params]
 

@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://bul1mahgmqnrl"]
+[gd_scene load_steps=12 format=3 uid="uid://bul1mahgmqnrl"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_kowyx"]
-[ext_resource type="Texture2D" uid="uid://c3nuen8u4q4xy" path="res://assets/dungeons/medeval/variants/wall/6/texture.jpg" id="2_6ar0i"]
+[ext_resource type="Texture2D" uid="uid://c3nuen8u4q4xy" path="res://assets/dungeons/jungle/6/texture.jpg" id="2_6ar0i"]
 [ext_resource type="Texture2D" uid="uid://d3o62mkw77lpp" path="res://assets/dungeons/jungle/vines.png" id="5_6ar0i"]
+[ext_resource type="PackedScene" uid="uid://bvwem5tqb8tjf" path="res://assets/dungeons/jungle/door/door.glb" id="5_ag208"]
 [ext_resource type="PackedScene" uid="uid://b8ugk2shj75b5" path="res://assets/dungeons/jungle/pequeno_totem_replica.glb" id="6_ke0kl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
-size = Vector3(1, 5, 5)
+size = Vector3(1, 10, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ar0i"]
-size = Vector3(1.751709, 5.7478027, 1.7449341)
+size = Vector3(1.751709, 5.7478027, 2.1428528)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2eu1"]
 albedo_texture = ExtResource("2_6ar0i")
@@ -31,11 +32,11 @@ collision_layer = 2
 script = ExtResource("1_kowyx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 shape = SubResource("BoxShape3D_xfbw5")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3758545, 2.3189697, 2.371665)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3758545, 2.3189697, 2.5706244)
 shape = SubResource("BoxShape3D_6ar0i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -44,8 +45,8 @@ material_override = SubResource("StandardMaterial3D_k2eu1")
 mesh = SubResource("BoxMesh_5vrq6")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0309697, 4.046983, -0.16882432)
-light_color = Color(1, 0.6837473, 0.4634379, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6096087, 2.0469828, -0.16882432)
+light_color = Color(1, 0.6696246, 0.58551675, 1)
 light_energy = 2.0
 light_indirect_energy = 3.1
 omni_range = 5.034739
@@ -60,3 +61,6 @@ transform = Transform3D(-3.3906247e-08, 0, 0.7756848, 0, 0.77568465, 0, -0.77568
 
 [node name="Sketchfab_Scene3" parent="." instance=ExtResource("6_ke0kl")]
 transform = Transform3D(-0.7756846, 0, -6.7812515e-08, 0, 0.7756846, 0, 6.781249e-08, 0, -0.7756847, -0.026575089, -0.09152627, 2.9329348)
+
+[node name="door2" parent="." instance=ExtResource("5_ag208")]
+transform = Transform3D(-7.1859446e-08, 0, 1.6439525, 0, 1.6439525, 0, -1.6439525, 0, -7.1859446e-08, 0.010050774, 1.2391367, -0.05108714)

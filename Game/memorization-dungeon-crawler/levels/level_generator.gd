@@ -355,7 +355,7 @@ func _ready():
 			DOOR = preload("uid://bv0qtxxmmlnu")
 			WALL = preload("uid://c16k18ck0f1hj")
 		elif(level.theme == Level.LevelTheme.JUNGLE):
-			floor_size=50
+			floor_size=100
 			FLOOR = preload("uid://b61v8qf2ipthl")
 			DOOR = preload("uid://lfo3xvyqph2")
 			WALL = preload("uid://bul1mahgmqnrl")
@@ -370,7 +370,6 @@ func _ready():
 				preload("uid://diy6r0cvqqg7"),
 				preload("uid://dcpufpqme3c85"),
 				preload("uid://dfi5w6y8hlkr0"),
-				preload("uid://cn2023jpy6ffn"),
 				preload("uid://dleju5c66cvvu"),
 				preload("uid://djjvv1sa3ysk6"),
 				preload("uid://4s0h623tfp4i")
@@ -381,7 +380,6 @@ func _ready():
 				preload("uid://bhsk3kl4m1dfo"),
 				preload("uid://dqdax1p7cvkte"),
 				preload("uid://kyolc7snufaa"),
-				preload("uid://b45jee8rrmv3q"),
 				preload("uid://bcy3nul1q0sft"),
 				preload("uid://cd36i2ec1bcsg"),
 				preload("uid://ctgkom7yoctco")
@@ -434,7 +432,7 @@ func _ready():
 		if(Globals.totalArenas >= number_arenas):
 			break
 	
-	_place_floors(searched, 250)
+	_place_floors(searched, floor_size)
 
 
 

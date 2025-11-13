@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvqca4p8uppip"
-path="res://.godot/imported/normal.jpg-45865353a72c4f74d156ae4be2f9a192.ctex"
+path="res://.godot/imported/normal.jpg-0a9b925ba566e61317d543d08142c282.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dungeons/medeval/variants/wall/6/normal.jpg"
-dest_files=["res://.godot/imported/normal.jpg-45865353a72c4f74d156ae4be2f9a192.ctex"]
+source_file="res://assets/dungeons/jungle/6/normal.jpg"
+dest_files=["res://.godot/imported/normal.jpg-0a9b925ba566e61317d543d08142c282.ctex"]
 
 [params]
 

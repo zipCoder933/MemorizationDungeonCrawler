@@ -1,15 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4y3srd4o2pb3"]
+[gd_scene load_steps=13 format=3 uid="uid://b4y3srd4o2pb3"]
 
 [ext_resource type="Script" uid="uid://btmeorhdo0pat" path="res://levels/level.gd" id="1_aevpi"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_n5p7m"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_eelho"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_aevpi"]
 [ext_resource type="PackedScene" uid="uid://3cmqyetfdyvt" path="res://levels/universal/Player.tscn" id="4_n5p7m"]
+[ext_resource type="Texture2D" uid="uid://ddqrdhfnatubf" path="res://assets/qwantani_moon_noon_puresky_2k.exr" id="4_o5d2f"]
 [ext_resource type="AudioStream" uid="uid://8ne210lubb5v" path="res://assets/sounds/music/Background1.ogg" id="7_0oum7"]
 [ext_resource type="PackedScene" uid="uid://17b24tvmkjco" path="res://levels/LevelGenerator.tscn" id="8_o5d2f"]
 
 [sub_resource type="Resource" id="Resource_0oum7"]
 script = ExtResource("4_aevpi")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ddowk"]
+panorama = ExtResource("4_o5d2f")
+
+[sub_resource type="Sky" id="Sky_ghmtr"]
+sky_material = SubResource("PanoramaSkyMaterial_ddowk")
+
+[sub_resource type="Environment" id="Environment_nw5tl"]
+background_mode = 2
+background_energy_multiplier = 0.3
+sky = SubResource("Sky_ghmtr")
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_aevpi")
@@ -29,6 +41,7 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.973, 4)
+environment = SubResource("Environment_nw5tl")
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 process_priority = 300
