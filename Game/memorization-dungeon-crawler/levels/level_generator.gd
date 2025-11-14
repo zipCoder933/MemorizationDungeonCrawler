@@ -436,7 +436,7 @@ func _ready():
 		arenas_average = total_drills / DRILLS_TO_ARENA
 		print("Arena average: ",arenas_average)
 	
-	var number_arenas = clamp(randi_range(arenas_average-3,arenas_average+3), 4, 50)
+	
 	var min_path_length = 5
 	var max_path_length = 20
 	var start_pos = Vector3(0,0,0)
@@ -444,9 +444,12 @@ func _ready():
 	var main_path_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()
 	var main_path_length = randi_range(10,20)
 	var main_path_end =(Vector3(start_pos) + main_path_dir * main_path_length)
+	var number_arenas = clamp(randi_range(arenas_average-3,arenas_average+3), 4, 25)
 	Globals.totalArenas = 0
-	#box(start_pos.x, start_pos.z, true, true, false)
+	
 	if(includeBossfight):
+		#Less arenas in bossfights
+		number_arenas = clamp(number_arenas, 3, 8)
 		print("BOSS PATH: ",\
 		 path(start_pos, main_path_end, 25, 1, arenaSize+2, 1, true, true))
 	else:
