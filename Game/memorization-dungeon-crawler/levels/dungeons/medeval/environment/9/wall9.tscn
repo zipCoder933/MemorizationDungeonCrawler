@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ef8ir25xwge2" path="res://assets/dungeons/medeval/sconce.glb" id="4_gicrq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
-size = Vector3(1, 5, 5)
+size = Vector3(1.234375, 5, 5.7211914)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7e51"]
 albedo_texture = ExtResource("1_5vrq6")
@@ -19,7 +19,7 @@ collision_layer = 2
 script = ExtResource("1_x7e51")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1171875, 2.5, 0.3605957)
 shape = SubResource("BoxShape3D_xfbw5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
