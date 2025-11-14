@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bawlwsttbkodd"]
+
+[ext_resource type="Script" uid="uid://bj2u0j6bfrtoq" path="res://levels/universal/floor/floor.gd" id="1_31rx0"]
+[ext_resource type="Material" uid="uid://q8vu3xnkuqy7" path="res://levels/dungeons/lava/environment/lava_rock_big.tres" id="2_2qa5k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwqpw"]
+size = Vector3(250, 1, 250)
+
+[sub_resource type="QuadMesh" id="QuadMesh_yo1sm"]
+size = Vector2(250, 250)
+orientation = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_bbej7"]
+flip_faces = true
+size = Vector2(250, 250)
+orientation = 1
+
+[node name="FloorAndCeiling" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_31rx0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_wwqpw")
+
+[node name="floor" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = SubResource("QuadMesh_yo1sm")
+surface_material_override/0 = ExtResource("2_2qa5k")
+
+[node name="ceiling" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9585991, 4.7840567, 4.369707)
+mesh = SubResource("QuadMesh_bbej7")
+surface_material_override/0 = ExtResource("2_2qa5k")

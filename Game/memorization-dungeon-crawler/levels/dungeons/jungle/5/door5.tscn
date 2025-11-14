@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6gsly6ywnrfy" path="res://levels/universal/door/door.gd" id="1_s80dq"]
 [ext_resource type="PackedScene" uid="uid://bxect7ofq1jbm" path="res://levels/universal/door/DoorTrigger.tscn" id="5_ajmhm"]
-[ext_resource type="PackedScene" uid="uid://bvwem5tqb8tjf" path="res://assets/dungeons/jungle/door/door.glb" id="5_s80dq"]
+[ext_resource type="PackedScene" uid="uid://bvwem5tqb8tjf" path="res://levels/dungeons/jungle/jungle/door/door.glb" id="5_s80dq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6djk1"]
 size = Vector3(4.6224976, 3.081543, 0.24957275)

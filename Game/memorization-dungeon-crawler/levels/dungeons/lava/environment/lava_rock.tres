@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bvddy32fvwq2o"]
+
+[ext_resource type="Texture2D" uid="uid://cxtm4bcim43cg" path="res://levels/dungeons/lava/environment/texture/texture.jpg" id="1_6cvbq"]
+[ext_resource type="Texture2D" uid="uid://c3028kpwhwd1t" path="res://levels/dungeons/lava/environment/texture/lichen_rock_nor_dx_2k.jpg" id="2_ueib5"]
+
+[resource]
+albedo_color = Color(0.37661296, 0.24297407, 0.096004374, 1)
+albedo_texture = ExtResource("1_6cvbq")
+normal_enabled = true
+normal_texture = ExtResource("2_ueib5")

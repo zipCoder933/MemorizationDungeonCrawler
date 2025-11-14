@@ -1,14 +1,14 @@
 [gd_scene load_steps=14 format=3 uid="uid://b61v8qf2ipthl"]
 
 [ext_resource type="Script" uid="uid://bj2u0j6bfrtoq" path="res://levels/universal/floor/floor.gd" id="1_brjb2"]
-[ext_resource type="Texture2D" uid="uid://du8fuigagc8sb" path="res://assets/dungeons/jungle/4/texture.jpg" id="2_0c3yy"]
+[ext_resource type="Texture2D" uid="uid://du8fuigagc8sb" path="res://levels/dungeons/jungle/jungle/4/texture.jpg" id="2_0c3yy"]
 [ext_resource type="Texture2D" uid="uid://b7momwxoijh6j" path="res://assets/dungeons/medeval/cracked_concrete_diff_1k.jpg" id="2_m45uv"]
-[ext_resource type="Texture2D" uid="uid://byxsiaoxpbjks" path="res://assets/dungeons/jungle/4/normal.png" id="3_5aweq"]
-[ext_resource type="PackedScene" uid="uid://dxkbrjihfjmqe" path="res://assets/dungeons/jungle/weeds/weed_plant_02_1k2.glb" id="3_qshba"]
-[ext_resource type="PackedScene" uid="uid://b2u7iaju07rpe" path="res://assets/dungeons/jungle/weeds/weed_plant_02_1k3.glb" id="4_1mhd2"]
-[ext_resource type="PackedScene" uid="uid://d0bed3a5cn532" path="res://assets/dungeons/jungle/weeds/weed_plant_02_1k4.glb" id="5_0c3yy"]
-[ext_resource type="PackedScene" uid="uid://ciomeofhey5dr" path="res://assets/dungeons/jungle/weeds/weed_plant_02_1k5.glb" id="6_5aweq"]
-[ext_resource type="PackedScene" uid="uid://bn3hk4r1g0utt" path="res://assets/dungeons/jungle/weeds/weed_plant_02_1k.glb" id="7_y3ime"]
+[ext_resource type="Texture2D" uid="uid://byxsiaoxpbjks" path="res://levels/dungeons/jungle/jungle/4/normal.png" id="3_5aweq"]
+[ext_resource type="PackedScene" uid="uid://dxkbrjihfjmqe" path="res://levels/dungeons/jungle/jungle/weeds/weed_plant_02_1k2.glb" id="3_qshba"]
+[ext_resource type="PackedScene" uid="uid://b2u7iaju07rpe" path="res://levels/dungeons/jungle/jungle/weeds/weed_plant_02_1k3.glb" id="4_1mhd2"]
+[ext_resource type="PackedScene" uid="uid://d0bed3a5cn532" path="res://levels/dungeons/jungle/jungle/weeds/weed_plant_02_1k4.glb" id="5_0c3yy"]
+[ext_resource type="PackedScene" uid="uid://ciomeofhey5dr" path="res://levels/dungeons/jungle/jungle/weeds/weed_plant_02_1k5.glb" id="6_5aweq"]
+[ext_resource type="PackedScene" uid="uid://bn3hk4r1g0utt" path="res://levels/dungeons/jungle/jungle/weeds/weed_plant_02_1k.glb" id="7_y3ime"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wwqpw"]
 size = Vector3(250, 1, 250)

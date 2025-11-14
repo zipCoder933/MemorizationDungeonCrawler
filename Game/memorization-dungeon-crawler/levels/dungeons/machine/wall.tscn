@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c16k18ck0f1hj"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_gif2k"]
-[ext_resource type="PackedScene" uid="uid://dhvingtmthlx8" path="res://assets/dungeons/machine/wall/machine wall.glb" id="2_e2grf"]
+[ext_resource type="PackedScene" uid="uid://dhvingtmthlx8" path="res://levels/dungeons/machine/machine/wall/machine wall.glb" id="2_e2grf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1, 5, 5)

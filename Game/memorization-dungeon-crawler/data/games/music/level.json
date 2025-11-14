@@ -21,7 +21,7 @@
 	},
 	{
 	  "name": "Treble and Bass",
-	  "theme": "Dungeon",
+	  "theme": "Jungle",
 	  "boss_name": "Trouble",
 	  "themed_cards": ["treble", "bass"],
 	  "themed_drill_levels": 3,
@@ -29,7 +29,7 @@
 	},
 	{
 	  "name": "Outer treble",
-	  "theme": "Jungle",
+	  "theme": "Lava",
 	  "boss_name": "Outer Boss",
 	  "themed_cards": ["outer-treble", "treble"],
 	  "themed_drill_levels": 3,
@@ -37,7 +37,7 @@
 	},
 	{
 	  "name": "Outer bass",
-	  "theme": "Jungle",
+	  "theme": "Lava",
 	  "boss_name": "Outer Boss II",
 	  "themed_cards": ["outer-bass", "bass"],
 	  "themed_drill_levels": 3,

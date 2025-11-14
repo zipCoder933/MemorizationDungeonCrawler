@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cnaul2xojagn2"]
 
 [ext_resource type="Script" uid="uid://bj2u0j6bfrtoq" path="res://levels/universal/floor/floor.gd" id="1_py3u3"]
-[ext_resource type="Texture2D" uid="uid://cgu6oj0uiathh" path="res://assets/dungeons/machine/floor3.png" id="2_lfra8"]
-[ext_resource type="Texture2D" uid="uid://cbkjmeh4ajbcx" path="res://assets/dungeons/machine/grate.jpg" id="2_py3u3"]
+[ext_resource type="Texture2D" uid="uid://cgu6oj0uiathh" path="res://levels/dungeons/machine/machine/floor3.png" id="2_lfra8"]
+[ext_resource type="Texture2D" uid="uid://cbkjmeh4ajbcx" path="res://levels/dungeons/machine/machine/grate.jpg" id="2_py3u3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wwqpw"]
 size = Vector3(250, 1, 250)

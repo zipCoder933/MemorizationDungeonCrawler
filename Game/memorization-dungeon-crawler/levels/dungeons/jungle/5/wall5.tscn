@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://bul1mahgmqnrl"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_kowyx"]
-[ext_resource type="Texture2D" uid="uid://c3nuen8u4q4xy" path="res://assets/dungeons/jungle/6/texture.jpg" id="2_6ar0i"]
-[ext_resource type="Texture2D" uid="uid://d3o62mkw77lpp" path="res://assets/dungeons/jungle/vines.png" id="5_6ar0i"]
-[ext_resource type="PackedScene" uid="uid://bvwem5tqb8tjf" path="res://assets/dungeons/jungle/door/door.glb" id="5_ag208"]
-[ext_resource type="PackedScene" uid="uid://b8ugk2shj75b5" path="res://assets/dungeons/jungle/pequeno_totem_replica.glb" id="6_ke0kl"]
+[ext_resource type="Texture2D" uid="uid://c3nuen8u4q4xy" path="res://levels/dungeons/jungle/jungle/6/texture.jpg" id="2_6ar0i"]
+[ext_resource type="Texture2D" uid="uid://d3o62mkw77lpp" path="res://levels/dungeons/jungle/jungle/vines.png" id="5_6ar0i"]
+[ext_resource type="PackedScene" uid="uid://bvwem5tqb8tjf" path="res://levels/dungeons/jungle/jungle/door/door.glb" id="5_ag208"]
+[ext_resource type="PackedScene" uid="uid://b8ugk2shj75b5" path="res://levels/dungeons/jungle/jungle/pequeno_totem_replica.glb" id="6_ke0kl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1, 10, 5)

@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bv0qtxxmmlnu"]
 
 [ext_resource type="Script" uid="uid://b6gsly6ywnrfy" path="res://levels/universal/door/door.gd" id="1_fjdfu"]
-[ext_resource type="PackedScene" uid="uid://cddma1hwdxk1o" path="res://assets/dungeons/machine/door/machine_door.glb" id="2_fjdfu"]
+[ext_resource type="PackedScene" uid="uid://cddma1hwdxk1o" path="res://levels/dungeons/machine/machine/door/machine_door.glb" id="2_fjdfu"]
 [ext_resource type="PackedScene" uid="uid://bxect7ofq1jbm" path="res://levels/universal/door/DoorTrigger.tscn" id="4_0p2nb"]
-[ext_resource type="PackedScene" uid="uid://snvf40gjew1h" path="res://assets/dungeons/machine/door/machine_door_frame.glb" id="4_fjdfu"]
+[ext_resource type="PackedScene" uid="uid://snvf40gjew1h" path="res://levels/dungeons/machine/machine/door/machine_door_frame.glb" id="4_fjdfu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xgmq8"]
 size = Vector3(1.6338415, 5, 1.1327026)
