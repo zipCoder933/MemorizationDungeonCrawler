@@ -451,10 +451,10 @@ func _ready():
 		#Less arenas in bossfights
 		number_arenas = clamp(number_arenas, 3, 8)
 		print("BOSS PATH: ",\
-		 path(start_pos, main_path_end, 25, 1, arenaSize+2, 1, true, true))
+		 path(start_pos, main_path_end, 25, 2, arenaSize+2, 1, true, true))
 	else:
 		print("STANDARD PATH: ",\
-		 path(start_pos, main_path_end, 25, 1, arenaSize, 1, false, true))
+		 path(start_pos, main_path_end, 25, 2, arenaSize, 1, false, true))
 	
 	#arena(start_pos.x-2,start_pos.z, 1,1, Direction.XPOS, false,null)
 	print("Center: ",PLAYER_SPAWN)

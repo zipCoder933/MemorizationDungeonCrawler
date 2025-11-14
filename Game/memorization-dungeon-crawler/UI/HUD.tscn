@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://d4l36d7861osl" path="res://assets/fonts/UnifrakturCook/UnifrakturCook-Bold.ttf" id="4_md4fy"]
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="5_f2wx0"]
 [ext_resource type="PackedScene" uid="uid://cynckudprgttu" path="res://UI/Flashcard/flashcard.tscn" id="6_gppie"]
-[ext_resource type="Texture2D" uid="uid://dg8j5ptwrgu52" path="res://assets/textures/Cogni-crawl_final.png" id="7_2ptjp"]
+[ext_resource type="Texture2D" uid="uid://d260hqcqu35ev" path="res://assets/icon.png" id="8_md4fy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md4fy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -95,7 +95,7 @@ offset_right = 390.0
 offset_bottom = 83.0
 theme_override_fonts/font = ExtResource("3_4n7mi")
 theme_override_font_sizes/font_size = 12
-text = "(ALL MINIBOSSES MUST BE COMPLETED BEFORE
+text = "(ALL KEYS MUST BE ACQUIRED BEFORE
 THE FINAL BOSS!)"
 
 [node name="CardUI" parent="CanvasLayer" instance=ExtResource("6_gppie")]
@@ -108,6 +108,7 @@ offset_bottom = 0.0
 grow_vertical = 0
 
 [node name="GameOverPanel" type="Panel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -168,19 +169,21 @@ theme_override_styles/panel = ExtResource("3_uk570")
 [node name="VictoryText" type="Label" parent="CanvasLayer/VictoryPanel"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -16.5
+offset_right = 37.5
+offset_bottom = 16.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 35
 text = "Victory!"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="CogniCrawlFinal" type="Sprite2D" parent="CanvasLayer/VictoryPanel/VictoryText"]
-position = Vector2(576, 184.00002)
-scale = Vector2(0.069335885, 0.069335885)
-texture = ExtResource("7_2ptjp")
 
 [node name="back" type="Button" parent="CanvasLayer/VictoryPanel"]
 layout_mode = 1
@@ -212,6 +215,22 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Next Level
 "
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -167.0
+offset_right = 64.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_md4fy")
+expand_mode = 1
 
 [node name="MenuPanel" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true

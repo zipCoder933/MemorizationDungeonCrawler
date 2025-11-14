@@ -161,13 +161,16 @@ func get_player() -> Player:
 #Question2 = the questions
 #flashcardElement the node to assign to the flashcards
 
-func drill_flashcards(quantity:int, flashcardElement:WorldFlashCard):
+func drill_flashcards(quantity:int, flashcardElement:WorldFlashCard, time_multiplier:float = 1):
 	var questions:Array[Question] = []
 	for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, quantity):
-		questions.append(card.toQuestion(1, SaveHandler.currentLevel))
+		questions.append(card.toQuestion(time_multiplier, SaveHandler.currentLevel))
 	drill_questions(questions, flashcardElement)
 
 func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard, begin_delay_sec:float = 0):
+	if(has_flashcard() and flashcardElement != _flashcardNode):
+		print("There is already a set of flashcards being drilled!")
+		return
 	_flashcardNode = flashcardElement
 	_allow_end_on_failure = questions2.size() == 1
 	fact_answering_mode.emit(_flashcardNode)

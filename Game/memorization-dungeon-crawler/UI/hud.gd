@@ -12,7 +12,7 @@ class_name HUD
 
 const LevelsHandler = preload("uid://bte11e0fapqes")
 const SaveHandler = preload("uid://bgwdh30vglopu")
-var fade_speed = 0.75
+var fade_speed = 0.8
 
 func panelsVisible():
 	return game_over_panel.visible or victory_panel.visible or menu_panel.visible

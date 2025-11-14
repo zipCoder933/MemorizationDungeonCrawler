@@ -84,6 +84,7 @@ func _game_over():
 func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 	flash_card = target2
 	mode = PlayerMode.FACTS
+	movement = Vector3.ZERO
 	animation_player.play(IDLE_ANIMATION,0.5)
 
 func _global_adventure_mode():
@@ -127,7 +128,9 @@ func _process(delta:float):
 			#animation_player.play(JUMP_UP_ANIMATION,0.1)
 		if(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
 			animation_player.play(RUNNING_ANIMATION,0.1)
-		elif(!animation_player.is_playing()):
+		elif(!animation_player.is_playing() or \
+			((abs(movement.x) < 0.01 or abs(movement.z) < 0.01) \
+			and animation_player.get_current_animation() == RUNNING_ANIMATION)):
 			animation_player.play(IDLE_ANIMATION,0.21)
 
 
@@ -181,25 +184,20 @@ func _input(event: InputEvent) -> void:
 			else:
 				if Input.is_action_just_released("Forward")  or (event.keycode == KEY_W):
 					movement.z = 0;
-					animation_player.play(IDLE_ANIMATION,0.21)
 				elif Input.is_action_just_released("Backward")  or (event.keycode == KEY_S):
 					movement.z = 0;
-					animation_player.play(IDLE_ANIMATION,0.21)
 				elif Input.is_action_just_released("Left")  or (event.keycode == KEY_A):
 					movement.x = 0;
-					animation_player.play(IDLE_ANIMATION,0.21)
 					target_cam_offset.y = rotation.y
 				elif Input.is_action_just_released("Right")  or (event.keycode == KEY_D):
 					movement.x = 0;
-					animation_player.play(IDLE_ANIMATION,0.21)
 					target_cam_offset.y = rotation.y
-				
-			#if is_on_floor == true and Input.is_action_just_pressed("Jump"):
-				#animation_player.play(JUMP_UP_ANIMATION,1)
-				#apply_central_impulse(Vector3(0, 10, 0))
-				#is_on_floor = false
+				if(abs(movement.x) < 0.01 or abs(movement.z) < 0.01):
+					animation_player.play(IDLE_ANIMATION,0.21)
 		else:
 			movement = Vector3.ZERO
+			if(abs(movement.x) < 0.01 or abs(movement.z) < 0.01):
+					animation_player.play(IDLE_ANIMATION,0.2)
 
 func _on_body_entered(body: Node) -> void:
 	if body is FloorCeiling:
