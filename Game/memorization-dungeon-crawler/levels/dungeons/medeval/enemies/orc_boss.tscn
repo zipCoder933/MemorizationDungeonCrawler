@@ -1754,9 +1754,9 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20550919, 0.9128463, 0)
 collision_layer = 4
 script = ExtResource("2_7tcax")
-_3d_flashcard = NodePath("../Node3D/3dFlashcard")
-_animation_player = NodePath("../Node3D/orc_boss/AnimationPlayer")
-node_3d = NodePath("../Node3D")
+_3d_flashcard = NodePath("../BossModel/3dFlashcard")
+_animation_player = NodePath("../BossModel/orc_boss/AnimationPlayer")
+node_3d = NodePath("../BossModel")
 damage = 0.6
 speed = 0.75
 cardNumber = 0
@@ -1772,21 +1772,22 @@ unique_name_in_owner = true
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 2.5, 0)
 shape = SubResource("BoxShape3D_4hngc")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="BossModel" type="Node3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20550919, 0.9128463, 0)
 
-[node name="3dFlashcard" parent="Node3D" instance=ExtResource("3_0d70d")]
+[node name="3dFlashcard" parent="BossModel" instance=ExtResource("3_0d70d")]
 unique_name_in_owner = true
 transform = Transform3D(0.5, 0, 0, 0, 0.4829629, -0.12940952, 0, 0.12940952, 0.4829629, 0, 1.6193784, 1.4769783)
 texture = SubResource("ViewportTexture_42dsa")
 
-[node name="orc_boss" type="Node3D" parent="Node3D"]
+[node name="orc_boss" type="Node3D" parent="BossModel"]
 script = ExtResource("2_0d70d")
 
-[node name="Orc" type="Node3D" parent="Node3D/orc_boss"]
+[node name="Orc" type="Node3D" parent="BossModel/orc_boss"]
 transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, -0.1, 0)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Node3D/orc_boss/Orc"]
+[node name="Skeleton3D" type="Skeleton3D" parent="BossModel/orc_boss/Orc"]
 bones/0/name = "mixamorig_Hips"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0140894065, 0.013878683, -0.59079456)
@@ -1963,11 +1964,11 @@ bones/24/position = Vector3(9.094947e-10, 0.07132038, -6.9849193e-10)
 bones/24/rotation = Quaternion(-2.7008356e-08, 1.337612e-07, -3.7074646e-08, 1)
 bones/24/scale = Vector3(0.99999994, 0.99999994, 1)
 
-[node name="Gretchin" type="MeshInstance3D" parent="Node3D/orc_boss/Orc/Skeleton3D"]
+[node name="Gretchin" type="MeshInstance3D" parent="BossModel/orc_boss/Orc/Skeleton3D"]
 mesh = SubResource("ArrayMesh_x6n35")
 skin = SubResource("Skin_uku7m")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D/orc_boss"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BossModel/orc_boss"]
 libraries = {
 &"": SubResource("AnimationLibrary_cl6hw")
 }

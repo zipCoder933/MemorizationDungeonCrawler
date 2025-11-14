@@ -85,6 +85,7 @@ static func load_from_file(jsonFile):
 	#reset everything first
 	tag_dict={}
 	player_mastery_dict = {}
+	used_cards = {}
 	
 	var file = FileAccess.open(jsonFile, FileAccess.READ)
 	if file:#If read succesfully

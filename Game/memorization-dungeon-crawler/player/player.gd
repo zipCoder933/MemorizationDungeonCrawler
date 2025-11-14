@@ -120,7 +120,7 @@ func _process(delta:float):
 		camRotation.y = lerp_angle(camRotation.y, target_angle, turn_multiplier * delta)
 
 
-	if(mode == PlayerMode.GAME_OVER):
+	if(mode == PlayerMode.GAME_OVER or mode == PlayerMode.VICTORY):
 		pass
 	else:
 		if(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
@@ -162,7 +162,7 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if(mode != PlayerMode.GAME_OVER):
+		if(mode != PlayerMode.GAME_OVER and mode != PlayerMode.VICTORY):
 			var canUseWASD:bool = mode != PlayerMode.FACTS
 			if(event.pressed):
 				if Input.is_action_just_pressed("Forward") or (canUseWASD and event.keycode == KEY_W):

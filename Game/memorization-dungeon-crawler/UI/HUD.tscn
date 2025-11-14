@@ -282,6 +282,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2ptjp")
 
+[node name="fps" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_4n7mi")
+theme_override_font_sizes/font_size = 12
+text = "FPS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="level indicator" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1

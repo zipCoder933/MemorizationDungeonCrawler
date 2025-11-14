@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cudxgq7deik8c"]
+
+[ext_resource type="Script" uid="uid://7v0h33da1yot" path="res://global/display_boot.gd" id="1_50ufm"]
+
+[node name="DisplayBoot" type="Node"]
+script = ExtResource("1_50ufm")

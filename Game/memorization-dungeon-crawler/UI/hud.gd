@@ -9,6 +9,7 @@ class_name HUD
 @onready var menu_panel: Panel = %MenuPanel
 @onready var level_indicator: Label = %"level indicator"
 @onready var loading_panel: Panel = $CanvasLayer/LoadingPanel
+@onready var fps: Label = $fps
 
 const LevelsHandler = preload("uid://bte11e0fapqes")
 const SaveHandler = preload("uid://bgwdh30vglopu")
@@ -45,6 +46,8 @@ func _input(event):
 			menu_panel.visible = !menu_panel.visible
 
 func _process(delta):
+	fps.text = str(Engine.get_frames_per_second())+" fps"
+
 	label.text = "KEYS: "+str(player.keys)+" / "+str(Globals.totalArenas) 
 	card_ui.visible = Globals.has_flashcard()
 	

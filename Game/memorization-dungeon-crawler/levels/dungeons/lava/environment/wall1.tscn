@@ -1,54 +1,35 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnnvdgktdrjn"]
+[gd_scene load_steps=6 format=3 uid="uid://bnnvdgktdrjn"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_oy0p8"]
-[ext_resource type="Texture2D" uid="uid://jnisvjl0pkl2" path="res://assets/dungeons/medeval/variants/wall/2/texture.jpg" id="2_0bnlu"]
-[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://assets/dungeons/medeval/pillar/pillar.glb" id="3_vbwit"]
 [ext_resource type="ArrayMesh" uid="uid://b0hefwukty74" path="res://levels/dungeons/lava/environment/wall.obj" id="4_ijsv1"]
 [ext_resource type="Material" uid="uid://bvddy32fvwq2o" path="res://levels/dungeons/lava/environment/lava_rock.tres" id="4_x1g8o"]
 
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_x1g8o"]
+size = Vector3(0.29630604, 12, 5.381219)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(2.6802979, 5, 5.556381)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1etba"]
-albedo_texture = ExtResource("2_0bnlu")
-
-[sub_resource type="BoxMesh" id="BoxMesh_5vrq6"]
-size = Vector3(1, 5, 5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6u6w7"]
-albedo_texture = ExtResource("2_0bnlu")
 
 [node name="wall" type="StaticBody3D"]
 collision_layer = 2
 script = ExtResource("1_oy0p8")
 
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.503024, 0.24312568)
+occluder = SubResource("BoxOccluder3D_x1g8o")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21612549, 2.5, 0.24713898)
 shape = SubResource("BoxShape3D_xfbw5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_1etba")
-mesh = SubResource("BoxMesh_5vrq6")
-
-[node name="pillar" parent="." instance=ExtResource("3_vbwit")]
-transform = Transform3D(1.0288152, 0, 0, 0, 1.02, 0, 0, 0, 1.008, 0, 0, 2.5)
-visible = false
-
-[node name="Cube" parent="pillar" index="0"]
-material_override = SubResource("StandardMaterial3D_6u6w7")
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9500484, 0.7233758, 0.218732)
-light_color = Color(0.9998439, 0.3563147, 0.28925297, 1)
-light_energy = 2.0
-light_indirect_energy = 3.1
-omni_range = 9.0
 
 [node name="Wall" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.08715577, 0, -0.9961947, 0, 1, 0, 0.9961947, 0, -0.08715577, 0.049209, -9.536743e-07, 0.31110978)
 material_override = ExtResource("4_x1g8o")
 mesh = ExtResource("4_ijsv1")
 
-[editable path="pillar"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Wall"]
+transform = Transform3D(-0.08715577, 0, 0.9961947, 0, 1, 0, -0.9961947, 0, -0.08715577, 0.25653213, 0.72337675, 3.9920905)
+light_color = Color(0.9998439, 0.3563147, 0.28925297, 1)
+light_energy = 2.0
+light_indirect_energy = 3.1
+omni_range = 9.0

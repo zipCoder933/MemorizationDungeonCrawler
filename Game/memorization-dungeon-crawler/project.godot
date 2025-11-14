@@ -29,11 +29,11 @@ Globals="*res://global/GlobalNode.tscn"
 LevelsHandler="*res://global/levels/LevelsHandlerNode.tscn"
 SaveHandlerGlobal="*res://global/saves/SaveHandlerNode.tscn"
 CardsHandlerGlobal="*res://global/cards/CardsHandlerNode.tscn"
+DisplayBoot="*res://global/DisplayBoot.tscn"
 
 [display]
 
 window/size/viewport_height=500
-window/size/mode=3
 window/vsync/vsync_mode=0
 
 [dotnet]
@@ -115,5 +115,6 @@ Jump={
 
 [rendering]
 
-renderer/rendering_method="mobile"
+scaling_3d/scale=0.8
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+occlusion_culling/use_occlusion_culling=true
