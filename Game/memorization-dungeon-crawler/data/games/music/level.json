@@ -13,7 +13,7 @@
 	},
 	{
 	  "name": "Bass Dungeon",
-	  "theme": "Dungeon",
+	  "theme": "Jungle",
 	  "boss_name": "The Bass Boss",
 	  "themed_cards": ["bass"],
 	  "themed_drill_levels": 3,
@@ -29,7 +29,7 @@
 	},
 	{
 	  "name": "Outer treble",
-	  "theme": "Lava",
+	  "theme": "Antarctic",
 	  "boss_name": "Outer Boss",
 	  "themed_cards": ["outer-treble", "treble"],
 	  "themed_drill_levels": 3,

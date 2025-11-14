@@ -384,6 +384,10 @@ func _ready():
 			DOOR = preload("uid://djjr0ga5jbjrl")
 			WALL = preload("uid://bnnvdgktdrjn")
 			FLOOR = preload("uid://bawlwsttbkodd")
+		elif(level.theme == Level.LevelTheme.ANTARCTIC):
+			DOOR = preload("uid://dg4pafqkenvdm")
+			WALL = preload("uid://7rxa50lxqn7q")
+			FLOOR = preload("uid://ctkt8jvhjfhif")
 		elif(level.theme == Level.LevelTheme.JUNGLE):
 			floor_size=100
 			FLOOR = preload("uid://b61v8qf2ipthl")

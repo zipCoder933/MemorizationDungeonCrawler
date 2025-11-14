@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bufg64lkge8ug"]
+
+[ext_resource type="Texture2D" uid="uid://b3ym8jftv2jwv" path="res://levels/dungeons/antarctic/texture/texture.png" id="1_doryo"]
+[ext_resource type="Texture2D" uid="uid://2cd1cam2by5d" path="res://levels/dungeons/antarctic/texture/normal.jpg" id="2_wic4v"]
+
+[resource]
+albedo_texture = ExtResource("1_doryo")
+normal_enabled = true
+normal_texture = ExtResource("2_wic4v")
+uv1_scale = Vector3(2.41, 2, 2)
