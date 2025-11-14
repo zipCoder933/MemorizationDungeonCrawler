@@ -1,6 +1,5 @@
-[gd_scene load_steps=14 format=3 uid="uid://b61v8qf2ipthl"]
+[gd_scene load_steps=13 format=3 uid="uid://b61v8qf2ipthl"]
 
-[ext_resource type="Script" uid="uid://bj2u0j6bfrtoq" path="res://levels/universal/floor/floor.gd" id="1_brjb2"]
 [ext_resource type="Texture2D" uid="uid://du8fuigagc8sb" path="res://levels/dungeons/jungle/jungle/4/texture.jpg" id="2_0c3yy"]
 [ext_resource type="Texture2D" uid="uid://b7momwxoijh6j" path="res://assets/dungeons/medeval/cracked_concrete_diff_1k.jpg" id="2_m45uv"]
 [ext_resource type="Texture2D" uid="uid://byxsiaoxpbjks" path="res://levels/dungeons/jungle/jungle/4/normal.png" id="3_5aweq"]
@@ -30,7 +29,6 @@ uv1_triplanar = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0740037, 0)
 collision_layer = 2
 collision_mask = 9
-script = ExtResource("1_brjb2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
