@@ -42,14 +42,6 @@
 	  "themed_cards": ["outer-bass", "bass"],
 	  "themed_drill_levels": 1,
 	  "complete_drill_levels": 1
-	},
-	{
-	  "name": "Everything",
-	  "theme": "Machine",
-	  "boss_name": "",
-	  "themed_cards": [],
-	  "themed_drill_levels": 0,
-	  "complete_drill_levels": 3
 	}
   ],
   "final_dungeon": {
