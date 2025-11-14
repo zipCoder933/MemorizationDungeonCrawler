@@ -6,48 +6,48 @@
 	{
 	  "name": "The Treble Dungeon",
 	  "theme": "Dungeon",
-	  "boss_name": "",
+	  "boss_name": "Treble Trouble",
 	  "themed_cards": ["treble"],
-	  "themed_drill_levels": 1,
+	  "themed_drill_levels": 3,
 	  "complete_drill_levels": 0
 	},
 	{
 	  "name": "Bass Dungeon",
 	  "theme": "Dungeon",
-	  "boss_name": "",
+	  "boss_name": "The Bass Boss",
 	  "themed_cards": ["bass"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
+	  "themed_drill_levels": 3,
+	  "complete_drill_levels": 3
 	},
 	{
 	  "name": "Treble and Bass",
 	  "theme": "Dungeon",
-	  "boss_name": "",
+	  "boss_name": "Trouble",
 	  "themed_cards": ["treble", "bass"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
+	  "themed_drill_levels": 3,
+	  "complete_drill_levels": 3
 	},
 	{
 	  "name": "Outer treble",
 	  "theme": "Jungle",
-	  "boss_name": "",
+	  "boss_name": "Outer Boss",
 	  "themed_cards": ["outer-treble", "treble"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
+	  "themed_drill_levels": 3,
+	  "complete_drill_levels": 3
 	},
 	{
 	  "name": "Outer bass",
 	  "theme": "Jungle",
-	  "boss_name": "",
+	  "boss_name": "Outer Boss II",
 	  "themed_cards": ["outer-bass", "bass"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
+	  "themed_drill_levels": 3,
+	  "complete_drill_levels": 3
 	}
   ],
   "final_dungeon": {
 	"name": "The Final Dungeon",
 	"theme": "Machine",
 	"complete_drill_levels": 3,
-	"boss_name": "The one above all"
+	"boss_name": "Final Boss"
   }
 }

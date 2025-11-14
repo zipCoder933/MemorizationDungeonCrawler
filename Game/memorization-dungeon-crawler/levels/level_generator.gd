@@ -89,13 +89,13 @@ func get_arena_center(x: int, z: int, x_radius: int, z_radius: int, direction: D
 	var cz = float(z)
 	match direction:
 		Direction.ZPOS:
-			cz += 0.5 + x_radius      # move 1 forward for door gap, then half arena depth
+			cz += 0.0 + x_radius      # move 1 forward for door gap, then half arena depth
 		Direction.ZNEG:
-			cz -= 0.5 + x_radius
+			cz -= 0.0 + x_radius
 		Direction.XPOS:
-			cx += 0.5 + x_radius
+			cx += 0.0 + x_radius
 		Direction.XNEG:
-			cx -= 0.5 + x_radius
+			cx -= 0.0 + x_radius
 	# Shift by +0.5 to center in the tile grid
 	return Vector3(cx + 0.5, 0, cz + 0.5)
 

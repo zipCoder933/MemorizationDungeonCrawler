@@ -3,6 +3,7 @@ class_name KeyNode
 
 const animation_speed = 15
 const float_position:float = 1
+var is_boss_key = false
 
 func _ready():
 	position.y=0

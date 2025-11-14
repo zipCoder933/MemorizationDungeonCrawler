@@ -78,12 +78,15 @@ func spawn_potion(pos:Vector3):
 	instance.global_position = Vector3(pos)
 	add_child(instance)
 	instance.linear_velocity = Vector3(0,10,0)
+	return instance
 
 const KEY = preload("uid://cima58l8yrht0")
-func spawn_key(pos:Vector3):
+func spawn_key(pos:Vector3, _is_boss_key:bool):
 	var instance = KEY.instantiate()
 	instance.global_position = Vector3(pos)
 	add_child(instance)
+	instance.is_boss_key = _is_boss_key
+	return instance
 
 func go_to_level():
 	get_tree().change_scene_to_file("res://levels/Level.tscn")

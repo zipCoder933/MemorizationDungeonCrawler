@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ic668fyxkdyt"
-path.bptc="res://.godot/imported/moonless_golf_2k.exr-e4fb60435737270c02866640f9675ddc.bptc.ctex"
+path.bptc="res://.godot/imported/moonless_golf_2k.exr-45665951163d6d133ab9f866e532c13f.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://levels/moonless_golf_2k.exr"
-dest_files=["res://.godot/imported/moonless_golf_2k.exr-e4fb60435737270c02866640f9675ddc.bptc.ctex"]
+source_file="res://assets/moonless_golf_2k.exr"
+dest_files=["res://.godot/imported/moonless_golf_2k.exr-45665951163d6d133ab9f866e532c13f.bptc.ctex"]
 
 [params]
 

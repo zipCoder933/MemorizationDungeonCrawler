@@ -36,11 +36,15 @@ const MAX_HEALTH = 1
 var health:float = 1
 var keys:int = 0
 
-func obtain_key():
+func obtain_key(key:KeyNode):
 	keys+=1
-	if( SaveHandler.currentLevel.levelType == Level.LevelType.STANDARD and\
-	keys >= Globals.totalArenas):
-		Globals.victory_event()
+	if(SaveHandler.currentLevel.levelType == Level.LevelType.STANDARD):
+		if(keys >= Globals.totalArenas):
+			Globals.victory_event()
+	elif(SaveHandler.currentLevel.levelType == Level.LevelType.BOSS):
+		if(key.is_boss_key):
+			Globals.victory_event()
+	key.queue_free()
 
 func set_health(value:float):
 	if(health != value):
@@ -204,12 +208,5 @@ func _on_body_entered(body: Node) -> void:
 		body.open_door(true)
 	elif body is GoblinTrigger:
 		body.trigger()
-	#elif body is KeyNode:
-		#print("Key1")
-		#obtain_key()
-		#body.queue_free()
 	elif body is KeyTrigger:
-		print("Obtained key!")
-		obtain_key()
-		body.delete_key()
-		
+		obtain_key(body.get_key())

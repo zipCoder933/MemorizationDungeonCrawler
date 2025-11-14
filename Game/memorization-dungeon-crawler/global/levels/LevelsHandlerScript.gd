@@ -46,7 +46,8 @@ static func load_from_file(file_path: String):
 	goal_speed = json_data.get("goal_answer_speed_sec", 2)
 	
 	midgame_start_speed = lerp(start_speed,goal_speed, 0.1)
-	midgame_goal_speed = lerp(start_speed,goal_speed, 0.5)
+	#The midgame goal is how fast we want to get at themed levels, like 10s or 1s,
+	midgame_goal_speed = lerp(start_speed,goal_speed, 0.7)
 	print("GAME SPEED (SEC): start=%2f; end=%2f; mid-start=%2f; mid-end=%2f;" % [start_speed, goal_speed, midgame_start_speed, midgame_goal_speed])
 	
 	const emptyArray: Array[String] = []

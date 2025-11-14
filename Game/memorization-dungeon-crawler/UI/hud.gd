@@ -29,10 +29,15 @@ func _ready():
 	player.health_changed.connect(_player_health_changed)
 	Globals.signal_game_over.connect(_game_over)
 	Globals.signal_victory.connect(_victory)
-	if(SaveHandler.currentLevel != null):
+	if(SaveHandler.currentLevel != null and  SaveHandler.currentGame !=null):
 		boss_info.visible = SaveHandler.currentLevel.levelType == Level.LevelType.BOSS
-	if( SaveHandler.currentGame !=null ):
-		level_indicator.text = "LEVEL " + str(SaveHandler.currentGame.completed_level)+": "+SaveHandler.currentLevel.level_name
+		if(SaveHandler.currentLevel.levelType == Level.LevelType.BOSS):
+			level_indicator.text = "LEVEL " +\
+			 str(SaveHandler.currentGame.completed_level+1)+": "+\
+			SaveHandler.currentLevel.boss_name + " ("+SaveHandler.currentLevel.level_name+")"
+		else:
+			level_indicator.text = "LEVEL " +\
+			 str(SaveHandler.currentGame.completed_level+1)+": "+SaveHandler.currentLevel.level_name
 
 func _input(event):
 	if event is InputEventKey:

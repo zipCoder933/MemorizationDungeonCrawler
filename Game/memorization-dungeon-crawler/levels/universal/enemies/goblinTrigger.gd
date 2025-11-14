@@ -1,7 +1,7 @@
 extends StaticBody3D
 class_name GoblinTrigger
 
-const SHRINK_SPEED:float = 0.6
+const SHRINK_SPEED:float = 0.8
 @export var _3d_flashcard: WorldFlashCard
 @export var _animation_player: AnimationPlayer
 @export var node_3d: Node3D
@@ -16,6 +16,7 @@ const SHRINK_SPEED:float = 0.6
 @export var take_hit_animation:String
 @export var death_animation:String
 @export var begin_delay = 1
+@export var is_boss = false
 
 var isDead = false
 const CardsHandler = preload("uid://cc0wwewiey4d7")
@@ -55,8 +56,9 @@ func _process(delta):
 				node_3d.scale.z - SHRINK_SPEED * delta)
 		if(node_3d.scale.y <= 0): #Delete this node
 			var p = Vector3(node_3d.global_position.x,node_3d.global_position.y,node_3d.global_position.z)
-			Globals.spawn_potion(p)
-			Globals.spawn_key(p)
+			if(!is_boss):
+				Globals.spawn_potion(p)
+			Globals.spawn_key(p,is_boss)
 			node_3d.queue_free()
 	else:
 		var dir = target_pos - self_pos

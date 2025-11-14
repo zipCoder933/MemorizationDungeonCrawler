@@ -8,7 +8,7 @@ var entry:SaveEntry
 func setDetails(_entry:SaveEntry):
 	entry = _entry
 	label.text = entry.name
-	level.text = " (lvl "+ str(entry.completed_level) +")"
+	level.text = " (lvl "+ str(entry.completed_level+1) +")"
 	
 func _on_play_game_pressed() -> void:
 	menu.load_game(entry)

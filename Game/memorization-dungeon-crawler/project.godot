@@ -33,6 +33,8 @@ CardsHandlerGlobal="*res://global/cards/CardsHandlerNode.tscn"
 [display]
 
 window/size/viewport_height=500
+window/size/mode=3
+window/vsync/vsync_mode=0
 
 [dotnet]
 

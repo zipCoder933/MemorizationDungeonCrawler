@@ -1765,6 +1765,7 @@ punch_animation = "Punch Retarget"
 take_hit_animation = "TakeHit Retarget"
 death_animation = "Death Retarget"
 begin_delay = 5
+is_boss = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
 unique_name_in_owner = true
