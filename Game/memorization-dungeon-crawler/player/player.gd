@@ -123,9 +123,6 @@ func _process(delta:float):
 	if(mode == PlayerMode.GAME_OVER):
 		pass
 	else:
-		#Animations
-		#if(linear_velocity.y > 0.5 ):
-			#animation_player.play(JUMP_UP_ANIMATION,0.1)
 		if(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
 			animation_player.play(RUNNING_ANIMATION,0.1)
 		elif(!animation_player.is_playing() or \
@@ -196,7 +193,8 @@ func _input(event: InputEvent) -> void:
 					animation_player.play(IDLE_ANIMATION,0.21)
 		else:
 			movement = Vector3.ZERO
-			if(abs(movement.x) < 0.01 or abs(movement.z) < 0.01):
+			if(animation_player.get_current_animation() == RUNNING_ANIMATION
+			and (abs(movement.x) < 0.01 or abs(movement.z) < 0.01)):
 					animation_player.play(IDLE_ANIMATION,0.2)
 
 func _on_body_entered(body: Node) -> void:

@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://bvddy32fvwq2o" path="res://levels/dungeons/lava/environment/lava_rock.tres" id="4_x1g8o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
-size = Vector3(1, 5, 5)
+size = Vector3(2.6802979, 5, 5.556381)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1etba"]
 albedo_texture = ExtResource("2_0bnlu")
@@ -23,7 +23,7 @@ collision_layer = 2
 script = ExtResource("1_oy0p8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21612549, 2.5, 0.24713898)
 shape = SubResource("BoxShape3D_xfbw5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
