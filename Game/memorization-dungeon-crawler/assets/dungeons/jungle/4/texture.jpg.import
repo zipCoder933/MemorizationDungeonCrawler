@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0lcq44crmedi"
-path.s3tc="res://.godot/imported/worn_tile_floor_disp_2k.png-2ccb5a9dbebfe9a47f88fd219ad88059.s3tc.ctex"
+uid="uid://du8fuigagc8sb"
+path.s3tc="res://.godot/imported/texture.jpg-83a85d61010ca043b7745d80a279d4c2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/dungeons/medeval/variants/floor/2/worn_tile_floor_disp_2k.png"
-dest_files=["res://.godot/imported/worn_tile_floor_disp_2k.png-2ccb5a9dbebfe9a47f88fd219ad88059.s3tc.ctex"]
+source_file="res://assets/dungeons/jungle/4/texture.jpg"
+dest_files=["res://.godot/imported/texture.jpg-83a85d61010ca043b7745d80a279d4c2.s3tc.ctex"]
 
 [params]
 

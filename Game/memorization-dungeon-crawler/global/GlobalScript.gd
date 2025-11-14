@@ -128,6 +128,9 @@ func clear_flashcard():
 	_has_flashcard = false
 
 func new_flashcard_question(current_flashcard_question2:Question):
+	if(get_player().mode == Player.PlayerMode.GAME_OVER):
+		return
+	
 	_current_flashcard_question = current_flashcard_question2
 	current_flashcard_answer = ""
 	_has_flashcard=true
@@ -161,7 +164,7 @@ func drill_flashcards(quantity:int, flashcardElement:WorldFlashCard):
 		questions.append(card.toQuestion(1, SaveHandler.currentLevel))
 	drill_questions(questions, flashcardElement)
 
-func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard):
+func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard, begin_delay_sec:float = 0):
 	_flashcardNode = flashcardElement
 	_allow_end_on_failure = questions2.size() == 1
 	fact_answering_mode.emit(_flashcardNode)
@@ -169,6 +172,8 @@ func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard
 	deckSize = questions2.size()
 	questions = questions2;
 	succeeded = 0
+	if begin_delay_sec > 0:
+		await get_tree().create_timer(begin_delay_sec).timeout
 	new_flashcard_question(questions[0])
 
 func submit_flashcard(succeed:bool):

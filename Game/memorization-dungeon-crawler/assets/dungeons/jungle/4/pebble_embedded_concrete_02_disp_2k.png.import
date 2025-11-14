@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0lcq44crmedi"
-path.s3tc="res://.godot/imported/worn_tile_floor_disp_2k.png-2ccb5a9dbebfe9a47f88fd219ad88059.s3tc.ctex"
+uid="uid://otjnh8mbulyu"
+path="res://.godot/imported/pebble_embedded_concrete_02_disp_2k.png-2dd738be7f48ccfc4ea84c716e50ff51.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dungeons/medeval/variants/floor/2/worn_tile_floor_disp_2k.png"
-dest_files=["res://.godot/imported/worn_tile_floor_disp_2k.png-2ccb5a9dbebfe9a47f88fd219ad88059.s3tc.ctex"]
+source_file="res://assets/dungeons/jungle/4/pebble_embedded_concrete_02_disp_2k.png"
+dest_files=["res://.godot/imported/pebble_embedded_concrete_02_disp_2k.png-2dd738be7f48ccfc4ea84c716e50ff51.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -24,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -38,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

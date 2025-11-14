@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dg866yeqnxk53" path="res://player/MouseController.tscn" id="5_x8kxw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rkbax"]
+height = 1.6958008
 
 [node name="Player" type="RigidBody3D" groups=["player"]]
 collision_mask = 10
@@ -17,7 +18,7 @@ max_contacts_reported = 3
 script = ExtResource("1_rkbax")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8479004, 0)
 shape = SubResource("CapsuleShape3D_rkbax")
 
 [node name="Knight2" parent="." instance=ExtResource("1_oul6g")]

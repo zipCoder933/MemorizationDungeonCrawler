@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0lcq44crmedi"
-path.s3tc="res://.godot/imported/worn_tile_floor_disp_2k.png-2ccb5a9dbebfe9a47f88fd219ad88059.s3tc.ctex"
+uid="uid://b4bqqrmd0nvja"
+path.s3tc="res://.godot/imported/boss-arena_boss_arena_texture.png-69f40247076580923ec5b4285a4a2293.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "0974111059113a1dceb0885667d91698"
+}
 
 [deps]
 
-source_file="res://assets/dungeons/medeval/variants/floor/2/worn_tile_floor_disp_2k.png"
-dest_files=["res://.godot/imported/worn_tile_floor_disp_2k.png-2ccb5a9dbebfe9a47f88fd219ad88059.s3tc.ctex"]
+source_file="res://assets/dungeons/boss-arena_boss_arena_texture.png"
+dest_files=["res://.godot/imported/boss-arena_boss_arena_texture.png-69f40247076580923ec5b4285a4a2293.s3tc.ctex"]
 
 [params]
 

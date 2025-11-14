@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4iohrwx0wtev"
-path="res://.godot/imported/pebble_embedded_concrete_02_arm_2k.jpg-6fa3d08dca7152427fff4955e52fe274.ctex"
+path="res://.godot/imported/pebble_embedded_concrete_02_arm_2k.jpg-7c96fac67d9deee374388039ce863997.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dungeons/medeval/variants/floor/4/pebble_embedded_concrete_02_arm_2k.jpg"
-dest_files=["res://.godot/imported/pebble_embedded_concrete_02_arm_2k.jpg-6fa3d08dca7152427fff4955e52fe274.ctex"]
+source_file="res://assets/dungeons/jungle/4/pebble_embedded_concrete_02_arm_2k.jpg"
+dest_files=["res://.godot/imported/pebble_embedded_concrete_02_arm_2k.jpg-7c96fac67d9deee374388039ce863997.ctex"]
 
 [params]
 

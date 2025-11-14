@@ -96,8 +96,8 @@ func get_normalized_mouse() -> Vector2:
 @onready var mouse_controller: MouseController = $MouseController
 
 const TURN_SPEED = 4;
-const FLASHCARD_MAX_TURN_SPEED = 2
-const FLASHCARD_MIN_TURN_SPEED = 0.001
+const FLASHCARD_MAX_TURN_SPEED = 4
+const FLASHCARD_MIN_TURN_SPEED = 0.002
 const MOUSE_SENSITIVITY = 0.06
 
 func _process(delta:float):

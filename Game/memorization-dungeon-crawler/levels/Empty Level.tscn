@@ -254,7 +254,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.969955, -0.06306267, 9.081
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, -19.07626)
 
 [node name="orc_boss" parent="." instance=ExtResource("10_xvfop")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3465507, 0.2559439, 21.796957)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.347, 0, 21.797)
 
 [node name="potion" parent="." instance=ExtResource("11_asn8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2377577, 2.6058052, 0.17240429)

@@ -15,6 +15,7 @@ const SHRINK_SPEED:float = 0.6
 @export var punch_animation:String
 @export var take_hit_animation:String
 @export var death_animation:String
+@export var begin_delay = 1
 
 var isDead = false
 const CardsHandler = preload("uid://cc0wwewiey4d7")
@@ -68,8 +69,7 @@ func trigger():
 	if(isDead):
 		return
 	print("You should not have come")
-	
 	var questions:Array[Question] = []
 	for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, cardNumber):
 		questions.append(card.toQuestion(speed, SaveHandler.currentLevel, damage))
-	Globals.drill_questions(questions, _3d_flashcard)
+	Globals.drill_questions(questions, _3d_flashcard, begin_delay)
