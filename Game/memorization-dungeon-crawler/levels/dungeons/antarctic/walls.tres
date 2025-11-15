@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://2cd1cam2by5d" path="res://levels/dungeons/antarctic/texture/normal.jpg" id="2_wic4v"]
 
 [resource]
+albedo_color = Color(1.3374829, 1.3374829, 1.3374829, 1)
 albedo_texture = ExtResource("1_doryo")
 normal_enabled = true
 normal_texture = ExtResource("2_wic4v")

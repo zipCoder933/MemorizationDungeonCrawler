@@ -13,31 +13,6 @@ data = PackedVector3Array(-2.5786, -0.18969999, -0.97669995, 3.0804, -0.18969999
 collision_layer = 2
 script = ExtResource("1_bdvot")
 
-[node name="Icicle3" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.9318537, 0.019329123, -0.031675678, -0.016663417, 0.9292717, 0.07684418, 0.033155575, -0.076217346, 0.928881, -1.2529724, 4.74851, -1.3192261)
-mesh = ExtResource("4_b8u4o")
-surface_material_override/0 = ExtResource("3_kmcwc")
-
-[node name="Icicle4" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.9318536, 0.01932912, -0.031675678, -0.023324924, 0.9242589, -0.1221868, 0.028860167, 0.122882314, 0.92401034, -1.4911959, 4.974339, 0.10221881)
-mesh = ExtResource("4_b8u4o")
-surface_material_override/0 = ExtResource("3_kmcwc")
-
-[node name="Icicle7" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.9318536, 0.01932912, -0.031675678, -0.019347321, 0.9323915, -0.00020855665, 0.031664524, 0.00086563826, 0.9320539, -1.4911959, 5.41795, 0.6232372)
-mesh = ExtResource("4_b8u4o")
-surface_material_override/0 = ExtResource("3_kmcwc")
-
-[node name="Icicle6" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.93052244, -0.049655747, -0.03728857, 0.052505627, 0.9281452, 0.07428282, 0.03315557, -0.07621734, 0.9288809, -1.0464456, 4.6362615, 0.10766268)
-mesh = ExtResource("4_b8u4o")
-surface_material_override/0 = ExtResource("3_kmcwc")
-
-[node name="Icicle5" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.9318537, 0.019329123, -0.031675678, -0.016663417, 0.9292717, 0.07684418, 0.033155575, -0.076217346, 0.928881, -1.2127593, 4.917658, 1.9548823)
-mesh = ExtResource("4_b8u4o")
-surface_material_override/0 = ExtResource("3_kmcwc")
-
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 5.848333e-10, 0, 1, 0, -5.8483324e-10, 0, 1, -4.544132, 4.0218244, 0.047252953)
 light_color = Color(0.8, 0.8933333, 1, 1)
@@ -57,5 +32,38 @@ skeleton = NodePath("../wall")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.1, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_kmcwc")
+
+[node name="decorations" type="Node3D" parent="."]
+visible = false
+
+[node name="Icicle3" type="MeshInstance3D" parent="decorations"]
+transform = Transform3D(0.9318537, 0.019329123, -0.031675678, -0.016663417, 0.9292717, 0.07684418, 0.033155575, -0.076217346, 0.928881, -1.2529724, 4.74851, -1.3192261)
+mesh = ExtResource("4_b8u4o")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_kmcwc")
+
+[node name="Icicle4" type="MeshInstance3D" parent="decorations"]
+transform = Transform3D(0.9318536, 0.01932912, -0.031675678, -0.023324924, 0.9242589, -0.1221868, 0.028860167, 0.122882314, 0.92401034, -1.4911959, 4.974339, 0.10221881)
+mesh = ExtResource("4_b8u4o")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_kmcwc")
+
+[node name="Icicle7" type="MeshInstance3D" parent="decorations"]
+transform = Transform3D(0.9318536, 0.01932912, -0.031675678, -0.019347321, 0.9323915, -0.00020855665, 0.031664524, 0.00086563826, 0.9320539, -1.4911959, 5.41795, 0.6232372)
+mesh = ExtResource("4_b8u4o")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_kmcwc")
+
+[node name="Icicle6" type="MeshInstance3D" parent="decorations"]
+transform = Transform3D(0.93052244, -0.049655747, -0.03728857, 0.052505627, 0.9281452, 0.07428282, 0.03315557, -0.07621734, 0.9288809, -1.0464456, 4.6362615, 0.10766268)
+mesh = ExtResource("4_b8u4o")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_kmcwc")
+
+[node name="Icicle5" type="MeshInstance3D" parent="decorations"]
+transform = Transform3D(0.9318537, 0.019329123, -0.031675678, -0.016663417, 0.9292717, 0.07684418, 0.033155575, -0.076217346, 0.928881, -1.2127593, 4.917658, 1.9548823)
+mesh = ExtResource("4_b8u4o")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_kmcwc")
 
 [editable path="wall"]
