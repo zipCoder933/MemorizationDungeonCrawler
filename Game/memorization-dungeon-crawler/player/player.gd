@@ -31,7 +31,7 @@ var target_cam_offset:Vector2 = Vector2(0,0)
 #movement
 var movement:Vector3 = Vector3.ZERO
 var is_on_floor:bool = false
-const FORWARD_SPEED = 400
+const FORWARD_SPEED = 600
 const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
 var bossfight_finish_entity

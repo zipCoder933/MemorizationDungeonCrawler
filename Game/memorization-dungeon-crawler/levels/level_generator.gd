@@ -286,8 +286,8 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, \
 		var placeDoors = true #Always place a door at the beginning of a path
 		if(stepsTaken > 0):
 			placeDoors = randf() < DOOR_LIKELYHOOD
-		if Engine.is_embedded_in_editor(): #Dont want to worry about doors in editor
-				placeDoors = false
+		#if Engine.is_embedded_in_editor(): #Dont want to worry about doors in editor
+				#placeDoors = false
 		if(place.is_equal_approx(path_end)):
 			break;
 		if path_direction(direction,randi_range(1,4),placeDoors,idea_path):
@@ -362,7 +362,7 @@ const arenaSize = 1;
 const CLOSENESS_TO_END_PATH_END = 6;
 const FAILED_LEVEL_SURVIVAL = 0.3
 const DOOR_LIKELYHOOD = 0.3
-const DRILLS_TO_ARENA = 8 #How many total drills * card_review_number makes 1 arena in the map?
+const DRILLS_TO_ARENA = 15 #How many total drills * card_review_number makes 1 arena in the map?
 
 func _ready():
 	DOOR = preload("uid://bdnosseu7fsm")
@@ -447,8 +447,8 @@ func _ready():
 		print("Arena average: ",arenas_average)
 	
 	
-	var min_path_length = 5
-	var max_path_length = 20
+	var min_path_length = 3
+	var max_path_length = 15
 	var start_pos = Vector3(0,0,0)
 	
 	var main_path_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()

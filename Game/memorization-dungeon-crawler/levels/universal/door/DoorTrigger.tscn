@@ -7,7 +7,7 @@
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_46ljq"]
-size = Vector3(2.348877, 5.1503906, 3.7077484)
+size = Vector3(1.7823486, 5.1503906, 2.6905193)
 
 [node name="trigger" type="StaticBody3D"]
 collision_layer = 4
@@ -18,5 +18,5 @@ transform = Transform3D(-3.4969112e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.4969112e-
 texture = SubResource("ViewportTexture_ctaek")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6269932, 2.3397975, -0.043907166)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.343729, 2.3397975, 0.03288746)
 shape = SubResource("BoxShape3D_46ljq")

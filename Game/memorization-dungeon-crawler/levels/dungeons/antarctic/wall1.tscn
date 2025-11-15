@@ -1,41 +1,44 @@
-[gd_scene load_steps=8 format=3 uid="uid://7rxa50lxqn7q"]
+[gd_scene load_steps=7 format=3 uid="uid://7rxa50lxqn7q"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_bdvot"]
+[ext_resource type="ArrayMesh" uid="uid://cnpncjktfc73q" path="res://levels/dungeons/antarctic/wall.obj" id="3_bw6ha"]
 [ext_resource type="Material" uid="uid://bufg64lkge8ug" path="res://levels/dungeons/antarctic/walls.tres" id="3_kmcwc"]
-[ext_resource type="Texture2D" uid="uid://b3ym8jftv2jwv" path="res://levels/dungeons/antarctic/texture/texture.png" id="4_bdvot"]
-[ext_resource type="ArrayMesh" uid="uid://b0hefwukty74" path="res://levels/dungeons/lava/environment/wall.obj" id="5_a2fgm"]
+[ext_resource type="ArrayMesh" uid="uid://dw7nki4vxed26" path="res://levels/dungeons/antarctic/icicle.obj" id="4_b8u4o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
-size = Vector3(2.6802979, 5, 5.556381)
+size = Vector3(2.2971802, 5, 6.269926)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5vrq6"]
 size = Vector3(1, 5, 5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmcwc"]
-albedo_texture = ExtResource("4_bdvot")
 
 [node name="wall" type="StaticBody3D"]
 collision_layer = 2
 script = ExtResource("1_bdvot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21612549, 2.5, 0.24713898)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40768433, 2.5, 0.6039114)
 shape = SubResource("BoxShape3D_xfbw5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+visible = false
 material_override = ExtResource("3_kmcwc")
 mesh = SubResource("BoxMesh_5vrq6")
 surface_material_override/0 = ExtResource("3_kmcwc")
 
+[node name="DoorsAndWalls" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.0651592e-08, 0, -0.918, 0, 1, 0, 0.93, 0, -4.0127055e-08, 0, -0.7285924, -0.15622902)
+mesh = ExtResource("3_bw6ha")
+surface_material_override/0 = ExtResource("3_kmcwc")
+
+[node name="Icicle2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.92338306, 0.12880489, -0.022390522, -0.1264624, 0.9205045, 0.08004399, 0.03315557, -0.07621734, 0.928881, -0.6638925, 4.3924627, 0.08474219)
+mesh = ExtResource("4_b8u4o")
+surface_material_override/0 = ExtResource("3_kmcwc")
+
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9500484, 3.7233758, 0.218732)
+transform = Transform3D(1, 0, 5.848333e-10, 0, 1, 0, -5.8483324e-10, 0, 1, -4.544132, 4.0218244, 0.047252953)
 light_color = Color(0.8, 0.8933333, 1, 1)
 light_energy = 2.0
 light_indirect_energy = 3.1
 omni_range = 9.0
-
-[node name="Wall" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.08487684, 0, 0.6984736, 0, 1, 0, -0.9701475, 0, 0.06110847, 0.31769598, -9.536743e-07, 0.31110978)
-material_override = SubResource("StandardMaterial3D_kmcwc")
-mesh = ExtResource("5_a2fgm")
