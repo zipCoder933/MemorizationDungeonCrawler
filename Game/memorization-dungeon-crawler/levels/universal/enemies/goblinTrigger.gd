@@ -8,7 +8,8 @@ const SHRINK_SPEED:float = 0.8
 
 @onready var player:Player = get_tree().get_first_node_in_group("player");
 
-@export var damage:float = 0.5
+@export var fail_health_add:float = -0.5
+@export var success_health_add:float = 0
 @export var speed:float = 0.8
 @export var cardNumber:int = 10
 @export var idle_animation:String
@@ -22,21 +23,42 @@ var isDead = false
 const CardsHandler = preload("uid://cc0wwewiey4d7")
 const LevelsHandler = preload("uid://bte11e0fapqes")
 
+var accuracy:Array[float] = []
+
 func _single_drill(success):
 	if(success):
+		accuracy.append(100)
+		player.change_health(success_health_add)
 		_animation_player.stop()
 		_animation_player.play(take_hit_animation,0.2)
 	else:
-		pass
+		accuracy.append(0)
+		player.change_health(fail_health_add)
 
 func _finish_drill(success, count):
-	if(success > 0):
-		isDead = true
+	if(is_boss):
+		var total_accuracy_score:float = 0
+		for val in accuracy:
+			total_accuracy_score += val
+		total_accuracy_score = total_accuracy_score / accuracy.size()
+		print("Bossfight finished. Accuracy ",total_accuracy_score)
+		Globals.boss_defeated_event(self, total_accuracy_score)
+	else:
+		if(success > 0):
+			die()
+
+func die():
+	isDead = true
+	if(is_instance_valid(node_3d)):
 		_animation_player.play(death_animation,0.2)
+
+func _victory_event():
+	die()
 
 func _ready() -> void:
 	_3d_flashcard.signal_flashcard_finished_drill.connect(_finish_drill)
 	_3d_flashcard.signal_flashcard_single_drill.connect(_single_drill)
+	Globals.signal_victory.connect(_victory_event)
 
 func _process(delta):
 	if not is_instance_valid(node_3d):
@@ -70,8 +92,15 @@ func _process(delta):
 func trigger():
 	if(isDead):
 		return
-	print("You should not have come")
 	var questions:Array[Question] = []
-	for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, cardNumber):
-		questions.append(card.toQuestion(speed, SaveHandler.currentLevel, damage))
+	
+	if(is_boss):
+		for i in range(0,cardNumber):#We want to go through the entire deck X times
+			for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, 0):
+				questions.append(card.toQuestion(speed, SaveHandler.currentLevel))
+	else:
+		for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, cardNumber):
+			questions.append(card.toQuestion(speed, SaveHandler.currentLevel))
+	
+	print("Drilling player on deck; size: ",questions.size(),"; tags: ",SaveHandler.currentLevel.card_tags)
 	Globals.drill_questions(questions, _3d_flashcard, begin_delay)

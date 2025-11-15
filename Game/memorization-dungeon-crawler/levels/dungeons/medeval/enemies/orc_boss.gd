@@ -8,10 +8,10 @@ extends Node3D
 func _ready():
 	pass
 	
-#Disable the orc boss until we have completed all bosses
+#Disable the orc boss until we have completed all enemies
 func _process(delta: float) -> void:
-	if(Globals.get_player().keys < Globals.totalArenas):
-		boss_model.visible=false #TODO: Add a elevator animation when we spawn the boss
+	if(Globals.get_player().keys < Globals.totalArenas and !Engine.is_embedded_in_editor()):
+		boss_model.visible=false
 		collision_shape_3d.disabled = true
 	else:
 		boss_model.visible=true

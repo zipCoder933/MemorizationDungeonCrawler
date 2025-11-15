@@ -3,25 +3,32 @@ class_name HUD
 @export var player:Player
 @onready var damage_bar: ProgressBar = %DamageBar
 @onready var label: Label = $CanvasLayer/Label
+
 @onready var game_over_panel: Panel = $CanvasLayer/GameOverPanel
 @onready var victory_panel: Panel = $CanvasLayer/VictoryPanel
+
 @onready var card_ui: FlashcardUI = %CardUI
 @onready var menu_panel: Panel = %MenuPanel
 @onready var level_indicator: Label = %"level indicator"
 @onready var loading_panel: Panel = $CanvasLayer/LoadingPanel
 @onready var fps: Label = $fps
+@onready var bossfight_stats: BossfightStats = $CanvasLayer/BossfightStats
 
 const LevelsHandler = preload("uid://bte11e0fapqes")
 const SaveHandler = preload("uid://bgwdh30vglopu")
 var fade_speed = 0.8
 
 func panelsVisible():
-	return game_over_panel.visible or victory_panel.visible or menu_panel.visible
+	return game_over_panel.visible or victory_panel.visible\
+	 or menu_panel.visible or bossfight_stats.visible
 
 var current_question:Question
+var bossfight_accuracy = 0
+var animation_accuracy = 0
 @onready var boss_info: Label = %boss_info
 
 func _ready():
+	bossfight_stats.visible=false
 	game_over_panel.visible=false
 	loading_panel.modulate.a = 1
 	victory_panel.modulate.a = 0
@@ -29,6 +36,7 @@ func _ready():
 	loading_panel.visible = true
 	player.health_changed.connect(_player_health_changed)
 	Globals.signal_game_over.connect(_game_over)
+	Globals.signal_boss_defeated.connect(bossfight_stats.complete_boss_fight)
 	Globals.signal_victory.connect(_victory)
 	if(SaveHandler.currentLevel != null and  SaveHandler.currentGame !=null):
 		boss_info.visible = SaveHandler.currentLevel.levelType == Level.LevelType.BOSS
@@ -46,6 +54,10 @@ func _input(event):
 			menu_panel.visible = !menu_panel.visible
 
 func _process(delta):
+	if(menu_panel.visible):#We cant have menu open if we are already in another menu
+		if(victory_panel.visible or game_over_panel.visible or bossfight_stats.visible):
+			menu_panel.visible = false
+	
 	fps.text = str(Engine.get_frames_per_second())+" fps"
 
 	label.text = "KEYS: "+str(player.keys)+" / "+str(Globals.totalArenas) 
@@ -57,6 +69,7 @@ func _process(delta):
 	loading_panel.modulate.a = loading_panel.modulate.a - (fade_speed * delta)
 	if(loading_panel.modulate.a <= 0):
 		loading_panel.visible = false
+	
 
 func _player_health_changed(health:float):
 	damage_bar.value = clamp(health, 0, Player.MAX_HEALTH)
@@ -68,7 +81,6 @@ func _game_over():
 @onready var next: Button = $CanvasLayer/VictoryPanel/Next
 
 func _victory():
-	print("VICTORY EVENT CALLED")
 	if(SaveHandler.currentGame.completed_level >= LevelsHandler.levels.size()):
 		victory_text.text = "Game Complete!"
 		next.text = "Replay Final Level"

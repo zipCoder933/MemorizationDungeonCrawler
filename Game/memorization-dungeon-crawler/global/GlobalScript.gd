@@ -30,7 +30,6 @@ func game_over_event():
 	clear_flashcard()
 
 func victory_event():
-	await get_tree().create_timer(1).timeout
 	signal_victory.emit()
 
 func start_game(entry:SaveEntry, goToLevel:bool = true):
@@ -150,6 +149,11 @@ signal signal_new_flashcard
 signal signal_flashcard_single_drill
 signal signal_flashcard_finished_drill
 signal signal_flashcard_answer_changed
+signal signal_boss_defeated
+
+func boss_defeated_event(enemy:GoblinTrigger, accuracy_score:float):
+	signal_boss_defeated.emit(enemy, accuracy_score)
+	Globals.get_player().mode = Player.PlayerMode.STILL
 
 func get_player() -> Player:
 	var list = get_tree().get_nodes_in_group("player")
@@ -200,10 +204,6 @@ func submit_flashcard(succeed:bool):
 	
 	_flashcardNode.signal_flashcard_single_drill.emit(succeed)
 	signal_flashcard_single_drill.emit(_flashcardNode, succeed)
-	
-	#If we did not succeed, lower the players health
-	if(!succeed and player !=null):
-		player.change_health( - get_flashcard_question().fail_health_loss)
 	questions.remove_at(0)
 	
 	if(!succeed):

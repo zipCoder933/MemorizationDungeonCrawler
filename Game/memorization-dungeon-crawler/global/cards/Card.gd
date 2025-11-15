@@ -20,7 +20,7 @@ func _init(_directory: String, _type: String, _question: String, _is_image:bool,
 	tags = _tags
 
 
-func toQuestion(timeMultiplier:float, level:Level, fail_health_loss:float = 0.0):
+func toQuestion(timeMultiplier:float, level:Level):
 	var isNumeric = false
 	var allowNegative = true
 	var allowDecimal = true
@@ -43,7 +43,7 @@ func toQuestion(timeMultiplier:float, level:Level, fail_health_loss:float = 0.0)
 	elif type == "text":
 		maxChars = 50
 	
-	return Question.new(self, is_image, question, answer, level.time_to_answer_sec * timeMultiplier, fail_health_loss, \
+	return Question.new(self, is_image, question, answer, level.time_to_answer_sec * timeMultiplier, \
 		isNumeric, allowNegative, allowDecimal, allowedKeys,maxChars)
 
 func toString() -> String:

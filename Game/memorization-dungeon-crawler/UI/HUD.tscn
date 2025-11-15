@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfj67b4iujjtf"]
+[gd_scene load_steps=14 format=3 uid="uid://bfj67b4iujjtf"]
 
 [ext_resource type="Script" uid="uid://qn46exgdgmle" path="res://UI/hud.gd" id="1_ijstf"]
 [ext_resource type="Texture2D" uid="uid://ch714bgi1e00f" path="res://assets/textures/health_indicator.png" id="1_yixhe"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="5_f2wx0"]
 [ext_resource type="PackedScene" uid="uid://cynckudprgttu" path="res://UI/Flashcard/flashcard.tscn" id="6_gppie"]
 [ext_resource type="Texture2D" uid="uid://d260hqcqu35ev" path="res://assets/icon.png" id="8_md4fy"]
+[ext_resource type="PackedScene" uid="uid://cqlkanaejs5yj" path="res://UI/BossfightStats.tscn" id="9_7i7fj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md4fy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -286,6 +287,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2ptjp")
+
+[node name="BossfightStats" parent="CanvasLayer" instance=ExtResource("9_7i7fj")]
 
 [node name="fps" type="Label" parent="."]
 layout_mode = 1

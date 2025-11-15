@@ -33,16 +33,17 @@ static func get_random_cards(card_tags:Array[String], quantity: int, unique_fact
 
 		if not used_cards.has(tag):
 			used_cards[tag] = []
+		
+		# Pre-check if all cards used
+		var total_cards = tag_dict[tag].size()
+		if used_cards[tag].size() >= total_cards:
+			used_cards[tag] = []  # reset memory
 
 		var available: Array[Card] = []
 		for c in tag_dict[tag]:
 			if not used_cards[tag].has(c):
 				available.append(c)
 
-		# If all cards used, reset memory
-		if available.is_empty():
-			used_cards[tag] = []
-			available = tag_dict[tag].duplicate()
 
 		# Add to global pool
 		for c in available:

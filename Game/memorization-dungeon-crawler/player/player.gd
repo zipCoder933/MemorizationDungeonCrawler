@@ -12,8 +12,14 @@ var mode:PlayerMode = PlayerMode.ADVENTURE
 enum PlayerMode{
 	ADVENTURE,
 	FACTS,
-	GAME_OVER, VICTORY
+	STILL, 
+	GAME_OVER,
+	VICTORY
 }
+
+func _is_still():
+	return mode == PlayerMode.STILL or mode == PlayerMode.GAME_OVER or mode == PlayerMode.VICTORY\
+	 or !mouse_controller.mouse_locked or bossfight_finish_entity != null
 
 #camera
 @export var phantom_camera_3d: PhantomCamera3D
@@ -28,7 +34,7 @@ var is_on_floor:bool = false
 const FORWARD_SPEED = 400
 const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
-
+var bossfight_finish_entity
 
 #health / status
 signal health_changed
@@ -62,12 +68,16 @@ func set_health(value:float):
 func change_health(amt:float):
 	set_health(health+amt)
 
+func _global_boss_defeated(_boss:GoblinTrigger, accuracy:float):
+	bossfight_finish_entity = _boss
+	mode = PlayerMode.STILL
 
 func _ready():
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
 	Globals.signal_game_over.connect(_game_over)
 	Globals.adventure_mode.connect(_global_adventure_mode)
 	Globals.signal_victory.connect(_victory)
+	Globals.signal_boss_defeated.connect(_global_boss_defeated)
 
 var flash_card:WorldFlashCard = null
 
@@ -119,8 +129,8 @@ func _process(delta:float):
 												FLASHCARD_MIN_TURN_SPEED, FLASHCARD_MAX_TURN_SPEED)
 		camRotation.y = lerp_angle(camRotation.y, target_angle, turn_multiplier * delta)
 
-
-	if(mode == PlayerMode.GAME_OVER or mode == PlayerMode.VICTORY):
+	if(_is_still()):
+		movement = Vector3.ZERO
 		pass
 	else:
 		if(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
@@ -132,7 +142,9 @@ func _process(delta:float):
 
 
 func _physics_process(delta: float) -> void:
-	if(mode == PlayerMode.ADVENTURE or mode == PlayerMode.FACTS):
+	if(_is_still()):
+		linear_velocity = Vector3.ZERO
+	else:
 		var forwardDir = transform.basis.z.normalized()  # Godot's "forward" is -Z
 		var forward_movement = max(abs(movement.z),abs(movement.x))
 		var speed = FORWARD_SPEED
@@ -156,15 +168,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			targetRotation = phantom_camera_3d.get_third_person_rotation().y
 		rotation.y = lerp_angle(rotation.y, targetRotation, 0.05)
-	else:
-		linear_velocity = Vector3.ZERO
+		
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if(mode != PlayerMode.GAME_OVER and mode != PlayerMode.VICTORY):
-			var canUseWASD:bool = mode != PlayerMode.FACTS
-			if(event.pressed):
+		var canUseWASD:bool = mode != PlayerMode.FACTS
+		if(event.pressed):
+			if(not _is_still()):
 				if Input.is_action_just_pressed("Forward") or (canUseWASD and event.keycode == KEY_W):
 					movement.z = 1;
 				elif Input.is_action_just_pressed("Backward")  or (canUseWASD and event.keycode == KEY_S):
@@ -178,24 +189,20 @@ func _input(event: InputEvent) -> void:
 					movement.x = -1;
 					if(movement.z == 0):
 						targetRotation = rotation.y-PI/2
-			else:
-				if Input.is_action_just_released("Forward")  or (event.keycode == KEY_W):
-					movement.z = 0;
-				elif Input.is_action_just_released("Backward")  or (event.keycode == KEY_S):
-					movement.z = 0;
-				elif Input.is_action_just_released("Left")  or (event.keycode == KEY_A):
-					movement.x = 0;
-					target_cam_offset.y = rotation.y
-				elif Input.is_action_just_released("Right")  or (event.keycode == KEY_D):
-					movement.x = 0;
-					target_cam_offset.y = rotation.y
+		else:
+			if Input.is_action_just_released("Forward")  or (event.keycode == KEY_W):
+				movement.z = 0;
+			elif Input.is_action_just_released("Backward")  or (event.keycode == KEY_S):
+				movement.z = 0;
+			elif Input.is_action_just_released("Left")  or (event.keycode == KEY_A):
+				movement.x = 0;
+				target_cam_offset.y = rotation.y
+			elif Input.is_action_just_released("Right")  or (event.keycode == KEY_D):
+				movement.x = 0;
+				target_cam_offset.y = rotation.y
+			if(not _is_still()):
 				if(abs(movement.x) < 0.01 or abs(movement.z) < 0.01):
 					animation_player.play(IDLE_ANIMATION,0.21)
-		else:
-			movement = Vector3.ZERO
-			if(animation_player.get_current_animation() == RUNNING_ANIMATION
-			and (abs(movement.x) < 0.01 or abs(movement.z) < 0.01)):
-					animation_player.play(IDLE_ANIMATION,0.2)
 
 func _on_body_entered(body: Node) -> void:
 	if body is FloorCeiling:

@@ -286,6 +286,8 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, \
 		var placeDoors = true #Always place a door at the beginning of a path
 		if(stepsTaken > 0):
 			placeDoors = randf() < DOOR_LIKELYHOOD
+		if Engine.is_embedded_in_editor(): #Dont want to worry about doors in editor
+				placeDoors = false
 		if(place.is_equal_approx(path_end)):
 			break;
 		if path_direction(direction,randi_range(1,4),placeDoors,idea_path):
