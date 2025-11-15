@@ -124,6 +124,8 @@ func has_flashcard():
 func get_flashcard_question():
 	return _current_flashcard_question
 
+	
+
 func clear_flashcard():
 	if(has_flashcard()):
 		_flashcardNode.visible = false
@@ -240,7 +242,9 @@ func _input(event):
 					var ch := char(event.unicode)
 					if(event.as_text() != null and _current_flashcard_question.is_valid_key(event,current_flashcard_answer)):
 						current_flashcard_answer += ch
-					if(current_flashcard_answer.length() >= get_flashcard_question().max_answer_chars):
+					print("Answer: ",get_flashcard_question().answer_text)
+					if(current_flashcard_answer.length() >= get_flashcard_question().max_answer_chars\
+					or current_flashcard_answer.length() >= get_flashcard_question().get_answer_length()):
 						submit_flashcard(get_flashcard_question().answerEquals(current_flashcard_answer))
 				
 				if(get_flashcard_question().answerEquals(current_flashcard_answer)):

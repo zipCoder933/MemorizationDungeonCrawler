@@ -26,6 +26,33 @@ func _init(_card:Card, isImage:bool, q: String = "", ans: String = "", time: flo
 	allow_decimal = _allow_decimal
 	max_answer_chars = _max_answer_chars
 
+func get_answer_length():
+	var txt := answer_text.strip_edges()
+
+	# Check if it's a valid integer (digits with optional leading "-")
+	if txt.is_valid_int():
+		# Count digits only (ignore minus sign)
+		return txt.lstrip("-").length()
+
+	# Check if it's a valid float (digits, optional minus, optional decimals)
+	if txt.is_valid_float():
+		var cleaned := txt.lstrip("-")
+		var parts := cleaned.split(".")
+		# If there is a decimal part...
+		if parts.size() > 1:
+			var int_part := parts[0]
+			var dec_part := parts[1]
+			# Only count decimals if they actually exist (not "0" or empty)
+			if dec_part != "" and int(dec_part) != 0:
+				return int_part.length() + dec_part.length()
+			# Otherwise, only count integer part
+			return int_part.length()
+		# Float with no decimal section (rare, but hey)
+		return cleaned.length()
+	# If it's not a number at all: just count the trimmed text
+	return txt.length()
+
+
 func answerEquals(ans: String) -> bool:
 	var user_val = ans.strip_edges()
 	var real_val = answer_text.strip_edges()
