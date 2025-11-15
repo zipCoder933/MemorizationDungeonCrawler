@@ -67,7 +67,9 @@ func is_valid_key(event: InputEventKey, currentAnswer:String):
 	var code := event.unicode
 	var ch := char(code)
 	if key_whitelist.length() > 0:
-		return key_whitelist.contains(ch) 
+		return key_whitelist.contains(ch)\
+		 or key_whitelist.contains(ch.to_upper())\
+		 or key_whitelist.contains(ch.to_lower())
 	elif key_requires_numeric:
 		if ch >= "0" and ch <= "9":
 			return true

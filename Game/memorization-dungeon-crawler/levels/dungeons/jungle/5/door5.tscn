@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bvwem5tqb8tjf" path="res://levels/dungeons/jungle/jungle/door/door.glb" id="5_s80dq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6djk1"]
-size = Vector3(4.6224976, 3.081543, 0.24957275)
+size = Vector3(4.6224976, 2.84729, 0.24957275)
 
 [node name="Door" type="StaticBody3D" node_paths=PackedStringArray("door")]
 collision_layer = 2
@@ -34,5 +34,5 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1.02, 0, -1, 0, -4.371139e-08, 0
 collision_layer = 2
 
 [node name="doorCollision" type="CollisionShape3D" parent="door/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07601929, 1.5408944, 0.007171631)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07601929, 1.4237678, 0.007171631)
 shape = SubResource("BoxShape3D_6djk1")

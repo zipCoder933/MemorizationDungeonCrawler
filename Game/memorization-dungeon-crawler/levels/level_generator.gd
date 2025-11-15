@@ -445,8 +445,8 @@ func _ready():
 		print("Arena average: ",arenas_average)
 	
 	
-	var min_path_length = 3
-	var max_path_length = 15
+	var min_path_length = 1
+	var max_path_length = 12
 	var start_pos = Vector3(0,0,0)
 	
 	var main_path_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()

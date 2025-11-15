@@ -1,7 +1,7 @@
 extends StaticBody3D
 class_name GoblinTrigger
 
-const SHRINK_SPEED:float = 0.8
+const SHRINK_SPEED:float = 1.8
 @export var _3d_flashcard: WorldFlashCard
 @export var _animation_player: AnimationPlayer
 @export var node_3d: Node3D

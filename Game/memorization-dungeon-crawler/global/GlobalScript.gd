@@ -168,17 +168,18 @@ func get_player() -> Player:
 #flashcardElement the node to assign to the flashcards
 
 func drill_flashcards(quantity:int, flashcardElement:WorldFlashCard, time_multiplier:float = 1):
+	failed_flashcards.clear()
 	var questions:Array[Question] = []
 	for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, quantity):
 		questions.append(card.toQuestion(time_multiplier, SaveHandler.currentLevel))
 	drill_questions(questions, flashcardElement)
 
-func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard, begin_delay_sec:float = 0):
+func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard, begin_delay_sec:float = 0, _allow_end_on_failure2:bool = false):
 	if(has_flashcard() and flashcardElement != _flashcardNode):
 		print("There is already a set of flashcards being drilled!")
 		return
 	_flashcardNode = flashcardElement
-	_allow_end_on_failure = questions2.size() == 1
+	_allow_end_on_failure = _allow_end_on_failure2
 	fact_answering_mode.emit(_flashcardNode)
 	print("Drilling player on ",questions2.size()," cards.")
 	deckSize = questions2.size()
@@ -192,6 +193,7 @@ func submit_flashcard(succeed:bool):
 	var player =  get_player()
 	var accuracy = 0
 	var time_ms = _flashcardNode.get_time_elapsed_MS()
+	var question = _current_flashcard_question
 	if(succeed):
 		accuracy = 100
 		succeeded += 1
@@ -216,13 +218,19 @@ func submit_flashcard(succeed:bool):
 		new_flashcard_question(questions[0])
 	else:
 		#If we want the last one to be good, we will just keep reviewing missed cards until then
-		if(!succeed and !_allow_end_on_failure and failed_flashcards.size() > 0):
+		if(!succeed and !_allow_end_on_failure):
+			if failed_flashcards.size() > 0: #If we have a failed flashcard to review
 				new_flashcard_question(failed_flashcards[0])
 				failed_flashcards.pop_back()
 				return
+			else: #Otherwise pick a random card fron one of our tags (This should never happen)
+				for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, 1):
+					new_flashcard_question(card.toQuestion(1, SaveHandler.currentLevel))
+					return
 
 		_flashcardNode.signal_flashcard_finished_drill.emit(succeeded, deckSize)
 		signal_flashcard_finished_drill.emit(_flashcardNode, succeeded, deckSize)
+		failed_flashcards.clear()
 		if(player !=null and player.health > 0):
 			adventure_mode.emit()
 		clear_flashcard()
