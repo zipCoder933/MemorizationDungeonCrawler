@@ -1,6 +1,6 @@
 {
   "starting_answer_speed_sec": 5,
-  "goal_answer_speed_sec": 0.25,
+  "goal_answer_speed_sec": 0.4,
   "name": "Treble and Base",
   "dungeons": [
 	{

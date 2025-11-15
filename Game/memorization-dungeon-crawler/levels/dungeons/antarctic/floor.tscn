@@ -48,6 +48,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_crr6b")
 
 [node name="ceiling" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9585991, 4.7840567, 4.369707)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.959, 5.5, 4.37)
 mesh = SubResource("QuadMesh_bbej7")
 surface_material_override/0 = SubResource("StandardMaterial3D_bcgiv")

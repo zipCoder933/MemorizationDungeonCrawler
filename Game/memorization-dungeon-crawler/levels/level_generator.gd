@@ -395,11 +395,9 @@ func _ready():
 			FLOOR = preload("uid://b61v8qf2ipthl")
 			DOOR = preload("uid://lfo3xvyqph2")
 			WALL = preload("uid://bul1mahgmqnrl")
-			FloorCeiling.ceiling_material = _material("res://assets/dungeons/medeval/variants/ceiling/3")
-			FloorCeiling.floor_material = _material("res://assets/dungeons/medeval/variants/floor/4")
 		elif(level.theme == Level.LevelTheme.DUNGEON):
-			var ceiling_prefix = "res://assets/dungeons/medeval/variants/ceiling/"
-			var floor_prefix = "res://assets/dungeons/medeval/variants/floor/"
+			var ceiling_prefix = "res://levels/dungeons/medeval/assets/variants/ceiling/"
+			var floor_prefix = "res://levels/dungeons/medeval/assets/variants/floor/"
 			var door_choices = [
 				preload("uid://bdnosseu7fsm"),
 				preload("uid://cybqn7iu5i8eg"),

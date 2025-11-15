@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://diy6r0cvqqg7"]
 
 [ext_resource type="Script" uid="uid://b6gsly6ywnrfy" path="res://levels/universal/door/door.gd" id="1_tosod"]
-[ext_resource type="PackedScene" uid="uid://bkeiga1qgtt2g" path="res://assets/dungeons/medeval/door/door frame.glb" id="2_cg7ub"]
-[ext_resource type="Texture2D" uid="uid://p566760efq64" path="res://assets/dungeons/medeval/variants/wall/3/texture.jpg" id="3_bqncn"]
-[ext_resource type="PackedScene" uid="uid://y4f1l2qd7mo7" path="res://assets/dungeons/medeval/door/door.glb" id="4_jpe4b"]
+[ext_resource type="PackedScene" uid="uid://bkeiga1qgtt2g" path="res://levels/dungeons/medeval/assets/door/door frame.glb" id="2_cg7ub"]
+[ext_resource type="Texture2D" uid="uid://p566760efq64" path="res://levels/dungeons/medeval/assets/variants/wall/3/texture.jpg" id="3_bqncn"]
+[ext_resource type="PackedScene" uid="uid://y4f1l2qd7mo7" path="res://levels/dungeons/medeval/assets/door/door.glb" id="4_jpe4b"]
 [ext_resource type="PackedScene" uid="uid://bxect7ofq1jbm" path="res://levels/universal/door/DoorTrigger.tscn" id="5_kfces"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xgmq8"]

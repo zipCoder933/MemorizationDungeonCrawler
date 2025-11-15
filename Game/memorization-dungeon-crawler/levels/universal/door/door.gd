@@ -4,7 +4,7 @@ var open:bool = false
 
 @export var door_open_y:float = 3
 var door_closed_y:float
-@export var slide_speed = 1;
+@export var slide_speed = 2;
 @export var door:Node
 
 func _ready():

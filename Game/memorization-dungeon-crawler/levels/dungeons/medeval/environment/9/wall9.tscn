@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bpunwt6bwc3bm"]
 
-[ext_resource type="Texture2D" uid="uid://oxj6462r64m" path="res://assets/dungeons/medeval/door/door frame_seaworn_stone_tiles_diff_4k.jpg" id="1_5vrq6"]
+[ext_resource type="Texture2D" uid="uid://oxj6462r64m" path="res://levels/dungeons/medeval/assets/door/door frame_seaworn_stone_tiles_diff_4k.jpg" id="1_5vrq6"]
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_x7e51"]
-[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://assets/dungeons/medeval/pillar/pillar.glb" id="3_ctcnh"]
-[ext_resource type="PackedScene" uid="uid://ef8ir25xwge2" path="res://assets/dungeons/medeval/sconce.glb" id="4_gicrq"]
+[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://levels/dungeons/medeval/assets/pillar/pillar.glb" id="3_ctcnh"]
+[ext_resource type="PackedScene" uid="uid://ef8ir25xwge2" path="res://levels/dungeons/medeval/assets/sconce.glb" id="4_gicrq"]
 
 [sub_resource type="BoxOccluder3D" id="BoxOccluder3D_nipq0"]
 size = Vector3(0.29630604, 5, 5)

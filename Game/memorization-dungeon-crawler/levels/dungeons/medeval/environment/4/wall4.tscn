@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://kyolc7snufaa"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_v1tk0"]
-[ext_resource type="Texture2D" uid="uid://kp2d542s0bnn" path="res://assets/dungeons/medeval/variants/wall/5/texture.jpg" id="2_v1tk0"]
-[ext_resource type="Texture2D" uid="uid://bkav5n3w33qpi" path="res://assets/dungeons/medeval/variants/wall/5/normal.jpg" id="3_5sar5"]
-[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://assets/dungeons/medeval/pillar/pillar.glb" id="3_h5g5c"]
-[ext_resource type="ArrayMesh" uid="uid://c757qo6ayxerk" path="res://assets/dungeons/medeval/light_cylinder.obj" id="4_pmyc4"]
-[ext_resource type="Texture2D" uid="uid://psvhf04fotq7" path="res://assets/dungeons/medeval/variants/wall/1/normal.png" id="6_nlrdq"]
+[ext_resource type="Texture2D" uid="uid://kp2d542s0bnn" path="res://levels/dungeons/medeval/assets/variants/wall/5/texture.jpg" id="2_v1tk0"]
+[ext_resource type="Texture2D" uid="uid://bkav5n3w33qpi" path="res://levels/dungeons/medeval/assets/variants/wall/5/normal.jpg" id="3_5sar5"]
+[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://levels/dungeons/medeval/assets/pillar/pillar.glb" id="3_h5g5c"]
+[ext_resource type="ArrayMesh" uid="uid://c757qo6ayxerk" path="res://levels/dungeons/medeval/assets/light_cylinder.obj" id="4_pmyc4"]
+[ext_resource type="Texture2D" uid="uid://psvhf04fotq7" path="res://levels/dungeons/medeval/assets/variants/wall/1/normal.png" id="6_nlrdq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1.315918, 5, 5.640503)

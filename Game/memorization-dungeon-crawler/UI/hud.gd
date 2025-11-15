@@ -20,7 +20,7 @@ var fade_speed = 0.8
 
 func panelsVisible():
 	return game_over_panel.visible or victory_panel.visible\
-	 or menu_panel.visible or bossfight_stats.visible
+	 or menu_panel.visible
 
 var current_question:Question
 var bossfight_accuracy = 0

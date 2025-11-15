@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=4 uid="uid://bhsk3kl4m1dfo"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_x1h0y"]
-[ext_resource type="Texture2D" uid="uid://p566760efq64" path="res://assets/dungeons/medeval/variants/wall/3/texture.jpg" id="2_fatia"]
-[ext_resource type="Texture2D" uid="uid://bdjbymk8cyf67" path="res://assets/dungeons/medeval/variants/wall/3/normal.png" id="3_kq2hq"]
-[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://assets/dungeons/medeval/pillar/pillar.glb" id="3_oyw1v"]
-[ext_resource type="Texture2D" uid="uid://d0k2qgtqonmr6" path="res://assets/dungeons/medeval/pillar/pillar_door frame_seaworn_stone_tiles_diff_4k.jpg" id="5_pk83m"]
-[ext_resource type="ArrayMesh" uid="uid://c757qo6ayxerk" path="res://assets/dungeons/medeval/light_cylinder.obj" id="6_oyw1v"]
+[ext_resource type="Texture2D" uid="uid://p566760efq64" path="res://levels/dungeons/medeval/assets/variants/wall/3/texture.jpg" id="2_fatia"]
+[ext_resource type="Texture2D" uid="uid://bdjbymk8cyf67" path="res://levels/dungeons/medeval/assets/variants/wall/3/normal.png" id="3_kq2hq"]
+[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://levels/dungeons/medeval/assets/pillar/pillar.glb" id="3_oyw1v"]
+[ext_resource type="Texture2D" uid="uid://d0k2qgtqonmr6" path="res://levels/dungeons/medeval/assets/pillar/pillar_door frame_seaworn_stone_tiles_diff_4k.jpg" id="5_pk83m"]
+[ext_resource type="ArrayMesh" uid="uid://c757qo6ayxerk" path="res://levels/dungeons/medeval/assets/light_cylinder.obj" id="6_oyw1v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1.46875, 5, 6.0288086)

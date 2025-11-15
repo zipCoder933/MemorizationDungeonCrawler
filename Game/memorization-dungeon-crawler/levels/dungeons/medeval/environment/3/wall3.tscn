@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://dqdax1p7cvkte"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_dewdq"]
-[ext_resource type="Texture2D" uid="uid://bvauuuqsl0dpq" path="res://assets/dungeons/medeval/variants/wall/4/texture.jpg" id="2_dewdq"]
-[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://assets/dungeons/medeval/pillar/pillar.glb" id="3_e1j2s"]
-[ext_resource type="PackedScene" uid="uid://ef8ir25xwge2" path="res://assets/dungeons/medeval/sconce.glb" id="4_bjib1"]
+[ext_resource type="Texture2D" uid="uid://bvauuuqsl0dpq" path="res://levels/dungeons/medeval/assets/variants/wall/4/texture.jpg" id="2_dewdq"]
+[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://levels/dungeons/medeval/assets/pillar/pillar.glb" id="3_e1j2s"]
+[ext_resource type="PackedScene" uid="uid://ef8ir25xwge2" path="res://levels/dungeons/medeval/assets/sconce.glb" id="4_bjib1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1.1491699, 5, 5.6137695)

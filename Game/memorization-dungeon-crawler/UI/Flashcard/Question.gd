@@ -28,15 +28,8 @@ func _init(_card:Card, isImage:bool, q: String = "", ans: String = "", time: flo
 
 func get_answer_length():
 	var txt := answer_text.strip_edges()
-
-	# Check if it's a valid integer (digits with optional leading "-")
-	if txt.is_valid_int():
-		# Count digits only (ignore minus sign)
-		return txt.lstrip("-").length()
-
-	# Check if it's a valid float (digits, optional minus, optional decimals)
 	if txt.is_valid_float():
-		var cleaned := txt.lstrip("-")
+		var cleaned = txt
 		var parts := cleaned.split(".")
 		# If there is a decimal part...
 		if parts.size() > 1:
