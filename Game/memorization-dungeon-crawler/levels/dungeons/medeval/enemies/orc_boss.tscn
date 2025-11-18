@@ -1,7 +1,6 @@
-[gd_scene load_steps=27 format=4 uid="uid://bobtcptejmn2a"]
+[gd_scene load_steps=26 format=4 uid="uid://bobtcptejmn2a"]
 
-[ext_resource type="Script" uid="uid://lr7jx36gwyd0" path="res://levels/dungeons/medeval/enemies/orc_boss.gd" id="2_0d70d"]
-[ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/goblinTrigger.gd" id="2_7tcax"]
+[ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="2_7tcax"]
 [ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="3_0d70d"]
 [ext_resource type="Texture2D" uid="uid://b3oasyo8amf4d" path="res://levels/dungeons/medeval/enemies/orc_boss_skin.png" id="4_0d70d"]
 [ext_resource type="ArrayMesh" uid="uid://cyf2nu5yfwkq4" path="res://levels/dungeons/medeval/assets/boss-arena.obj" id="5_4hngc"]
@@ -1749,14 +1748,16 @@ data = PackedVector3Array(2.6766, -0.029399998, -1.5101999, 2.6766, 2.1504, -1.5
 [node name="Boss" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58322155, 0)
 
-[node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "node_3d")]
+[node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "root_node", "boss_model", "collision_shape_3d")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20550919, 0.9128463, 0)
 collision_layer = 4
 script = ExtResource("2_7tcax")
 _3d_flashcard = NodePath("../BossModel/3dFlashcard")
 _animation_player = NodePath("../BossModel/orc_boss/AnimationPlayer")
-node_3d = NodePath("../BossModel")
+root_node = NodePath("..")
+boss_model = NodePath("../BossModel")
+collision_shape_3d = NodePath("../BossArena/StaticBody3D/CollisionShape3D")
 fail_health_add = -0.2
 success_health_add = 0.1
 speed = 0.85
@@ -1783,7 +1784,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.4829629, -0.12940952, 0, 0.12940952, 0.4
 texture = SubResource("ViewportTexture_42dsa")
 
 [node name="orc_boss" type="Node3D" parent="BossModel"]
-script = ExtResource("2_0d70d")
 
 [node name="Orc" type="Node3D" parent="BossModel/orc_boss"]
 transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, -0.1, 0)
