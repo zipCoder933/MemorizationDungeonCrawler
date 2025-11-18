@@ -333,7 +333,7 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, \
 			if(boss):
 				arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, false, ARENA_BOSS)
 			else:
-				arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, false, AREA_ENEMY)
+				arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, false, ARENA_ENEMY)
 				Globals.totalArenas += 1
 	
 	return stepsTaken
@@ -355,7 +355,7 @@ var PLAYER_SPAWN:Vector3
 var DOOR;
 var FLOOR
 var WALL;
-var AREA_ENEMY;
+var ARENA_ENEMY;
 var ARENA_BOSS;
 
 const arenaSize = 1;
@@ -366,12 +366,11 @@ const DRILLS_TO_ARENA = 15 #How many total drills * card_review_number makes 1 a
 
 func _ready():
 	DOOR = preload("uid://bdnosseu7fsm")
-	AREA_ENEMY = preload("uid://bqoufhp54uwue")
+	ARENA_ENEMY = preload("uid://bqoufhp54uwue")
 	ARENA_BOSS = preload("uid://bobtcptejmn2a")
 	FLOOR = preload("uid://bvoe5plbouam2")
+	
 	var floor_size=250
-
-	print("Generating level...")
 	var level = SaveHandler.currentLevel
 	var game = SaveHandler.currentGame
 	var arenas_average = 5
@@ -386,12 +385,16 @@ func _ready():
 			DOOR = preload("uid://djjr0ga5jbjrl")
 			WALL = preload("uid://bnnvdgktdrjn")
 			FLOOR = preload("uid://bawlwsttbkodd")
+			ARENA_ENEMY 
+			ARENA_BOSS
 		elif(level.theme == Level.LevelTheme.ANTARCTIC):
 			DOOR = preload("uid://dg4pafqkenvdm")
 			WALL = preload("uid://7rxa50lxqn7q")
 			FLOOR = preload("uid://ctkt8jvhjfhif")
 		elif(level.theme == Level.LevelTheme.JUNGLE):
 			floor_size=100
+			ARENA_ENEMY = preload("uid://dv6oq3amn1brg")
+			ARENA_BOSS = preload("uid://ts0w5nrycjvg")
 			FLOOR = preload("uid://b61v8qf2ipthl")
 			DOOR = preload("uid://lfo3xvyqph2")
 			WALL = preload("uid://bul1mahgmqnrl")

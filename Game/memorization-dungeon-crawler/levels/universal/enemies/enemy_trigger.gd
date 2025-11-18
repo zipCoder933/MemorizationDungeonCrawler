@@ -1,11 +1,9 @@
 extends StaticBody3D
 class_name GoblinTrigger
-
 const SHRINK_SPEED:float = 1.8
 @export var _3d_flashcard: WorldFlashCard
 @export var _animation_player: AnimationPlayer
 @export var root_node: Node3D
-
 @onready var player:Player = get_tree().get_first_node_in_group("player");
 @export var boss_model:Node
 @export var collision_shape_3d:CollisionShape3D
@@ -13,21 +11,26 @@ const SHRINK_SPEED:float = 1.8
 @export var success_health_add:float = 0
 @export var speed:float = 0.8
 @export var cardNumber:int = 10
+
+#Animaitons
 @export var idle_animation:String
+@export var fight_idle_animation:String
 @export var punch_animation:String
 @export var take_hit_animation:String
 @export var death_animation:String
+
 @export var begin_delay = 1
 @export var is_boss = false
 
+var fighting = false
 var isDead = false
 const CardsHandler = preload("uid://cc0wwewiey4d7")
 const LevelsHandler = preload("uid://bte11e0fapqes")
 
 var accuracy:Array[float] = []
 
-#func ready():
-	#_animation_player.play("Armature|")
+func ready():
+	_animation_player.play(idle_animation)
 
 func _single_drill(success):
 	if(success):
@@ -77,7 +80,10 @@ func _process(delta):
 		return
 	
 	if !isDead and !_animation_player.is_playing():
-		_animation_player.play(idle_animation,0.2)
+		if(fighting and fight_idle_animation != null):
+			_animation_player.play(fight_idle_animation,0.2)
+		else:
+			_animation_player.play(idle_animation,0.2)
 	
 	var target_pos = player.global_position
 	var self_pos = global_transform.origin
@@ -105,6 +111,10 @@ func trigger():
 	if(isDead):
 		return
 	var questions:Array[Question] = []
+	fighting=true
+	
+	if(fight_idle_animation !=null):
+		_animation_player.play(fight_idle_animation,0.2)
 	
 	if(is_boss):
 		for i in range(0,cardNumber):#We want to go through the entire deck X times

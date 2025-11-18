@@ -219,7 +219,7 @@ func submit_flashcard(succeed:bool):
 	else:
 		#If we want the last one to be good, we will just keep reviewing missed cards until then
 		if(!succeed and !_allow_end_on_failure):
-			if failed_flashcards.size() > 0: #If we have a failed flashcard to review
+			if failed_flashcards.size() > 1: #If we have a failed flashcard to review
 				new_flashcard_question(failed_flashcards[0])
 				failed_flashcards.pop_back()
 				return
