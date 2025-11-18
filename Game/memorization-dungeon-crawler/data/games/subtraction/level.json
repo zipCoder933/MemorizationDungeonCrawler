@@ -6,10 +6,10 @@
   "dungeons": [
 	{
 	  "name": "Dungeon 1",
-	  "theme": "antarctic",
+	  "theme": "lava",
 	  "boss_name": "Da Boss",
 	  "themed_cards": ["1s", "2s"],
-	  "themed_drill_levels": 4,
+	  "themed_drill_levels": 0,
 	  "complete_drill_levels": 0
 	},
 	{

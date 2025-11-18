@@ -5,7 +5,7 @@ const SHRINK_SPEED:float = 1.8
 @export var _animation_player: AnimationPlayer
 @export var root_node: Node3D
 @onready var player:Player = get_tree().get_first_node_in_group("player");
-@export var boss_model:Node
+@export var enemy_model:Node
 @export var collision_shape_3d:CollisionShape3D
 @export var fail_health_add:float = -0.5
 @export var success_health_add:float = 0
@@ -24,6 +24,7 @@ const SHRINK_SPEED:float = 1.8
 
 var fighting = false
 var isDead = false
+var timeOfDeath:int;
 const CardsHandler = preload("uid://cc0wwewiey4d7")
 const LevelsHandler = preload("uid://bte11e0fapqes")
 
@@ -36,8 +37,8 @@ func _single_drill(success):
 	if(success):
 		accuracy.append(100)
 		player.change_health(success_health_add)
-		_animation_player.stop()
-		_animation_player.play(take_hit_animation,0.2)
+		if(take_hit_animation != null):
+			_animation_player.play(take_hit_animation,0.2)
 	else:
 		accuracy.append(0)
 		player.change_health(fail_health_add)
@@ -56,7 +57,8 @@ func _finish_drill(success, count):
 
 func die():
 	isDead = true
-	if(is_instance_valid(root_node)):
+	timeOfDeath = Time.get_ticks_msec()
+	if(is_instance_valid(root_node) && death_animation != null):
 		_animation_player.play(death_animation,0.2)
 
 func _victory_event():
@@ -70,26 +72,20 @@ func _ready() -> void:
 func _process(delta):
 	if(is_boss):
 		if(Globals.get_player().keys < Globals.totalArenas and !Engine.is_embedded_in_editor()):
-			boss_model.visible=false
+			enemy_model.visible=false
 			collision_shape_3d.disabled = true
 		else:
-			boss_model.visible=true
+			enemy_model.visible=true
 			collision_shape_3d.disabled=false
 	
 	if not is_instance_valid(root_node):
 		return
 	
-	if !isDead and !_animation_player.is_playing():
-		if(fighting and fight_idle_animation != null):
-			_animation_player.play(fight_idle_animation,0.2)
-		else:
-			_animation_player.play(idle_animation,0.2)
-	
 	var target_pos = player.global_position
 	var self_pos = global_transform.origin
 	
 	if isDead: #Point towards the player
-		if(!_animation_player.is_playing()):
+		if(!_animation_player.is_playing() or Time.get_ticks_msec()-timeOfDeath > 1000):
 			root_node.scale = Vector3(
 				root_node.scale.x - SHRINK_SPEED * delta,
 			 	root_node.scale.y - SHRINK_SPEED * delta, 
@@ -100,7 +96,12 @@ func _process(delta):
 				Globals.spawn_potion(p)
 			Globals.spawn_key(p,is_boss)
 			root_node.queue_free()
-	else:
+	else:  #If not dead
+		if !_animation_player.is_playing():#Play idle animation
+			if(fighting and fight_idle_animation != null):
+				_animation_player.play(fight_idle_animation,0.2)
+			else:
+				_animation_player.play(idle_animation,0.2)
 		var dir = target_pos - self_pos
 		dir.y = 0
 		dir = dir.normalized()

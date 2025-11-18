@@ -6,8 +6,10 @@ const RUNNING_ANIMATION = "running Retarget"
 const JUMP_UP_ANIMATION = "jump up Retarget"
 const IDLE_ANIMATION = "Idle Retarget"
 const DEATH_ANIMATION = "death Retarget"
+const FIGHT_IDLE_ANIMATION = "spell Retarget"
+const IDLE_ANIMATIONS = ["sword idle Retarget"]
 const HIT_ANIMATION = ["hit1 Retarget","hit2 Retarget","hit3 Retarget"]
-const VICTORY_ANIMATION = "Armature|mixamo_com|Layer0_002 Retarget"
+const VICTORY_ANIMATION = "victory"
 var mode:PlayerMode = PlayerMode.ADVENTURE
 enum PlayerMode{
 	ADVENTURE,
@@ -55,7 +57,8 @@ func obtain_key(key:KeyNode):
 func set_health(value:float):
 	if(health != value):
 		if(health > value):
-			animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.5, 2)
+			print("Hit animation")
+			animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.2, 1)
 		if(value > MAX_HEALTH):
 			health = MAX_HEALTH
 		elif(value <= 0):
@@ -92,12 +95,16 @@ func _game_over():
 	mouse_controller.unlock_mouse_forever()
 
 func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
+	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):
+		return
 	flash_card = target2
 	mode = PlayerMode.FACTS
 	movement = Vector3.ZERO
-	animation_player.play(IDLE_ANIMATION,0.5)
+	animation_player.play(FIGHT_IDLE_ANIMATION, 0.5)
 
 func _global_adventure_mode():
+	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):
+		return
 	if(health > 0):
 		flash_card = null
 		mode = PlayerMode.ADVENTURE
@@ -116,6 +123,8 @@ const FLASHCARD_MIN_TURN_SPEED = 0.002
 const MOUSE_SENSITIVITY = 0.06
 
 func _process(delta:float):
+	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):
+		return
 	camRotation.x += -mouse_controller.mouse_delta.y * MOUSE_SENSITIVITY
 	camRotation.x = clamp(camRotation.x, -PI/3, PI/3)
 	camRotation.y += (-mouse_controller.mouse_delta.x * MOUSE_SENSITIVITY) + (movement.x * delta * TURN_SPEED)
@@ -131,17 +140,28 @@ func _process(delta:float):
 
 	if(_is_still()):
 		movement = Vector3.ZERO
-		pass
 	else:
-		if(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
-			animation_player.play(RUNNING_ANIMATION,0.1)
-		elif(!animation_player.is_playing() or \
-			((abs(movement.x) < 0.01 or abs(movement.z) < 0.01) \
-			and animation_player.get_current_animation() == RUNNING_ANIMATION)):
-			animation_player.play(IDLE_ANIMATION,0.21)
+		if(mode == PlayerMode.FACTS):
+			if(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
+				animation_player.play(RUNNING_ANIMATION,0.1)
+			elif (abs(movement.x) < 0.01 or abs(movement.z) < 0.01):
+				if !animation_player.is_playing() or animation_player.get_current_animation() == RUNNING_ANIMATION:
+						animation_player.play(FIGHT_IDLE_ANIMATION,0.21)
+		elif(mode == PlayerMode.ADVENTURE):
+			if(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
+				animation_player.play(RUNNING_ANIMATION,0.1)
+			elif (abs(movement.x) < 0.01 or abs(movement.z) < 0.01):
+				if Time.get_ticks_msec() - last_movement_time > 10000: #If its been 10 seconds since we moved, play a random idle animation
+					animation_player.play(IDLE_ANIMATIONS[randi_range(0,IDLE_ANIMATIONS.size()-1)],0.21)
+					last_movement_time = Time.get_ticks_msec()
+				elif !animation_player.is_playing() or \
+					animation_player.get_current_animation() == RUNNING_ANIMATION:
+						animation_player.play(IDLE_ANIMATION,0.21)
 
 
 func _physics_process(delta: float) -> void:
+	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):
+		return
 	if(_is_still()):
 		linear_velocity = Vector3.ZERO
 	else:
@@ -169,7 +189,7 @@ func _physics_process(delta: float) -> void:
 			targetRotation = phantom_camera_3d.get_third_person_rotation().y
 		rotation.y = lerp_angle(rotation.y, targetRotation, 0.05)
 		
-
+var last_movement_time:int  = 0;
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -178,15 +198,19 @@ func _input(event: InputEvent) -> void:
 			if(not _is_still()):
 				if Input.is_action_just_pressed("Forward") or (canUseWASD and event.keycode == KEY_W):
 					movement.z = 1;
+					last_movement_time = Time.get_ticks_msec()
 				elif Input.is_action_just_pressed("Backward")  or (canUseWASD and event.keycode == KEY_S):
 					movement.z = -1;
+					last_movement_time = Time.get_ticks_msec()
 					targetRotation = rotation.y+PI;
 				elif Input.is_action_just_pressed("Left")  or (canUseWASD and event.keycode == KEY_A):
 					movement.x = 1;
+					last_movement_time = Time.get_ticks_msec()
 					if(movement.z == 0):
 						targetRotation = rotation.y+PI/2
 				elif Input.is_action_just_pressed("Right")  or (canUseWASD and event.keycode == KEY_D):
 					movement.x = -1;
+					last_movement_time = Time.get_ticks_msec()
 					if(movement.z == 0):
 						targetRotation = rotation.y-PI/2
 		else:
@@ -200,9 +224,13 @@ func _input(event: InputEvent) -> void:
 			elif Input.is_action_just_released("Right")  or (event.keycode == KEY_D):
 				movement.x = 0;
 				target_cam_offset.y = rotation.y
-			if(not _is_still()):
+			#If we were running
+			if(not _is_still() and animation_player.get_current_animation() == RUNNING_ANIMATION):
 				if(abs(movement.x) < 0.01 or abs(movement.z) < 0.01):
-					animation_player.play(IDLE_ANIMATION,0.21)
+					if( mode ==PlayerMode.ADVENTURE):
+						animation_player.play(IDLE_ANIMATION,0.21)
+					elif(mode == PlayerMode.FACTS):
+						animation_player.play(FIGHT_IDLE_ANIMATION,0.21)
 
 func _on_body_entered(body: Node) -> void:
 	if body is FloorCeiling:

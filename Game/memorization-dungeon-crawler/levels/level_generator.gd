@@ -420,7 +420,6 @@ func _ready():
 				preload("uid://bcy3nul1q0sft"),
 				preload("uid://cd36i2ec1bcsg"),
 				preload("uid://ctgkom7yoctco")
-				
 			]
 			
 			if(level.levelType == Level.LevelType.BOSS):
@@ -451,7 +450,6 @@ func _ready():
 	var min_path_length = 1
 	var max_path_length = 12
 	var start_pos = Vector3(0,0,0)
-	
 	var main_path_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()
 	var main_path_length = randi_range(10,20)
 	var main_path_end =(Vector3(start_pos) + main_path_dir * main_path_length)

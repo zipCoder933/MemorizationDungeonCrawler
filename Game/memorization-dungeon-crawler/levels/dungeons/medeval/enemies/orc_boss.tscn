@@ -1748,7 +1748,7 @@ data = PackedVector3Array(2.6766, -0.029399998, -1.5101999, 2.6766, 2.1504, -1.5
 [node name="Boss" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58322155, 0)
 
-[node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "root_node", "boss_model", "collision_shape_3d")]
+[node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "root_node", "enemy_model", "collision_shape_3d")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20550919, 0.9128463, 0)
 collision_layer = 4
@@ -1756,7 +1756,7 @@ script = ExtResource("2_7tcax")
 _3d_flashcard = NodePath("../BossModel/3dFlashcard")
 _animation_player = NodePath("../BossModel/orc_boss/AnimationPlayer")
 root_node = NodePath("..")
-boss_model = NodePath("../BossModel")
+enemy_model = NodePath("../BossModel")
 collision_shape_3d = NodePath("../BossArena/StaticBody3D/CollisionShape3D")
 fail_health_add = -0.2
 success_health_add = 0.1
