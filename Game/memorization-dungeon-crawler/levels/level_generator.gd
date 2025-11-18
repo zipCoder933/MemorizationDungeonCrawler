@@ -385,8 +385,8 @@ func _ready():
 			DOOR = preload("uid://djjr0ga5jbjrl")
 			WALL = preload("uid://bnnvdgktdrjn")
 			FLOOR = preload("uid://bawlwsttbkodd")
-			ARENA_ENEMY 
-			ARENA_BOSS
+			ARENA_ENEMY = preload("uid://iseinvoqikk7")
+			ARENA_BOSS = preload("uid://5fp4f3c5x4ky")
 		elif(level.theme == Level.LevelTheme.ANTARCTIC):
 			DOOR = preload("uid://dg4pafqkenvdm")
 			WALL = preload("uid://7rxa50lxqn7q")
