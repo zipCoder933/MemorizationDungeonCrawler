@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://db6wm2gqa788y"]
+
+[ext_resource type="Texture2D" uid="uid://cgu6oj0uiathh" path="res://levels/dungeons/machine/machine/floor3.png" id="1_yqukc"]
+[ext_resource type="Texture2D" uid="uid://cbkjmeh4ajbcx" path="res://levels/dungeons/machine/machine/grate.jpg" id="2_bnnoi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwqpw"]
+size = Vector3(250, 1, 250)
+
+[sub_resource type="QuadMesh" id="QuadMesh_yo1sm"]
+size = Vector2(250, 250)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5xda"]
+albedo_texture = ExtResource("1_yqukc")
+metallic = 1.0
+uv1_scale = Vector3(30, 30, 30)
+
+[sub_resource type="QuadMesh" id="QuadMesh_bbej7"]
+flip_faces = true
+size = Vector2(250, 250)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jg4mk"]
+albedo_texture = ExtResource("2_bnnoi")
+metallic = 0.48
+uv1_scale = Vector3(150, 150, 150)
+
+[node name="FloorAndCeiling" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_wwqpw")
+
+[node name="floor" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = SubResource("QuadMesh_yo1sm")
+surface_material_override/0 = SubResource("StandardMaterial3D_f5xda")
+
+[node name="ceiling" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.517402, 0)
+mesh = SubResource("QuadMesh_bbej7")
+surface_material_override/0 = SubResource("StandardMaterial3D_jg4mk")

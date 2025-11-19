@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bovts14ng7n10"
-path.s3tc="res://.godot/imported/aluminum-shiny-polished-seamless-sheet-textures-loop-stainless-brushed-metal-background-material-horizontal-along-direction-video.jpg-07717e657710715acc84691866a192e6.s3tc.ctex"
+uid="uid://ba4fyt84yavn"
+path.s3tc="res://.godot/imported/robot_defaultMat_2D_View_1001.png-2c3972bd9b266c4cb88d33577a73c87b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "0fc9537c4706f15e1aacba34db0a5571"
+}
 
 [deps]
 
-source_file="res://levels/dungeons/machine/machine/aluminum-shiny-polished-seamless-sheet-textures-loop-stainless-brushed-metal-background-material-horizontal-along-direction-video.jpg"
-dest_files=["res://.godot/imported/aluminum-shiny-polished-seamless-sheet-textures-loop-stainless-brushed-metal-background-material-horizontal-along-direction-video.jpg-07717e657710715acc84691866a192e6.s3tc.ctex"]
+source_file="res://levels/dungeons/machine/machine/enemies/robot/robot_defaultMat_2D_View_1001.png"
+dest_files=["res://.godot/imported/robot_defaultMat_2D_View_1001.png-2c3972bd9b266c4cb88d33577a73c87b.s3tc.ctex"]
 
 [params]
 

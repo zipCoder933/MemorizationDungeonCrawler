@@ -381,6 +381,9 @@ func _ready():
 		if(level.theme == Level.LevelTheme.MACHINE):
 			DOOR = preload("uid://bv0qtxxmmlnu")
 			WALL = preload("uid://c16k18ck0f1hj")
+			ARENA_ENEMY = preload("uid://dmrgxx50tyem")
+			ARENA_BOSS = preload("uid://dyf35pwedpdy5")
+			FLOOR = preload("uid://cnaul2xojagn2")
 		elif(level.theme == Level.LevelTheme.LAVA):
 			DOOR = preload("uid://djjr0ga5jbjrl")
 			WALL = preload("uid://bnnvdgktdrjn")

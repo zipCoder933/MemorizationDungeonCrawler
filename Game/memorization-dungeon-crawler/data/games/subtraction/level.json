@@ -2,14 +2,14 @@
   "seed": 13242,
   "starting_answer_speed_sec": 10,
   "goal_answer_speed_sec": 2,
-  "name": "Multiplication",
+  "name": "Subtraction",
   "dungeons": [
 	{
 	  "name": "Dungeon 1",
-	  "theme": "lava",
+	  "theme": "machine",
 	  "boss_name": "Da Boss",
 	  "themed_cards": ["1s", "2s"],
-	  "themed_drill_levels": 0,
+	  "themed_drill_levels": 1,
 	  "complete_drill_levels": 0
 	},
 	{

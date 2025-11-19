@@ -14,9 +14,11 @@ const SHRINK_SPEED:float = 1.8
 
 #Animaitons
 @export var idle_animation:String
+@export var idle_animation_speed:float = 1
 @export var fight_idle_animation:String
 @export var punch_animation:String
 @export var take_hit_animation:String
+@export var take_hit_animation_speed:float = 1
 @export var death_animation:String
 
 @export var begin_delay = 1
@@ -31,14 +33,14 @@ const LevelsHandler = preload("uid://bte11e0fapqes")
 var accuracy:Array[float] = []
 
 func ready():
-	_animation_player.play(idle_animation)
+	_animation_player.play(idle_animation,0.2,idle_animation_speed)
 
 func _single_drill(success):
 	if(success):
 		accuracy.append(100)
 		player.change_health(success_health_add)
 		if(take_hit_animation != null):
-			_animation_player.play(take_hit_animation,0.2)
+			_animation_player.play(take_hit_animation,0.2,take_hit_animation_speed)
 	else:
 		accuracy.append(0)
 		player.change_health(fail_health_add)
@@ -99,9 +101,9 @@ func _process(delta):
 	else:  #If not dead
 		if !_animation_player.is_playing():#Play idle animation
 			if(fighting and fight_idle_animation != null):
-				_animation_player.play(fight_idle_animation,0.2)
+				_animation_player.play(fight_idle_animation,0.2,idle_animation_speed)
 			else:
-				_animation_player.play(idle_animation,0.2)
+				_animation_player.play(idle_animation,0.2,idle_animation_speed)
 		var dir = target_pos - self_pos
 		dir.y = 0
 		dir = dir.normalized()
@@ -115,7 +117,7 @@ func trigger():
 	fighting=true
 	
 	if(fight_idle_animation !=null):
-		_animation_player.play(fight_idle_animation,0.2)
+		_animation_player.play(fight_idle_animation,0.2,idle_animation_speed)
 	
 	if(is_boss):
 		for i in range(0,cardNumber):#We want to go through the entire deck X times
