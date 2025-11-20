@@ -36,9 +36,12 @@ func _process(delta):
 			bossfight_stat_label.visible=true
 			if(bossfight_accuracy >= 90):
 				bossfight_stat_label.text = "Congratulations!"
+				
+				if( enemy != null):
+					enemy.die()
+					
 				await get_tree().create_timer(5).timeout
 				visible=false
-				#enemy.die()
 				Globals.victory_event()
 			else:
 				bossfight_stat_label.text = "Fail..."

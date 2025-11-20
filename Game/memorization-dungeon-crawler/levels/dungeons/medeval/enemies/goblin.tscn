@@ -3697,10 +3697,10 @@ transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
 [node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "root_node", "enemy_model", "collision_shape_3d")]
 collision_layer = 4
 script = ExtResource("2_reyqm")
-_3d_flashcard = NodePath("../Node3D/3dFlashcard")
-_animation_player = NodePath("../Node3D/goblin/AnimationPlayer")
+_3d_flashcard = NodePath("../goblinModel/3dFlashcard")
+_animation_player = NodePath("../goblinModel/goblin/AnimationPlayer")
 root_node = NodePath("..")
-enemy_model = NodePath("../Node3D")
+enemy_model = NodePath("../goblinModel")
 collision_shape_3d = NodePath("CollisionShape3D")
 fail_health_add = -0.25
 success_health_add = 0.05
@@ -3714,19 +3714,19 @@ death_animation = "Death Retarget"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
 shape = SubResource("SphereShape3D_s4b0v")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="goblinModel" type="Node3D" parent="."]
 
-[node name="3dFlashcard" parent="Node3D" instance=ExtResource("2_s4b0v")]
+[node name="3dFlashcard" parent="goblinModel" instance=ExtResource("2_s4b0v")]
 unique_name_in_owner = true
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.5997692, 0.8923275)
 texture = SubResource("ViewportTexture_reyqm")
 
-[node name="goblin" type="Node3D" parent="Node3D"]
+[node name="goblin" type="Node3D" parent="goblinModel"]
 
-[node name="Goblin" type="Node3D" parent="Node3D/goblin"]
+[node name="Goblin" type="Node3D" parent="goblinModel/goblin"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Node3D/goblin/Goblin"]
+[node name="Skeleton3D" type="Skeleton3D" parent="goblinModel/goblin/Goblin"]
 bones/0/name = "mixamorig_Hips"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 5.5511146e-16, -5.5511146e-16, 0, 1, 0, -1, 0, -0.00092494965, 0.018714841, -0.68430287)
@@ -3959,11 +3959,11 @@ bones/32/position = Vector3(1.5294063e-08, 0.09182789, 5.820766e-10)
 bones/32/rotation = Quaternion(5.92554e-08, 6.502669e-07, 6.798655e-08, 1)
 bones/32/scale = Vector3(1, 1, 0.99999994)
 
-[node name="Gretchin" type="MeshInstance3D" parent="Node3D/goblin/Goblin/Skeleton3D"]
+[node name="Gretchin" type="MeshInstance3D" parent="goblinModel/goblin/Goblin/Skeleton3D"]
 mesh = SubResource("ArrayMesh_reyqm")
 skin = SubResource("Skin_0gu5m")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D/goblin"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="goblinModel/goblin"]
 libraries = {
 &"": SubResource("AnimationLibrary_v2wei")
 }

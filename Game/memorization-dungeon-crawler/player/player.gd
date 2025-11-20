@@ -58,7 +58,7 @@ func set_health(value:float):
 	if(health != value):
 		if(health > value):
 			print("Hit animation")
-			animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.2, 1)
+			animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.2, 2)
 		if(value > MAX_HEALTH):
 			health = MAX_HEALTH
 		elif(value <= 0):
@@ -90,8 +90,11 @@ func _victory():
 	mouse_controller.unlock_mouse_forever()
 
 func _game_over():
+	if(mode != PlayerMode.GAME_OVER):
+		print("Playing death animation")
+		animation_player.play(DEATH_ANIMATION, 0.2)
+	
 	mode = PlayerMode.GAME_OVER
-	animation_player.play(DEATH_ANIMATION,1)
 	mouse_controller.unlock_mouse_forever()
 
 func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3

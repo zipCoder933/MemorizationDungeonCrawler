@@ -87,7 +87,7 @@ func _process(delta):
 	var self_pos = global_transform.origin
 	
 	if isDead: #Point towards the player
-		if(!_animation_player.is_playing() or Time.get_ticks_msec()-timeOfDeath > 1000):
+		if(!_animation_player.is_playing() or Time.get_ticks_msec()-timeOfDeath > 2000):
 			root_node.scale = Vector3(
 				root_node.scale.x - SHRINK_SPEED * delta,
 			 	root_node.scale.y - SHRINK_SPEED * delta, 
@@ -108,7 +108,7 @@ func _process(delta):
 		dir.y = 0
 		dir = dir.normalized()
 		var target_yaw = atan2(dir.x, dir.z)
-		root_node.rotation.y = target_yaw
+		enemy_model.rotation.y = target_yaw
 
 func trigger():
 	if(isDead):
