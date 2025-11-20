@@ -26,7 +26,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003956318, 2.5, -2.007875)
 shape = SubResource("BoxShape3D_xgmq8")
 
 [node name="machine_door2" parent="." instance=ExtResource("2_fjdfu")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1.1829919, 0, -1, 0, -4.371139e-08, 0, 0.3160715, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="machine_door2"]
 transform = Transform3D(1, 0, 0, 0, 1.02, 0, 0, 0, 1, 0, 0, 0)
@@ -44,7 +44,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 door = NodePath("..")
 
 [node name="machine_door_frame" parent="." instance=ExtResource("4_fjdfu")]
-transform = Transform3D(-4.371139e-08, 0, 1.2757599, 0, 1, 0, -1, 0, -5.5765238e-08, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1.2757599, 0, 1.2894958, 0, -1, 0, -5.5765238e-08, 0, 0, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9601904, 3.671871, -0.06947413)

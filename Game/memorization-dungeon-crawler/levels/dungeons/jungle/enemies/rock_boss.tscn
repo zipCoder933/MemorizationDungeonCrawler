@@ -5320,6 +5320,7 @@ speed = 1.0
 cardNumber = 2
 idle_animation = "idleFight"
 take_hit_animation = "takeHit"
+take_hit_animation_speed = 2.0
 death_animation = "death"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]

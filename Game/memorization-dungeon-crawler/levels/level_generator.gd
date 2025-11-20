@@ -350,13 +350,6 @@ func _material(prefix: String) -> StandardMaterial3D:
 	mat.uv1_scale = Vector3(40, 40, 1)
 	return mat
 
-var PLAYER_SPAWN:Vector3
-#Nodes
-var DOOR;
-var FLOOR
-var WALL;
-var ARENA_ENEMY;
-var ARENA_BOSS;
 
 const arenaSize = 1;
 const CLOSENESS_TO_END_PATH_END = 6;
@@ -364,91 +357,94 @@ const FAILED_LEVEL_SURVIVAL = 0.3
 const DOOR_LIKELYHOOD = 0.3
 const DRILLS_TO_ARENA = 15 #How many total drills * card_review_number makes 1 arena in the map?
 
+var WALL
+var DOOR = preload("uid://bdnosseu7fsm")
+var ARENA_ENEMY = preload("uid://bqoufhp54uwue")
+var ARENA_BOSS = preload("uid://bobtcptejmn2a")
+var FLOOR = preload("uid://bvoe5plbouam2")
+var PLAYER_SPAWN:Vector3
+var floor_size=250
+
+func set_dungeon_theme(level:Level, game:SaveEntry):
+	var rd = Globals.random_deterministic(game.seed,game.completed_level)
+	if(level.theme == Level.LevelTheme.MACHINE):
+		DOOR = preload("uid://bv0qtxxmmlnu")
+		WALL = preload("uid://c16k18ck0f1hj")
+		ARENA_ENEMY = preload("uid://dmrgxx50tyem")
+		ARENA_BOSS = preload("uid://dyf35pwedpdy5")
+		FLOOR = preload("uid://cnaul2xojagn2")
+	elif(level.theme == Level.LevelTheme.LAVA):
+		DOOR = preload("uid://djjr0ga5jbjrl")
+		WALL = preload("uid://bnnvdgktdrjn")
+		FLOOR = preload("uid://bawlwsttbkodd")
+		ARENA_ENEMY = preload("uid://iseinvoqikk7")
+		ARENA_BOSS = preload("uid://5fp4f3c5x4ky")
+	elif(level.theme == Level.LevelTheme.ANTARCTIC):
+		DOOR = preload("uid://dg4pafqkenvdm")
+		WALL = preload("uid://7rxa50lxqn7q")
+		FLOOR = preload("uid://ctkt8jvhjfhif")
+	elif(level.theme == Level.LevelTheme.JUNGLE):
+		floor_size=100
+		ARENA_ENEMY = preload("uid://dv6oq3amn1brg")
+		ARENA_BOSS = preload("uid://ts0w5nrycjvg")
+		FLOOR = preload("uid://b61v8qf2ipthl")
+		DOOR = preload("uid://lfo3xvyqph2")
+		WALL = preload("uid://bul1mahgmqnrl")
+	elif(level.theme == Level.LevelTheme.DUNGEON):
+		var ceiling_prefix = "res://levels/dungeons/medeval/assets/variants/ceiling/"
+		var floor_prefix = "res://levels/dungeons/medeval/assets/variants/floor/"
+		var door_choices = [
+			preload("uid://bdnosseu7fsm"),
+			preload("uid://cybqn7iu5i8eg"),
+			preload("uid://diy6r0cvqqg7"),
+			preload("uid://dcpufpqme3c85"),
+			preload("uid://dfi5w6y8hlkr0"),
+			preload("uid://dleju5c66cvvu"),
+			preload("uid://djjvv1sa3ysk6"),
+			preload("uid://4s0h623tfp4i")
+		]
+		var wall_choices = [
+			preload("uid://bpunwt6bwc3bm"),
+			preload("uid://0j4let3yj7fs"),
+			preload("uid://bhsk3kl4m1dfo"),
+			preload("uid://dqdax1p7cvkte"),
+			preload("uid://kyolc7snufaa"),
+			preload("uid://bcy3nul1q0sft"),
+			preload("uid://cd36i2ec1bcsg"),
+			preload("uid://ctgkom7yoctco")
+		]
+		var cdirs = DirAccess.open(ceiling_prefix).get_directories()
+		var fdirs = DirAccess.open(floor_prefix).get_directories()
+		var ceiling_choice = rd.randi_range(0, cdirs.size()-1) #Random ceiling
+		var floor_choice = rd.randi_range(0, fdirs.size()-1)#Random floor
+		var wall_choice = rd.randi_range(0,wall_choices.size()-1) #random wall
+		if(game.completed_level==0):
+			wall_choice=0
+			ceiling_choice=0
+			floor_choice=0
+		WALL = wall_choices[wall_choice]
+		DOOR = door_choices[wall_choice]
+		FloorCeiling.ceiling_material = _material(ceiling_prefix + cdirs[ceiling_choice])
+		FloorCeiling.floor_material = _material(floor_prefix + fdirs[floor_choice])
+
 func _ready():
-	DOOR = preload("uid://bdnosseu7fsm")
-	ARENA_ENEMY = preload("uid://bqoufhp54uwue")
-	ARENA_BOSS = preload("uid://bobtcptejmn2a")
-	FLOOR = preload("uid://bvoe5plbouam2")
-	
-	var floor_size=250
 	var level = SaveHandler.currentLevel
 	var game = SaveHandler.currentGame
 	var arenas_average = 5
 	var includeBossfight = false
-	if( level !=null):
-		var rd = Globals.random_deterministic(game.seed,game.completed_level)
-		#Set the theme
-		if(level.theme == Level.LevelTheme.MACHINE):
-			DOOR = preload("uid://bv0qtxxmmlnu")
-			WALL = preload("uid://c16k18ck0f1hj")
-			ARENA_ENEMY = preload("uid://dmrgxx50tyem")
-			ARENA_BOSS = preload("uid://dyf35pwedpdy5")
-			FLOOR = preload("uid://cnaul2xojagn2")
-		elif(level.theme == Level.LevelTheme.LAVA):
-			DOOR = preload("uid://djjr0ga5jbjrl")
-			WALL = preload("uid://bnnvdgktdrjn")
-			FLOOR = preload("uid://bawlwsttbkodd")
-			ARENA_ENEMY = preload("uid://iseinvoqikk7")
-			ARENA_BOSS = preload("uid://5fp4f3c5x4ky")
-		elif(level.theme == Level.LevelTheme.ANTARCTIC):
-			DOOR = preload("uid://dg4pafqkenvdm")
-			WALL = preload("uid://7rxa50lxqn7q")
-			FLOOR = preload("uid://ctkt8jvhjfhif")
-		elif(level.theme == Level.LevelTheme.JUNGLE):
-			floor_size=100
-			ARENA_ENEMY = preload("uid://dv6oq3amn1brg")
-			ARENA_BOSS = preload("uid://ts0w5nrycjvg")
-			FLOOR = preload("uid://b61v8qf2ipthl")
-			DOOR = preload("uid://lfo3xvyqph2")
-			WALL = preload("uid://bul1mahgmqnrl")
-		elif(level.theme == Level.LevelTheme.DUNGEON):
-			var ceiling_prefix = "res://levels/dungeons/medeval/assets/variants/ceiling/"
-			var floor_prefix = "res://levels/dungeons/medeval/assets/variants/floor/"
-			var door_choices = [
-				preload("uid://bdnosseu7fsm"),
-				preload("uid://cybqn7iu5i8eg"),
-				preload("uid://diy6r0cvqqg7"),
-				preload("uid://dcpufpqme3c85"),
-				preload("uid://dfi5w6y8hlkr0"),
-				preload("uid://dleju5c66cvvu"),
-				preload("uid://djjvv1sa3ysk6"),
-				preload("uid://4s0h623tfp4i")
-			]
-			var wall_choices = [
-				preload("uid://bpunwt6bwc3bm"),
-				preload("uid://0j4let3yj7fs"),
-				preload("uid://bhsk3kl4m1dfo"),
-				preload("uid://dqdax1p7cvkte"),
-				preload("uid://kyolc7snufaa"),
-				preload("uid://bcy3nul1q0sft"),
-				preload("uid://cd36i2ec1bcsg"),
-				preload("uid://ctgkom7yoctco")
-			]
-			
-			if(level.levelType == Level.LevelType.BOSS):
-				includeBossfight = true
-			
-			var cdirs = DirAccess.open(ceiling_prefix).get_directories()
-			var fdirs = DirAccess.open(floor_prefix).get_directories()
-			var ceiling_choice = rd.randi_range(0, cdirs.size()-1) #Random ceiling
-			var floor_choice = rd.randi_range(0, fdirs.size()-1)#Random floor
-			var wall_choice = rd.randi_range(0,wall_choices.size()-1) #random wall
-			if(game.completed_level==0):
-				wall_choice=0
-				ceiling_choice=0
-				floor_choice=0
-			WALL = wall_choices[wall_choice]
-			DOOR = door_choices[wall_choice]
-			FloorCeiling.ceiling_material = _material(ceiling_prefix + cdirs[ceiling_choice])
-			FloorCeiling.floor_material = _material(floor_prefix + fdirs[floor_choice])
-
+	
+	if( level != null ):
+		set_dungeon_theme(level, game)
+		print("Level Type: ",level.levelType)
+		
+		if(level.levelType == Level.LevelType.BOSS):
+			includeBossfight = true
 		#Calculate how many arenas we want
 		var cards = CardsHandler.card_count(level.card_tags)
 		var total_drills = level.card_review_number * cards
 		print("Total drills: ",total_drills)
 		arenas_average = total_drills / DRILLS_TO_ARENA
 		print("Arena average: ",arenas_average)
-	
 	
 	var min_path_length = 1
 	var max_path_length = 12

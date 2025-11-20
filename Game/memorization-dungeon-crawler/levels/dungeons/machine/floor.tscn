@@ -39,6 +39,6 @@ mesh = SubResource("QuadMesh_yo1sm")
 surface_material_override/0 = SubResource("StandardMaterial3D_yo1sm")
 
 [node name="ceiling" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.044931, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.1837163, 0)
 mesh = SubResource("QuadMesh_bbej7")
 surface_material_override/0 = SubResource("StandardMaterial3D_ljw3t")

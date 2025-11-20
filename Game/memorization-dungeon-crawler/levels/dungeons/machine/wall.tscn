@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://c16k18ck0f1hj"]
+[gd_scene load_steps=6 format=3 uid="uid://c16k18ck0f1hj"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_gif2k"]
 [ext_resource type="PackedScene" uid="uid://dhvingtmthlx8" path="res://levels/dungeons/machine/machine/wall/machine wall.glb" id="2_e2grf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e2grf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i255p"]
+emission_enabled = true
+emission = Color(0.7750401, 0.99999994, 0.94383556, 1)
 
 [node name="wall" type="StaticBody3D"]
 collision_layer = 2
@@ -15,4 +21,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("BoxShape3D_xfbw5")
 
 [node name="machine wall" parent="." instance=ExtResource("2_e2grf")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1.3118532, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="lamp" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.1839192, 0, 0, 0, 0.4151389, 0, 0, 0, 1.168177, -2.481, 6.31, 0)
+mesh = SubResource("BoxMesh_e2grf")
+surface_material_override/0 = SubResource("StandardMaterial3D_i255p")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="lamp"]
+transform = Transform3D(0.8427243, -0.056515265, -0.0076941974, 0.02051975, -0.02194272, 2.4086452, -0.05734343, -0.8540807, -0.007292141, -0.29022074, -1.4063663, 0)
+light_energy = 2.0
+spot_range = 7.010491
+spot_angle = 39.54291
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lamp"]
+transform = Transform3D(0.84465224, 0, 0, 0, 2.4088323, 0, 0, 0, 0.8560346, -0.3300593, -1.3890343, 0)
