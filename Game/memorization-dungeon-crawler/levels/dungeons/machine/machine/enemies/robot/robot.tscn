@@ -2144,7 +2144,7 @@ transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 0, 0)
 collision_layer = 4
 script = ExtResource("2_426nh")
 _3d_flashcard = NodePath("../mesh/WorldFlashcard")
-_animation_player = NodePath("../mesh/AnimationPlayer")
+_animation_player = NodePath("../mesh/robot/AnimationPlayer")
 root_node = NodePath("..")
 enemy_model = NodePath("../mesh")
 collision_shape_3d = NodePath("CollisionShape3D")
@@ -2165,13 +2165,16 @@ shape = SubResource("SphereShape3D_b4u0l")
 
 [node name="mesh" type="Node3D" parent="."]
 
-[node name="Bip001" type="Node3D" parent="mesh"]
+[node name="robot" type="Node3D" parent="mesh"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="Bip001" type="Node3D" parent="mesh/robot"]
 transform = Transform3D(3.7848945e-08, 0, -0.025399998, 0, 0.0254, 0, 0.025399998, 0, 3.7848945e-08, 0, 2.803483, 0)
 
-[node name="Bip001 Footsteps" type="Node3D" parent="mesh/Bip001"]
+[node name="Bip001 Footsteps" type="Node3D" parent="mesh/robot/Bip001"]
 transform = Transform3D(1.4901161e-06, 0, 1, 0, 1, 0, -1, 0, 1.4901161e-06, 0, -109.71993, 0)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="mesh/Bip001"]
+[node name="Skeleton3D" type="Skeleton3D" parent="mesh/robot/Bip001"]
 bones/0/name = "Bip001 Pelvis"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0, 0.99999994, -1.3868001e-06, 1.0000001, -2.044458e-12, -1.4742269e-06, -1.4742271e-06, -1.3868e-06, -1, 0, 7.6293945e-06, 0)
@@ -2614,59 +2617,59 @@ bones/62/position = Vector3(14.833728, -4.1475784e-07, -1.800704e-07)
 bones/62/rotation = Quaternion(-4.0181716e-09, 1.4901161e-08, -8.326683e-17, 1)
 bones/62/scale = Vector3(0.99999994, 1, 1)
 
-[node name="Bip001 L Hand" type="BoneAttachment3D" parent="mesh/Bip001/Skeleton3D"]
+[node name="Bip001 L Hand" type="BoneAttachment3D" parent="mesh/robot/Bip001/Skeleton3D"]
 transform = Transform3D(0.15352675, -0.7474968, -0.6462798, -0.9836766, -0.17773703, -0.028103665, -0.09386046, 0.64004505, -0.7625825, 2.5572395, -17.154518, -54.93505)
 bone_name = "Bip001 L Hand"
 bone_idx = 8
 
-[node name="ik_hand_l" type="Node3D" parent="mesh/Bip001/Skeleton3D/Bip001 L Hand"]
+[node name="ik_hand_l" type="Node3D" parent="mesh/robot/Bip001/Skeleton3D/Bip001 L Hand"]
 transform = Transform3D(0.2029739, -0.9194864, 0.33666945, -0.91916674, -0.29743955, -0.25819027, 0.33754122, -0.25704944, -0.9055339, 5.4258957, -1.4984181, 0.36688352)
 
-[node name="Bip001 R Hand" type="BoneAttachment3D" parent="mesh/Bip001/Skeleton3D"]
+[node name="Bip001 R Hand" type="BoneAttachment3D" parent="mesh/robot/Bip001/Skeleton3D"]
 transform = Transform3D(0.15352668, -0.7474965, 0.64627993, -0.9836763, -0.1777392, 0.028101161, 0.09386371, -0.64004457, -0.76258254, 2.557248, -17.15433, 54.935097)
 bone_name = "Bip001 R Hand"
 bone_idx = 32
 
-[node name="ik_hand_gun" type="Node3D" parent="mesh/Bip001/Skeleton3D/Bip001 R Hand"]
+[node name="ik_hand_gun" type="Node3D" parent="mesh/robot/Bip001/Skeleton3D/Bip001 R Hand"]
 transform = Transform3D(-0.05566728, -0.99555314, -0.07599307, 0.9984269, -0.056015506, 0.002456993, -0.006702859, -0.07573675, 0.9971052, 5.811972, 0.45445943, 0.07643986)
 
-[node name="ik_hand_r" type="Node3D" parent="mesh/Bip001/Skeleton3D/Bip001 R Hand"]
+[node name="ik_hand_r" type="Node3D" parent="mesh/robot/Bip001/Skeleton3D/Bip001 R Hand"]
 transform = Transform3D(-0.20297286, -0.9194864, 0.33666983, 0.9191661, -0.29743937, -0.2581928, 0.3375437, 0.25704932, 0.90553296, 4.9103208, 0.8363948, 0.4904604)
 
-[node name="Bip001 Spine" type="BoneAttachment3D" parent="mesh/Bip001/Skeleton3D"]
+[node name="Bip001 Spine" type="BoneAttachment3D" parent="mesh/robot/Bip001/Skeleton3D"]
 transform = Transform3D(0.0007978081, 0.9999995, 2.7735614e-06, 0.9999998, -0.0007978678, -1.4329055e-06, -1.4306921e-06, 2.7747042e-06, -1, -0.031893875, 10.794419, -1.4969693e-05)
 bone_name = "Bip001 Spine"
 bone_idx = 1
 
-[node name="ik_hand_root" type="Node3D" parent="mesh/Bip001/Skeleton3D/Bip001 Spine"]
+[node name="ik_hand_root" type="Node3D" parent="mesh/robot/Bip001/Skeleton3D/Bip001 Spine"]
 transform = Transform3D(0.9486432, 0.0002528327, -0.31634754, -0.31634766, 0.0007535153, -0.94864285, -1.4752147e-06, 0.9999996, 0.0007948003, 32.413486, -4.1353106, -0.27402773)
 
-[node name="Bip001 L Foot" type="BoneAttachment3D" parent="mesh/Bip001/Skeleton3D"]
+[node name="Bip001 L Foot" type="BoneAttachment3D" parent="mesh/robot/Bip001/Skeleton3D"]
 transform = Transform3D(-1.4447141e-06, 0.9700686, 0.24283136, -1.0000001, -1.7993152e-06, 9.834766e-07, 1.4603138e-06, -0.2428315, 0.9700685, -10.703688, -96.65654, -31.720364)
 bone_name = "Bip001 L Foot"
 bone_idx = 55
 
-[node name="ik_foot_l" type="Node3D" parent="mesh/Bip001/Skeleton3D/Bip001 L Foot"]
+[node name="ik_foot_l" type="Node3D" parent="mesh/robot/Bip001/Skeleton3D/Bip001 L Foot"]
 transform = Transform3D(-2.3841864e-07, -0.99999994, 4.3026063e-07, 0.25869438, 3.539366e-07, 0.96595937, -0.96595937, 3.4160857e-07, 0.25869438, 4.041524, 8.0731445e-07, 6.554111e-06)
 
-[node name="Bip001 R Foot" type="BoneAttachment3D" parent="mesh/Bip001/Skeleton3D"]
+[node name="Bip001 R Foot" type="BoneAttachment3D" parent="mesh/robot/Bip001/Skeleton3D"]
 transform = Transform3D(-1.4964025e-06, 0.9700683, -0.24283123, -1.0000001, -1.2405217e-06, 1.4901161e-06, 1.1473894e-06, 0.24283126, 0.9700687, -10.703716, -96.65648, 31.72065)
 bone_name = "Bip001 R Foot"
 bone_idx = 60
 
-[node name="ik_foot_r" type="Node3D" parent="mesh/Bip001/Skeleton3D/Bip001 R Foot"]
+[node name="ik_foot_r" type="Node3D" parent="mesh/robot/Bip001/Skeleton3D/Bip001 R Foot"]
 transform = Transform3D(5.960465e-08, -0.99999994, -3.6087343e-07, -0.25869182, -3.6400846e-07, 0.9659599, -0.96596, 3.577929e-08, -0.2586918, 4.041515, 0.034009133, 0.12710363)
 
-[node name="Gravemind" type="MeshInstance3D" parent="mesh/Bip001/Skeleton3D"]
+[node name="Gravemind" type="MeshInstance3D" parent="mesh/robot/Bip001/Skeleton3D"]
 mesh = SubResource("ArrayMesh_426nh")
 skin = SubResource("Skin_1nvj0")
 surface_material_override/0 = SubResource("StandardMaterial3D_426nh")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="mesh"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="mesh/robot"]
 libraries = {
 &"": SubResource("AnimationLibrary_837rc")
 }
 
 [node name="WorldFlashcard" parent="mesh" instance=ExtResource("3_1nvj0")]
-transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 1.3685153, 1.4427497)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 1.2316638, 1.2984749)
 texture = SubResource("ViewportTexture_nw521")

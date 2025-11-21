@@ -36,3 +36,4 @@ spot_angle = 39.54291
 
 [node name="OmniLight3D" type="OmniLight3D" parent="lamp"]
 transform = Transform3D(0.84465224, 0, 0, 0, 2.4088323, 0, 0, 0, 0.8560346, -0.3300593, -1.3890343, 0)
+omni_range = 13.0

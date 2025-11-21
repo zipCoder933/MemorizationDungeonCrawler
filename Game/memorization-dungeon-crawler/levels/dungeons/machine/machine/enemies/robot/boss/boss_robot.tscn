@@ -242,7 +242,7 @@ bind/62/pose = Transform3D(-9.560237, -5.919748e-06, 38.191696, -6.238631e-08, 3
 albedo_texture = ExtResource("5_pcf23")
 metallic = 0.95
 metallic_specular = 0.83
-roughness = 0.06
+roughness = 0.08
 
 [sub_resource type="Animation" id="Animation_6h3bm"]
 resource_name = "Bip001|Take 001|BaseLayer"
@@ -2175,9 +2175,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2924864, 0.0063762665)
 shape = SubResource("SphereShape3D_b4u0l")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7515405, 0.5)
-light_color = Color(0, 0.57140213, 0.9609963, 1)
-omni_range = 12.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9614582, 1.6713347)
+light_energy = 2.0
+omni_range = 5.445467
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4912663, 2.9614582, -1.0410602)
+light_energy = 2.0
+omni_range = 5.445467
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7185087, 2.9614582, -1.0268581)
+light_energy = 2.0
+omni_range = 5.445467
 
 [node name="BossArena" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, -1.6730182, 0)
@@ -2192,7 +2202,7 @@ collision_mask = 3
 shape = SubResource("ConcavePolygonShape3D_k3ffk")
 
 [node name="robotMesh" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96193767, 0)
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.97885776, 0)
 
 [node name="Bip001" type="Node3D" parent="robotMesh"]
 transform = Transform3D(3.7848945e-08, 0, -0.025399998, 0, 0.0254, 0, 0.025399998, 0, 3.7848945e-08, 0, 2.803483, 0)
