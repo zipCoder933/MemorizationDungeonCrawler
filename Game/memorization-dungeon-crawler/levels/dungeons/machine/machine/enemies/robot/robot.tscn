@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=4 uid="uid://dmrgxx50tyem"]
+[gd_scene load_steps=16 format=4 uid="uid://dmrgxx50tyem"]
 
+[ext_resource type="Texture2D" uid="uid://ba4fyt84yavn" path="res://levels/dungeons/machine/machine/enemies/robot/robot_defaultMat_2D_View_1001.png" id="1_uar2q"]
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="2_426nh"]
 [ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="3_1nvj0"]
 [ext_resource type="Texture2D" uid="uid://cxuff2iiocx6t" path="res://levels/dungeons/machine/machine/enemies/robot/robot_robot_defaultMat_2D_View_1001.png" id="3_uar2q"]
@@ -226,6 +227,11 @@ bind/61/pose = Transform3D(-9.560238, -5.9197487e-06, 38.191696, -3.6930794e-07,
 bind/62/name = &"Bip001 R Toe0Nub"
 bind/62/bone = -1
 bind/62/pose = Transform3D(-9.560237, -5.919748e-06, 38.191696, -6.238631e-08, 39.37008, 2.5546146e-06, -38.19169, 1.2655698e-06, -9.560238, -23.780083, -0.6534088, -33.370255)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_426nh"]
+albedo_texture = ExtResource("1_uar2q")
+metallic = 1.0
+roughness = 0.15
 
 [sub_resource type="Animation" id="Animation_6h3bm"]
 resource_name = "Bip001|Take 001|BaseLayer"
@@ -2654,6 +2660,7 @@ transform = Transform3D(5.960465e-08, -0.99999994, -3.6087343e-07, -0.25869182, 
 [node name="Gravemind" type="MeshInstance3D" parent="mesh/Bip001/Skeleton3D"]
 mesh = SubResource("ArrayMesh_426nh")
 skin = SubResource("Skin_1nvj0")
+surface_material_override/0 = SubResource("StandardMaterial3D_426nh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="mesh"]
 libraries = {
