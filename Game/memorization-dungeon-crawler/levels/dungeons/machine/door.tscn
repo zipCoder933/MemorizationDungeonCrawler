@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://snvf40gjew1h" path="res://levels/dungeons/machine/machine/door/machine_door_frame.glb" id="4_fjdfu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xgmq8"]
-size = Vector3(1.6338415, 5, 1.1327026)
+size = Vector3(1.7503076, 5, 1.1286621)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_45plq"]
 size = Vector3(3.1680908, 5.541992, 0.5579834)
@@ -18,11 +18,11 @@ slide_speed = 5
 door = NodePath("machine_door2")
 
 [node name="wall sides" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0021629333, 2.5, 2.0156207)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0029338598, 2.5, 1.8923616)
 shape = SubResource("BoxShape3D_xgmq8")
 
 [node name="wall sides2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003956318, 2.5, -2.007875)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003956318, 2.5, -1.9050562)
 shape = SubResource("BoxShape3D_xgmq8")
 
 [node name="machine_door2" parent="." instance=ExtResource("2_fjdfu")]
@@ -44,14 +44,14 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 door = NodePath("..")
 
 [node name="machine_door_frame" parent="." instance=ExtResource("4_fjdfu")]
-transform = Transform3D(-4.371139e-08, 0, 1.2757599, 0, 1.1605462, 0, -1, 0, -5.5765238e-08, 0, 0, 0)
+transform = Transform3D(-4.1744375e-08, 0, 1.1, 0, 0.965, 0, -0.955, 0, -4.8082526e-08, 0, 0, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9601904, 3.671871, -0.06947413)
-light_color = Color(0.92170423, 0, 0.45492965, 1)
+[node name="OmniLight3D" type="OmniLight3D" parent="machine_door_frame"]
+transform = Transform3D(-4.5771095e-08, 0, -1.0471205, 0, 1.0362695, 0, 1, 0, -4.3711395e-08, 0.07274783, 4.451856, -0.9601904)
+light_color = Color(0.94894, 0, 0.19434124, 1)
 omni_range = 1.9239378
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0344495, 3.671871, -0.06947413)
-light_color = Color(0.92170423, 0, 0.45492965, 1)
+[node name="OmniLight3D2" type="OmniLight3D" parent="machine_door_frame"]
+transform = Transform3D(-4.5771095e-08, 0, -1.0471205, 0, 1.0362695, 0, 1, 0, -4.3711395e-08, 0.07274774, 4.451856, 1.0344495)
+light_color = Color(0.9486689, 0, 0.19903421, 1)
 omni_range = 1.9239378

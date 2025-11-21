@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bul1mahgmqnrl"]
+[gd_scene load_steps=11 format=3 uid="uid://bul1mahgmqnrl"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_kowyx"]
-[ext_resource type="Texture2D" uid="uid://c3nuen8u4q4xy" path="res://levels/dungeons/jungle/jungle/6/texture.jpg" id="2_6ar0i"]
+[ext_resource type="Material" uid="uid://cg4ubx5kx8yax" path="res://levels/dungeons/jungle/walls.tres" id="2_6ar0i"]
 [ext_resource type="Texture2D" uid="uid://d3o62mkw77lpp" path="res://levels/dungeons/jungle/jungle/vines.png" id="5_6ar0i"]
 [ext_resource type="PackedScene" uid="uid://bvwem5tqb8tjf" path="res://levels/dungeons/jungle/jungle/door/door.glb" id="5_ag208"]
 [ext_resource type="PackedScene" uid="uid://b8ugk2shj75b5" path="res://levels/dungeons/jungle/jungle/pequeno_totem_replica.glb" id="6_ke0kl"]
@@ -11,10 +11,6 @@ size = Vector3(1, 10, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ar0i"]
 size = Vector3(1.4119873, 5.7478027, 1.8219147)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2eu1"]
-albedo_texture = ExtResource("2_6ar0i")
-uv1_scale = Vector3(3.03, 3.03, 3.03)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5vrq6"]
 size = Vector3(1, 5, 5)
@@ -41,7 +37,7 @@ shape = SubResource("BoxShape3D_6ar0i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-material_override = SubResource("StandardMaterial3D_k2eu1")
+material_override = ExtResource("2_6ar0i")
 mesh = SubResource("BoxMesh_5vrq6")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -52,7 +48,7 @@ light_indirect_energy = 3.1
 omni_range = 5.034739
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.595806, -0.28634658, 0, 0.41782978, 2.4642732, 0, 0, 0, 4.474575, -0.6514199, 3.7570996, -0.29252005)
+transform = Transform3D(3.611449, -0.17042068, 0, 0.24867365, 2.4749937, 0, 0, 0, 4.474575, -0.56444526, 3.7570996, -0.29252005)
 mesh = SubResource("QuadMesh_ag208")
 surface_material_override/0 = SubResource("StandardMaterial3D_ke0kl")
 

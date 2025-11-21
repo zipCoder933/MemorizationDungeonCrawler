@@ -7,9 +7,6 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_s4b0v"]
 radius = 2.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_reyqm"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwv4x"]
 resource_name = "Material__106"
 transparency = 4
@@ -3691,13 +3688,16 @@ _data = {
 &"TakeHit Retarget": SubResource("Animation_14kcs")
 }
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_nuig7"]
+viewport_path = NodePath("SubViewport")
+
 [node name="goblin" type="Node3D"]
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
 
 [node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "root_node", "enemy_model", "collision_shape_3d")]
 collision_layer = 4
 script = ExtResource("2_reyqm")
-_3d_flashcard = NodePath("../goblinModel/3dFlashcard")
+_3d_flashcard = NodePath("")
 _animation_player = NodePath("../goblinModel/goblin/AnimationPlayer")
 root_node = NodePath("..")
 enemy_model = NodePath("../goblinModel")
@@ -3715,11 +3715,6 @@ death_animation = "Death Retarget"
 shape = SubResource("SphereShape3D_s4b0v")
 
 [node name="goblinModel" type="Node3D" parent="."]
-
-[node name="3dFlashcard" parent="goblinModel" instance=ExtResource("2_s4b0v")]
-unique_name_in_owner = true
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.5997692, 0.8923275)
-texture = SubResource("ViewportTexture_reyqm")
 
 [node name="goblin" type="Node3D" parent="goblinModel"]
 
@@ -3967,3 +3962,7 @@ skin = SubResource("Skin_0gu5m")
 libraries = {
 &"": SubResource("AnimationLibrary_v2wei")
 }
+
+[node name="WorldFlashcard" parent="." instance=ExtResource("2_s4b0v")]
+transform = Transform3D(0.40000004, 0, 0, 0, 0.40000004, 0, 0, 0, 0.40000004, 0, 0.48365077, 0.8561425)
+texture = SubResource("ViewportTexture_nuig7")
