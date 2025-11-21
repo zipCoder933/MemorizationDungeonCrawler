@@ -61,7 +61,7 @@ func die():
 	isDead = true
 	timeOfDeath = Time.get_ticks_msec()
 	if(is_instance_valid(root_node) && death_animation != null):
-		_animation_player.play(death_animation,0.2)
+		_animation_player.play(death_animation,0.7)
 
 func _victory_event():
 	die()
@@ -117,7 +117,7 @@ func trigger():
 	fighting=true
 	
 	if(fight_idle_animation !=null):
-		_animation_player.play(fight_idle_animation,0.2,idle_animation_speed)
+		_animation_player.play(fight_idle_animation,0.7,idle_animation_speed)
 	
 	if(is_boss):
 		for i in range(0,cardNumber):#We want to go through the entire deck X times

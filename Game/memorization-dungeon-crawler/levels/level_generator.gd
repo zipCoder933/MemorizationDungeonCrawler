@@ -383,6 +383,8 @@ func set_dungeon_theme(level:Level, game:SaveEntry):
 		DOOR = preload("uid://dg4pafqkenvdm")
 		WALL = preload("uid://7rxa50lxqn7q")
 		FLOOR = preload("uid://ctkt8jvhjfhif")
+		ARENA_ENEMY = preload("uid://xuvau2pv8n6o")
+		ARENA_BOSS = preload("uid://cbgynxjb648nj")
 	elif(level.theme == Level.LevelTheme.JUNGLE):
 		floor_size=100
 		ARENA_ENEMY = preload("uid://dv6oq3amn1brg")
