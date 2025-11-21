@@ -1,16 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c16k18ck0f1hj"]
+[gd_scene load_steps=5 format=3 uid="uid://c16k18ck0f1hj"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_gif2k"]
 [ext_resource type="PackedScene" uid="uid://dhvingtmthlx8" path="res://levels/dungeons/machine/machine/wall/machine wall.glb" id="2_e2grf"]
+[ext_resource type="PackedScene" uid="uid://b68s4erul2mh8" path="res://levels/dungeons/machine/machine/wall/lamp.glb" id="3_i255p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1, 5, 5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_e2grf"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i255p"]
-emission_enabled = true
-emission = Color(0.7750401, 0.99999994, 0.94383556, 1)
 
 [node name="wall" type="StaticBody3D"]
 collision_layer = 2
@@ -21,19 +16,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("BoxShape3D_xfbw5")
 
 [node name="machine wall" parent="." instance=ExtResource("2_e2grf")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1.3193351, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="lamp" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.1839192, 0, 0, 0, 0.4151389, 0, 0, 0, 1.168177, -2.481, 6.31, 0)
-mesh = SubResource("BoxMesh_e2grf")
-surface_material_override/0 = SubResource("StandardMaterial3D_i255p")
+[node name="lamp2" parent="." instance=ExtResource("3_i255p")]
+transform = Transform3D(0.7, 6.972775e-18, 5.240872e-09, 0, 1, -6.519258e-10, -5.240872e-09, 9.313226e-10, 0.7, -2.5123253, 6.254724, -0.01780717)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="lamp"]
-transform = Transform3D(0.8427243, -0.056515265, -0.0076941974, 0.02051975, -0.02194272, 2.4086452, -0.05734343, -0.8540807, -0.007292141, -0.29022074, -1.4063663, 0)
+[node name="OmniLight3D" type="OmniLight3D" parent="lamp2"]
+transform = Transform3D(1, -9.313226e-10, 7.530616e-09, 0, 1, -9.313226e-10, 0, 0, 1.0000001, 0.002494812, -0.53263664, 0.01780717)
+omni_range = 13.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="lamp2"]
+transform = Transform3D(0.9977175, -0.06690951, -0.009109309, 0.008518547, -0.009109276, 0.9999223, -0.066987276, -0.9977177, -0.008518514, 0.049660444, -0.5398321, 0.017807169)
 light_energy = 2.0
 spot_range = 7.010491
 spot_angle = 39.54291
-
-[node name="OmniLight3D" type="OmniLight3D" parent="lamp"]
-transform = Transform3D(0.84465224, 0, 0, 0, 2.4088323, 0, 0, 0, 0.8560346, -0.3300593, -1.3890343, 0)
-omni_range = 13.0

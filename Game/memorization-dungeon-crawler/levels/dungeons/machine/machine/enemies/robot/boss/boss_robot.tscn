@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cgu6oj0uiathh" path="res://levels/dungeons/machine/machine/floor3.png" id="6_c6717"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b4u0l"]
-radius = 5.334811
+radius = 4.2566934
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mmavb"]
 resource_name = "defaultMat.1001"
@@ -2151,7 +2151,6 @@ data = PackedVector3Array(-5.6538, 0.9824, 6.5235996, -5.6538, 0.8606, 6.5235996
 [node name="Robot" type="Node3D"]
 
 [node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "root_node", "enemy_model", "collision_shape_3d")]
-visible = false
 collision_layer = 4
 script = ExtResource("2_fnjkv")
 _3d_flashcard = NodePath("../robotMesh/WorldFlashcard")
@@ -2680,7 +2679,7 @@ libraries = {
 }
 
 [node name="WorldFlashcard" parent="robotMesh" instance=ExtResource("3_sukdv")]
-transform = Transform3D(1, 0, 0, 0, 0.987922, -0.15495178, 0, 0.15495178, 0.987922, 0, 2.0268257, 1.8646228)
+transform = Transform3D(0.6, 0, 0, 0, 0.59275323, -0.09297107, 0, 0.09297107, 0.59275323, 0, 1.2546973, 1.8296531)
 texture = SubResource("ViewportTexture_nw521")
 
 [node name="BossArenaA" type="MeshInstance3D" parent="."]
@@ -2689,6 +2688,8 @@ mesh = ExtResource("5_v1bng")
 surface_material_override/0 = SubResource("StandardMaterial3D_goqvj")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="BossArenaA"]
+collision_layer = 2
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BossArenaA/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_sag2f")

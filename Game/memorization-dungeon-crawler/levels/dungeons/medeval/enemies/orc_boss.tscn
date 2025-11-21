@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ctwaju71evb6c" path="res://levels/dungeons/medeval/assets/variants/floor/2/normal.png" id="7_3xudo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4hngc"]
-size = Vector3(7, 6, 7)
+size = Vector3(5.466736, 6, 5.224701)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_42dsa"]
 viewport_path = NodePath("SubViewport")
@@ -1771,7 +1771,7 @@ is_boss = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
 unique_name_in_owner = true
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 2.5, 0)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0.13593812, 2.5, 0.4786588)
 shape = SubResource("BoxShape3D_4hngc")
 
 [node name="BossModel" type="Node3D" parent="."]
@@ -1780,7 +1780,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20550919, 0.9128463, 0)
 
 [node name="3dFlashcard" parent="BossModel" instance=ExtResource("3_0d70d")]
 unique_name_in_owner = true
-transform = Transform3D(0.5, 0, 0, 0, 0.4829629, -0.12940952, 0, 0.12940952, 0.4829629, 0, 1.6193784, 1.4769783)
+transform = Transform3D(0.6, 0, 0, 0, 0.5795555, -0.15529144, 0, 0.15529144, 0.5795555, 0, 1.145526, 1.4769783)
 texture = SubResource("ViewportTexture_42dsa")
 
 [node name="orc_boss" type="Node3D" parent="BossModel"]
