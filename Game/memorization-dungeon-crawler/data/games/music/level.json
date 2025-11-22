@@ -21,7 +21,7 @@
 	},
 	{
 	  "name": "Treble and Bass",
-	  "theme": "Jungle",
+	  "theme": "Antarctic",
 	  "boss_name": "Trouble",
 	  "themed_cards": ["treble", "bass"],
 	  "themed_drill_levels": 3,
@@ -29,25 +29,19 @@
 	},
 	{
 	  "name": "Outer treble",
-	  "theme": "Antarctic",
+	  "theme": "Lava",
 	  "boss_name": "Outer Boss",
 	  "themed_cards": ["outer-treble", "treble"],
 	  "themed_drill_levels": 3,
 	  "complete_drill_levels": 3
 	},
 	{
-	  "name": "Outer bass",
-	  "theme": "Lava",
-	  "boss_name": "Outer Boss II",
+	  "name": "The Final Dungeon",
+	  "theme": "Machine",
+	  "boss_name": "The Final Boss",
 	  "themed_cards": ["outer-bass", "bass"],
 	  "themed_drill_levels": 3,
 	  "complete_drill_levels": 3
 	}
-  ],
-  "final_dungeon": {
-	"name": "The Final Dungeon",
-	"theme": "Machine",
-	"complete_drill_levels": 3,
-	"boss_name": "Final Boss"
-  }
+  ]
 }

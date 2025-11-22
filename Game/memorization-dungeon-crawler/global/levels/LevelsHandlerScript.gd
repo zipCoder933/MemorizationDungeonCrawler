@@ -71,17 +71,17 @@ static func load_from_file(file_path: String):
 		levels.append(makeLevel(dungeon, midgame_goal_speed, learnedTags, Level.LevelType.BOSS))
 	
 	print("")
-	# Load final dungeon
-	var final = json_data.get("final_dungeon", null)
-	if final:
-		var levelCount = final.get("complete_drill_levels", 0)
-		for i in range(levelCount):
-			levels.append(makeLevel(
-				final,  
-				lerp(midgame_start_speed, midgame_goal_speed, i / levelCount), 
-				learnedTags, 
-				Level.LevelType.STANDARD))
-		levels.append(makeLevel(final, goal_speed, learnedTags, Level.LevelType.BOSS))
+	## Load final dungeon
+	#var final = json_data.get("final_dungeon", null)
+	#if final:
+		#var levelCount = final.get("complete_drill_levels", 0)
+		#for i in range(levelCount):
+			#levels.append(makeLevel(
+				#final,  
+				#lerp(midgame_start_speed, midgame_goal_speed, i / levelCount), 
+				#learnedTags, 
+				#Level.LevelType.STANDARD))
+		#levels.append(makeLevel(final, goal_speed, learnedTags, Level.LevelType.BOSS))
 
 static func makeLevel(dungeon:Variant, speed_seconds:float, card_tags:Array, levelType: Level.LevelType) -> Level:
 
