@@ -85,9 +85,13 @@ func _victory():
 	timer.timeout.connect(_on_victory_timer_timeout)
 
 func _on_victory_timer_timeout():
-	if SaveHandler.currentGame.completed_level >= LevelsHandler.levels.size():
-		victory_text.text = "Congratulations! You finished " + SaveHandler.currentGame.name + "!"
+	print("Completed level: ",SaveHandler.currentGame.completed_level," levels: ",LevelsHandler.levels.size())
+	if SaveHandler.currentGame.completed_level+1 >= LevelsHandler.levels.size():
+		victory_text.text = "Congratulations!\n\"" + SaveHandler.currentGame.name + "\" Complete!"
 		next.text = "Replay Final Level"
+	else:
+		victory_text.text = "Victory!"
+		next.text = "Next Level"
 	victory_panel.visible = true
 
 func _on_button_pressed() -> void:

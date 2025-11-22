@@ -1,6 +1,6 @@
 extends StaticBody3D
 class_name GoblinTrigger
-const SHRINK_SPEED:float = 1.8
+const SHRINK_SPEED:float = 1.5
 @export var _3d_flashcard: WorldFlashCard
 @export var _animation_player: AnimationPlayer
 @export var root_node: Node3D
@@ -42,8 +42,10 @@ func _ready():
 	_animation_player.animation_started.connect(_animation_started)
 	_animation_player.animation_changed.connect(_animation_changed)
 	
-	var anim = _animation_player.get_animation(take_hit_animation)
-	anim.loop_mode = Animation.LOOP_NONE
+	if(take_hit_animation != null):
+		var anim = _animation_player.get_animation(take_hit_animation)
+		if(anim != null):
+			anim.loop_mode = Animation.LOOP_NONE
 
 func _animation_started(anim_name: StringName):
 	#print("Started animation: ", anim_name)
@@ -54,6 +56,8 @@ func _animation_changed(animName:StringName):
 	pass
 
 func _animation_finished(animName:StringName):
+	if animName == death_animation:
+		_animation_player.stop()
 	#print("Finished animation: ",animName)
 	pass
 
@@ -82,9 +86,12 @@ func _finish_drill(success, count):
 			die()
 
 func die():
+	if(isDead):
+		return #We already died
 	isDead = true
 	timeOfDeath = Time.get_ticks_msec()
 	if(is_instance_valid(root_node) && death_animation != null):
+		print("Death animation for enemy")
 		_animation_player.play(death_animation,0.7)
 
 func _victory_event():
@@ -92,33 +99,37 @@ func _victory_event():
 
 
 func _process(delta):
-	if(is_boss):
-		if(Globals.get_player().keys < Globals.totalArenas and !Engine.is_embedded_in_editor()):
-			enemy_model.visible=false
-			collision_shape_3d.disabled = true
-		else:
-			enemy_model.visible=true
-			collision_shape_3d.disabled=false
-	
-	if not is_instance_valid(root_node):
+	if not is_instance_valid(root_node) or not is_instance_valid(enemy_model):
 		return
 	
 	var target_pos = player.global_position
 	var self_pos = global_transform.origin
 	
 	if isDead: #Point towards the player
-		if(!_animation_player.is_playing() or Time.get_ticks_msec()-timeOfDeath > 2000):
-			root_node.scale = Vector3(
-				root_node.scale.x - SHRINK_SPEED * delta,
-			 	root_node.scale.y - SHRINK_SPEED * delta, 
-				root_node.scale.z - SHRINK_SPEED * delta)
-		if(root_node.scale.y <= 0): #Delete this node
-			var p = Vector3(root_node.global_position.x,root_node.global_position.y,root_node.global_position.z)
-			if(!is_boss):
+		if(!_animation_player.is_playing() or Time.get_ticks_msec()-timeOfDeath > 2500):
+			enemy_model.scale = Vector3(
+				enemy_model.scale.x - SHRINK_SPEED * delta,
+			 	enemy_model.scale.y - SHRINK_SPEED * delta, 
+				enemy_model.scale.z - SHRINK_SPEED * delta)
+		if(enemy_model.scale.y <= 0): #Delete this node
+			var p = Vector3(enemy_model.global_position.x,
+							enemy_model.global_position.y,
+							enemy_model.global_position.z)
+			if(is_boss):
+				enemy_model.queue_free()  #We dont want to erase the boss arena!
+			else:
 				Globals.spawn_potion(p)
-			Globals.spawn_key(p,is_boss)
-			root_node.queue_free()
+				Globals.spawn_key(p,is_boss)
+				root_node.queue_free()
 	else:  #If not dead
+		if(is_boss):
+			if(Globals.get_player().keys < Globals.totalArenas and !Engine.is_embedded_in_editor()):
+				enemy_model.visible=false
+				collision_shape_3d.disabled = true
+			else:
+				enemy_model.visible=true
+				collision_shape_3d.disabled=false
+		
 		if(is_instance_valid(_animation_player) and !_animation_player.is_playing()):
 			if(fighting and fight_idle_animation != null):
 				_animation_player.play(fight_idle_animation,0.2,idle_animation_speed)

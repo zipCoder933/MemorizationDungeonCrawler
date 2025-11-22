@@ -14,7 +14,7 @@ script = ExtResource("1_fljia")
 
 [node name="SubViewport" type="SubViewport" parent="." groups=["3dCard"]]
 transparent_bg = true
-size = Vector2i(190, 220)
+size = Vector2i(190, 190)
 
 [node name="CardUI" parent="SubViewport" node_paths=PackedStringArray("worldFlashcardNode") instance=ExtResource("1_n55g1")]
 unique_name_in_owner = true

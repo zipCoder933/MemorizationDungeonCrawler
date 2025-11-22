@@ -5,14 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://b68s4erul2mh8" path="res://levels/dungeons/machine/machine/wall/lamp.glb" id="3_i255p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
-size = Vector3(1, 5, 5)
+size = Vector3(1.0658875, 5, 5.8287964)
 
 [node name="wall" type="StaticBody3D"]
 collision_layer = 2
 script = ExtResource("1_gif2k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0026397705, 2.5, -0.30142212)
 shape = SubResource("BoxShape3D_xfbw5")
 
 [node name="machine wall" parent="." instance=ExtResource("2_e2grf")]

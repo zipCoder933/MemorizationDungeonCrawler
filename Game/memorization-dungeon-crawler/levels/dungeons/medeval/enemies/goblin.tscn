@@ -3965,5 +3965,5 @@ libraries = {
 }
 
 [node name="WorldFlashcard" parent="goblinModel" instance=ExtResource("2_s4b0v")]
-transform = Transform3D(0.4000001, 0, 0, 0, 0.4000001, 0, 0, 0, 0.4000001, 0, 0.48365083, 0.85614264)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.7502582, 0)
 texture = SubResource("ViewportTexture_nuig7")

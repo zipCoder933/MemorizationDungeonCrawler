@@ -4,6 +4,10 @@ const SaveHandler = preload("uid://bgwdh30vglopu")
 @onready var name_box: LineEdit = $CanvasLayer/ColorRect/nameBox
 @onready var template_box: ItemList = $CanvasLayer/ColorRect/templateBox
 
+func _ready():
+	if(Engine.is_embedded_in_editor()):
+		template_box.add_item("Test")
+
 func _go_home():
 	get_tree().change_scene_to_file("res://UI/mainMenu/main/main_menu.tscn")
 
@@ -27,6 +31,8 @@ func _on_start_button_pressed() -> void:
 		template_dir = "res://data/games/subtraction/"
 	elif selected_index == 3:#music
 		template_dir = "res://data/games/music/"
+	else:#test
+		template_dir = "res://data/games/test/"
 
 	print("NAME: ",name_box.text," TEMPLATE: ",template_dir)
 	

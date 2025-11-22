@@ -4,13 +4,16 @@ class_name SaveEntry
 var name: String
 var path: String
 var completed_level: int
+var total_levels: int #Used for information on the menu
 var tag_mastery: Dictionary = {}  # tag (String) -> CardMastery
 var seed:int
 
-func _init(_name: String = "", _seed=0, _path: String = "", _completed_level: int = 0, _tag_mastery: Dictionary = {}):
+func _init(_name: String = "", _seed=0, _path: String = "", _completed_level: int = 0, \
+			_tag_mastery: Dictionary = {}, _total_levels = 0):
 	name = _name
 	seed = _seed
 	path = _path
+	total_levels = _total_levels
 	completed_level = _completed_level
 	tag_mastery = _tag_mastery
 
@@ -26,7 +29,8 @@ func to_dictionary() -> Dictionary:
 		"seed": seed,
 		"path": path,
 		"completed_level": completed_level,
-		"tag_mastery": mastery_data
+		"tag_mastery": mastery_data,
+		"total_levels": total_levels
 	}
 
 static func from_dictionary(data: Dictionary) -> SaveEntry:
@@ -47,7 +51,8 @@ static func from_dictionary(data: Dictionary) -> SaveEntry:
 		data.get("seed", 0),
 		data.get("path", ""),
 		data.get("completed_level", 0),
-		tag_mastery
+		tag_mastery,
+		data.get("total_levels", 0),
 	)
 
 func toString() -> String:

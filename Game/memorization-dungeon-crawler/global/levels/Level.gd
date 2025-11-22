@@ -29,6 +29,14 @@ func _init(_name: String, _theme: String, _card_review_number:int, _levelType: L
 	boss_name = _boss_name
 	time_to_answer_sec = _time_to_answer_sec
 	card_tags = _card_tags.duplicate()
+	
+	#remove duplicates of card_tags
+	var trimmed_card_tags:Array[String] = []
+	for card_tag in card_tags:
+		if(!trimmed_card_tags.has(card_tag)):
+			trimmed_card_tags.append(card_tag)
+	card_tags = trimmed_card_tags
+	#print("Level: ",toString())
 
 
 func toString() -> String:

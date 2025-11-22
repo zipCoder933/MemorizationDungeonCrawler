@@ -36,6 +36,12 @@ func start_game(entry:SaveEntry, goToLevel:bool = true):
 	SaveHandler.currentGame = entry
 	CardsHandler.load_from_file(SaveHandler.currentGame.path+"/cards.json")
 	LevelsHandler.load_from_file(SaveHandler.currentGame.path+"/level.json")
+	
+	SaveHandler.currentGame.total_levels = LevelsHandler.levels.size()
+	SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level, 
+											0, LevelsHandler.levels.size()-1)
+	SaveHandler.save_to_file(SAVE_FILE)
+
 	print("Loaded %d levels" % LevelsHandler.levels.size())
 	_load_level_current_game()
 	if(goToLevel):
@@ -49,17 +55,16 @@ func redo_level(goToLevel:bool = true):
 
 func next_level(goToLevel:bool = true):
 	SaveHandler.currentGame.completed_level+=1
-	
-	if(SaveHandler.currentGame.completed_level > LevelsHandler.levels.size()):
-		#Just replay the final level again
-		SaveHandler.currentGame.completed_level = LevelsHandler.levels.size()
-		
+	SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level, 
+											0, LevelsHandler.levels.size()-1)
 	SaveHandler.save_to_file(Globals.SAVE_FILE)
 	_load_level_current_game()
 	if(goToLevel):
 		go_to_level()
 
 func go_home():
+	failed_flashcards = []
+	clear_flashcard()
 	SaveHandler.save_to_file(Globals.SAVE_FILE)
 	get_tree().change_scene_to_file("res://UI/mainMenu/main/main_menu.tscn")
 
@@ -91,13 +96,10 @@ func go_to_level():
 	get_tree().change_scene_to_file("res://levels/Level.tscn")
 
 func _load_level_current_game():
-	if(SaveHandler.currentGame.completed_level > LevelsHandler.levels.size()-1):
-		print("Game is complete! No more levels")
-		return
+	SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level, 
+											0, LevelsHandler.levels.size()-1)
 	print("Loading level ",SaveHandler.currentGame.completed_level)
 	SaveHandler.currentLevel = LevelsHandler.levels[SaveHandler.currentGame.completed_level]
-
-
 
 var ignored_keys = [
 	Key.KEY_SPACE,
@@ -123,8 +125,6 @@ func has_flashcard():
 
 func get_flashcard_question():
 	return _current_flashcard_question
-
-	
 
 func clear_flashcard():
 	if(has_flashcard()):
@@ -177,6 +177,9 @@ func drill_flashcards(quantity:int, flashcardElement:WorldFlashCard, time_multip
 func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard, begin_delay_sec:float = 0, _allow_end_on_failure2:bool = false):
 	if(has_flashcard() and flashcardElement != _flashcardNode):
 		print("There is already a set of flashcards being drilled!")
+		return
+	if(questions2.size() == 0):
+		print("Flashcard deck is empty!!!")
 		return
 	_flashcardNode = flashcardElement
 	_allow_end_on_failure = _allow_end_on_failure2
@@ -250,7 +253,6 @@ func _input(event):
 					var ch := char(event.unicode)
 					if(event.as_text() != null and _current_flashcard_question.is_valid_key(event,current_flashcard_answer)):
 						current_flashcard_answer += ch
-					print("Answer: ",get_flashcard_question().answer_text)
 					if(current_flashcard_answer.length() >= get_flashcard_question().max_answer_chars\
 					or current_flashcard_answer.length() >= get_flashcard_question().get_answer_length()):
 						submit_flashcard(get_flashcard_question().answerEquals(current_flashcard_answer))

@@ -130,6 +130,7 @@ func _ready():
 	phantom_camera_3d.look_at_mode = PhantomCamera3D.LookAtMode.NONE
 	phantom_camera_3d.follow_damping = false
 	phantom_camera_3d.tween_on_load = false
+	phantom_camera_3d.spring_length = phantom_camera_follow_node.length
 
 var flash_card:WorldFlashCard = null
 
@@ -190,12 +191,13 @@ func _process(delta:float):
 	camRotation.x = clamp(camRotation.x, -PI/3, PI/3)
 	camRotation.y += (-mouse_controller.mouse_delta.x * MOUSE_SENSITIVITY) + (movement.x * delta * TURN_SPEED)
 	phantom_camera_3d.set_third_person_rotation(camRotation)
+	phantom_camera_3d.spring_length = phantom_camera_follow_node.length
 	
 	if mode == PlayerMode.FACTS and flash_card != null:
 		var dir_to_target = (flash_card.global_position - global_position).normalized()
 		var target_angle = atan2(dir_to_target.x, dir_to_target.z) + PI  # Y-rotation
 		var angle_diff = wrapf(target_angle - camRotation.y, -PI, PI)
-		var threshold = deg_to_rad(65) #We can be X degrees to the left or right without being bothered
+		var threshold = deg_to_rad(45) #We can be X degrees to the left or right without being bothered
 		#Move the camera towards the flashcard if we are pointing the wrong direction
 		if abs(angle_diff) > threshold:
 			var desired_angle = camRotation.y + (angle_diff - sign(angle_diff) * threshold)

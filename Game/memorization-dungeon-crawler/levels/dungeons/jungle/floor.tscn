@@ -16,7 +16,7 @@ size = Vector3(250, 1, 250)
 albedo_texture = ExtResource("2_0c3yy")
 normal_enabled = true
 normal_texture = ExtResource("3_5aweq")
-uv1_scale = Vector3(7.16, 7.16, 7.16)
+uv1_scale = Vector3(12, 12, 12)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pgxbp"]
 size = Vector2(100, 100)

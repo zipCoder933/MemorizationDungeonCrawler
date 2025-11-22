@@ -1,0 +1,55 @@
+{
+  "starting_answer_speed_sec": 10,
+  "goal_answer_speed_sec": 2,
+  "name": "Multiplication",
+  "dungeons": [
+	{
+	  "name": "Dungeon 1",
+	  "theme": "machine",
+	  "boss_name": "Da Boss",
+	  "themed_cards": ["1s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 0
+	},
+	{
+	  "name": "Dungeon 2",
+	  "theme": "lava",
+	  "boss_name": "Bossmania",
+	  "themed_cards": ["1s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 0
+	},
+		{
+	  "name": "Dungeon 2",
+	  "theme": "lava",
+	  "boss_name": "Bossmania",
+	  "themed_cards": ["1s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 0
+	},
+	{
+	  "name": "Dungeon 3",
+	  "theme": "lava",
+	  "boss_name": "Bossmania",
+	  "themed_cards": ["1s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 0
+	},
+	{
+	  "name": "Dungeon 6",
+	  "theme": "Jungle",
+	  "boss_name": "Bossmania",
+	  "themed_cards": ["1s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 0
+	},
+	{
+	  "name": "The Final Dungeon",
+	  "theme": "Antarctic",
+	  "boss_name": "Bossmania",
+	  "themed_cards": ["1s"],
+	  "themed_drill_levels": 1,
+	  "complete_drill_levels": 0
+	}
+  ]
+}
