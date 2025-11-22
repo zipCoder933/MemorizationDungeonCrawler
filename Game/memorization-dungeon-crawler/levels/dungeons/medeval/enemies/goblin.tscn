@@ -3697,7 +3697,7 @@ transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
 [node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "root_node", "enemy_model", "collision_shape_3d")]
 collision_layer = 4
 script = ExtResource("2_reyqm")
-_3d_flashcard = NodePath("../WorldFlashcard")
+_3d_flashcard = NodePath("../goblinModel/WorldFlashcard")
 _animation_player = NodePath("../goblinModel/goblin/AnimationPlayer")
 root_node = NodePath("..")
 enemy_model = NodePath("../goblinModel")
@@ -3707,6 +3707,7 @@ success_health_add = 0.05
 speed = 1.0
 cardNumber = 15
 idle_animation = "Idle Retarget"
+fight_idle_animation = "Idle Retarget"
 punch_animation = "Punch Retarget"
 take_hit_animation = "TakeHit Retarget"
 death_animation = "Death Retarget"
@@ -3963,6 +3964,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_v2wei")
 }
 
-[node name="WorldFlashcard" parent="." instance=ExtResource("2_s4b0v")]
-transform = Transform3D(0.40000004, 0, 0, 0, 0.40000004, 0, 0, 0, 0.40000004, 0, 0.48365077, 0.8561425)
+[node name="WorldFlashcard" parent="goblinModel" instance=ExtResource("2_s4b0v")]
+transform = Transform3D(0.4000001, 0, 0, 0, 0.4000001, 0, 0, 0, 0.4000001, 0, 0.48365083, 0.85614264)
 texture = SubResource("ViewportTexture_nuig7")

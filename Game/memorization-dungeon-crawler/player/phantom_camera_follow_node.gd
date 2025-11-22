@@ -2,7 +2,7 @@ extends Node3D
 class_name PhantomCameraFollowNode
 
 var player: Node3D
-var flashcard: Node3D
+var flashcard: WorldFlashCard
 var tween: Tween
 
 func _ready():
@@ -14,7 +14,7 @@ func _process(delta):
 
 	if flashcard:
 		# sweet beautiful midpoint
-		target_pos = (player.global_position + flashcard.global_position) * 0.5
+		target_pos = lerp(player.global_position, flashcard.get_look_target(), .7)
 	else:
 		# just the player again
 		target_pos = player.global_position

@@ -24,4 +24,7 @@ worldFlashcardNode = NodePath("../..")
 visible = false
 mesh = SubResource("BoxMesh_fljia")
 
+[node name="LookTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1015203, 0)
+
 [editable path="SubViewport/CardUI"]

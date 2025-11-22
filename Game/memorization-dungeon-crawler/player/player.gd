@@ -45,6 +45,46 @@ const MAX_HEALTH = 1
 var health:float = 1
 var keys:int = 0
 
+@onready var sword_mesh: MeshInstance3D = $Knight2/Knight/Skeleton3D/sword
+@onready var shield_mesh: MeshInstance3D = $Knight2/Knight/Skeleton3D/shield
+@onready var helmet_mesh: MeshInstance3D = $Knight2/Knight/Skeleton3D/helmet
+@onready var body_mesh: MeshInstance3D = $Knight2/Knight/Skeleton3D/body
+
+func set_alpha(transparent:bool):
+	if(transparent):
+		_set_mesh_alpha(body_mesh, 0.7)
+		_set_mesh_alpha(sword_mesh, 0.7)
+		_set_mesh_alpha(shield_mesh, 0.7)
+		_set_mesh_alpha(helmet_mesh, 0.9)
+	else:
+		_set_mesh_alpha(body_mesh, 1)
+		_set_mesh_alpha(sword_mesh, 1)
+		_set_mesh_alpha(shield_mesh, 1)
+		_set_mesh_alpha(helmet_mesh, 1)
+
+func _set_mesh_alpha(mesh: MeshInstance3D, alpha: float):
+	var mat := mesh.get_active_material(0)
+	if mat:
+		mat = mat.duplicate()
+		mesh.set_surface_override_material(0, mat)
+		var c:Color = mat.albedo_color
+		c.a = alpha
+		mat.albedo_color = c
+		
+		if(alpha <= 0):
+			mesh.visible = false
+		elif(alpha >= 1):
+			mat.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
+			mesh.visible = true
+		else:
+			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			mat.alpha_cutoff = 0.2      # anything below is discarded
+			mat.albedo_color = Color(1, 1, 1, alpha)   # partially see-through
+			mat.cull_mode = BaseMaterial3D.CULL_BACK
+			mat.depth_draw_mode = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
+			mesh.visible = true
+
+
 func obtain_key(key:KeyNode):
 	keys+=1
 	if(SaveHandler.currentLevel.levelType == Level.LevelType.STANDARD):
@@ -58,7 +98,6 @@ func obtain_key(key:KeyNode):
 func set_health(value:float):
 	if(health != value):
 		if(health > value):
-			print("Hit animation")
 			animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.2, 2)
 		if(value > MAX_HEALTH):
 			health = MAX_HEALTH
@@ -90,6 +129,7 @@ func _ready():
 	phantom_camera_3d.follow_target = phantom_camera_follow_node
 	phantom_camera_3d.look_at_mode = PhantomCamera3D.LookAtMode.NONE
 	phantom_camera_3d.follow_damping = false
+	phantom_camera_3d.tween_on_load = false
 
 var flash_card:WorldFlashCard = null
 
@@ -114,6 +154,7 @@ func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 	phantom_camera_follow_node.flashcard = target2
 	mode = PlayerMode.FACTS
 	movement = Vector3.ZERO
+	set_alpha(true)
 	animation_player.play(FIGHT_IDLE_ANIMATION, 0.5)
 
 func _global_adventure_mode():
@@ -123,6 +164,7 @@ func _global_adventure_mode():
 		phantom_camera_3d.look_at_targets = []
 		phantom_camera_follow_node.flashcard = null
 		flash_card = null
+		set_alpha(false)
 		mode = PlayerMode.ADVENTURE
 
 func get_normalized_mouse() -> Vector2:

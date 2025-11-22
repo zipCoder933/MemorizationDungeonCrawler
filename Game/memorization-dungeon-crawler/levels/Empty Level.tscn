@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qnek84emx4ad" path="res://levels/empty_level.gd" id="1_xvfop"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_6awyk"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_io462"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_gwgf1"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_36vw8"]
 [ext_resource type="PackedScene" uid="uid://3cmqyetfdyvt" path="res://player/Player.tscn" id="5_xvfop"]
 [ext_resource type="PackedScene" uid="uid://bvoe5plbouam2" path="res://levels/universal/floor/floor.tscn" id="6_6awyk"]
@@ -14,9 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://cima58l8yrht0" path="res://levels/universal/key/key.tscn" id="12_0grop"]
 [ext_resource type="PackedScene" uid="uid://bv0qtxxmmlnu" path="res://levels/dungeons/machine/door.tscn" id="13_gwgf1"]
 
-[sub_resource type="Resource" id="Resource_0grop"]
-script = ExtResource("3_io462")
-metadata/_custom_type_script = "uid://8umksf8e80fw"
+[sub_resource type="Resource" id="Resource_pjl06"]
+script = ExtResource("3_gwgf1")
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_xvfop")
@@ -26,7 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.973, 4)
 script = ExtResource("2_6awyk")
 follow_mode = 6
 follow_target = NodePath("../Player")
-tween_resource = SubResource("Resource_0grop")
+tween_resource = SubResource("Resource_pjl06")
 follow_offset = Vector3(0, 1.125, 0)
 follow_distance = 2.0
 spring_length = 2.0

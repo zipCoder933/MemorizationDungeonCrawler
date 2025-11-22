@@ -32,14 +32,38 @@ const LevelsHandler = preload("uid://bte11e0fapqes")
 
 var accuracy:Array[float] = []
 
-func ready():
+func _ready():
+	_3d_flashcard.signal_flashcard_finished_drill.connect(_finish_drill)
+	_3d_flashcard.signal_flashcard_single_drill.connect(_single_drill)
+	Globals.signal_victory.connect(_victory_event)
+	
 	_animation_player.play(idle_animation,0.2,idle_animation_speed)
+	_animation_player.animation_finished.connect(_animation_finished)
+	_animation_player.animation_started.connect(_animation_started)
+	_animation_player.animation_changed.connect(_animation_changed)
+	
+	var anim = _animation_player.get_animation(take_hit_animation)
+	anim.loop_mode = Animation.LOOP_NONE
+
+func _animation_started(anim_name: StringName):
+	#print("Started animation: ", anim_name)
+	pass
+
+func _animation_changed(animName:StringName):
+	#print("Changed animation: ",animName)
+	pass
+
+func _animation_finished(animName:StringName):
+	#print("Finished animation: ",animName)
+	pass
 
 func _single_drill(success):
 	if(success):
 		accuracy.append(100)
 		player.change_health(success_health_add)
+		
 		if(take_hit_animation != null):
+			print("Playing take hit")
 			_animation_player.play(take_hit_animation,0.2,take_hit_animation_speed)
 	else:
 		accuracy.append(0)
@@ -66,10 +90,6 @@ func die():
 func _victory_event():
 	die()
 
-func _ready() -> void:
-	_3d_flashcard.signal_flashcard_finished_drill.connect(_finish_drill)
-	_3d_flashcard.signal_flashcard_single_drill.connect(_single_drill)
-	Globals.signal_victory.connect(_victory_event)
 
 func _process(delta):
 	if(is_boss):
@@ -99,7 +119,7 @@ func _process(delta):
 			Globals.spawn_key(p,is_boss)
 			root_node.queue_free()
 	else:  #If not dead
-		if !_animation_player.is_playing():#Play idle animation
+		if(is_instance_valid(_animation_player) and !_animation_player.is_playing()):
 			if(fighting and fight_idle_animation != null):
 				_animation_player.play(fight_idle_animation,0.2,idle_animation_speed)
 			else:

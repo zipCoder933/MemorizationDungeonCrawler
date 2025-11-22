@@ -81,8 +81,9 @@ func _game_over():
 @onready var next: Button = $CanvasLayer/VictoryPanel/Next
 
 func _victory():
+	await get_tree().create_timer(3).timeout
 	if(SaveHandler.currentGame.completed_level >= LevelsHandler.levels.size()):
-		victory_text.text = "Game Complete!"
+		victory_text.text = "Congratulations! You finished "+SaveHandler.currentGame.name+"!"
 		next.text = "Replay Final Level"
 	victory_panel.visible = true
 
