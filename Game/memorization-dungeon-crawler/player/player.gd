@@ -52,10 +52,10 @@ var keys:int = 0
 
 func set_alpha(transparent:bool):
 	if(transparent):
-		_set_mesh_alpha(body_mesh, 0.7)
-		_set_mesh_alpha(sword_mesh, 0.7)
-		_set_mesh_alpha(shield_mesh, 0.7)
-		_set_mesh_alpha(helmet_mesh, 0.9)
+		_set_mesh_alpha(body_mesh, 0.6)
+		_set_mesh_alpha(sword_mesh, 0.5)
+		_set_mesh_alpha(shield_mesh, 0.5)
+		_set_mesh_alpha(helmet_mesh, 0.85)
 	else:
 		_set_mesh_alpha(body_mesh, 1)
 		_set_mesh_alpha(sword_mesh, 1)
@@ -136,18 +136,20 @@ var flash_card:WorldFlashCard = null
 func _victory():
 	mode = PlayerMode.VICTORY
 	animation_player.play(VICTORY_ANIMATION,1)
+	set_alpha(false)
 	mouse_controller.unlock_mouse_forever()
 
 func _game_over():
 	if(mode != PlayerMode.GAME_OVER):
 		print("Playing death animation")
 		animation_player.play(DEATH_ANIMATION, 0.2)
-	
+	set_alpha(false)
 	mode = PlayerMode.GAME_OVER
 	mouse_controller.unlock_mouse_forever()
 
 func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):
+		set_alpha(false)
 		return
 	flash_card = target2
 	phantom_camera_3d.look_at_targets = [self,target2]
@@ -159,6 +161,7 @@ func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 
 func _global_adventure_mode():
 	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):
+		set_alpha(false)
 		return
 	if(health > 0):
 		phantom_camera_3d.look_at_targets = []
