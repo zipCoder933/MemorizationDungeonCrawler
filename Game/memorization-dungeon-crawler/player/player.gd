@@ -55,7 +55,7 @@ func set_alpha(transparent:bool):
 		_set_mesh_alpha(body_mesh, 0.6)
 		_set_mesh_alpha(sword_mesh, 0.5)
 		_set_mesh_alpha(shield_mesh, 0.5)
-		_set_mesh_alpha(helmet_mesh, 0.85)
+		_set_mesh_alpha(helmet_mesh, 0.95)
 	else:
 		_set_mesh_alpha(body_mesh, 1)
 		_set_mesh_alpha(sword_mesh, 1)
@@ -192,12 +192,19 @@ func _process(delta:float):
 	phantom_camera_3d.set_third_person_rotation(camRotation)
 	
 	if mode == PlayerMode.FACTS and flash_card != null:
-		var dir_to_target = (global_position - flash_card.global_position).normalized()
-		var target_angle = atan2(dir_to_target.x, dir_to_target.z)  # For 3D (y-rotation)
-		var dist = global_position.distance_to(flash_card.global_position)
-		var turn_multiplier = clamp(Globals.map(dist, 1, 10, FLASHCARD_MIN_TURN_SPEED, FLASHCARD_MAX_TURN_SPEED),\
-												FLASHCARD_MIN_TURN_SPEED, FLASHCARD_MAX_TURN_SPEED)
-		camRotation.y = lerp_angle(camRotation.y, target_angle, turn_multiplier * delta)
+		var dir_to_target = (flash_card.global_position - global_position).normalized()
+		var target_angle = atan2(dir_to_target.x, dir_to_target.z) + PI  # Y-rotation
+		var angle_diff = wrapf(target_angle - camRotation.y, -PI, PI)
+		var threshold = deg_to_rad(65) #We can be X degrees to the left or right without being bothered
+		#Move the camera towards the flashcard if we are pointing the wrong direction
+		if abs(angle_diff) > threshold:
+			var desired_angle = camRotation.y + (angle_diff - sign(angle_diff) * threshold)
+			var dist = global_position.distance_to(flash_card.global_position)
+			var turn_multiplier = clamp(
+				Globals.map(dist, 1, 10, FLASHCARD_MIN_TURN_SPEED, FLASHCARD_MAX_TURN_SPEED),
+				FLASHCARD_MIN_TURN_SPEED, FLASHCARD_MAX_TURN_SPEED)
+			camRotation.y = lerp_angle(camRotation.y, desired_angle, turn_multiplier * delta)
+
 
 	if(_is_still()):
 		movement = Vector3.ZERO
