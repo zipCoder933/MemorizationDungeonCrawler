@@ -1758,7 +1758,7 @@ _3d_flashcard = NodePath("../BossModel/3dFlashcard")
 _animation_player = NodePath("../BossModel/orc_boss/AnimationPlayer")
 root_node = NodePath("..")
 enemy_model = NodePath("../BossModel")
-collision_shape_3d = NodePath("")
+collision_shape_3d = NodePath("CollisionShape3D")
 fail_health_add = -0.2
 success_health_add = 0.1
 speed = 0.85
@@ -1781,7 +1781,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20550919, 0.9128463, 0)
 
 [node name="3dFlashcard" parent="BossModel" instance=ExtResource("3_0d70d")]
 unique_name_in_owner = true
-transform = Transform3D(0.6, 0, 0, 0, 0.5795555, -0.15529144, 0, 0.15529144, 0.5795555, 0, 1.2380935, 1.4769783)
+transform = Transform3D(0.59999996, 0, 0, 0, 0.59999996, 0, 0, 0, 0.59999996, 0, 1.1196619, 1.8769783)
 texture = SubResource("ViewportTexture_42dsa")
 
 [node name="orc_boss" type="Node3D" parent="BossModel"]

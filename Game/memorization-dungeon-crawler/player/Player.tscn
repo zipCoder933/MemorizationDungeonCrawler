@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://3cmqyetfdyvt"]
+[gd_scene load_steps=7 format=3 uid="uid://3cmqyetfdyvt"]
 
 [ext_resource type="PackedScene" uid="uid://m1nwhli4ahnc" path="res://player/Knight.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://btu8hwdt0o0n4" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="PackedScene" uid="uid://bfj67b4iujjtf" path="res://UI/HUD.tscn" id="3_g1dw6"]
+[ext_resource type="Script" uid="uid://cbe6ksxr2p05g" path="res://player/phantom_camera_follow_node.gd" id="5_aqcbf"]
 [ext_resource type="PackedScene" uid="uid://dg866yeqnxk53" path="res://player/MouseController.tscn" id="5_x8kxw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rkbax"]
@@ -83,7 +84,6 @@ bones/31/position = Vector3(-7.476721e-08, 0.023351725, 3.6196042e-09)
 bones/31/rotation = Quaternion(0.4610497, 3.4368437e-05, 0.0005405278, 0.88737416)
 bones/32/position = Vector3(5.627676e-08, 0.020373093, 4.731222e-08)
 bones/33/position = Vector3(0.003981873, 0.14663441, -0.056486312)
-bones/33/rotation = Quaternion(0.4999992, 0.5000008, -0.5000005, -0.4999996)
 bones/34/position = Vector3(-0.05979156, 0.13670276, -0.016626097)
 bones/34/rotation = Quaternion(0.6764667, -0.2953564, 0.33200815, 0.5873057)
 bones/35/position = Vector3(1.630393e-08, 0.12607883, -2.350443e-07)
@@ -152,6 +152,10 @@ player = NodePath("..")
 
 [node name="MouseController" parent="." node_paths=PackedStringArray("playerHUD") instance=ExtResource("5_x8kxw")]
 playerHUD = NodePath("../PlayerHUD")
+
+[node name="PhantomCameraFollowNode" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_aqcbf")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

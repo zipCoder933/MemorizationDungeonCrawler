@@ -1,5 +1,6 @@
 extends RigidBody3D
 class_name Player
+@onready var phantom_camera_follow_node: PhantomCameraFollowNode = %PhantomCameraFollowNode
 
 @onready var animation_player: AnimationPlayer = $Knight2/AnimationPlayer
 const RUNNING_ANIMATION = "running Retarget"
@@ -82,6 +83,14 @@ func _ready():
 	Globals.signal_victory.connect(_victory)
 	Globals.signal_boss_defeated.connect(_global_boss_defeated)
 
+	#Set phantom camera default parameters
+	#https://phantom-camera.dev/follow-modes/overview
+	#Follow mode should not change
+	phantom_camera_3d.follow_mode = PhantomCamera3D.FollowMode.THIRD_PERSON
+	phantom_camera_3d.follow_target = phantom_camera_follow_node
+	phantom_camera_3d.look_at_mode = PhantomCamera3D.LookAtMode.NONE
+	phantom_camera_3d.follow_damping = false
+
 var flash_card:WorldFlashCard = null
 
 func _victory():
@@ -101,6 +110,8 @@ func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):
 		return
 	flash_card = target2
+	phantom_camera_3d.look_at_targets = [self,target2]
+	phantom_camera_follow_node.flashcard = target2
 	mode = PlayerMode.FACTS
 	movement = Vector3.ZERO
 	animation_player.play(FIGHT_IDLE_ANIMATION, 0.5)
@@ -109,6 +120,8 @@ func _global_adventure_mode():
 	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):
 		return
 	if(health > 0):
+		phantom_camera_3d.look_at_targets = []
+		phantom_camera_follow_node.flashcard = null
 		flash_card = null
 		mode = PlayerMode.ADVENTURE
 

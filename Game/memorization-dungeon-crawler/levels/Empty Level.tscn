@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://b814qo7tsdd6q"]
+[gd_scene load_steps=15 format=3 uid="uid://b814qo7tsdd6q"]
 
 [ext_resource type="Script" uid="uid://qnek84emx4ad" path="res://levels/empty_level.gd" id="1_xvfop"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_6awyk"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_io462"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_36vw8"]
-[ext_resource type="PackedScene" uid="uid://3cmqyetfdyvt" path="res://levels/universal/Player.tscn" id="5_xvfop"]
+[ext_resource type="PackedScene" uid="uid://3cmqyetfdyvt" path="res://player/Player.tscn" id="5_xvfop"]
 [ext_resource type="PackedScene" uid="uid://bvoe5plbouam2" path="res://levels/universal/floor/floor.tscn" id="6_6awyk"]
 [ext_resource type="PackedScene" uid="uid://bpunwt6bwc3bm" path="res://levels/dungeons/medeval/environment/9/wall9.tscn" id="7_io462"]
 [ext_resource type="PackedScene" uid="uid://bdnosseu7fsm" path="res://levels/dungeons/medeval/environment/9/door9.tscn" id="8_io462"]
@@ -12,9 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://bobtcptejmn2a" path="res://levels/dungeons/medeval/enemies/orc_boss.tscn" id="10_xvfop"]
 [ext_resource type="PackedScene" uid="uid://c4iomrx46ssjc" path="res://levels/universal/potion/potion.tscn" id="11_asn8m"]
 [ext_resource type="PackedScene" uid="uid://cima58l8yrht0" path="res://levels/universal/key/key.tscn" id="12_0grop"]
+[ext_resource type="PackedScene" uid="uid://bv0qtxxmmlnu" path="res://levels/dungeons/machine/door.tscn" id="13_gwgf1"]
 
-[sub_resource type="Resource" id="Resource_0oum7"]
+[sub_resource type="Resource" id="Resource_0grop"]
 script = ExtResource("3_io462")
+metadata/_custom_type_script = "uid://8umksf8e80fw"
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_xvfop")
@@ -24,7 +26,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.973, 4)
 script = ExtResource("2_6awyk")
 follow_mode = 6
 follow_target = NodePath("../Player")
-tween_resource = SubResource("Resource_0oum7")
+tween_resource = SubResource("Resource_0grop")
 follow_offset = Vector3(0, 1.125, 0)
 follow_distance = 2.0
 spring_length = 2.0
@@ -345,3 +347,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.434298, 1.1920929e-07, -0.
 
 [node name="Key6" parent="." instance=ExtResource("12_0grop")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7977576, 1.1920929e-07, -0.55309343)
+
+[node name="Door2" parent="." instance=ExtResource("13_gwgf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5628605, 0.23181343, 5.552826)
+
+[node name="Door3" parent="." instance=ExtResource("13_gwgf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.770277, 0.23181367, 5.804551)
+
+[node name="Door4" parent="." instance=ExtResource("13_gwgf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4259653, 0.23181367, -7.5107365)
+
+[node name="Door5" parent="." instance=ExtResource("13_gwgf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7375097, 0.23181367, -6.7208557)
+
+[node name="Door6" parent="." instance=ExtResource("13_gwgf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.151375, 0.23181367, 5.938406)
+
+[node name="Door7" parent="." instance=ExtResource("13_gwgf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.948475, 0.23181367, -8.287373)

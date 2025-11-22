@@ -101,17 +101,15 @@ THE FINAL BOSS!)"
 
 [node name="CardUI" parent="CanvasLayer" instance=ExtResource("6_gppie")]
 unique_name_in_owner = true
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -95.0
-offset_top = -220.0
-offset_right = 95.0
-offset_bottom = 0.0
-grow_horizontal = 2
+offset_left = 18.0
+offset_top = -176.0
+offset_right = 208.0
+offset_bottom = 44.0
 grow_vertical = 0
+scale = Vector2(0.72, 0.72)
 
 [node name="GameOverPanel" type="Panel" parent="CanvasLayer"]
 visible = false
@@ -289,6 +287,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2ptjp")
 
 [node name="BossfightStats" parent="CanvasLayer" instance=ExtResource("9_7i7fj")]
+visible = false
 
 [node name="fps" type="Label" parent="."]
 layout_mode = 1
