@@ -42,11 +42,14 @@ func _ready():
 		boss_info.visible = SaveHandler.currentLevel.levelType == Level.LevelType.BOSS
 		if(SaveHandler.currentLevel.levelType == Level.LevelType.BOSS):
 			level_indicator.text = "LEVEL " +\
-			 str(SaveHandler.currentGame.completed_level+1)+": "+\
+			 str(SaveHandler.currentGame.completed_level+1) +" / "+\
+			 str(SaveHandler.currentGame.total_levels) +": "+\
 			SaveHandler.currentLevel.boss_name + " ("+SaveHandler.currentLevel.level_name+")"
 		else:
 			level_indicator.text = "LEVEL " +\
-			 str(SaveHandler.currentGame.completed_level+1)+": "+SaveHandler.currentLevel.level_name
+			str(SaveHandler.currentGame.completed_level+1) +" / "+\
+			str(SaveHandler.currentGame.total_levels) +": "+\
+			SaveHandler.currentLevel.level_name
 
 func _input(event):
 	if event is InputEventKey:

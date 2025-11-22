@@ -4267,7 +4267,7 @@ radius = 2.635606
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.13239467, 0.058103204, -0.8135836)
 
 [node name="Monster" type="Node3D" parent="rockMesh/rock monster"]
-transform = Transform3D(0.7, 0, 0, 0, -3.059797e-08, -0.7, 0, 0.7, -3.059797e-08, 0, 0, 0.90592116)
+transform = Transform3D(0.75, 0, 0, 0, -3.278354e-08, -0.75, 0, 0.75, -3.278354e-08, 0, 0, 0.90592116)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="rockMesh/rock monster/Monster"]
 bones/0/name = "mixamorig_Hips"
@@ -4818,7 +4818,7 @@ libraries = {
 }
 
 [node name="WorldFlashcard" parent="rockMesh" instance=ExtResource("5_hnyqs")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 2.825, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.825, 0)
 texture = SubResource("ViewportTexture_ukxxj")
 
 [node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "root_node", "enemy_model", "collision_shape_3d")]
