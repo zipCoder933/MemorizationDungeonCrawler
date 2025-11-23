@@ -114,6 +114,9 @@ static var _current_flashcard_question:Question
 static var current_flashcard_answer:String
 static var _has_flashcard:bool
 static var deckSize:int = 0
+static var total_cards:int = 0
+static var themed_cards:int = 0
+static var themed_succeeded:int= 0
 static var succeeded:int = 0
 static var questions:Array#[Question];
 static var _flashcardNode:WorldFlashCard
@@ -127,6 +130,10 @@ func get_flashcard_question():
 	return _current_flashcard_question
 
 func clear_flashcard():
+	themed_succeeded = 0
+	succeeded = 0
+	total_cards = 0
+	themed_cards = 0
 	if(has_flashcard()):
 		_flashcardNode.visible = false
 	_has_flashcard = false
@@ -181,25 +188,50 @@ func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard
 	if(questions2.size() == 0):
 		print("Flashcard deck is empty!!!")
 		return
+	clear_flashcard()
 	_flashcardNode = flashcardElement
 	_allow_end_on_failure = _allow_end_on_failure2
 	fact_answering_mode.emit(_flashcardNode)
 	print("Drilling player on ",questions2.size()," cards.")
 	deckSize = questions2.size()
 	questions = questions2;
-	succeeded = 0
 	if begin_delay_sec > 0:
 		await get_tree().create_timer(begin_delay_sec).timeout
 	new_flashcard_question(questions[0])
+
+func _question_in_dungeon_themed_cards(question:Question) -> bool:
+	for levelTag in SaveHandler.currentLevel.themed_card_tags:
+		for tag in question.card.tags:
+			if tag == levelTag:
+				return true
+	return false
+
+class FlashcardDrillResults:
+	var succeeded_percentage: float
+	var themed_succeeded_percentage: float
+	var flashcardNode: WorldFlashCard
+
+	func _init(succeeded_percentage: float, themed_succeeded_percentage: float, node: WorldFlashCard):
+		self.succeeded_percentage = succeeded_percentage
+		self.themed_succeeded_percentage = themed_succeeded_percentage
+		self.flashcardNode = node
+
 
 func submit_flashcard(succeed:bool):
 	var player =  get_player()
 	var accuracy = 0
 	var time_ms = _flashcardNode.get_time_elapsed_MS()
 	var question = _current_flashcard_question
+	
+	total_cards+=1
 	if(succeed):
 		accuracy = 100
 		succeeded += 1
+		
+	if(_question_in_dungeon_themed_cards(question)):
+		themed_cards +=1
+		if(succeed):
+			themed_succeeded += 1
 
 	for tag in _current_flashcard_question.card.tags:
 		var existing_entry:SaveEntry.CardMastery = SaveHandler.currentGame.tag_mastery.get(tag, null)

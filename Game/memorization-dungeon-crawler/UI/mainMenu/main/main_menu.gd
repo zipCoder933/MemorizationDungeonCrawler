@@ -42,7 +42,7 @@ func reload():
 func _ready():
 	delete_confirm.visible=false
 	loading.visible=false
-	version.text = ProjectSettings.get_setting("application/config/version")
+	version.text = " v"+ProjectSettings.get_setting("application/config/version")
 	SaveHandler.load_from_file(Globals.SAVE_FILE)
 	for entry in SaveHandler.saves:
 		var node = GAME_ENTRY.instantiate()

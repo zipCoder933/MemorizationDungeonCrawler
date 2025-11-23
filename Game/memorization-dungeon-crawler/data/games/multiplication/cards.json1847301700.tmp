@@ -1,12 +1,13 @@
 {
 	"Cards": [
-		{
+	{
 		"Questions": [
             "1*1"
 		],
 		"Answer": 1,
 		"Tags": [
-			"1s"
+			"1s",
+            "1s"
 		],
 		"Type": "natural"
 	},
@@ -149,6 +150,7 @@
 		"Answer": 4,
 		"Tags": [
 			"2s",
+            "2s"
 		],
 		"Type": "natural"
 	},
@@ -279,6 +281,7 @@
 		"Answer": 9,
 		"Tags": [
 			"3s",
+            "3s"
 		],
 		"Type": "natural"
 	},
@@ -504,6 +507,7 @@
 		"Answer": 25,
 		"Tags": [
 			"5s",
+            "5s"
 		],
 		"Type": "natural"
 	},
@@ -598,6 +602,7 @@
 		"Answer": 36,
 		"Tags": [
 			"6s",
+            "6s"
 		],
 		"Type": "natural"
 	},
@@ -680,6 +685,7 @@
 		"Answer": 49,
 		"Tags": [
 			"7s",
+            "7s"
 		],
 		"Type": "natural"
 	},
@@ -750,6 +756,7 @@
 		"Answer": 64,
 		"Tags": [
 			"8s",
+            "8s"
 		],
 		"Type": "natural"
 	},
@@ -808,6 +815,7 @@
 		"Answer": 81,
 		"Tags": [
 			"9s",
+            "9s"
 		],
 		"Type": "natural"
 	},
@@ -854,6 +862,7 @@
 		"Answer": 100,
 		"Tags": [
 			"10s",
+            "10s"
 		],
 		"Type": "natural"
 	},
@@ -888,6 +897,7 @@
 		"Answer": 121,
 		"Tags": [
 			"11s",
+            "11s"
 		],
 		"Type": "natural"
 	},
@@ -910,9 +920,9 @@
 		"Answer": 144,
 		"Tags": [
 			"12s",
+            "12s"
 		],
 		"Type": "natural"
 	}
-	]
-	
+]
 }

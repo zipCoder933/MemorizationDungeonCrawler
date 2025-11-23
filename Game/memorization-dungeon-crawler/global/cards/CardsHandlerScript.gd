@@ -83,6 +83,7 @@ static func get_random_cards(card_tags:Array[String], quantity: int, unique_fact
 
 
 static func load_from_file(jsonFile):
+	print("Loading cards from ",jsonFile)
 	#reset everything first
 	tag_dict={}
 	player_mastery_dict = {}
@@ -98,21 +99,23 @@ static func load_from_file(jsonFile):
 			var base_dir =  jsonFile.get_base_dir()
 			
 			for c in cards:
-				var question = ""
+				var questions:Array[String] = []
 				var isImage:bool = false
 				
 				if c.has("Question"):
-					question = c["Question"]
+					questions.append(c["Question"])
+				elif c.has("Questions"):
+					questions.append_array(c["Questions"])
 				elif(c.has("QuestionImage")):
 					isImage=true
-					question = find_best_image_path(base_dir, c["QuestionImage"])
+					questions.append(find_best_image_path(base_dir, c["QuestionImage"]))
 				
 				var tags = c["Tags"]
 				var type = c["Type"]
 					
 				var card = Card.new(base_dir, 
 									type,
-									question,
+									questions,
 									isImage,
 									str(c["Answer"]),  # 🪄 convert to string here
 									tags

@@ -10,7 +10,6 @@ const SHRINK_SPEED:float = 1.5
 @export var fail_health_add:float = -0.5
 @export var success_health_add:float = 0
 @export var speed:float = 0.8
-@export var cardNumber:int = 10
 
 #Animaitons
 @export var idle_animation:String
@@ -142,19 +141,20 @@ func _process(delta):
 func trigger():
 	if(isDead):
 		return
-	var questions:Array[Question] = []
-	fighting=true
-	
-	if(fight_idle_animation !=null):
-		_animation_player.play(fight_idle_animation,0.7,idle_animation_speed)
-	
-	if(is_boss):
-		for i in range(0,cardNumber):#We want to go through the entire deck X times
-			for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, 0):
+		
+	if SaveHandler.currentLevel != null:
+		var questions:Array[Question] = []
+		fighting=true
+		
+		if(is_boss):
+			for i in range(0, SaveHandler.currentLevel.boss_card_count_multiplier):#We want to go through the entire deck X times
+				for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, 0):
+					questions.append(card.toQuestion(speed, SaveHandler.currentLevel))
+		else:
+			for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, SaveHandler.currentLevel.enemy_card_count):
 				questions.append(card.toQuestion(speed, SaveHandler.currentLevel))
-	else:
-		for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, cardNumber):
-			questions.append(card.toQuestion(speed, SaveHandler.currentLevel))
-	
-	print("Drilling player on deck; size: ",questions.size(),"; tags: ",SaveHandler.currentLevel.card_tags)
-	Globals.drill_questions(questions, _3d_flashcard, begin_delay)
+		
+		print("Drilling player on deck; size: ",questions.size(),"; tags: ",SaveHandler.currentLevel.card_tags)
+		Globals.drill_questions(questions, _3d_flashcard, begin_delay)
+		if(fight_idle_animation !=null):
+			_animation_player.play(fight_idle_animation,0.7,idle_animation_speed)

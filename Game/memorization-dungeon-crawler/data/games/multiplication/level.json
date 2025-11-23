@@ -8,7 +8,7 @@
 	  "theme": "Dungeon",
 	  "boss_name": "Da Boss",
 	  "themed_cards": ["1s", "2s"],
-	  "boss_card_review_number":1,
+	  "boss_card_review_number":2,
 	  "themed_drill_levels": 3,
 	  "complete_drill_levels": 0
 	},
@@ -17,7 +17,7 @@
 	  "theme": "jungle",
 	  "boss_name": "Bossmania",
 	  "themed_cards": ["3s", "4s"],
-	  "boss_card_review_number":1,
+	  "boss_card_review_number":2,
 	  "themed_drill_levels": 3,
 	  "complete_drill_levels": 2
 	},

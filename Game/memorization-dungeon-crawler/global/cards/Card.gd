@@ -5,15 +5,15 @@ const Level = preload("uid://dbbavq1ux02yt")
 
 
 var type: String
-var question: String
+var questions: Array[String]
 var answer: String
 var tags: Array
 var is_image: bool
 var directory: String #The directory of the cards.json file
 
-func _init(_directory: String, _type: String, _question: String, _is_image:bool,  _answer: String, _tags: Array):
+func _init(_directory: String, _type: String, _questions: Array[String], _is_image:bool,  _answer: String, _tags: Array):
 	type = _type.to_lower().strip_edges()
-	question = _question
+	questions = _questions
 	directory = _directory
 	answer = _answer
 	is_image  = _is_image
@@ -43,8 +43,9 @@ func toQuestion(timeMultiplier:float, level:Level):
 	elif type == "text":
 		maxChars = 50
 	
+	var question = questions[randi() % questions.size()]
 	return Question.new(self, is_image, question, answer, level.time_to_answer_sec * timeMultiplier, \
 		isNumeric, allowNegative, allowDecimal, allowedKeys,maxChars)
 
 func toString() -> String:
-	return "%s: %s = %s [%s]" % [type, question, answer, ", ".join(tags)]
+	return "%s: %s = %s [%s]" % [type, questions, answer, ", ".join(tags)]

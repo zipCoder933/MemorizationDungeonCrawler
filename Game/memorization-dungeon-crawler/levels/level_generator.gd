@@ -355,8 +355,6 @@ const arenaSize = 1;
 const CLOSENESS_TO_END_PATH_END = 6;
 const FAILED_LEVEL_SURVIVAL = 0.3
 const DOOR_LIKELYHOOD = 0.3
-const DRILLS_TO_ARENA = 15 #How many total drills * card_review_number makes 1 arena in the map?
-
 var WALL
 var DOOR = preload("uid://bdnosseu7fsm")
 var ARENA_ENEMY = preload("uid://bqoufhp54uwue")
@@ -432,13 +430,13 @@ func set_dungeon_theme(level:Level, game:SaveEntry):
 func _ready():
 	var level = SaveHandler.currentLevel
 	var game = SaveHandler.currentGame
-	var arenas_average = 5
 	var includeBossfight = false
 	var lotsOfArenas = false
+	var number_arenas = 5
 	
 	if( level != null ):
 		set_dungeon_theme(level, game)
-		print("Level Type: ",level.levelType)
+		print("\n\nGENERATING LEVEL: ",level.toString())
 		
 		var next_level:Level = null
 		if SaveHandler.currentGame.completed_level < LevelsHandler.levels.size():
@@ -453,10 +451,15 @@ func _ready():
 			
 		#Calculate how many arenas we want
 		var cards = CardsHandler.card_count(level.card_tags)
-		var total_drills = level.card_review_number * cards
-		print("Total drills: ",total_drills)
-		arenas_average = total_drills / DRILLS_TO_ARENA
-		print("Arena average: ",arenas_average)
+		var total_drills = level.card_count_multiplier * cards
+		number_arenas = round(total_drills / level.enemy_card_count)
+		if(includeBossfight):
+			number_arenas = clamp(number_arenas, 3, 8)
+		elif(lotsOfArenas):
+			number_arenas = clamp(number_arenas*2, 10, 25)
+		else:
+			number_arenas = clamp(number_arenas, 4, 25)
+		print("Total drills: ",total_drills,"; Arenas: ",number_arenas)
 	
 	var min_path_length = 1
 	var max_path_length = 12
@@ -464,30 +467,20 @@ func _ready():
 	var main_path_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()
 	var main_path_length = randi_range(10,20)
 	var main_path_end =(Vector3(start_pos) + main_path_dir * main_path_length)
-	
-	var number_arenas = randi_range(arenas_average-3,arenas_average+3)
-	if(lotsOfArenas):
-		number_arenas = clamp(number_arenas*2, 10, 25)
-	else:
-		number_arenas = clamp(number_arenas, 4, 25)
 	Globals.totalArenas = 0
 	
 	if(includeBossfight):
-		#Less arenas in bossfights
-		number_arenas = clamp(number_arenas, 3, 8)
 		print("BOSS PATH: ",\
 		 path(start_pos, main_path_end, 25, 2, arenaSize+2, 1, true, true))
 	else:
 		print("STANDARD PATH: ",\
 		 path(start_pos, main_path_end, 25, 2, arenaSize, 1, false, true))
 	
-	#arena(start_pos.x-2,start_pos.z, 1,1, Direction.XPOS, false,null)
-	print("Arenas: ",number_arenas)
 	print("Center: ",PLAYER_SPAWN)
 	Globals.get_player().global_position.x = PLAYER_SPAWN.x
 	Globals.get_player().global_position.z = PLAYER_SPAWN.z
 	
-	for i in range(0,200):
+	for i in range(0,1000):
 		place = searched.keys()[randi_range(0,searched.keys().size()-1)]
 		var direction = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()  # to the right
 		var length = randi_range(min_path_length,max_path_length)

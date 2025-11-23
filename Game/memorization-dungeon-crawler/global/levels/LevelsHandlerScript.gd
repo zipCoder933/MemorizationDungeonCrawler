@@ -38,7 +38,7 @@ static func load_from_file(file_path: String):
 		return
 	
 	var json_data = result
-	var learnedTags:Array[String] = []
+	
 	
 	# Seed or timing info
 	seed = json_data.get("seed", 0)
@@ -50,25 +50,30 @@ static func load_from_file(file_path: String):
 	midgame_goal_speed = lerp(start_speed,goal_speed, 0.7)
 	print("GAME SPEED (SEC): start=%2f; end=%2f; mid-start=%2f; mid-end=%2f;" % [start_speed, goal_speed, midgame_start_speed, midgame_goal_speed])
 	
+	var learnedTags:Array[String] = []
 	const emptyArray: Array[String] = []
 	
 	# Load dungeons
 	for dungeon in json_data.get("dungeons", []):
 		print("")
-		learnedTags.append_array(dungeon.get("themed_cards", emptyArray))
+		
+		var themed_tags:Array[String] = [] #Contains only the new cards we are learning in this dungeon
+		themed_tags.append_array(dungeon.get("themed_cards", emptyArray))
+		
+		learnedTags.append_array(themed_tags.duplicate())#Contains themed + all the others we learned in the past
 		
 		#themed levels
 		var levelCount = dungeon.get("themed_drill_levels", 0)
 		for i in range(levelCount):
-			levels.append(makeLevel(dungeon, lerp(start_speed, midgame_goal_speed, i / levelCount), dungeon.get("themed_cards", emptyArray), Level.LevelType.STANDARD))
+			levels.append(makeLevel(dungeon, lerp(start_speed, midgame_goal_speed, i / levelCount), themed_tags,themed_tags, Level.LevelType.STANDARD))
 		
 		#complete review levels
 		levelCount = dungeon.get("complete_drill_levels", 0)
 		for i in range(levelCount):
-			levels.append(makeLevel(dungeon, lerp(midgame_start_speed, midgame_goal_speed, i / levelCount), learnedTags, Level.LevelType.STANDARD))
+			levels.append(makeLevel(dungeon, lerp(midgame_start_speed, midgame_goal_speed, i / levelCount), themed_tags,learnedTags, Level.LevelType.STANDARD))
 		
 		#boss level
-		levels.append(makeLevel(dungeon, midgame_goal_speed, learnedTags, Level.LevelType.BOSS))
+		levels.append(makeLevel(dungeon, midgame_goal_speed, themed_tags,learnedTags, Level.LevelType.BOSS))
 	
 	print("")
 	## Load final dungeon
@@ -83,11 +88,11 @@ static func load_from_file(file_path: String):
 				#Level.LevelType.STANDARD))
 		#levels.append(makeLevel(final, goal_speed, learnedTags, Level.LevelType.BOSS))
 
-static func makeLevel(dungeon:Variant, speed_seconds:float, card_tags:Array, levelType: Level.LevelType) -> Level:
+static func makeLevel(dungeon:Variant, speed_seconds:float, themed_tags:Array[String], card_tags:Array[String], levelType: Level.LevelType) -> Level:
 
-	var typed_cards: Array[String] = []
-	for c in card_tags:
-		typed_cards.append(str(c))  # ensure every element is a string
+	#var typed_cards: Array[String] = []
+	#for c in card_tags:
+		#typed_cards.append(str(c))  # ensure every element is a string
 	
 	var level =  Level.new(
 		dungeon.get("name", ""),
@@ -97,7 +102,8 @@ static func makeLevel(dungeon:Variant, speed_seconds:float, card_tags:Array, lev
 		levelType,
 		dungeon.get("boss_name", ""),
 		speed_seconds,  # or any logic to set time_to_answer_sec
-		typed_cards
+		themed_tags.duplicate(),
+		card_tags.duplicate()
 	)
 	print(level.toString())
 	return level
