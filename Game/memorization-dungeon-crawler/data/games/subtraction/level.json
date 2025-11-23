@@ -7,66 +7,42 @@
 	{
 	  "name": "Dungeon 1",
 	  "theme": "dungeon",
-	  "boss_name": "Da Boss",
+	  "boss_name": "Troll King",
 	  "themed_cards": ["1s", "2s"],
 	  "themed_drill_levels": 1,
 	  "complete_drill_levels": 0
 	},
 	{
 	  "name": "Dungeon 2",
-	  "theme": "dungeon",
-	  "boss_name": "Bossmania",
+	  "theme": "Antarctic",
+	  "boss_name": "Yeti King",
 	  "themed_cards": ["3s", "4s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
+	  "themed_drill_levels": 3,
+	  "complete_drill_levels": 4
 	},
 	{
 	  "name": "Dungeon 3",
-	  "theme": "Antarctic",
-	  "boss_name": "Bossmania",
-	  "themed_cards": ["5s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
-	},
-	{
-	  "name": "Dungeon 4",
-	  "theme": "Antarctic",
-	  "boss_name": "Bossmania",
-	  "themed_cards": ["6s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
+	  "theme": "jungle",
+	  "boss_name": "Avalanche",
+	  "themed_cards": ["5s","6s"],
+	  "themed_drill_levels": 3,
+	  "complete_drill_levels": 4
 	},
 	{
 	  "name": "Dungeon 5",
-	  "theme": "jungle",
-	  "boss_name": "Bossmania",
-	  "themed_cards": ["7s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
-	},
-	{
-	  "name": "Dungeon 6",
-	  "theme": "jungle",
-	  "boss_name": "Bossmania",
-	  "themed_cards": ["8s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
+	  "theme": "machine",
+	  "boss_name": "Robo-King",
+	  "themed_cards": ["7s","8s","9s"],
+	  "themed_drill_levels": 3,
+	  "complete_drill_levels": 4
 	},
 	{
 	  "name": "Dungeon 7",
-	  "theme": "Machine",
-	  "boss_name": "Bossmania",
-	  "themed_cards": ["9s", "10s", "11s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
-	},
-	{
-	  "name": "The Final Dungeon",
 	  "theme": "lava",
-	  "boss_name": "Bossmania",
-	  "themed_cards": ["12s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 2
-	}
+	  "boss_name": "Dragoneous",
+	  "themed_cards": [ "10s", "11s","12s"],
+	  "themed_drill_levels": 3,
+	  "complete_drill_levels": 4
+	},
   ]
 }
