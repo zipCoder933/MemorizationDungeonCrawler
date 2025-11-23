@@ -104,6 +104,6 @@ func _on_back_pressed() -> void:
 func _on_home_pressed() -> void:
 	Globals.go_home()
 func _on_next_pressed() -> void:
-	Globals.next_level()
+	Globals.load_level()
 func _on_try_again_pressed() -> void:
-	Globals.redo_level()
+	Globals.load_level()

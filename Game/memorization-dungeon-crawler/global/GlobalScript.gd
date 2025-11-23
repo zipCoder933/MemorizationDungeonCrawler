@@ -29,8 +29,16 @@ func game_over_event():
 	questions.clear()
 	clear_flashcard()
 
+var victory_called=false
+
 func victory_event():
-	signal_victory.emit()
+	#Victory event should only ever be called once
+	if(!victory_called):
+		victory_called=true
+		signal_victory.emit()
+		#Next level
+		SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level+1, 0, LevelsHandler.levels.size()-1)
+		SaveHandler.save_to_file(Globals.SAVE_FILE)
 
 func start_game(entry:SaveEntry, goToLevel:bool = true):
 	SaveHandler.currentGame = entry
@@ -47,16 +55,7 @@ func start_game(entry:SaveEntry, goToLevel:bool = true):
 	if(goToLevel):
 		go_to_level()
 
-func redo_level(goToLevel:bool = true):
-	SaveHandler.save_to_file(Globals.SAVE_FILE)
-	_load_level_current_game()
-	if(goToLevel):
-		go_to_level()
-
-func next_level(goToLevel:bool = true):
-	SaveHandler.currentGame.completed_level+=1
-	SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level, 
-											0, LevelsHandler.levels.size()-1)
+func load_level(goToLevel:bool = true):
 	SaveHandler.save_to_file(Globals.SAVE_FILE)
 	_load_level_current_game()
 	if(goToLevel):
