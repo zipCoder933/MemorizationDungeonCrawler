@@ -13,59 +13,35 @@
 	},
 	{
 	  "name": "Dungeon 2",
-	  "theme": "dungeon",
+	  "theme": "machine",
 	  "boss_name": "Bossmania",
 	  "themed_cards": ["3s", "4s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
+	  "themed_drill_levels": 3,
+	  "complete_drill_levels": 3
 	},
 	{
 	  "name": "Dungeon 3",
-	  "theme": "dungeon",
+	  "theme": "lava",
 	  "boss_name": "Bossmania",
-	  "themed_cards": ["5s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
-	},
-	{
-	  "name": "Dungeon 4",
-	  "theme": "dungeon",
-	  "boss_name": "Bossmania",
-	  "themed_cards": ["6s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
+	  "themed_cards": ["5s","6s"],
+	  "themed_drill_levels": 3,
+	  "complete_drill_levels": 3
 	},
 	{
 	  "name": "Dungeon 5",
-	  "theme": "machine",
+	  "theme": "antarctic",
 	  "boss_name": "Bossmania",
-	  "themed_cards": ["7s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
-	},
-	{
-	  "name": "Dungeon 6",
-	  "theme": "machine",
-	  "boss_name": "Bossmania",
-	  "themed_cards": ["8s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
+	  "themed_cards": ["7s","8s"],
+	  "themed_drill_levels": 4,
+	  "complete_drill_levels": 4
 	},
 	{
 	  "name": "Dungeon 7",
-	  "theme": "dungeon",
+	  "theme": "jungle",
 	  "boss_name": "Bossmania",
 	  "themed_cards": ["9s", "10s", "11s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
-	},
-	{
-	  "name": "The Final Dungeon",
-	  "theme": "Jungle",
-	  "boss_name": "Bossmania",
-	  "themed_cards": ["12s"],
-	  "themed_drill_levels": 1,
-	  "complete_drill_levels": 1
+	  "themed_drill_levels": 4,
+	  "complete_drill_levels": 4
 	}
   ]
 }

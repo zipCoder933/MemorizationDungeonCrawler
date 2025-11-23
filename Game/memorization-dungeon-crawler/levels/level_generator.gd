@@ -482,6 +482,7 @@ func _ready():
 		 path(start_pos, main_path_end, 25, 2, arenaSize, 1, false, true))
 	
 	#arena(start_pos.x-2,start_pos.z, 1,1, Direction.XPOS, false,null)
+	print("Arenas: ",number_arenas)
 	print("Center: ",PLAYER_SPAWN)
 	Globals.get_player().global_position.x = PLAYER_SPAWN.x
 	Globals.get_player().global_position.z = PLAYER_SPAWN.z
