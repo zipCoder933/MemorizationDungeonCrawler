@@ -114,7 +114,6 @@ static var _current_flashcard_question:Question
 static var current_flashcard_answer:String
 static var _has_flashcard:bool
 static var deckSize:int = 0
-static var total_cards:int = 0
 static var themed_cards:int = 0
 static var themed_succeeded:int= 0
 static var succeeded:int = 0
@@ -132,7 +131,6 @@ func get_flashcard_question():
 func clear_flashcard():
 	themed_succeeded = 0
 	succeeded = 0
-	total_cards = 0
 	themed_cards = 0
 	if(has_flashcard()):
 		_flashcardNode.visible = false
@@ -192,9 +190,9 @@ func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard
 	_flashcardNode = flashcardElement
 	_allow_end_on_failure = _allow_end_on_failure2
 	fact_answering_mode.emit(_flashcardNode)
-	print("Drilling player on ",questions2.size()," cards.")
 	deckSize = questions2.size()
 	questions = questions2;
+	print("Drilling player on ",deckSize," cards.")
 	if begin_delay_sec > 0:
 		await get_tree().create_timer(begin_delay_sec).timeout
 	new_flashcard_question(questions[0])
@@ -206,15 +204,8 @@ func _question_in_dungeon_themed_cards(question:Question) -> bool:
 				return true
 	return false
 
-class FlashcardDrillResults:
-	var succeeded_percentage: float
-	var themed_succeeded_percentage: float
-	var flashcardNode: WorldFlashCard
 
-	func _init(succeeded_percentage: float, themed_succeeded_percentage: float, node: WorldFlashCard):
-		self.succeeded_percentage = succeeded_percentage
-		self.themed_succeeded_percentage = themed_succeeded_percentage
-		self.flashcardNode = node
+	
 
 
 func submit_flashcard(succeed:bool):
@@ -222,8 +213,11 @@ func submit_flashcard(succeed:bool):
 	var accuracy = 0
 	var time_ms = _flashcardNode.get_time_elapsed_MS()
 	var question = _current_flashcard_question
+
+	#If we dont have a flashcard anymore (We already submitted the last one)	
+	if(!has_flashcard()):
+		return
 	
-	total_cards+=1
 	if(succeed):
 		accuracy = 100
 		succeeded += 1
@@ -263,8 +257,10 @@ func submit_flashcard(succeed:bool):
 					new_flashcard_question(card.toQuestion(1, SaveHandler.currentLevel))
 					return
 
-		_flashcardNode.signal_flashcard_finished_drill.emit(succeeded, deckSize)
-		signal_flashcard_finished_drill.emit(_flashcardNode, succeeded, deckSize)
+		var results:FlashcardDrillResults = FlashcardDrillResults.new(deckSize, themed_cards, succeeded, themed_succeeded, _flashcardNode)
+		print("Drill finished. ",results.toString())
+		_flashcardNode.signal_flashcard_finished_drill.emit(results)
+		signal_flashcard_finished_drill.emit(results)
 		failed_flashcards.clear()
 		if(player !=null and player.health > 0):
 			adventure_mode.emit()

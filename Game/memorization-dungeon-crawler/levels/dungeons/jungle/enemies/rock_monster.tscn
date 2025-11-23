@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cglotfwlnsea7" path="res://levels/dungeons/jungle/enemies/rock monster_rock_face_03_rough_2k.png" id="2_dp34s"]
 [ext_resource type="Texture2D" uid="uid://b4miwkcxn6f3r" path="res://levels/dungeons/jungle/enemies/rock monster_rock_face_03_nor_gl_2k.png" id="3_ukxxj"]
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="4_ukxxj"]
-[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="5_hnyqs"]
+[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://flashcard/worldFlashcard.tscn" id="5_hnyqs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fcs5"]
 resource_name = "EYES.001"

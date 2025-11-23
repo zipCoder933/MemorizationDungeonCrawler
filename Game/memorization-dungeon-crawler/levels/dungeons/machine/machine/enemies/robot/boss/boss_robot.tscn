@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="2_fnjkv"]
 [ext_resource type="Shape3D" uid="uid://b0tr65p26nb77" path="res://levels/universal/boss_trigger.tres" id="2_v1bng"]
-[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="3_sukdv"]
+[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://flashcard/worldFlashcard.tscn" id="3_sukdv"]
 [ext_resource type="Texture2D" uid="uid://cxuff2iiocx6t" path="res://levels/dungeons/machine/machine/enemies/robot/robot_robot_defaultMat_2D_View_1001.png" id="5_dm5ge"]
 [ext_resource type="Texture2D" uid="uid://di7t8sft0f6ik" path="res://levels/dungeons/machine/machine/enemies/robot/boss/robot_robot_defaultMat_BOSS.png" id="5_pcf23"]
 [ext_resource type="ArrayMesh" uid="uid://cxupvutajvg1t" path="res://levels/universal/boss-arena-A.obj" id="5_v1bng"]

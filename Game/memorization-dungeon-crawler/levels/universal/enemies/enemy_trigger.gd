@@ -30,7 +30,6 @@ var death_animation_finished:bool = false
 const CardsHandler = preload("uid://cc0wwewiey4d7")
 const LevelsHandler = preload("uid://bte11e0fapqes")
 
-var accuracy:Array[float] = []
 
 func _ready():
 	_3d_flashcard.signal_flashcard_finished_drill.connect(_finish_drill)
@@ -63,24 +62,22 @@ func _animation_finished(animName:StringName):
 
 func _single_drill(success):
 	if(success):
-		accuracy.append(100)
 		player.change_health(success_health_add)
 		if(!isDead && take_hit_animation != null):
 			_animation_player.play(take_hit_animation,0.2,take_hit_animation_speed)
 	else:
-		accuracy.append(0)
 		player.change_health(fail_health_add)
 
-func _finish_drill(success, count):
+func _finish_drill(results:FlashcardDrillResults):
 	if(is_boss):
-		var total_accuracy_score:float = 0
-		for val in accuracy:
-			total_accuracy_score += val
-		total_accuracy_score = total_accuracy_score / accuracy.size()
-		print("Bossfight finished. Accuracy ",total_accuracy_score)
-		Globals.boss_defeated_event(self, total_accuracy_score)
+		var accuracy = results.succeeded / results.deck_size
+		var themed_accuracy=0
+		if(results.themed_deck_size > 0):
+			themed_accuracy = results.themed_succeeded / results.themed_deck_size
+		print("Bossfight finished. Accuracy: ", accuracy,"; Themed accuracy: ",themed_accuracy)
+		Globals.boss_defeated_event(self, accuracy)
 	else:
-		if(success > 0):
+		if(results.succeeded > 0):
 			die()
 
 func die():

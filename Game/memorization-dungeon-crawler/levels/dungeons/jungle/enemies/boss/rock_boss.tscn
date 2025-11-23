@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b4miwkcxn6f3r" path="res://levels/dungeons/jungle/enemies/rock monster_rock_face_03_nor_gl_2k.png" id="7_m8t5i"]
 [ext_resource type="Material" uid="uid://b3spqu1mjrspj" path="res://levels/dungeons/jungle/enemies/boss/rock_boss_material.tres" id="8_hfema"]
 [ext_resource type="Texture2D" uid="uid://c3nuen8u4q4xy" path="res://levels/dungeons/jungle/jungle/6/texture.jpg" id="8_prvwy"]
-[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="9_pyolf"]
+[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://flashcard/worldFlashcard.tscn" id="9_pyolf"]
 [ext_resource type="Texture2D" uid="uid://dvqca4p8uppip" path="res://levels/dungeons/jungle/jungle/6/normal.jpg" id="9_uylr4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fcs5"]

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://5nw3p5ff5n7t" path="res://levels/dungeons/antarctic/enemies/yeti_Image_0.jpg" id="2_dmyxl"]
 [ext_resource type="Texture2D" uid="uid://cr4dh76np36xg" path="res://levels/dungeons/antarctic/enemies/yeti_Image_1.jpg" id="3_ba0nk"]
 [ext_resource type="Texture2D" uid="uid://bnr70mmtdhxpq" path="res://levels/dungeons/antarctic/enemies/yeti_Image_2.jpg" id="4_behv3"]
-[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="4_dmyxl"]
+[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://flashcard/worldFlashcard.tscn" id="4_dmyxl"]
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="5_ba0nk"]
 [ext_resource type="Shape3D" uid="uid://buyo0b18x10xd" path="res://levels/universal/enemy_trigger.tres" id="6_ba0nk"]
 

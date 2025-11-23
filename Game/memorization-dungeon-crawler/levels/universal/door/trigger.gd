@@ -14,6 +14,6 @@ func open_door(open2:bool):
 	if(!door.open):
 		Globals.drill_flashcards(1, _3d_flashcard, FLASHCARD_TIME_MULTIPLIER)
 	
-func _on_d_flashcard_finished_drill(succeeded:int, questions:int) -> void:
-	if(succeeded >= questions):
+func _on_d_flashcard_finished_drill(results:FlashcardDrillResults) -> void:
+	if(results.succeeded > 0):
 		door.setOpen(true)

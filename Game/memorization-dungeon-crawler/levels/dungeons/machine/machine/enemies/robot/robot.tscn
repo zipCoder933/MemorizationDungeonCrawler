@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ba4fyt84yavn" path="res://levels/dungeons/machine/machine/enemies/robot/robot_defaultMat_2D_View_1001.png" id="1_uar2q"]
 [ext_resource type="Shape3D" uid="uid://buyo0b18x10xd" path="res://levels/universal/enemy_trigger.tres" id="2_1nvj0"]
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="2_426nh"]
-[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="3_1nvj0"]
+[ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://flashcard/worldFlashcard.tscn" id="3_1nvj0"]
 [ext_resource type="Texture2D" uid="uid://cxuff2iiocx6t" path="res://levels/dungeons/machine/machine/enemies/robot/robot_robot_defaultMat_2D_View_1001.png" id="3_uar2q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mmavb"]

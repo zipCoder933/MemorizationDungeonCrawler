@@ -6,7 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://bxp67n10n2pan" path="res://styles/translucent_box.tres" id="3_uk570"]
 [ext_resource type="FontFile" uid="uid://d4l36d7861osl" path="res://assets/fonts/UnifrakturCook/UnifrakturCook-Bold.ttf" id="4_md4fy"]
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="5_f2wx0"]
-[ext_resource type="PackedScene" uid="uid://cynckudprgttu" path="res://UI/Flashcard/flashcard.tscn" id="6_gppie"]
+[ext_resource type="PackedScene" uid="uid://cynckudprgttu" path="res://flashcard/flashcard.tscn" id="6_gppie"]
 [ext_resource type="Texture2D" uid="uid://d260hqcqu35ev" path="res://assets/icon.png" id="8_md4fy"]
 [ext_resource type="PackedScene" uid="uid://cqlkanaejs5yj" path="res://UI/BossfightStats.tscn" id="9_7i7fj"]
 

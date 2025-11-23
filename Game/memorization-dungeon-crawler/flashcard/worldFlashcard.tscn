@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://do43srcrnuwks"]
+
+[ext_resource type="Script" uid="uid://cv786nwq3plkd" path="res://flashcard/world_flashcard.gd" id="1_fljia"]
+[ext_resource type="PackedScene" uid="uid://cynckudprgttu" path="res://flashcard/flashcard.tscn" id="1_n55g1"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rs4bw"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="BoxMesh" id="BoxMesh_fljia"]
+
+[node name="WorldFlashcard" type="Sprite3D"]
+texture = SubResource("ViewportTexture_rs4bw")
+script = ExtResource("1_fljia")
+
+[node name="SubViewport" type="SubViewport" parent="." groups=["3dCard"]]
+transparent_bg = true
+size = Vector2i(190, 190)
+
+[node name="CardUI" parent="SubViewport" node_paths=PackedStringArray("worldFlashcardNode") instance=ExtResource("1_n55g1")]
+unique_name_in_owner = true
+worldFlashcardNode = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_fljia")
+
+[node name="LookTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1015203, 0)
+
+[editable path="SubViewport/CardUI"]
