@@ -47,17 +47,17 @@ func _ready():
 			anim.loop_mode = Animation.LOOP_NONE
 
 func _animation_started(anim_name: StringName):
-	print("Started animation: ", anim_name)
+	#print("Started animation: ", anim_name)
 	pass
 
 func _animation_changed(animName:StringName):
-	print("Changed animation: ",animName)
+	#print("Changed animation: ",animName)
 	pass
 
 func _animation_finished(animName:StringName):
 	if animName == death_animation:
 		death_animation_finished = true
-	print("Finished animation: ",animName)
+	#print("Finished animation: ",animName)
 	pass
 
 func _single_drill(success):
@@ -70,12 +70,7 @@ func _single_drill(success):
 
 func _finish_drill(results:FlashcardDrillResults):
 	if(is_boss):
-		var accuracy = results.succeeded / results.deck_size
-		var themed_accuracy=0
-		if(results.themed_deck_size > 0):
-			themed_accuracy = results.themed_succeeded / results.themed_deck_size
-		print("Bossfight finished. Accuracy: ", accuracy,"; Themed accuracy: ",themed_accuracy)
-		Globals.boss_defeated_event(self, accuracy)
+		Globals.boss_defeated_event(self, results)
 	else:
 		if(results.succeeded > 0):
 			die()

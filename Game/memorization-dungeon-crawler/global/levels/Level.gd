@@ -5,7 +5,7 @@ class_name Level
 enum LevelTheme {MACHINE, DUNGEON,JUNGLE,  LAVA,ANTARCTIC}
 enum LevelType { STANDARD, BOSS }
 
-
+var level_index:int
 var level_name: String = ""
 var theme: LevelTheme = LevelTheme.DUNGEON
 var boss_name: String = ""          # default empty
@@ -21,10 +21,12 @@ var card_count_multiplier:float = 1 #How many times we want to review each card 
 var boss_card_count_multiplier:float = 2 #How many times we want to review each card during a bossfight
 
 # Constructor
-func _init(_name: String, _theme: String, _card_review_number:float, _boss_card_review_number:float,\
+func _init(_level_index:int, _name: String, _theme: String, _card_review_number:float, _boss_card_review_number:float,\
 		_levelType: LevelType = LevelType.STANDARD, _boss_name: String = "",\
 		 _time_to_answer_sec: float = 30.0, _themed_cards: Array[String] = [], _card_tags: Array[String] = []):
+	
 	level_name = _name
+	level_index = _level_index
 	
 	# Convert string to enum
 	theme = LevelTheme.DUNGEON  # default fallback
@@ -60,6 +62,6 @@ func toString() -> String:
 	var theme_name = LevelTheme.keys()[theme]
 	var type_name = LevelType.keys()[levelType]
 
-	return "Level: \"%s\" |\t Time-Sec: %.2f |\t Theme: %s |\t Level-Type: %s |\t Boss-name: \"%s\" |\t Card-Tags: [%s] |\t Theme-Card-Tags: [%s] |\t Level Card X: %s; Boss Card X: %s" % [
-		level_name, time_to_answer_sec, theme_name, type_name, boss_name,  ", ".join(card_tags),", ".join(themed_card_tags), card_count_multiplier, boss_card_count_multiplier
+	return "Level %s: \"%s\" |\t Time-Sec: %.2f |\t Theme: %s |\t Level-Type: %s |\t Boss-name: \"%s\" |\t Card-Tags: [%s] |\t Theme-Card-Tags: [%s] |\t Level Card X: %s; Boss Card X: %s" % [
+		level_index, level_name, time_to_answer_sec, theme_name, type_name, boss_name,  ", ".join(card_tags),", ".join(themed_card_tags), card_count_multiplier, boss_card_count_multiplier
 	]

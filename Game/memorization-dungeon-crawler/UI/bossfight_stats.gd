@@ -1,50 +1,110 @@
 extends CanvasLayer
 class_name BossfightStats
 
-@onready var boss_name: Label = $BossfightStats/boss_name
-@onready var boss_accuracy: Label = $BossfightStats/boss_accuracy
-@onready var bossfight_stat_label: Label = $BossfightStats/bossfight_stat_label
+@onready var boss_name: Label = %boss_name
+@onready var bossfight_stat_label: Label = %bossfight_stat_label
 
-var animation_accuracy:float = 0
-var bossfight_accuracy:float = 0
-var enemy:GoblinTrigger
+
+@onready var themed_accuracy_container: VBoxContainer = $BossfightStats/VBoxContainer/themed_accuracy_container
+@onready var themed_accuracy_label: Label = %themed_accuracy_label
+@onready var themed_accuracy: Label = %themed_accuracy
+
+@onready var overall_accuracy_container: VBoxContainer = $BossfightStats/VBoxContainer/overall_accuracy_container
+@onready var overall_accuracy_label: Label = %overall_accuracy_label
+@onready var overall_accuracy: Label = %overall_accuracy
+
+var animation_speed:float = 0.5
+var animation_accuracy: float = 0
+var enemy: GoblinTrigger
+var results: FlashcardDrillResults
+
+var show_phase := "none" # "themed" → "overall" → "done"
 
 func _ready():
-	visible=false
+	visible = false
 
-func complete_boss_fight(_enemy:GoblinTrigger, _bossfight_accuracy):
+func complete_boss_fight(_enemy: GoblinTrigger, _results: FlashcardDrillResults):
 	await get_tree().create_timer(4).timeout
-	visible=true
+	visible = true
 	enemy = _enemy
-	bossfight_stat_label.visible=false
-	boss_accuracy.visible=false
-	bossfight_accuracy = _bossfight_accuracy
+	results = _results
+
+	# Hide everything at first
+	bossfight_stat_label.visible = false
+	themed_accuracy_label.visible = false
+	overall_accuracy_container.visible = false
+	themed_accuracy_container.visible = false
+	
+	themed_accuracy_label.text = "~~ "+ ", ".join(SaveHandler.currentLevel.themed_card_tags) +" ~~"
 	animation_accuracy = 0
 	boss_name.text = SaveHandler.currentLevel.boss_name
-	
+
+	# Start with themed accuracy
 	await get_tree().create_timer(2).timeout
-	boss_accuracy.visible=true
+	show_phase = "themed"
+	themed_accuracy_label.visible = true
+	print("Bossfight data: ",_results)
+
 
 func _process(delta):
-	if(visible and boss_accuracy.visible):
-		animation_accuracy = lerp(animation_accuracy, bossfight_accuracy, delta)
-		boss_accuracy.text = "Accuracy: "+str(round(animation_accuracy))+"%"
-		
-		if(abs(bossfight_accuracy-animation_accuracy) < 0.5):
-			animation_accuracy = bossfight_accuracy
-			await get_tree().create_timer(1).timeout
-			bossfight_stat_label.visible=true
-			if(bossfight_accuracy >= 90):
-				bossfight_stat_label.text = "Congratulations!"
-				
-				if( enemy != null):
-					enemy.die()
-					
-				await get_tree().create_timer(5).timeout
-				visible=false
-				Globals.victory_event()
-			else:
-				bossfight_stat_label.text = "Fail..."
-				await get_tree().create_timer(5).timeout
-				visible=false
-				Globals.game_over_event()
+	if not visible:
+		return
+
+	if show_phase == "themed":
+		themed_accuracy_container.visible=true
+		_show_accuracy_animation(
+			results.get_themed_accuracy()*100,
+			themed_accuracy,
+			"overall",
+			delta
+		)
+
+	elif show_phase == "overall":
+		overall_accuracy_container.visible=true
+		_show_accuracy_animation(
+			results.get_accuracy()*100,
+			overall_accuracy,
+			"done",
+			delta
+		)
+
+	elif show_phase == "done":
+		_show_final_result()
+
+
+func _show_accuracy_animation(target_accuracy: float, label: Label, next_phase: String, delta:float):
+	animation_accuracy = lerp(animation_accuracy, target_accuracy, animation_speed*delta)
+	label.text = "Accuracy: "+str(round(animation_accuracy)) + "%"
+
+	if abs(target_accuracy - animation_accuracy) < 0.5:
+		# Snap final value
+		label.text = "Accuracy: "+str(round(target_accuracy)) + "%"
+		animation_accuracy = 0
+		# Move to next phase
+		show_phase = next_phase
+		if next_phase == "overall":
+			get_tree().create_timer(1.5).timeout.connect(func():
+				overall_accuracy_label.visible = true)
+		elif next_phase == "done":
+			get_tree().create_timer(2).timeout.connect(func():
+				bossfight_stat_label.visible = true)
+
+
+func _show_final_result():
+	bossfight_stat_label.visible=true
+
+	if results.get_themed_accuracy() >= .9 and results.get_accuracy() >= .9:
+		bossfight_stat_label.text = "Congratulations!"
+		if enemy:
+			enemy.die()
+		get_tree().create_timer(5).timeout.connect(func():
+			visible = false
+			Globals.victory_event())
+	else:
+		bossfight_stat_label.text = "Fail..."
+		get_tree().create_timer(5).timeout.connect(func():
+			visible = false
+			Globals.game_over_event())
+
+	# Prevent repeating
+	show_phase = "done-finished"

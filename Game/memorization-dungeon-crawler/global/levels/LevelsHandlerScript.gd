@@ -7,7 +7,8 @@ static var start_speed
 static var goal_speed
 static var midgame_start_speed
 static var midgame_goal_speed
-
+#---
+static var level_index:int = 0
 func _ready():
 	pass
 	#load_levels("res://data/games/multiplication/level.json")  # path to your JSON file
@@ -19,6 +20,7 @@ static func load_from_file(file_path: String):
 	seed = 0
 	start_speed = 0
 	goal_speed = 0
+	level_index=0
 	midgame_start_speed = 0
 	midgame_goal_speed = 0
 	
@@ -88,13 +90,16 @@ static func load_from_file(file_path: String):
 				#Level.LevelType.STANDARD))
 		#levels.append(makeLevel(final, goal_speed, learnedTags, Level.LevelType.BOSS))
 
-static func makeLevel(dungeon:Variant, speed_seconds:float, themed_tags:Array[String], card_tags:Array[String], levelType: Level.LevelType) -> Level:
 
+
+static func makeLevel(dungeon:Variant, speed_seconds:float, themed_tags:Array[String],\
+					card_tags:Array[String], levelType: Level.LevelType) -> Level:
 	#var typed_cards: Array[String] = []
 	#for c in card_tags:
 		#typed_cards.append(str(c))  # ensure every element is a string
-	
+	level_index+=1
 	var level =  Level.new(
+		level_index,
 		dungeon.get("name", ""),
 		dungeon.get("theme", ""),
 		dungeon.get("card_review_number", 3),

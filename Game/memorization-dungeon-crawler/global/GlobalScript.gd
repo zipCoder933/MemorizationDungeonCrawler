@@ -11,9 +11,14 @@ signal signal_victory
 
 static var SAVE_FILE
 
+enum GameMode{
+NORMAL, VICTORY, GAME_OVER	
+}
+var game_mode:GameMode = GameMode.NORMAL
 
 func _ready():
 	print("Global loaded!")
+	game_mode = GameMode.NORMAL
 	SAVE_FILE = ProjectSettings.globalize_path("user://save.json")
 	print("SAVE FILE: ", SAVE_FILE)
 	#Write the new file if not exist
@@ -25,18 +30,16 @@ func _ready():
 		print("✨ Created empty JSON file at:", ProjectSettings.globalize_path(SAVE_FILE))
 
 func game_over_event():
-	signal_game_over.emit()
-	questions.clear()
-	clear_flashcard()
-
-var victory_called=false
+	if(game_mode != GameMode.GAME_OVER):
+		game_mode = GameMode.GAME_OVER
+		signal_game_over.emit()
+		questions.clear()
+		clear_flashcard()
 
 func victory_event():
-	#Victory event should only ever be called once
-	if(!victory_called):
-		victory_called=true
+	if(game_mode != GameMode.VICTORY):
+		game_mode = GameMode.VICTORY
 		signal_victory.emit()
-		#Next level
 		SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level+1, 0, LevelsHandler.levels.size()-1)
 		SaveHandler.save_to_file(Globals.SAVE_FILE)
 
@@ -72,7 +75,6 @@ func map(value, from_min, from_max, to_min, to_max):
 
 func map_clamp(value, from_min, from_max, to_min, to_max):
 	return clamp(to_min + (value - from_min) * (to_max - to_min) / (from_max - from_min),to_min,to_max)
-
 
 #Spawn
 const POTION = preload("uid://c4iomrx46ssjc")
@@ -157,8 +159,8 @@ signal signal_flashcard_finished_drill
 signal signal_flashcard_answer_changed
 signal signal_boss_defeated
 
-func boss_defeated_event(enemy:GoblinTrigger, accuracy_score:float):
-	signal_boss_defeated.emit(enemy, accuracy_score)
+func boss_defeated_event(enemy:GoblinTrigger, results:FlashcardDrillResults):
+	signal_boss_defeated.emit(enemy, results)
 	Globals.get_player().mode = Player.PlayerMode.STILL
 
 func get_player() -> Player:

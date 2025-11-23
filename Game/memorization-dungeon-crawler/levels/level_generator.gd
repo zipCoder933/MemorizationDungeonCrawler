@@ -436,7 +436,9 @@ func _ready():
 	
 	if( level != null ):
 		set_dungeon_theme(level, game)
-		print("\n\nGENERATING LEVEL: ",level.toString())
+		print("\n\n--------------------------------------------------\n",
+		"GENERATING LEVEL: ",level.toString(),
+		"--------------------------------------------------\n")
 		
 		var next_level:Level = null
 		if SaveHandler.currentGame.completed_level < LevelsHandler.levels.size():

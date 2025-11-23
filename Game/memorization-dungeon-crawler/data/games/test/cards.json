@@ -1,1300 +1,918 @@
 {
 	"Cards": [
 		{
-			"Answer": 1,
-			"Question": "1*1",
-			"Tags": [
-				"1s",
-				"1s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 2,
-			"Question": "1*2",
-			"Tags": [
-				"1s",
-				"2s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 3,
-			"Question": "1*3",
-			"Tags": [
-				"1s",
-				"3s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 4,
-			"Question": "1*4",
-			"Tags": [
-				"1s",
-				"4s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 5,
-			"Question": "1*5",
-			"Tags": [
-				"1s",
-				"5s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 6,
-			"Question": "1*6",
-			"Tags": [
-				"1s",
-				"6s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 7,
-			"Question": "1*7",
-			"Tags": [
-				"1s",
-				"7s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 8,
-			"Question": "1*8",
-			"Tags": [
-				"1s",
-				"8s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 9,
-			"Question": "1*9",
-			"Tags": [
-				"1s",
-				"9s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 10,
-			"Question": "1*10",
-			"Tags": [
-				"1s",
-				"10s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 11,
-			"Question": "1*11",
-			"Tags": [
-				"1s",
-				"11s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 12,
-			"Question": "1*12",
-			"Tags": [
-				"1s",
-				"12s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 2,
-			"Question": "2*1",
-			"Tags": [
-				"2s",
-				"1s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 4,
-			"Question": "2*2",
-			"Tags": [
-				"2s",
-				"2s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 6,
-			"Question": "2*3",
-			"Tags": [
-				"2s",
-				"3s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 8,
-			"Question": "2*4",
-			"Tags": [
-				"2s",
-				"4s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 10,
-			"Question": "2*5",
-			"Tags": [
-				"2s",
-				"5s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 12,
-			"Question": "2*6",
-			"Tags": [
-				"2s",
-				"6s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 14,
-			"Question": "2*7",
-			"Tags": [
-				"2s",
-				"7s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 16,
-			"Question": "2*8",
-			"Tags": [
-				"2s",
-				"8s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 18,
-			"Question": "2*9",
-			"Tags": [
-				"2s",
-				"9s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 20,
-			"Question": "2*10",
-			"Tags": [
-				"2s",
-				"10s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 22,
-			"Question": "2*11",
-			"Tags": [
-				"2s",
-				"11s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 24,
-			"Question": "2*12",
-			"Tags": [
-				"2s",
-				"12s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 3,
-			"Question": "3*1",
-			"Tags": [
-				"3s",
-				"1s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 6,
-			"Question": "3*2",
-			"Tags": [
-				"3s",
-				"2s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 9,
-			"Question": "3*3",
-			"Tags": [
-				"3s",
-				"3s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 12,
-			"Question": "3*4",
-			"Tags": [
-				"3s",
-				"4s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 15,
-			"Question": "3*5",
-			"Tags": [
-				"3s",
-				"5s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 18,
-			"Question": "3*6",
-			"Tags": [
-				"3s",
-				"6s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 21,
-			"Question": "3*7",
-			"Tags": [
-				"3s",
-				"7s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 24,
-			"Question": "3*8",
-			"Tags": [
-				"3s",
-				"8s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 27,
-			"Question": "3*9",
-			"Tags": [
-				"3s",
-				"9s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 30,
-			"Question": "3*10",
-			"Tags": [
-				"3s",
-				"10s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 33,
-			"Question": "3*11",
-			"Tags": [
-				"3s",
-				"11s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 36,
-			"Question": "3*12",
-			"Tags": [
-				"3s",
-				"12s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 4,
-			"Question": "4*1",
-			"Tags": [
-				"4s",
-				"1s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 8,
-			"Question": "4*2",
-			"Tags": [
-				"4s",
-				"2s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 12,
-			"Question": "4*3",
-			"Tags": [
-				"4s",
-				"3s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 16,
-			"Question": "4*4",
-			"Tags": [
-				"4s",
-				"4s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 20,
-			"Question": "4*5",
-			"Tags": [
-				"4s",
-				"5s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 24,
-			"Question": "4*6",
-			"Tags": [
-				"4s",
-				"6s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 28,
-			"Question": "4*7",
-			"Tags": [
-				"4s",
-				"7s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 32,
-			"Question": "4*8",
-			"Tags": [
-				"4s",
-				"8s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 36,
-			"Question": "4*9",
-			"Tags": [
-				"4s",
-				"9s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 40,
-			"Question": "4*10",
-			"Tags": [
-				"4s",
-				"10s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 44,
-			"Question": "4*11",
-			"Tags": [
-				"4s",
-				"11s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 48,
-			"Question": "4*12",
-			"Tags": [
-				"4s",
-				"12s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 5,
-			"Question": "5*1",
-			"Tags": [
-				"5s",
-				"1s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 10,
-			"Question": "5*2",
-			"Tags": [
-				"5s",
-				"2s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 15,
-			"Question": "5*3",
-			"Tags": [
-				"5s",
-				"3s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 20,
-			"Question": "5*4",
-			"Tags": [
-				"5s",
-				"4s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 25,
-			"Question": "5*5",
-			"Tags": [
-				"5s",
-				"5s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 30,
-			"Question": "5*6",
-			"Tags": [
-				"5s",
-				"6s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 35,
-			"Question": "5*7",
-			"Tags": [
-				"5s",
-				"7s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 40,
-			"Question": "5*8",
-			"Tags": [
-				"5s",
-				"8s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 45,
-			"Question": "5*9",
-			"Tags": [
-				"5s",
-				"9s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 50,
-			"Question": "5*10",
-			"Tags": [
-				"5s",
-				"10s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 55,
-			"Question": "5*11",
-			"Tags": [
-				"5s",
-				"11s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 60,
-			"Question": "5*12",
-			"Tags": [
-				"5s",
-				"12s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 6,
-			"Question": "6*1",
-			"Tags": [
-				"6s",
-				"1s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 12,
-			"Question": "6*2",
-			"Tags": [
-				"6s",
-				"2s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 18,
-			"Question": "6*3",
-			"Tags": [
-				"6s",
-				"3s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 24,
-			"Question": "6*4",
-			"Tags": [
-				"6s",
-				"4s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 30,
-			"Question": "6*5",
-			"Tags": [
-				"6s",
-				"5s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 36,
-			"Question": "6*6",
-			"Tags": [
-				"6s",
-				"6s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 42,
-			"Question": "6*7",
-			"Tags": [
-				"6s",
-				"7s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 48,
-			"Question": "6*8",
-			"Tags": [
-				"6s",
-				"8s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 54,
-			"Question": "6*9",
-			"Tags": [
-				"6s",
-				"9s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 60,
-			"Question": "6*10",
-			"Tags": [
-				"6s",
-				"10s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 66,
-			"Question": "6*11",
-			"Tags": [
-				"6s",
-				"11s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 72,
-			"Question": "6*12",
-			"Tags": [
-				"6s",
-				"12s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 7,
-			"Question": "7*1",
-			"Tags": [
-				"7s",
-				"1s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 14,
-			"Question": "7*2",
-			"Tags": [
-				"7s",
-				"2s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 21,
-			"Question": "7*3",
-			"Tags": [
-				"7s",
-				"3s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 28,
-			"Question": "7*4",
-			"Tags": [
-				"7s",
-				"4s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 35,
-			"Question": "7*5",
-			"Tags": [
-				"7s",
-				"5s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 42,
-			"Question": "7*6",
-			"Tags": [
-				"7s",
-				"6s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 49,
-			"Question": "7*7",
-			"Tags": [
-				"7s",
-				"7s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 56,
-			"Question": "7*8",
-			"Tags": [
-				"7s",
-				"8s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 63,
-			"Question": "7*9",
-			"Tags": [
-				"7s",
-				"9s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 70,
-			"Question": "7*10",
-			"Tags": [
-				"7s",
-				"10s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 77,
-			"Question": "7*11",
-			"Tags": [
-				"7s",
-				"11s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 84,
-			"Question": "7*12",
-			"Tags": [
-				"7s",
-				"12s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 8,
-			"Question": "8*1",
-			"Tags": [
-				"8s",
-				"1s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 16,
-			"Question": "8*2",
-			"Tags": [
-				"8s",
-				"2s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 24,
-			"Question": "8*3",
-			"Tags": [
-				"8s",
-				"3s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 32,
-			"Question": "8*4",
-			"Tags": [
-				"8s",
-				"4s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 40,
-			"Question": "8*5",
-			"Tags": [
-				"8s",
-				"5s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 48,
-			"Question": "8*6",
-			"Tags": [
-				"8s",
-				"6s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 56,
-			"Question": "8*7",
-			"Tags": [
-				"8s",
-				"7s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 64,
-			"Question": "8*8",
-			"Tags": [
-				"8s",
-				"8s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 72,
-			"Question": "8*9",
-			"Tags": [
-				"8s",
-				"9s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 80,
-			"Question": "8*10",
-			"Tags": [
-				"8s",
-				"10s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 88,
-			"Question": "8*11",
-			"Tags": [
-				"8s",
-				"11s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 96,
-			"Question": "8*12",
-			"Tags": [
-				"8s",
-				"12s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 9,
-			"Question": "9*1",
-			"Tags": [
-				"9s",
-				"1s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 18,
-			"Question": "9*2",
-			"Tags": [
-				"9s",
-				"2s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 27,
-			"Question": "9*3",
-			"Tags": [
-				"9s",
-				"3s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 36,
-			"Question": "9*4",
-			"Tags": [
-				"9s",
-				"4s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 45,
-			"Question": "9*5",
-			"Tags": [
-				"9s",
-				"5s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 54,
-			"Question": "9*6",
-			"Tags": [
-				"9s",
-				"6s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 63,
-			"Question": "9*7",
-			"Tags": [
-				"9s",
-				"7s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 72,
-			"Question": "9*8",
-			"Tags": [
-				"9s",
-				"8s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 81,
-			"Question": "9*9",
-			"Tags": [
-				"9s",
-				"9s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 90,
-			"Question": "9*10",
-			"Tags": [
-				"9s",
-				"10s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 99,
-			"Question": "9*11",
-			"Tags": [
-				"9s",
-				"11s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 108,
-			"Question": "9*12",
-			"Tags": [
-				"9s",
-				"12s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 10,
-			"Question": "10*1",
-			"Tags": [
-				"10s",
-				"1s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 20,
-			"Question": "10*2",
-			"Tags": [
-				"10s",
-				"2s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 30,
-			"Question": "10*3",
-			"Tags": [
-				"10s",
-				"3s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 40,
-			"Question": "10*4",
-			"Tags": [
-				"10s",
-				"4s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 50,
-			"Question": "10*5",
-			"Tags": [
-				"10s",
-				"5s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 60,
-			"Question": "10*6",
-			"Tags": [
-				"10s",
-				"6s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 70,
-			"Question": "10*7",
-			"Tags": [
-				"10s",
-				"7s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 80,
-			"Question": "10*8",
-			"Tags": [
-				"10s",
-				"8s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 90,
-			"Question": "10*9",
-			"Tags": [
-				"10s",
-				"9s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 100,
-			"Question": "10*10",
-			"Tags": [
-				"10s",
-				"10s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 110,
-			"Question": "10*11",
-			"Tags": [
-				"10s",
-				"11s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 120,
-			"Question": "10*12",
-			"Tags": [
-				"10s",
-				"12s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 11,
-			"Question": "11*1",
-			"Tags": [
-				"11s",
-				"1s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 22,
-			"Question": "11*2",
-			"Tags": [
-				"11s",
-				"2s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 33,
-			"Question": "11*3",
-			"Tags": [
-				"11s",
-				"3s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 44,
-			"Question": "11*4",
-			"Tags": [
-				"11s",
-				"4s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 55,
-			"Question": "11*5",
-			"Tags": [
-				"11s",
-				"5s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 66,
-			"Question": "11*6",
-			"Tags": [
-				"11s",
-				"6s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 77,
-			"Question": "11*7",
-			"Tags": [
-				"11s",
-				"7s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 88,
-			"Question": "11*8",
-			"Tags": [
-				"11s",
-				"8s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 99,
-			"Question": "11*9",
-			"Tags": [
-				"11s",
-				"9s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 110,
-			"Question": "11*10",
-			"Tags": [
-				"11s",
-				"10s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 121,
-			"Question": "11*11",
-			"Tags": [
-				"11s",
-				"11s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 132,
-			"Question": "11*12",
-			"Tags": [
-				"11s",
-				"12s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 12,
-			"Question": "12*1",
-			"Tags": [
-				"12s",
-				"1s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 24,
-			"Question": "12*2",
-			"Tags": [
-				"12s",
-				"2s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 36,
-			"Question": "12*3",
-			"Tags": [
-				"12s",
-				"3s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 48,
-			"Question": "12*4",
-			"Tags": [
-				"12s",
-				"4s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 60,
-			"Question": "12*5",
-			"Tags": [
-				"12s",
-				"5s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 72,
-			"Question": "12*6",
-			"Tags": [
-				"12s",
-				"6s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 84,
-			"Question": "12*7",
-			"Tags": [
-				"12s",
-				"7s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 96,
-			"Question": "12*8",
-			"Tags": [
-				"12s",
-				"8s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 108,
-			"Question": "12*9",
-			"Tags": [
-				"12s",
-				"9s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 120,
-			"Question": "12*10",
-			"Tags": [
-				"12s",
-				"10s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 132,
-			"Question": "12*11",
-			"Tags": [
-				"12s",
-				"11s"
-			],
-			"Type": "natural"
-		},
-		{
-			"Answer": 144,
-			"Question": "12*12",
-			"Tags": [
-				"12s",
-				"12s"
-			],
-			"Type": "natural"
-		}
+		"Questions": [
+            "1*1"
+		],
+		"Answer": 1,
+		"Tags": [
+			"1s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"1*2",
+            "2*1"
+		],
+		"Answer": 2,
+		"Tags": [
+			"1s",
+            "2s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"1*3",
+            "3*1"
+		],
+		"Answer": 3,
+		"Tags": [
+			"1s",
+            "3s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"1*4",
+            "4*1"
+		],
+		"Answer": 4,
+		"Tags": [
+			"1s",
+            "4s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"1*5",
+            "5*1"
+		],
+		"Answer": 5,
+		"Tags": [
+			"1s",
+            "5s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"1*6",
+            "6*1"
+		],
+		"Answer": 6,
+		"Tags": [
+			"1s",
+            "6s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"1*7",
+            "7*1"
+		],
+		"Answer": 7,
+		"Tags": [
+			"1s",
+            "7s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"1*8",
+            "8*1"
+		],
+		"Answer": 8,
+		"Tags": [
+			"1s",
+            "8s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"1*9",
+            "9*1"
+		],
+		"Answer": 9,
+		"Tags": [
+			"1s",
+            "9s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"1*10",
+            "10*1"
+		],
+		"Answer": 10,
+		"Tags": [
+			"1s",
+            "10s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"1*11",
+            "11*1"
+		],
+		"Answer": 11,
+		"Tags": [
+			"1s",
+            "11s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"1*12",
+            "12*1"
+		],
+		"Answer": 12,
+		"Tags": [
+			"1s",
+            "12s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+            "2*2"
+		],
+		"Answer": 4,
+		"Tags": [
+			"2s",
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"2*3",
+            "3*2"
+		],
+		"Answer": 6,
+		"Tags": [
+			"2s",
+            "3s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"2*4",
+            "4*2"
+		],
+		"Answer": 8,
+		"Tags": [
+			"2s",
+            "4s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"2*5",
+            "5*2"
+		],
+		"Answer": 10,
+		"Tags": [
+			"2s",
+            "5s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"2*6",
+            "6*2"
+		],
+		"Answer": 12,
+		"Tags": [
+			"2s",
+            "6s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"2*7",
+            "7*2"
+		],
+		"Answer": 14,
+		"Tags": [
+			"2s",
+            "7s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"2*8",
+            "8*2"
+		],
+		"Answer": 16,
+		"Tags": [
+			"2s",
+            "8s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"2*9",
+            "9*2"
+		],
+		"Answer": 18,
+		"Tags": [
+			"2s",
+            "9s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"2*10",
+            "10*2"
+		],
+		"Answer": 20,
+		"Tags": [
+			"2s",
+            "10s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"2*11",
+            "11*2"
+		],
+		"Answer": 22,
+		"Tags": [
+			"2s",
+            "11s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"2*12",
+            "12*2"
+		],
+		"Answer": 24,
+		"Tags": [
+			"2s",
+            "12s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+            "3*3"
+		],
+		"Answer": 9,
+		"Tags": [
+			"3s",
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"3*4",
+            "4*3"
+		],
+		"Answer": 12,
+		"Tags": [
+			"3s",
+            "4s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"3*5",
+            "5*3"
+		],
+		"Answer": 15,
+		"Tags": [
+			"3s",
+            "5s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"3*6",
+            "6*3"
+		],
+		"Answer": 18,
+		"Tags": [
+			"3s",
+            "6s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"3*7",
+            "7*3"
+		],
+		"Answer": 21,
+		"Tags": [
+			"3s",
+            "7s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"3*8",
+            "8*3"
+		],
+		"Answer": 24,
+		"Tags": [
+			"3s",
+            "8s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"3*9",
+            "9*3"
+		],
+		"Answer": 27,
+		"Tags": [
+			"3s",
+            "9s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"3*10",
+            "10*3"
+		],
+		"Answer": 30,
+		"Tags": [
+			"3s",
+            "10s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"3*11",
+            "11*3"
+		],
+		"Answer": 33,
+		"Tags": [
+			"3s",
+            "11s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"3*12",
+            "12*3"
+		],
+		"Answer": 36,
+		"Tags": [
+			"3s",
+            "12s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+            "4*4"
+		],
+		"Answer": 16,
+		"Tags": [
+			"4s",
+            "4s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"4*5",
+            "5*4"
+		],
+		"Answer": 20,
+		"Tags": [
+			"4s",
+            "5s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"4*6",
+            "6*4"
+		],
+		"Answer": 24,
+		"Tags": [
+			"4s",
+            "6s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"4*7",
+            "7*4"
+		],
+		"Answer": 28,
+		"Tags": [
+			"4s",
+            "7s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"4*8",
+            "8*4"
+		],
+		"Answer": 32,
+		"Tags": [
+			"4s",
+            "8s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"4*9",
+            "9*4"
+		],
+		"Answer": 36,
+		"Tags": [
+			"4s",
+            "9s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"4*10",
+            "10*4"
+		],
+		"Answer": 40,
+		"Tags": [
+			"4s",
+            "10s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"4*11",
+            "11*4"
+		],
+		"Answer": 44,
+		"Tags": [
+			"4s",
+            "11s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"4*12",
+            "12*4"
+		],
+		"Answer": 48,
+		"Tags": [
+			"4s",
+            "12s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+            "5*5"
+		],
+		"Answer": 25,
+		"Tags": [
+			"5s",
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"5*6",
+            "6*5"
+		],
+		"Answer": 30,
+		"Tags": [
+			"5s",
+            "6s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"5*7",
+            "7*5"
+		],
+		"Answer": 35,
+		"Tags": [
+			"5s",
+            "7s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"5*8",
+            "8*5"
+		],
+		"Answer": 40,
+		"Tags": [
+			"5s",
+            "8s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"5*9",
+            "9*5"
+		],
+		"Answer": 45,
+		"Tags": [
+			"5s",
+            "9s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"5*10",
+            "10*5"
+		],
+		"Answer": 50,
+		"Tags": [
+			"5s",
+            "10s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"5*11",
+            "11*5"
+		],
+		"Answer": 55,
+		"Tags": [
+			"5s",
+            "11s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"5*12",
+            "12*5"
+		],
+		"Answer": 60,
+		"Tags": [
+			"5s",
+            "12s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+            "6*6"
+		],
+		"Answer": 36,
+		"Tags": [
+			"6s",
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"6*7",
+            "7*6"
+		],
+		"Answer": 42,
+		"Tags": [
+			"6s",
+            "7s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"6*8",
+            "8*6"
+		],
+		"Answer": 48,
+		"Tags": [
+			"6s",
+            "8s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"6*9",
+            "9*6"
+		],
+		"Answer": 54,
+		"Tags": [
+			"6s",
+            "9s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"6*10",
+            "10*6"
+		],
+		"Answer": 60,
+		"Tags": [
+			"6s",
+            "10s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"6*11",
+            "11*6"
+		],
+		"Answer": 66,
+		"Tags": [
+			"6s",
+            "11s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"6*12",
+            "12*6"
+		],
+		"Answer": 72,
+		"Tags": [
+			"6s",
+            "12s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+            "7*7"
+		],
+		"Answer": 49,
+		"Tags": [
+			"7s",
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"7*8",
+            "8*7"
+		],
+		"Answer": 56,
+		"Tags": [
+			"7s",
+            "8s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"7*9",
+            "9*7"
+		],
+		"Answer": 63,
+		"Tags": [
+			"7s",
+            "9s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"7*10",
+            "10*7"
+		],
+		"Answer": 70,
+		"Tags": [
+			"7s",
+            "10s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"7*11",
+            "11*7"
+		],
+		"Answer": 77,
+		"Tags": [
+			"7s",
+            "11s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"7*12",
+            "12*7"
+		],
+		"Answer": 84,
+		"Tags": [
+			"7s",
+            "12s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+            "8*8"
+		],
+		"Answer": 64,
+		"Tags": [
+			"8s",
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"8*9",
+            "9*8"
+		],
+		"Answer": 72,
+		"Tags": [
+			"8s",
+            "9s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"8*10",
+            "10*8"
+		],
+		"Answer": 80,
+		"Tags": [
+			"8s",
+            "10s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"8*11",
+            "11*8"
+		],
+		"Answer": 88,
+		"Tags": [
+			"8s",
+            "11s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"8*12",
+            "12*8"
+		],
+		"Answer": 96,
+		"Tags": [
+			"8s",
+            "12s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+            "9*9"
+		],
+		"Answer": 81,
+		"Tags": [
+			"9s",
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"9*10",
+            "10*9"
+		],
+		"Answer": 90,
+		"Tags": [
+			"9s",
+            "10s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"9*11",
+            "11*9"
+		],
+		"Answer": 99,
+		"Tags": [
+			"9s",
+            "11s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"9*12",
+            "12*9"
+		],
+		"Answer": 108,
+		"Tags": [
+			"9s",
+            "12s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+            "10*10"
+		],
+		"Answer": 100,
+		"Tags": [
+			"10s",
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"10*11",
+            "11*10"
+		],
+		"Answer": 110,
+		"Tags": [
+			"10s",
+            "11s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"10*12",
+            "12*10"
+		],
+		"Answer": 120,
+		"Tags": [
+			"10s",
+            "12s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+            "11*11"
+		],
+		"Answer": 121,
+		"Tags": [
+			"11s",
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+			"11*12",
+            "12*11"
+		],
+		"Answer": 132,
+		"Tags": [
+			"11s",
+            "12s"
+		],
+		"Type": "natural"
+	},
+	{
+		"Questions": [
+            "12*12"
+		],
+		"Answer": 144,
+		"Tags": [
+			"12s",
+		],
+		"Type": "natural"
+	}
 	]
+	
 }
