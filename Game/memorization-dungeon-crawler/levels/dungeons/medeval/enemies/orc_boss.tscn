@@ -1,14 +1,12 @@
 [gd_scene load_steps=26 format=4 uid="uid://bobtcptejmn2a"]
 
+[ext_resource type="Shape3D" uid="uid://b0tr65p26nb77" path="res://levels/universal/boss_trigger.tres" id="2_4hngc"]
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="2_7tcax"]
 [ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="3_0d70d"]
 [ext_resource type="Texture2D" uid="uid://b3oasyo8amf4d" path="res://levels/dungeons/medeval/enemies/orc_boss_skin.png" id="4_0d70d"]
 [ext_resource type="ArrayMesh" uid="uid://bw0njt820png2" path="res://levels/universal/boss-arena-B.obj" id="4_kbvvj"]
 [ext_resource type="Texture2D" uid="uid://c0lcq44crmedi" path="res://levels/dungeons/medeval/assets/variants/floor/2/worn_tile_floor_disp_2k.png" id="6_wr4au"]
 [ext_resource type="Texture2D" uid="uid://ctwaju71evb6c" path="res://levels/dungeons/medeval/assets/variants/floor/2/normal.png" id="7_3xudo"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_4hngc"]
-radius = 3.8193104
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_42dsa"]
 viewport_path = NodePath("SubViewport")
@@ -1772,8 +1770,8 @@ is_boss = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
 unique_name_in_owner = true
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0.13593812, 1.4131423, 0.4786588)
-shape = SubResource("SphereShape3D_4hngc")
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0.13593812, 0.41314232, 0.4786588)
+shape = ExtResource("2_4hngc")
 
 [node name="BossModel" type="Node3D" parent="."]
 unique_name_in_owner = true

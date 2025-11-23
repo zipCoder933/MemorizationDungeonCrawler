@@ -1,14 +1,12 @@
 [gd_scene load_steps=20 format=4 uid="uid://dyf35pwedpdy5"]
 
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="2_fnjkv"]
+[ext_resource type="Shape3D" uid="uid://b0tr65p26nb77" path="res://levels/universal/boss_trigger.tres" id="2_v1bng"]
 [ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="3_sukdv"]
 [ext_resource type="Texture2D" uid="uid://cxuff2iiocx6t" path="res://levels/dungeons/machine/machine/enemies/robot/robot_robot_defaultMat_2D_View_1001.png" id="5_dm5ge"]
 [ext_resource type="Texture2D" uid="uid://di7t8sft0f6ik" path="res://levels/dungeons/machine/machine/enemies/robot/boss/robot_robot_defaultMat_BOSS.png" id="5_pcf23"]
 [ext_resource type="ArrayMesh" uid="uid://cxupvutajvg1t" path="res://levels/universal/boss-arena-A.obj" id="5_v1bng"]
 [ext_resource type="Texture2D" uid="uid://cgu6oj0uiathh" path="res://levels/dungeons/machine/machine/floor3.png" id="6_c6717"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_b4u0l"]
-radius = 4.2566934
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mmavb"]
 resource_name = "defaultMat.1001"
@@ -2170,7 +2168,7 @@ is_boss = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2924864, 0.0063762665)
-shape = SubResource("SphereShape3D_b4u0l")
+shape = ExtResource("2_v1bng")
 
 [node name="robotMesh" type="Node3D" parent="."]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.97885776, 0)
