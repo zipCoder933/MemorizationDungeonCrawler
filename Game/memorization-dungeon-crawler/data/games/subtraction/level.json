@@ -1,7 +1,6 @@
 {
-  "seed": 13242,
   "starting_answer_speed_sec": 10,
-  "goal_answer_speed_sec": 2,
+  "goal_answer_speed_sec": 1.3,
   "name": "Subtraction",
   "dungeons": [
 	{
