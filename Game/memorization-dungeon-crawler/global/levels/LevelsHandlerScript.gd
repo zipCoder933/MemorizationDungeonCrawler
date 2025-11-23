@@ -1,7 +1,7 @@
 extends Node
 
 #An array of Levels
-static var levels: Array = []
+static var levels: Array[Level] = []
 static var seed
 static var start_speed
 static var goal_speed
@@ -83,7 +83,7 @@ static func load_from_file(file_path: String):
 				else:
 					speed = lerp(midgame_start_speed, midgame_goal_speed, j / levelCount)
 				
-				levels.append(makeLevel(dungeon, speed, levelTags, levelTags, Level.LevelType.STANDARD))
+				levels.append(makeLevel(dungIndx, dungeon, speed, levelTags, levelTags, Level.LevelType.STANDARD))
 			themed_tags.append_array(levelTags)
 		
 		#complete review levels
@@ -95,21 +95,20 @@ static func load_from_file(file_path: String):
 		
 		var levelCount = dungeon.get("complete_drill_levels", 0)
 		for i in range(levelCount):
-			levels.append(makeLevel(dungeon, lerp(midgame_start_speed, goal, i / levelCount), themed_tags,learnedTags, Level.LevelType.STANDARD))
+			levels.append(makeLevel(dungIndx, dungeon, lerp(midgame_start_speed, goal, i / levelCount), themed_tags,learnedTags, Level.LevelType.STANDARD))
 		
 		#boss level
-		levels.append(makeLevel(dungeon, goal, themed_tags,learnedTags, Level.LevelType.BOSS))
+		levels.append(makeLevel(dungIndx, dungeon, goal, themed_tags,learnedTags, Level.LevelType.BOSS))
 
 
 
-static func makeLevel(dungeon:Variant, speed_seconds:float, themed_tags:Array[String],\
+static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, themed_tags:Array[String],\
 					card_tags:Array[String], levelType: Level.LevelType) -> Level:
 	#var typed_cards: Array[String] = []
 	#for c in card_tags:
 		#typed_cards.append(str(c))  # ensure every element is a string
 	level_index+=1
-	var level =  Level.new(
-		level_index,
+	var level =  Level.new(dungeonIndex, level_index,
 		dungeon.get("name", ""),
 		dungeon.get("theme", ""),
 		dungeon.get("card_review_number", 3),

@@ -28,7 +28,7 @@
 	  "complete_drill_levels": 3
 	},
 	{
-	  "name": "Treble and Bass",
+	  "name": "Treble and Bass Dungeon",
 	  "theme": "Antarctic",
 	  "boss_name": "Trouble",
 	  "themed_drill_levels": [
@@ -40,7 +40,7 @@
 	  "complete_drill_levels": 3
 	},
 	{
-	  "name": "Outer treble",
+	  "name": "Outer treble Dungeon",
 	  "theme": "Lava",
 	  "boss_name": "Outer Boss",
 	  "themed_drill_levels": [
