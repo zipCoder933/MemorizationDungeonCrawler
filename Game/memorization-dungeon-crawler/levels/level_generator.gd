@@ -434,13 +434,23 @@ func _ready():
 	var game = SaveHandler.currentGame
 	var arenas_average = 5
 	var includeBossfight = false
+	var lotsOfArenas = false
 	
 	if( level != null ):
 		set_dungeon_theme(level, game)
 		print("Level Type: ",level.levelType)
 		
+		var next_level:Level = null
+		if SaveHandler.currentGame.completed_level < LevelsHandler.levels.size():
+			next_level = LevelsHandler.levels[SaveHandler.currentGame.completed_level]
+			print("Next level: ",next_level.toString())
+		
 		if(level.levelType == Level.LevelType.BOSS):
 			includeBossfight = true
+		else:
+			if(next_level != null && next_level.levelType == Level.LevelType.BOSS):
+				lotsOfArenas = true
+			
 		#Calculate how many arenas we want
 		var cards = CardsHandler.card_count(level.card_tags)
 		var total_drills = level.card_review_number * cards
@@ -454,7 +464,12 @@ func _ready():
 	var main_path_dir = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()
 	var main_path_length = randi_range(10,20)
 	var main_path_end =(Vector3(start_pos) + main_path_dir * main_path_length)
-	var number_arenas = clamp(randi_range(arenas_average-3,arenas_average+3), 4, 25)
+	
+	var number_arenas = randi_range(arenas_average-3,arenas_average+3)
+	if(lotsOfArenas):
+		number_arenas = clamp(number_arenas*2, 10, 25)
+	else:
+		number_arenas = clamp(number_arenas, 4, 25)
 	Globals.totalArenas = 0
 	
 	if(includeBossfight):

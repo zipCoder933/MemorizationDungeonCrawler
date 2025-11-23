@@ -27,6 +27,7 @@ const SHRINK_SPEED:float = 1.5
 var fighting = false
 var isDead = false
 var timeOfDeath:int;
+var death_animation_finished:bool = false
 const CardsHandler = preload("uid://cc0wwewiey4d7")
 const LevelsHandler = preload("uid://bte11e0fapqes")
 
@@ -48,26 +49,24 @@ func _ready():
 			anim.loop_mode = Animation.LOOP_NONE
 
 func _animation_started(anim_name: StringName):
-	#print("Started animation: ", anim_name)
+	print("Started animation: ", anim_name)
 	pass
 
 func _animation_changed(animName:StringName):
-	#print("Changed animation: ",animName)
+	print("Changed animation: ",animName)
 	pass
 
 func _animation_finished(animName:StringName):
 	if animName == death_animation:
-		_animation_player.stop()
-	#print("Finished animation: ",animName)
+		death_animation_finished = true
+	print("Finished animation: ",animName)
 	pass
 
 func _single_drill(success):
 	if(success):
 		accuracy.append(100)
 		player.change_health(success_health_add)
-		
-		if(take_hit_animation != null):
-			print("Playing take hit")
+		if(!isDead && take_hit_animation != null):
 			_animation_player.play(take_hit_animation,0.2,take_hit_animation_speed)
 	else:
 		accuracy.append(0)
@@ -91,7 +90,6 @@ func die():
 	isDead = true
 	timeOfDeath = Time.get_ticks_msec()
 	if(is_instance_valid(root_node) && death_animation != null):
-		print("Death animation for enemy")
 		_animation_player.play(death_animation,0.7)
 
 func _victory_event():
@@ -106,7 +104,7 @@ func _process(delta):
 	var self_pos = global_transform.origin
 	
 	if isDead: #Point towards the player
-		if(!_animation_player.is_playing() or Time.get_ticks_msec()-timeOfDeath > 2500):
+		if(death_animation_finished or Time.get_ticks_msec()-timeOfDeath > 2500):
 			enemy_model.scale = Vector3(
 				enemy_model.scale.x - SHRINK_SPEED * delta,
 			 	enemy_model.scale.y - SHRINK_SPEED * delta, 
