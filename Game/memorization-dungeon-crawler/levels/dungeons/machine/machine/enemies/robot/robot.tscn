@@ -1,12 +1,10 @@
 [gd_scene load_steps=16 format=4 uid="uid://dmrgxx50tyem"]
 
 [ext_resource type="Texture2D" uid="uid://ba4fyt84yavn" path="res://levels/dungeons/machine/machine/enemies/robot/robot_defaultMat_2D_View_1001.png" id="1_uar2q"]
+[ext_resource type="Shape3D" uid="uid://buyo0b18x10xd" path="res://levels/universal/enemy_trigger.tres" id="2_1nvj0"]
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="2_426nh"]
 [ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="3_1nvj0"]
 [ext_resource type="Texture2D" uid="uid://cxuff2iiocx6t" path="res://levels/dungeons/machine/machine/enemies/robot/robot_robot_defaultMat_2D_View_1001.png" id="3_uar2q"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_b4u0l"]
-radius = 2.2718005
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mmavb"]
 resource_name = "defaultMat.1001"
@@ -2138,7 +2136,6 @@ _data = {
 viewport_path = NodePath("SubViewport")
 
 [node name="Robot" type="Node3D"]
-transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 0, 0)
 
 [node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "root_node", "enemy_model", "collision_shape_3d")]
 collision_layer = 4
@@ -2160,13 +2157,13 @@ take_hit_animation_speed = 0.6
 death_animation = "death"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 1.2924865, -0.0019256086)
-shape = SubResource("SphereShape3D_b4u0l")
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
+shape = ExtResource("2_1nvj0")
 
 [node name="mesh" type="Node3D" parent="."]
 
 [node name="robot" type="Node3D" parent="mesh"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
 
 [node name="Bip001" type="Node3D" parent="mesh/robot"]
 transform = Transform3D(3.7848945e-08, 0, -0.025399998, 0, 0.0254, 0, 0.025399998, 0, 3.7848945e-08, 0, 2.803483, 0)
@@ -2671,5 +2668,5 @@ libraries = {
 }
 
 [node name="WorldFlashcard" parent="mesh" instance=ExtResource("3_1nvj0")]
-transform = Transform3D(0.6000001, 0, 0, 0, 0.6000001, 0, 0, 0, 0.6000001, 0, 2.8218527, 0.40358362)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.8218527, 0.40358362)
 texture = SubResource("ViewportTexture_nw521")

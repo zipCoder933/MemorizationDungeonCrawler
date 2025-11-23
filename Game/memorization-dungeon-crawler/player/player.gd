@@ -87,6 +87,7 @@ func _set_mesh_alpha(mesh: MeshInstance3D, alpha: float):
 
 func obtain_key(key:KeyNode):
 	keys+=1
+	change_health(0.75)
 	if(SaveHandler.currentLevel.levelType == Level.LevelType.STANDARD):
 		if(keys >= Globals.totalArenas):
 			Globals.victory_event()
@@ -135,18 +136,20 @@ func _ready():
 var flash_card:WorldFlashCard = null
 
 func _victory():
-	mode = PlayerMode.VICTORY
-	animation_player.play(VICTORY_ANIMATION,1)
-	set_alpha(false)
-	mouse_controller.unlock_mouse_forever()
+	if(mode != PlayerMode.VICTORY):
+		mode = PlayerMode.VICTORY
+		animation_player.play(VICTORY_ANIMATION,1)
+		phantom_camera_follow_node.flashcard = null
+		set_alpha(false)
+		mouse_controller.unlock_mouse_forever()
 
 func _game_over():
 	if(mode != PlayerMode.GAME_OVER):
-		print("Playing death animation")
 		animation_player.play(DEATH_ANIMATION, 0.2)
-	set_alpha(false)
-	mode = PlayerMode.GAME_OVER
-	mouse_controller.unlock_mouse_forever()
+		set_alpha(false)
+		phantom_camera_follow_node.flashcard = null
+		mode = PlayerMode.GAME_OVER
+		mouse_controller.unlock_mouse_forever()
 
 func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):

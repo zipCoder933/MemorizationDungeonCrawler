@@ -84,7 +84,7 @@ func _game_over():
 @onready var next: Button = $CanvasLayer/VictoryPanel/Next
 
 func _victory():
-	var timer = get_tree().create_timer(2)
+	var timer = get_tree().create_timer(1.5)
 	timer.timeout.connect(_on_victory_timer_timeout)
 
 func _on_victory_timer_timeout():

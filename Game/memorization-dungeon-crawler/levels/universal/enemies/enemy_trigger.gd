@@ -118,7 +118,7 @@ func _process(delta):
 			if(is_boss):
 				enemy_model.queue_free()  #We dont want to erase the boss arena!
 			else:
-				Globals.spawn_potion(p)
+				#Globals.spawn_potion(p)
 				Globals.spawn_key(p,is_boss)
 				root_node.queue_free()
 	else:  #If not dead

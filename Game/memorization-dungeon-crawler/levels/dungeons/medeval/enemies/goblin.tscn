@@ -1,11 +1,9 @@
 [gd_scene load_steps=24 format=4 uid="uid://bqoufhp54uwue"]
 
-[ext_resource type="Texture2D" uid="uid://bvqmk01v8te54" path="res://levels/dungeons/medeval/assets/enemies/medeval/goblin/goblin_71721ff8-71721ff8.png" id="1_reyqm"]
+[ext_resource type="Texture2D" uid="uid://bvqmk01v8te54" path="res://levels/dungeons/medeval/goblin/goblin_71721ff8-71721ff8.png" id="1_reyqm"]
+[ext_resource type="Shape3D" uid="uid://buyo0b18x10xd" path="res://levels/universal/enemy_trigger.tres" id="2_exdxh"]
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="2_reyqm"]
 [ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://UI/Flashcard/worldFlashcard.tscn" id="2_s4b0v"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_s4b0v"]
-radius = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwv4x"]
 resource_name = "Material__106"
@@ -3692,7 +3690,6 @@ _data = {
 viewport_path = NodePath("SubViewport")
 
 [node name="goblin" type="Node3D"]
-transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
 
 [node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "root_node", "enemy_model", "collision_shape_3d")]
 collision_layer = 4
@@ -3713,11 +3710,12 @@ take_hit_animation = "TakeHit Retarget"
 death_animation = "Death Retarget"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
-shape = SubResource("SphereShape3D_s4b0v")
+shape = ExtResource("2_exdxh")
 
 [node name="goblinModel" type="Node3D" parent="."]
 
 [node name="goblin" type="Node3D" parent="goblinModel"]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
 
 [node name="Goblin" type="Node3D" parent="goblinModel/goblin"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
@@ -3965,5 +3963,5 @@ libraries = {
 }
 
 [node name="WorldFlashcard" parent="goblinModel" instance=ExtResource("2_s4b0v")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.7502582, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.7620292, 0)
 texture = SubResource("ViewportTexture_nuig7")
