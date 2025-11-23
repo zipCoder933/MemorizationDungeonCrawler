@@ -438,11 +438,11 @@ func _ready():
 		set_dungeon_theme(level, game)
 		print("\n\n--------------------------------------------------\n",
 		"GENERATING LEVEL: ",level.toString(),
-		"--------------------------------------------------\n")
+		"\n--------------------------------------------------\n")
 		
 		var next_level:Level = null
-		if SaveHandler.currentGame.completed_level < LevelsHandler.levels.size():
-			next_level = LevelsHandler.levels[SaveHandler.currentGame.completed_level]
+		if SaveHandler.currentGame.completed_level+1 < LevelsHandler.levels.size():
+			next_level = LevelsHandler.levels[SaveHandler.currentGame.completed_level+1]
 			print("Next level: ",next_level.toString())
 		
 		if(level.levelType == Level.LevelType.BOSS):
@@ -461,7 +461,7 @@ func _ready():
 			number_arenas = clamp(number_arenas*2, 10, 25)
 		else:
 			number_arenas = clamp(number_arenas, 4, 25)
-		print("Total drills: ",total_drills,"; Arenas: ",number_arenas)
+		print("Total drills: ",total_drills,"; Arenas: ",number_arenas,"; lots of arenas: ",lotsOfArenas)
 	
 	var min_path_length = 1
 	var max_path_length = 12
@@ -482,7 +482,7 @@ func _ready():
 	Globals.get_player().global_position.x = PLAYER_SPAWN.x
 	Globals.get_player().global_position.z = PLAYER_SPAWN.z
 	
-	for i in range(0,1000):
+	for i in range(0, 2000):
 		place = searched.keys()[randi_range(0,searched.keys().size()-1)]
 		var direction = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()  # to the right
 		var length = randi_range(min_path_length,max_path_length)

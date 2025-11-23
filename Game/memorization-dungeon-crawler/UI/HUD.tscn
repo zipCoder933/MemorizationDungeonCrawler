@@ -104,12 +104,12 @@ unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = -176.0
-offset_right = 208.0
-offset_bottom = 44.0
+offset_left = 9.999999
+offset_top = -185.0
+offset_right = 200.0
+offset_bottom = 35.0
 grow_vertical = 0
-scale = Vector2(0.72, 0.72)
+scale = Vector2(0.8, 0.8)
 
 [node name="GameOverPanel" type="Panel" parent="CanvasLayer"]
 visible = false

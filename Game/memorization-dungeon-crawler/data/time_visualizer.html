@@ -1,0 +1,83 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>Looping Green Bar</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 10px;
+    }
+    .bar-container {
+      width: 100%;
+      height: 30px;
+      background: #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .bar {
+      height: 100%;
+      background: green;
+      width: 0%;
+      animation: fill 156s linear infinite;
+    }
+    @keyframes fill {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+    .controls {
+      margin-bottom: 10px;
+    }
+    input{
+      padding:10px;
+    }
+    button {
+      padding:10px 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label for="duration">Animation Duration (sec):</label>
+    <input type="number" id="duration" min="1" step="1" value="156">
+
+    <!-- ⭐ New input box -->
+    <label for="triggerBox">Trigger Box:</label>
+    <input type="text" id="triggerBox" placeholder="Type 3+ chars to reset">
+
+    <button id="reset">Reset</button>
+  </div>
+
+  <div class="bar-container">
+    <div class="bar" id="bar"></div>
+  </div>
+
+  <script>
+    const input = document.getElementById("duration");
+    const bar = document.getElementById("bar");
+    const resetBtn = document.getElementById("reset");
+    const triggerBox = document.getElementById("triggerBox");
+
+    function updateAnimation() {
+      const time = parseFloat(input.value);
+      bar.style.animation = 'none';
+      void bar.offsetWidth; // reflow magic sprinkle
+      bar.style.animation = `fill ${time}s linear infinite`;
+    }
+
+    // Reset on duration change
+    input.addEventListener("input", updateAnimation);
+    resetBtn.addEventListener("click", updateAnimation);
+
+    // ⭐ Reset when triggerBox has > 2 characters
+    triggerBox.addEventListener("input", () => {
+      if (triggerBox.value.length > 2) {
+		triggerBox.value = "";
+        updateAnimation();
+      }
+    });
+
+    // Initial kick
+    updateAnimation();
+  </script>
+
+</body></html>

@@ -1,0 +1,69 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>Looping Green Bar</title>
+  <style>
+	body {
+	  font-family: sans-serif;
+	  padding: 10px;
+	}
+	.bar-container {
+	  width: 100%;
+	  height: 30px;
+	  background: #ccc;
+	  border-radius: 5px;
+	  overflow: hidden;
+	  margin-top: 10px;
+	}
+	.bar {
+	  height: 100%;
+	  background: green;
+	  width: 0%;
+	  animation: fill 156s linear infinite;
+	}
+	@keyframes fill {
+	  from { width: 0%; }
+	  to { width: 100%; }
+	}
+	.controls {
+	  margin-bottom: 10px;
+	}
+	input{
+		padding:10px;
+	}
+	button {
+		padding:10px 100px;
+	}
+  </style>
+</head>
+<body>
+  <div class="controls">
+	<label for="duration">Animation Duration (sec):</label>
+	<input type="number" id="duration" min="1" step="1" value="156">
+	<button id="reset">Reset</button>
+  </div>
+
+  <div class="bar-container">
+	<div class="bar" id="bar" style="animation: 156s linear 0s infinite normal none running fill;"></div>
+  </div>
+
+  <script>
+	const input = document.getElementById("duration");
+	const bar = document.getElementById("bar");
+	const resetBtn = document.getElementById("reset");
+
+	function updateAnimation() {
+	  const time = parseFloat(input.value);
+	  bar.style.animation = 'none';
+	  void bar.offsetWidth; // trigger reflow to restart animation
+	  bar.style.animation = `fill ${time}s linear infinite`;
+	}
+
+	input.addEventListener("input", updateAnimation);
+	resetBtn.addEventListener("click", updateAnimation);
+
+	// Set initial animation
+	updateAnimation();
+  </script>
+
+
+</body></html>
