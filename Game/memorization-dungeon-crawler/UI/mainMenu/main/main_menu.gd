@@ -5,6 +5,7 @@ class_name MainMenu
 @onready var loading: Panel = %Loading
 @onready var delete_confirm: Panel = %DeleteConfirm
 @onready var v_box_container: VBoxContainer = %VBoxContainer
+@onready var version: Label = $CanvasLayer/version
 
 var delete_entry:SaveEntry
 
@@ -41,6 +42,7 @@ func reload():
 func _ready():
 	delete_confirm.visible=false
 	loading.visible=false
+	version.text = ProjectSettings.get_setting("application/config/version")
 	SaveHandler.load_from_file(Globals.SAVE_FILE)
 	for entry in SaveHandler.saves:
 		var node = GAME_ENTRY.instantiate()

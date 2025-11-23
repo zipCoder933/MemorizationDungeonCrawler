@@ -4305,7 +4305,7 @@ shape = ExtResource("2_prvwy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8984983, 0)
 
 [node name="rock monster" type="Node3D" parent="rockMesh"]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.13239467, 0.20578623, -2.0293233)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.13239467, 0.20578623, -2.2102258)
 
 [node name="Monster" type="Node3D" parent="rockMesh/rock monster"]
 transform = Transform3D(1, 0, 0, 0, -3.5762787e-07, -0.99999994, 0, 0.99999994, -3.5762787e-07, 0, 0.145, 0)

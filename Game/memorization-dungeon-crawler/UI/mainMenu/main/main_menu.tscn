@@ -254,15 +254,15 @@ text = "Delete"
 layout_mode = 2
 text = "Cancel"
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="version" type="Label" parent="CanvasLayer"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -20.0
-offset_right = 62.0
+offset_right = 159.0
 grow_vertical = 0
 theme = ExtResource("2_aqn84")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 14
 text = "V1.0.0"
 
 [node name="credit" type="Label" parent="."]
