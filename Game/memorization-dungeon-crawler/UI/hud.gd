@@ -47,9 +47,21 @@ func _ready():
 			SaveHandler.currentLevel.boss_name + " ("+SaveHandler.currentLevel.level_name+")"
 		else:
 			level_indicator.text = "LEVEL " +\
-			str(SaveHandler.currentGame.completed_level+1) +" / "+\
-			str(SaveHandler.currentGame.total_levels) +": "+\
-			SaveHandler.currentLevel.level_name
+				str(SaveHandler.currentGame.completed_level+1) +" / "+\
+				str(SaveHandler.currentGame.total_levels) +": "+\
+				SaveHandler.currentLevel.level_name;
+			
+			if SaveHandler.currentGame.completed_level < LevelsHandler.levels.size():
+				var current_dungeon_indx = SaveHandler.currentLevel.dungeon_index
+				var levels_until_next_dungeon = 0
+				var next_dungeon = ""
+				for i in range(SaveHandler.currentGame.completed_level, LevelsHandler.levels.size()):
+					if LevelsHandler.levels[i].dungeon_index > current_dungeon_indx:
+						next_dungeon = LevelsHandler.levels[i].level_name
+						break
+					else:
+						levels_until_next_dungeon += 1
+				level_indicator.text = level_indicator.text+"\n "+str(levels_until_next_dungeon) + " Levels until " + next_dungeon
 
 func _input(event):
 	if event is InputEventKey:

@@ -1,47 +1,108 @@
 {
   "starting_answer_speed_sec": 10,
   "goal_answer_speed_sec": 1.3,
-  "name": "Subtraction",
+  "name": "Addition",
   "dungeons": [
 	{
 	  "name": "Dungeon 1",
-	  "theme": "dungeon",
-	  "boss_name": "Troll King",
-	  "themed_cards": ["1s", "2s"],
-	  "themed_drill_levels": 1,
+	  "theme": "Dungeon",
+	  "boss_name": "Goblin King",
+	  "themed_drill_levels": [
+			{
+				"tags": ["1s", "2s"],
+				"count": 3
+			}
+		],
+	  "boss_card_review_number":2,
 	  "complete_drill_levels": 0
 	},
 	{
-	  "name": "Dungeon 2",
-	  "theme": "Antarctic",
-	  "boss_name": "Yeti King",
-	  "themed_cards": ["3s", "4s"],
-	  "themed_drill_levels": 3,
-	  "complete_drill_levels": 4
+	  "name": "Tundra Dungeon",
+	  "theme": "antarctic",
+	  "boss_name": "Frostbite",
+  	  "themed_drill_levels": [
+		{
+			"tags": ["3s"],
+			"count":1,
+		},
+		{
+			"tags": [ "4s"],
+			"count": 1,
+		},
+		{
+			"tags": ["3s", "4s"],
+			"count": 1,
+		}
+	],
+	  "boss_card_review_number":2,
+	  "complete_drill_levels": 2
 	},
-	{
-	  "name": "Dungeon 3",
+		{
+	  "name": "Jungle Badlands",
 	  "theme": "jungle",
-	  "boss_name": "Avalanche",
-	  "themed_cards": ["5s","6s"],
-	  "themed_drill_levels": 3,
-	  "complete_drill_levels": 4
+	  "boss_name": "Rock Giant",
+	  "boss_card_review_number":1,
+   	  "themed_drill_levels": [
+		{
+			"tags": ["5s"],
+			"count":1,
+		},
+		{
+			"tags": [ "6s"],
+			"count": 1,
+		},
+		{
+			"tags": ["5s", "6s"],
+			"count": 1,
+		}
+	],
+	  "complete_drill_levels": 2
 	},
 	{
-	  "name": "Dungeon 5",
+	  "name": "Machine World",
 	  "theme": "machine",
-	  "boss_name": "Robo-King",
-	  "themed_cards": ["7s","8s","9s"],
-	  "themed_drill_levels": 3,
+	  "boss_name": "Subdivisor 001",
+ 	  "themed_drill_levels": [
+		{
+			"tags": ["7s"],
+			"count":1,
+		},
+		{
+			"tags": [ "8s"],
+			"count": 1,
+		},
+		{
+			"tags": [ "9s"],
+			"count": 1,
+		},
+		{
+			"tags": ["7s", "8s", "9s"],
+			"count": 1,
+		}
+	],
+	  "boss_card_review_number":1,
 	  "complete_drill_levels": 4
 	},
 	{
-	  "name": "Dungeon 7",
-	  "theme": "lava",
-	  "boss_name": "Dragoneous",
-	  "themed_cards": [ "10s", "11s","12s"],
-	  "themed_drill_levels": 3,
-	  "complete_drill_levels": 4
-	},
+	  "name": "The Final Dungeon",
+	  "theme": "Lava",
+	  "boss_name": "CogniKing",
+	  "boss_card_review_number":1,
+	   	  "themed_drill_levels": [
+		{
+			"tags": ["10s", "11s"],
+			"count":1,
+		},
+		{
+			"tags": [ "12s"],
+			"count": 1,
+		},
+		{
+			"tags": ["10s", "11s", "12s"],
+			"count": 1,
+		}
+	],
+	  "complete_drill_levels": 3
+	}
   ]
 }

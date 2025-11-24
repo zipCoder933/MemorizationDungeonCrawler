@@ -1,7 +1,7 @@
 extends Node
 
 #An array of Levels
-static var levels: Array = []
+static var levels: Array[Level] = []
 static var seed
 static var start_speed
 static var goal_speed
@@ -56,50 +56,59 @@ static func load_from_file(file_path: String):
 	const emptyArray: Array[String] = []
 	
 	# Load dungeons
-	for dungeon in json_data.get("dungeons", []):
+	var dungeons = json_data.get("dungeons", [])
+	for dungIndx in dungeons.size():
+		var dungeon = dungeons[dungIndx]
 		print("")
 		
-		var themed_tags:Array[String] = [] #Contains only the new cards we are learning in this dungeon
-		themed_tags.append_array(dungeon.get("themed_cards", emptyArray))
-		
-		learnedTags.append_array(themed_tags.duplicate())#Contains themed + all the others we learned in the past
-		
 		#themed levels
-		var levelCount = dungeon.get("themed_drill_levels", 0)
-		for i in range(levelCount):
-			levels.append(makeLevel(dungeon, lerp(start_speed, midgame_goal_speed, i / levelCount), themed_tags,themed_tags, Level.LevelType.STANDARD))
+		var themed_tags:Array[String] = [] #Contains only the new cards we are learning in this dungeon
+		for themed_level in dungeon.get("themed_drill_levels", emptyArray):
+			var levelCount = themed_level.get("count", 0)
+			var levelTags:Array[String]
+			levelTags.append_array(themed_level.get("tags", emptyArray))
+			
+			#If there are any level tags in themed tags
+			var hasNewCards=false
+			for tag in levelTags:
+				if tag not in themed_tags:
+					hasNewCards = true
+					break
+			#ANY NEW flashcards: Start at start_speed, progress to midgame_goal_speed 
+			#NO NEW flashcards:  Start at midgame_start_speed, progress to midgame_goal_speed 
+			for j in range(0, levelCount):
+				var speed = 0
+				if hasNewCards:
+					speed = lerp(start_speed, midgame_goal_speed, j / levelCount)
+				else:
+					speed = lerp(midgame_start_speed, midgame_goal_speed, j / levelCount)
+				
+				levels.append(makeLevel(dungIndx, dungeon, speed, levelTags, levelTags, Level.LevelType.STANDARD))
+			themed_tags.append_array(levelTags)
 		
 		#complete review levels
-		levelCount = dungeon.get("complete_drill_levels", 0)
+		#Start at midgame_start_speed, progress to midgame_goal_speed 
+		learnedTags.append_array(themed_tags.duplicate())#Contains themed + all the others we learned in the past
+		var goal = midgame_goal_speed
+		if(dungIndx == dungeons.size() -1): #This is the final dungeon!
+			goal = goal_speed
+		
+		var levelCount = dungeon.get("complete_drill_levels", 0)
 		for i in range(levelCount):
-			levels.append(makeLevel(dungeon, lerp(midgame_start_speed, midgame_goal_speed, i / levelCount), themed_tags,learnedTags, Level.LevelType.STANDARD))
+			levels.append(makeLevel(dungIndx, dungeon, lerp(midgame_start_speed, goal, i / levelCount), themed_tags,learnedTags, Level.LevelType.STANDARD))
 		
 		#boss level
-		levels.append(makeLevel(dungeon, midgame_goal_speed, themed_tags,learnedTags, Level.LevelType.BOSS))
-	
-	print("")
-	## Load final dungeon
-	#var final = json_data.get("final_dungeon", null)
-	#if final:
-		#var levelCount = final.get("complete_drill_levels", 0)
-		#for i in range(levelCount):
-			#levels.append(makeLevel(
-				#final,  
-				#lerp(midgame_start_speed, midgame_goal_speed, i / levelCount), 
-				#learnedTags, 
-				#Level.LevelType.STANDARD))
-		#levels.append(makeLevel(final, goal_speed, learnedTags, Level.LevelType.BOSS))
+		levels.append(makeLevel(dungIndx, dungeon, goal, themed_tags,learnedTags, Level.LevelType.BOSS))
 
 
 
-static func makeLevel(dungeon:Variant, speed_seconds:float, themed_tags:Array[String],\
+static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, themed_tags:Array[String],\
 					card_tags:Array[String], levelType: Level.LevelType) -> Level:
 	#var typed_cards: Array[String] = []
 	#for c in card_tags:
 		#typed_cards.append(str(c))  # ensure every element is a string
 	level_index+=1
-	var level =  Level.new(
-		level_index,
+	var level =  Level.new(dungeonIndex, level_index,
 		dungeon.get("name", ""),
 		dungeon.get("theme", ""),
 		dungeon.get("card_review_number", 3),
