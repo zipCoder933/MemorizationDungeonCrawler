@@ -82,7 +82,7 @@ static func get_random_cards(card_tags:Array[String], quantity: int, unique_fact
 
 
 
-static func load_from_file(jsonFile):
+static func load_from_file(jsonFile, results:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
 	print("Loading cards from ",jsonFile)
 	#reset everything first
 	tag_dict={}
@@ -131,10 +131,13 @@ static func load_from_file(jsonFile):
 				print("Tag:", tag)
 				for card in tag_dict[tag]:
 					print("   ", card.toString())
+			return true
 		else:
-			print("Oops! JSON parsing failed!")
+			results.write("JSON parsing failed!")
+			return false
 	else:
-		print("Couldn't open cards.json file 😭")
+		results.write("Couldn't open cards.json file")
+		return false
 
 
 

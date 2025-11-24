@@ -10,6 +10,7 @@ signal signal_game_over
 signal signal_victory
 
 static var SAVE_FILE
+static var CUSTOM_GAMES_DIR
 
 enum GameMode{
 NORMAL, VICTORY, GAME_OVER	
@@ -20,6 +21,11 @@ func _ready():
 	print("Global loaded!")
 	game_mode = GameMode.NORMAL
 	SAVE_FILE = ProjectSettings.globalize_path("user://save.json")
+	CUSTOM_GAMES_DIR = ProjectSettings.globalize_path("user://data")
+	var da := DirAccess.open("user://")
+	da.make_dir_recursive(CUSTOM_GAMES_DIR)
+
+	
 	print("SAVE FILE: ", SAVE_FILE)
 	#Write the new file if not exist
 	if not FileAccess.file_exists(SAVE_FILE):
@@ -43,20 +49,79 @@ func victory_event():
 		SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level+1, 0, LevelsHandler.levels.size()-1)
 		SaveHandler.save_to_file(Globals.SAVE_FILE)
 
+
+func _copy_file(src: String, dst: String) -> bool:
+	# Read source
+	var data = FileAccess.get_file_as_bytes(src)
+	if data.is_empty():
+		print("No data found in:", src)
+		return false
+
+	# Make sure the directory for `dst` exists
+	var dir_path := dst.get_base_dir()  # peel off the filename like a banana
+	var dir := DirAccess.open("user://")  # starting point for mkdirs
+
+	if dir == null:
+		print("Could not open user:// (that's… concerning)")
+		return false
+
+	# Recursively create all missing folders
+	if DirAccess.make_dir_recursive_absolute(dir_path) != OK:
+		print("Could not create directories for:", dir_path)
+		return false
+
+	# Now we can safely open the destination file
+	var file := FileAccess.open(dst, FileAccess.WRITE)
+	if file == null:
+		print("Could not open the destination:", dst)
+		return false
+
+	file.store_buffer(data)
+	return true
+
+func get_base36_time() -> String:
+	var ms: int = Time.get_ticks_msec()
+	return String.num_int64(ms, 36)
+
+func copy_game(origin:String, target:String):
+	if _copy_file(origin+"/cards.json", target+"/cards.json"):
+		if _copy_file(origin+"/level.json", target+"/level.json"):
+			return true
+		else:
+			return false
+	else:
+		return false
+	
+
+func load_game_data(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
+	var jsonFeedback = GameJsonLoadInfo.new()
+	var out = CardsHandler.load_from_file(dir_path+"/cards.json",jsonFeedback)
+	if(!out):
+		feedback.write("Failed to load cards.json")
+		feedback.write(jsonFeedback.message)
+		return false
+	
+	jsonFeedback = GameJsonLoadInfo.new()
+	out = LevelsHandler.load_from_file(dir_path+"/level.json", jsonFeedback)
+	if(!out):
+		feedback.write("Failed to load level.json")
+		feedback.write(jsonFeedback.message)
+		return false
+	
+	return true
+
 func start_game(entry:SaveEntry, goToLevel:bool = true):
 	SaveHandler.currentGame = entry
-	CardsHandler.load_from_file(SaveHandler.currentGame.path+"/cards.json")
-	LevelsHandler.load_from_file(SaveHandler.currentGame.path+"/level.json")
-	
-	SaveHandler.currentGame.total_levels = LevelsHandler.levels.size()
-	SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level, 
-											0, LevelsHandler.levels.size()-1)
-	SaveHandler.save_to_file(SAVE_FILE)
+	if(load_game_data(SaveHandler.currentGame.path)):
+		SaveHandler.currentGame.total_levels = LevelsHandler.levels.size()
+		SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level, 
+												0, LevelsHandler.levels.size()-1)
+		SaveHandler.save_to_file(SAVE_FILE)
 
-	print("Loaded %d levels" % LevelsHandler.levels.size())
-	_load_level_current_game()
-	if(goToLevel):
-		go_to_level()
+		print("Loaded %d levels" % LevelsHandler.levels.size())
+		_load_level_current_game()
+		if(goToLevel):
+			go_to_level()
 
 func load_level(goToLevel:bool = true):
 	SaveHandler.save_to_file(Globals.SAVE_FILE)

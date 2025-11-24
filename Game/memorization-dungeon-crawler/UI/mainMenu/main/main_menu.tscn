@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dg8j5ptwrgu52" path="res://assets/textures/Cogni-crawl_final.png" id="3_6kmto"]
 [ext_resource type="StyleBox" uid="uid://bxp67n10n2pan" path="res://styles/translucent_box.tres" id="4_57qux"]
 [ext_resource type="PackedScene" uid="uid://laf057gsoqjg" path="res://UI/mainMenu/backdrop.tscn" id="5_aqn84"]
-[ext_resource type="FontFile" uid="uid://l2eim6vo1a7j" path="res://assets/fonts/New_Rocker/NewRocker-Regular.ttf" id="5_c84qs"]
+[ext_resource type="PackedScene" uid="uid://b4yoi6vvbosi2" path="res://UI/MessageBox.tscn" id="5_c84qs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqn84"]
 bg_color = Color(0.22745098, 0.22745098, 0.22745098, 0.7019608)
@@ -185,74 +185,7 @@ text = "Loading..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DeleteConfirm" type="Panel" parent="CanvasLayer"]
-unique_name_in_owner = true
-z_index = 100
-z_as_relative = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -141.125
-offset_top = -119.49219
-offset_right = 141.125
-offset_bottom = 119.49219
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_aqn84")
-theme_override_styles/panel = ExtResource("4_57qux")
-
-[node name="Label2" type="Label" parent="CanvasLayer/DeleteConfirm"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 8.875
-offset_bottom = 41.875
-grow_horizontal = 2
-text = "Delete Confirmation"
-horizontal_alignment = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/DeleteConfirm"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 53.875
-offset_bottom = 154.875
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.60990286, 0.609903, 0.609903, 1)
-theme_override_fonts/font = ExtResource("5_c84qs")
-theme_override_font_sizes/font_size = 16
-text = "Are you sure you want
-to delete this game?
-There will be no going back!"
-horizontal_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DeleteConfirm"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -41.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 6
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DeleteConfirm/MarginContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="delete_yes" type="Button" parent="CanvasLayer/DeleteConfirm/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "Delete"
-
-[node name="delete_no" type="Button" parent="CanvasLayer/DeleteConfirm/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "Cancel"
+[node name="MessageBox" parent="CanvasLayer" instance=ExtResource("5_c84qs")]
 
 [node name="version" type="Label" parent="CanvasLayer"]
 anchors_preset = 2
@@ -283,5 +216,3 @@ horizontal_alignment = 1
 
 [connection signal="pressed" from="CanvasLayer/ColorRect/Buttons/NewButton" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/DeleteConfirm/MarginContainer/HBoxContainer/delete_yes" to="." method="_on_delete_yes_pressed"]
-[connection signal="pressed" from="CanvasLayer/DeleteConfirm/MarginContainer/HBoxContainer/delete_no" to="." method="_on_delete_no_pressed"]

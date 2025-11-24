@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4yoi6vvbosi2"]
+
+[ext_resource type="Script" uid="uid://ddf4rfryxatkj" path="res://UI/message_box.gd" id="1_1a3kh"]
+[ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="1_nf0pi"]
+[ext_resource type="StyleBox" uid="uid://bxp67n10n2pan" path="res://styles/translucent_box.tres" id="2_1a3kh"]
+[ext_resource type="FontFile" uid="uid://l2eim6vo1a7j" path="res://assets/fonts/New_Rocker/NewRocker-Regular.ttf" id="3_i81j0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1a3kh"]
+
+[node name="messageBoxContainer" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1a3kh")
+script = ExtResource("1_1a3kh")
+
+[node name="MessageBox" type="Panel" parent="."]
+z_index = 100
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.125
+offset_top = -119.49219
+offset_right = 141.125
+offset_bottom = 119.49219
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_nf0pi")
+theme_override_styles/panel = ExtResource("2_1a3kh")
+
+[node name="message_title" type="Label" parent="MessageBox"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 8.875
+offset_bottom = 41.875
+grow_horizontal = 2
+text = "Title"
+horizontal_alignment = 1
+
+[node name="message_body" type="Label" parent="MessageBox"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.125
+offset_top = 53.875
+offset_right = -8.125
+offset_bottom = 187.49219
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.60990286, 0.609903, 0.609903, 1)
+theme_override_fonts/font = ExtResource("3_i81j0")
+theme_override_font_sizes/font_size = 16
+text = "Body"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MessageBox"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MessageBox/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="cancel_button" type="Button" parent="MessageBox/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cancel"
+
+[node name="ok_button" type="Button" parent="MessageBox/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "OK"
+
+[connection signal="pressed" from="MessageBox/MarginContainer/HBoxContainer/cancel_button" to="MessageBox" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="MessageBox/MarginContainer/HBoxContainer/ok_button" to="MessageBox" method="_on_ok_button_pressed"]

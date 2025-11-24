@@ -2,23 +2,23 @@ extends Control
 class_name MainMenu
 
 @onready var start_button: Button = $CanvasLayer/ColorRect/Buttons/StartButton
-@onready var loading: Panel = %Loading
 @onready var delete_confirm: Panel = %DeleteConfirm
 @onready var v_box_container: VBoxContainer = %VBoxContainer
 @onready var version: Label = $CanvasLayer/version
+@onready var menu_message_box: MessageBox = $CanvasLayer/MessageBox
+@onready var loading: Panel = %Loading
 
 var delete_entry:SaveEntry
 
 func confirm_deletion(_delete_entry:SaveEntry):
-	delete_confirm.visible = true
+	menu_message_box.show_confirmation("Delete Game?","Are you sure you want to delete this game? There will be no going back!",\
+										_on_delete_yes_pressed,_on_delete_no_pressed)
 	delete_entry = _delete_entry
 
 func _on_delete_no_pressed() -> void:
 	delete_entry = null
-	delete_confirm.visible=false
 	
 func _on_delete_yes_pressed() -> void:
-	delete_confirm.visible=false
 	if( delete_entry!=null):
 		SaveHandler.saves.erase(delete_entry)
 		SaveHandler.save_to_file(Globals.SAVE_FILE)
@@ -40,7 +40,6 @@ func reload():
 	get_tree().reload_current_scene()
 
 func _ready():
-	delete_confirm.visible=false
 	loading.visible=false
 	version.text = " v"+ProjectSettings.get_setting("application/config/version")
 	SaveHandler.load_from_file(Globals.SAVE_FILE)

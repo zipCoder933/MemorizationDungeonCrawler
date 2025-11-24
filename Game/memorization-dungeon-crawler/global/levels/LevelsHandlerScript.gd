@@ -2,7 +2,6 @@ extends Node
 
 #An array of Levels
 static var levels: Array[Level] = []
-static var seed
 static var start_speed
 static var goal_speed
 static var midgame_start_speed
@@ -14,10 +13,9 @@ func _ready():
 	#load_levels("res://data/games/multiplication/level.json")  # path to your JSON file
 	#print("Loaded %d levels" % levels.size())
 
-static func load_from_file(file_path: String):
+static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
 	#Reset everything first
 	levels = []
-	seed = 0
 	start_speed = 0
 	goal_speed = 0
 	level_index=0
@@ -28,22 +26,18 @@ static func load_from_file(file_path: String):
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	
 	if not file:
-		print("Failed to open JSON file!")
-		return
+		results.write("Failed to open JSON file!")
+		return false
 	
 	var content = file.get_as_text()
 	file.close()
 
 	var result = JSON.parse_string(content)
 	if not result:
-		print("Failed to parse JSON")
-		return
+		results.write("Failed to parse JSON")
+		return false
 	
 	var json_data = result
-	
-	
-	# Seed or timing info
-	seed = json_data.get("seed", 0)
 	start_speed = json_data.get("starting_answer_speed_sec", 10)
 	goal_speed = json_data.get("goal_answer_speed_sec", 2)
 	
@@ -100,6 +94,7 @@ static func load_from_file(file_path: String):
 		#boss level
 		levels.append(makeLevel(dungIndx, dungeon, goal, themed_tags,learnedTags, Level.LevelType.BOSS))
 
+	return true
 
 
 static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, themed_tags:Array[String],\

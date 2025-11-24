@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://o164qtonnr5o"]
+[gd_scene load_steps=5 format=3 uid="uid://o164qtonnr5o"]
 
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="1_2626c"]
 [ext_resource type="Script" uid="uid://3axsagpubaea" path="res://UI/mainMenu/new game/newgame.gd" id="1_ad0hl"]
 [ext_resource type="PackedScene" uid="uid://laf057gsoqjg" path="res://UI/mainMenu/backdrop.tscn" id="3_ad0hl"]
+[ext_resource type="PackedScene" uid="uid://b4yoi6vvbosi2" path="res://UI/MessageBox.tscn" id="3_lgfno"]
 
 [node name="Newgame" type="Control"]
 layout_mode = 3
@@ -22,10 +23,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -170.125
-offset_top = -194.5
-offset_right = 170.125
-offset_bottom = 194.5
+offset_left = -184.5625
+offset_top = -204.25
+offset_right = 184.5625
+offset_bottom = 204.25
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -34,78 +35,16 @@ color = Color(0.22745098, 0.22745098, 0.22745098, 0.7019608)
 
 [node name="nameBox" type="LineEdit" parent="CanvasLayer/ColorRect"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -155.125
-offset_top = 33.0
-offset_right = 149.875
-offset_bottom = 74.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -1.4375
+offset_top = 37.25
+offset_right = -1.4375
+offset_bottom = 78.25
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0.3764706)
+theme_override_font_sizes/font_size = 20
 placeholder_text = "Game Name"
 alignment = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -82.5
-offset_bottom = -49.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Template"
-horizontal_alignment = 1
-
-[node name="CancelButton" type="Button" parent="CanvasLayer/ColorRect"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -89.0
-offset_top = -57.0
-offset_right = -19.0
-offset_bottom = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-theme = ExtResource("1_2626c")
-text = "Cancel"
-
-[node name="StartButton" type="Button" parent="CanvasLayer/ColorRect"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -149.125
-offset_top = -56.666656
-offset_right = -101.125
-offset_bottom = -15.6666565
-grow_horizontal = 0
-grow_vertical = 0
-theme = ExtResource("1_2626c")
-text = "OK"
-
-[node name="templateBox" type="ItemList" parent="CanvasLayer/ColorRect"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -45.5
-offset_bottom = 79.5
-grow_horizontal = 2
-grow_vertical = 2
-item_count = 4
-item_0/text = "Multiplication"
-item_1/text = "Addition"
-item_2/text = "Subtraction"
-item_3/text = "Musical notes (Treble/Base)"
 
 [node name="name" type="Label" parent="CanvasLayer/ColorRect"]
 layout_mode = 1
@@ -117,7 +56,101 @@ theme = ExtResource("1_2626c")
 text = "New Game"
 horizontal_alignment = 1
 
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = -6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="CancelButton" type="Button" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_2626c")
+text = "Cancel"
+
+[node name="StartButton" type="Button" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_2626c")
+text = "OK"
+
+[node name="template" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -114.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/template"]
+layout_mode = 2
+text = "Builtin Template"
+horizontal_alignment = 1
+
+[node name="templateBox" type="ItemList" parent="CanvasLayer/ColorRect/template"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+item_count = 4
+item_0/text = "Multiplication"
+item_1/text = "Addition"
+item_2/text = "Subtraction"
+item_3/text = "Musical notes (Treble/Base)"
+
+[node name="customTemplate" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -169.25
+offset_bottom = -57.25
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/customTemplate"]
+layout_mode = 2
+text = "Custom Template"
+horizontal_alignment = 1
+
+[node name="customTemplate" type="LineEdit" parent="CanvasLayer/ColorRect/customTemplate"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Custom Template Directory"
+alignment = 1
+
+[node name="copyGameToAppdata" type="CheckBox" parent="CanvasLayer/ColorRect/customTemplate"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+disabled = true
+button_pressed = true
+text = "Copy to Appdata"
+
+[node name="MessageBox" parent="CanvasLayer" instance=ExtResource("3_lgfno")]
+unique_name_in_owner = true
+visible = false
+
 [node name="Backdrop" parent="." instance=ExtResource("3_ad0hl")]
 
-[connection signal="pressed" from="CanvasLayer/ColorRect/CancelButton" to="." method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/ColorRect/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/ColorRect/customTemplate/customTemplate" to="." method="_on_custom_template_focus_entered"]
+[connection signal="text_changed" from="CanvasLayer/ColorRect/customTemplate/customTemplate" to="." method="_on_custom_template_text_changed"]
+[connection signal="toggled" from="CanvasLayer/ColorRect/customTemplate/copyGameToAppdata" to="." method="_on_copy_game_to_appdata_toggled"]

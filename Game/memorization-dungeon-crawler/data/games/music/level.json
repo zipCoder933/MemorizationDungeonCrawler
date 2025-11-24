@@ -10,7 +10,7 @@
 	  "themed_drill_levels": [
 		{
 		  "tags": ["treble"],
-		  "count": 3
+		  "count": 6
 		}
 	  ],
 	  "complete_drill_levels": 0
@@ -25,7 +25,7 @@
 		  "count": 3
 		}
 	  ],
-	  "complete_drill_levels": 3
+	  "complete_drill_levels": 6
 	},
 	{
 	  "name": "Treble and Bass Dungeon",
