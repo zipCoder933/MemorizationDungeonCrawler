@@ -9,6 +9,7 @@ const SaveHandler = preload("uid://bgwdh30vglopu")
 
 @onready var custom_template: LineEdit = %customTemplate
 @onready var copy_game_to_appdata: CheckBox = %copyGameToAppdata
+@onready var open_app_data: Button = %openAppData
 
 func _on_files_dropped(files):
 	print("Yummy files:", files)
@@ -104,9 +105,14 @@ func load_game(template_dir:String):
 		return false
 
 func _on_custom_template_text_changed(new_text: String) -> void:
+	open_app_data.disabled = custom_template.text.is_empty()
 	copy_game_to_appdata.disabled = new_text.is_empty()
 	if new_text.is_empty() == false:
 		template_box.deselect_all()
+
+func _on_custom_template_focus_entered() -> void:
+	open_app_data.disabled = custom_template.text.is_empty()
+	copy_game_to_appdata.disabled = custom_template.text.is_empty()
 
 func _on_copy_game_to_appdata_toggled(toggled_on: bool) -> void:
 	if(!toggled_on):
@@ -114,3 +120,6 @@ func _on_copy_game_to_appdata_toggled(toggled_on: bool) -> void:
 		"Setting this to unchecked means the game will be tied to the exact directory of the uploaded template. Moving or deleting this folder will cause the game to dissapear!",\
 		Callable(), \
 		func():copy_game_to_appdata.button_pressed = true )
+
+func _on_open_app_data_pressed() -> void:
+	OS.shell_open(Globals.CUSTOM_GAMES_DIR)

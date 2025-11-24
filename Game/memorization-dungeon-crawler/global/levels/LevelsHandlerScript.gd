@@ -58,6 +58,11 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 		#themed levels
 		var themed_tags:Array[String] = [] #Contains only the new cards we are learning in this dungeon
 		for themed_level in dungeon.get("themed_drill_levels", emptyArray):
+			
+			if typeof(themed_level) != TYPE_DICTIONARY and typeof(themed_level) != TYPE_ARRAY:
+				results.write("invalid property of themed_drill_levels")
+				return false
+				
 			var levelCount = themed_level.get("count", 0)
 			var levelTags:Array[String]
 			levelTags.append_array(themed_level.get("tags", emptyArray))

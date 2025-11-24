@@ -94,6 +94,10 @@ func copy_game(origin:String, target:String):
 	
 
 func load_game_data(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
+	if !DirAccess.dir_exists_absolute(dir_path):
+		feedback.write("Directory \""+dir_path+"\" not found")
+		return false
+	
 	var jsonFeedback = GameJsonLoadInfo.new()
 	var out = CardsHandler.load_from_file(dir_path+"/cards.json",jsonFeedback)
 	if(!out):
@@ -110,9 +114,11 @@ func load_game_data(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoadInf
 	
 	return true
 
-func start_game(entry:SaveEntry, goToLevel:bool = true):
+func start_game(entry:SaveEntry, goToLevel:bool = true,\
+	 feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
+		
 	SaveHandler.currentGame = entry
-	if(load_game_data(SaveHandler.currentGame.path)):
+	if(load_game_data(SaveHandler.currentGame.path, feedback)):
 		SaveHandler.currentGame.total_levels = LevelsHandler.levels.size()
 		SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level, 
 												0, LevelsHandler.levels.size()-1)
@@ -122,6 +128,8 @@ func start_game(entry:SaveEntry, goToLevel:bool = true):
 		_load_level_current_game()
 		if(goToLevel):
 			go_to_level()
+		return true
+	return false
 
 func load_level(goToLevel:bool = true):
 	SaveHandler.save_to_file(Globals.SAVE_FILE)

@@ -132,16 +132,27 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-placeholder_text = "Custom Template Directory"
+placeholder_text = "Path to Custom Template"
 alignment = 1
 
-[node name="copyGameToAppdata" type="CheckBox" parent="CanvasLayer/ColorRect/customTemplate"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/customTemplate"]
+layout_mode = 2
+
+[node name="copyGameToAppdata" type="CheckBox" parent="CanvasLayer/ColorRect/customTemplate/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 20
 disabled = true
 button_pressed = true
 text = "Copy to Appdata"
+
+[node name="openAppData" type="Button" parent="CanvasLayer/ColorRect/customTemplate/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "Open AppData"
 
 [node name="MessageBox" parent="CanvasLayer" instance=ExtResource("3_lgfno")]
 unique_name_in_owner = true
@@ -153,4 +164,5 @@ visible = false
 [connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="focus_entered" from="CanvasLayer/ColorRect/customTemplate/customTemplate" to="." method="_on_custom_template_focus_entered"]
 [connection signal="text_changed" from="CanvasLayer/ColorRect/customTemplate/customTemplate" to="." method="_on_custom_template_text_changed"]
-[connection signal="toggled" from="CanvasLayer/ColorRect/customTemplate/copyGameToAppdata" to="." method="_on_copy_game_to_appdata_toggled"]
+[connection signal="toggled" from="CanvasLayer/ColorRect/customTemplate/HBoxContainer/copyGameToAppdata" to="." method="_on_copy_game_to_appdata_toggled"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/customTemplate/HBoxContainer/openAppData" to="." method="_on_open_app_data_pressed"]

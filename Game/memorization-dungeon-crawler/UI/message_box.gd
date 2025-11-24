@@ -13,6 +13,7 @@ func _ready():
 
 func show_message(title:String, body:String, yes: Callable = Callable()):
 	self.visible=true
+	cancel_button.visible = false
 	message_title.text = title
 	message_body.text = body
 	
