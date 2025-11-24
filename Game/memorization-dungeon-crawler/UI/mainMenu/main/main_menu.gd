@@ -24,7 +24,7 @@ func _is_inside(base_path: String, target_path: String) -> bool:
 	return target_path.begins_with(base_path)
 
 func _on_delete_yes_pressed() -> void:
-	if( delete_entry!=null):
+	if(delete_entry!=null):
 		if(_is_inside(Globals.CUSTOM_GAMES_DIR, delete_entry.path)):
 			print("Deleting app-data dir: ",delete_entry.path)
 			DirAccess.remove_absolute(delete_entry.path+"/cards.json")
