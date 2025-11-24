@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bfj67b4iujjtf"]
+[gd_scene load_steps=16 format=3 uid="uid://bfj67b4iujjtf"]
 
 [ext_resource type="Script" uid="uid://qn46exgdgmle" path="res://UI/hud.gd" id="1_ijstf"]
 [ext_resource type="Texture2D" uid="uid://ch714bgi1e00f" path="res://assets/textures/health_indicator.png" id="1_yixhe"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://cynckudprgttu" path="res://flashcard/flashcard.tscn" id="6_gppie"]
 [ext_resource type="Texture2D" uid="uid://d260hqcqu35ev" path="res://assets/icon.png" id="8_md4fy"]
 [ext_resource type="PackedScene" uid="uid://cqlkanaejs5yj" path="res://UI/BossfightStats.tscn" id="9_7i7fj"]
+[ext_resource type="Texture2D" uid="uid://llkhukd8bi78" path="res://assets/textures/key2.png" id="10_rbci0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rbci0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md4fy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -40,7 +43,52 @@ script = ExtResource("1_ijstf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="keys_hud" type="Panel" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 87.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rbci0")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/keys_hud"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 44.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+
+[node name="keyContainer" type="HBoxContainer" parent="CanvasLayer/keys_hud/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="key" type="TextureRect" parent="CanvasLayer/keys_hud/MarginContainer/keyContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("10_rbci0")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="keysInfo" type="Label" parent="CanvasLayer/keys_hud"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_md4fy")
+text = "KEYS -/-"
+
+[node name="health" type="Panel" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -51,7 +99,7 @@ offset_bottom = 45.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_md4fy")
 
-[node name="DamageBar" type="ProgressBar" parent="CanvasLayer/Panel"]
+[node name="DamageBar" type="ProgressBar" parent="CanvasLayer/health"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
@@ -75,29 +123,10 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_o3xbc")
 max_value = 1.0
 value = 1.0
 
-[node name="HealthIndicator" type="Sprite2D" parent="CanvasLayer/Panel/DamageBar"]
+[node name="HealthIndicator" type="Sprite2D" parent="CanvasLayer/health/DamageBar"]
 position = Vector2(-31.250015, 15.215232)
 scale = Vector2(0.29334688, 0.20563807)
 texture = ExtResource("1_yixhe")
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 288.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource("4_md4fy")
-text = "COMPLETED ARENAS -/-"
-
-[node name="boss_info" type="Label" parent="CanvasLayer"]
-unique_name_in_owner = true
-offset_left = 16.0
-offset_top = 48.0
-offset_right = 390.0
-offset_bottom = 83.0
-theme_override_fonts/font = ExtResource("3_4n7mi")
-theme_override_font_sizes/font_size = 12
-text = "(ALL KEYS MUST BE ACQUIRED BEFORE
-THE FINAL BOSS!)"
 
 [node name="CardUI" parent="CanvasLayer" instance=ExtResource("6_gppie")]
 unique_name_in_owner = true
@@ -306,14 +335,12 @@ vertical_alignment = 1
 [node name="level indicator" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -153.5
-offset_top = -32.0
-offset_right = 153.5
+offset_top = -24.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_4n7mi")

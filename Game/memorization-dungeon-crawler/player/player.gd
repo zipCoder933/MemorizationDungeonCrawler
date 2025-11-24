@@ -87,6 +87,7 @@ func _set_mesh_alpha(mesh: MeshInstance3D, alpha: float):
 
 func obtain_key(key:KeyNode):
 	keys+=1
+	signal_key_obtained.emit(keys)
 	change_health(0.75)
 	if(SaveHandler.currentLevel.levelType == Level.LevelType.STANDARD):
 		if(keys >= Globals.totalArenas):
@@ -115,6 +116,8 @@ func change_health(amt:float):
 func _global_boss_defeated(_boss:GoblinTrigger, accuracy:float):
 	bossfight_finish_entity = _boss
 	mode = PlayerMode.STILL
+
+signal signal_key_obtained
 
 func _ready():
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)

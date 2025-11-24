@@ -2,7 +2,8 @@ extends Control
 class_name HUD
 @export var player:Player
 @onready var damage_bar: ProgressBar = %DamageBar
-@onready var label: Label = $CanvasLayer/Label
+@onready var keys_info: Label = %keysInfo
+
 
 @onready var game_over_panel: Panel = $CanvasLayer/GameOverPanel
 @onready var victory_panel: Panel = $CanvasLayer/VictoryPanel
@@ -25,9 +26,34 @@ func panelsVisible():
 var current_question:Question
 var bossfight_accuracy = 0
 var animation_accuracy = 0
-@onready var boss_info: Label = %boss_info
+@onready var key_container: HBoxContainer = %keyContainer
+@onready var key: TextureRect = %key
+@onready var keys_hud: Panel = %keys_hud
+
+
+func _key_obtained(keys:int):
+	keys_info.text = "KEYS: "+str(keys)+" / "+str(Globals.totalArenas) 
+	var key_texture = load("res://assets/textures/key2.png")
+	for i in keys:
+		if(key_nodes.size() > i):
+			key_nodes[i].texture = key_texture
+
+func _global_fact_answering_mode(target2:WorldFlashCard):
+	pass
+	#keys_hud.visible=false
+
+func _global_adventure_mode():
+	pass
+	#keys_hud.visible=true
+	
+var key_nodes = []
 
 func _ready():
+	key.visible=false
+	key_container.visible=false
+
+	
+	player.signal_key_obtained.connect(_key_obtained)
 	bossfight_stats.visible=false
 	game_over_panel.visible=false
 	loading_panel.modulate.a = 1
@@ -38,13 +64,16 @@ func _ready():
 	Globals.signal_game_over.connect(_game_over)
 	Globals.signal_boss_defeated.connect(bossfight_stats.complete_boss_fight)
 	Globals.signal_victory.connect(_victory)
+	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
+	Globals.adventure_mode.connect(_global_adventure_mode)
+	
 	if(SaveHandler.currentLevel != null and  SaveHandler.currentGame !=null):
-		boss_info.visible = SaveHandler.currentLevel.levelType == Level.LevelType.BOSS
 		if(SaveHandler.currentLevel.levelType == Level.LevelType.BOSS):
 			level_indicator.text = "LEVEL " +\
 			 str(SaveHandler.currentGame.completed_level+1) +" / "+\
 			 str(SaveHandler.currentGame.total_levels) +": "+\
-			SaveHandler.currentLevel.boss_name + " ("+SaveHandler.currentLevel.level_name+")"
+			SaveHandler.currentLevel.boss_name + " ("+SaveHandler.currentLevel.level_name+")\n"+\
+						"All keys must be obtained before conquering the boss!"
 		else:
 			level_indicator.text = "LEVEL " +\
 				str(SaveHandler.currentGame.completed_level+1) +" / "+\
@@ -75,7 +104,18 @@ func _process(delta):
 	
 	fps.text = str(Engine.get_frames_per_second())+" fps"
 
-	label.text = "KEYS: "+str(player.keys)+" / "+str(Globals.totalArenas) 
+	if(!key_container.visible):#Update the UI in the hud
+		key_container.visible=true
+		var total_keys = Globals.totalArenas
+		var empty_key_texture = load("res://assets/textures/empty_key.png")
+		for i in total_keys:
+			var clone = key.duplicate()
+			clone.texture = empty_key_texture
+			clone.visible=true
+			key_nodes.append(clone)
+			key_container.add_child(clone)
+		keys_info.text = "KEYS: "+str(player.keys)+" / "+str(Globals.totalArenas) 
+		
 	card_ui.visible = Globals.has_flashcard()
 	
 	if(victory_panel.visible):
