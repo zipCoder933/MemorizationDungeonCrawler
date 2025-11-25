@@ -30,16 +30,13 @@ func _drill(q2: Question):
 		question_image.visible = true
 		question_label.visible = false
 
-		var img = Image.new()
-		var err = img.load(q2.question)
-		if err == OK:
-			var tex = ImageTexture.create_from_image(img)
+		var tex: Texture2D = load(q2.question)
+		if tex != null:
 			question_image.texture = tex
 		else:
 			push_error("❌ Failed to load image at: " + q2.question)
-			err = img.load(Globals.CARD_MISSING_IMAGE)
-			var tex = ImageTexture.create_from_image(img)
-			question_image.texture = tex
+			var tex2: Texture2D = load(Globals.CARD_MISSING_IMAGE)
+			question_image.texture = tex2
 
 	else:
 		question_image.visible = false

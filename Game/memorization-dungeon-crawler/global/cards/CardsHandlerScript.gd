@@ -142,25 +142,37 @@ static func load_from_file(jsonFile, results:GameJsonLoadInfo = GameJsonLoadInfo
 
 
 static func find_best_image_path(base_dir:String, base_path: String) -> String:
-	var img := Image.new()
-
+	base_dir = base_dir.replace("\\","/")
+	base_path = base_path.replace("\\","/")
+	
 	# --- Clean the input path ---
+	if(base_dir.begins_with("res://")):
+		base_dir = base_dir.lstrip("res://")
 	if(base_path.begins_with("res://")):
 		base_path = base_path.lstrip("res://")
-	
+		
+	if(base_dir.begins_with("res:/")):
+		base_dir = base_dir.lstrip("res:/")
+	if(base_path.begins_with("res:/")):
+		base_path = base_path.lstrip("res:/")
+		
+	if(base_dir.begins_with("/")):
+		base_dir = base_dir.lstrip("/")
 	if(base_path.begins_with("/")):
 		base_path = base_path.lstrip("/")
 		
 	# --- Build both possibilities ---
 	var possible_paths := [
-		"res://" + base_dir + "/" +base_path,
-		 base_dir + "/" +base_path
+		"res://" + (base_dir + "/" +base_path).replace("//","/"),
+		 (base_dir + "/" +base_path).replace("//","/")
 	]
 
 	# --- Try both paths in order ---
 	for path in possible_paths:
-		var err = img.load(path)
-		if err == OK:
+		print("Testing ",path)
+		var tex: Texture2D = load(path)
+		if tex != null:
+			print("Image Path: ",path)
 			return path  # success! use this one
 
 	# --- If nothing worked ---
