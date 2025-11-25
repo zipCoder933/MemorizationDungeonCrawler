@@ -1,476 +1,358 @@
 {
-	"Cards": [
-		{
-			"Answer": "c",
-			"QuestionImage": "/images/bass_024_C1.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "d",
-			"QuestionImage": "/images/bass_026_D1.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "e",
-			"QuestionImage": "/images/bass_028_E1.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "f",
-			"QuestionImage": "/images/bass_029_F1.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "g",
-			"QuestionImage": "/images/bass_031_G1.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "a",
-			"QuestionImage": "/images/bass_033_A1.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "b",
-			"QuestionImage": "/images/bass_035_B1.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "c",
-			"QuestionImage": "/images/bass_036_C2.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "d",
-			"QuestionImage": "/images/bass_038_D2.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "e",
-			"QuestionImage": "/images/bass_040_E2.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "f",
-			"QuestionImage": "/images/bass_041_F2.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "g",
-			"QuestionImage": "/images/bass_043_G2.png",
-			"Tags": [
-                "bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "a",
-			"QuestionImage": "/images/bass_045_A2.png",
-			"Tags": [
-                "bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "b",
-			"QuestionImage": "/images/bass_047_B2.png",
-			"Tags": [
-                "bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "c",
-			"QuestionImage": "/images/bass_048_C3.png",
-			"Tags": [
-                "bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "d",
-			"QuestionImage": "/images/bass_050_D3.png",
-			"Tags": [
-                "bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "e",
-			"QuestionImage": "/images/bass_052_E3.png",
-			"Tags": [
-                "bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "f",
-			"QuestionImage": "/images/bass_053_F3.png",
-			"Tags": [
-                "bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "g",
-			"QuestionImage": "/images/bass_055_G3.png",
-			"Tags": [
-                "bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "a",
-			"QuestionImage": "/images/bass_057_A3.png",
-			"Tags": [
-                "bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "b",
-			"QuestionImage": "/images/bass_059_B3.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "c",
-			"QuestionImage": "/images/bass_060_C4.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "d",
-			"QuestionImage": "/images/bass_062_D4.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "e",
-			"QuestionImage": "/images/bass_064_E4.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "f",
-			"QuestionImage": "/images/bass_065_F4.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "g",
-			"QuestionImage": "/images/bass_067_G4.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "a",
-			"QuestionImage": "/images/bass_069_A4.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "b",
-			"QuestionImage": "/images/bass_071_B4.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "c",
-			"QuestionImage": "/images/bass_072_C5.png",
-			"Tags": [
-                "outer-bass"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "b",
-			"QuestionImage": "/images/treble_047_B2.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "c",
-			"QuestionImage": "/images/treble_048_C3.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "d",
-			"QuestionImage": "/images/treble_050_D3.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "e",
-			"QuestionImage": "/images/treble_052_E3.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "f",
-			"QuestionImage": "/images/treble_053_F3.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "g",
-			"QuestionImage": "/images/treble_055_G3.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "a",
-			"QuestionImage": "/images/treble_057_A3.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "b",
-			"QuestionImage": "/images/treble_059_B3.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "c",
-			"QuestionImage": "/images/treble_060_C4.png",
-			"Tags": [
-                "treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "d",
-			"QuestionImage": "/images/treble_062_D4.png",
-			"Tags": [
-                "treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "e",
-			"QuestionImage": "/images/treble_064_E4.png",
-			"Tags": [
-                "treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "f",
-			"QuestionImage": "/images/treble_065_F4.png",
-			"Tags": [
-                "treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "g",
-			"QuestionImage": "/images/treble_067_G4.png",
-			"Tags": [
-                "treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "a",
-			"QuestionImage": "/images/treble_069_A4.png",
-			"Tags": [
-                "treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "b",
-			"QuestionImage": "/images/treble_071_B4.png",
-			"Tags": [
-                "treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "c",
-			"QuestionImage": "/images/treble_072_C5.png",
-			"Tags": [
-                "treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "d",
-			"QuestionImage": "/images/treble_074_D5.png",
-			"Tags": [
-                "treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "e",
-			"QuestionImage": "/images/treble_076_E5.png",
-			"Tags": [
-                "treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "f",
-			"QuestionImage": "/images/treble_077_F5.png",
-			"Tags": [
-                "treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "g",
-			"QuestionImage": "/images/treble_079_G5.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "a",
-			"QuestionImage": "/images/treble_081_A5.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "b",
-			"QuestionImage": "/images/treble_083_B5.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "c",
-			"QuestionImage": "/images/treble_084_C6.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "d",
-			"QuestionImage": "/images/treble_086_D6.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "e",
-			"QuestionImage": "/images/treble_088_E6.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "f",
-			"QuestionImage": "/images/treble_089_F6.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "g",
-			"QuestionImage": "/images/treble_091_G6.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "a",
-			"QuestionImage": "/images/treble_093_A6.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "b",
-			"QuestionImage": "/images/treble_095_B6.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		},
-		{
-			"Answer": "c",
-			"QuestionImage": "/images/treble_096_C7.png",
-			"Tags": [
-                "outer-treble"
-			],
-			"Type": "notes"
-		}
-	]
+  "Cards": [
+    {
+      "Answer": "c",
+      "QuestionImage": "/images/bass_024_C1.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "d",
+      "QuestionImage": "/images/bass_026_D1.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "e",
+      "QuestionImage": "/images/bass_028_E1.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "f",
+      "QuestionImage": "/images/bass_029_F1.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "g",
+      "QuestionImage": "/images/bass_031_G1.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "a",
+      "QuestionImage": "/images/bass_033_A1.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "b",
+      "QuestionImage": "/images/bass_035_B1.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "c",
+      "QuestionImage": "/images/bass_036_C2.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "d",
+      "QuestionImage": "/images/bass_038_D2.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "e",
+      "QuestionImage": "/images/bass_040_E2.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "f",
+      "QuestionImage": "/images/bass_041_F2.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "g",
+      "QuestionImage": "/images/bass_043_G2.png",
+      "Tags": ["bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "a",
+      "QuestionImage": "/images/bass_045_A2.png",
+      "Tags": ["bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "b",
+      "QuestionImage": "/images/bass_047_B2.png",
+      "Tags": ["bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "c",
+      "QuestionImage": "/images/bass_048_C3.png",
+      "Tags": ["bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "d",
+      "QuestionImage": "/images/bass_050_D3.png",
+      "Tags": ["bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "e",
+      "QuestionImage": "/images/bass_052_E3.png",
+      "Tags": ["bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "f",
+      "QuestionImage": "/images/bass_053_F3.png",
+      "Tags": ["bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "g",
+      "QuestionImage": "/images/bass_055_G3.png",
+      "Tags": ["bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "a",
+      "QuestionImage": "/images/bass_057_A3.png",
+      "Tags": ["bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "b",
+      "QuestionImage": "/images/bass_059_B3.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "c",
+      "QuestionImage": "/images/bass_060_C4.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "d",
+      "QuestionImage": "/images/bass_062_D4.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "e",
+      "QuestionImage": "/images/bass_064_E4.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "f",
+      "QuestionImage": "/images/bass_065_F4.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "g",
+      "QuestionImage": "/images/bass_067_G4.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "a",
+      "QuestionImage": "/images/bass_069_A4.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "b",
+      "QuestionImage": "/images/bass_071_B4.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "c",
+      "QuestionImage": "/images/bass_072_C5.png",
+      "Tags": ["outer-bass"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "b",
+      "QuestionImage": "/images/treble_047_B2.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "c",
+      "QuestionImage": "/images/treble_048_C3.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "d",
+      "QuestionImage": "/images/treble_050_D3.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "e",
+      "QuestionImage": "/images/treble_052_E3.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "f",
+      "QuestionImage": "/images/treble_053_F3.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "g",
+      "QuestionImage": "/images/treble_055_G3.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "a",
+      "QuestionImage": "/images/treble_057_A3.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "b",
+      "QuestionImage": "/images/treble_059_B3.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "c",
+      "QuestionImage": "/images/treble_060_C4.png",
+      "Tags": ["treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "d",
+      "QuestionImage": "/images/treble_062_D4.png",
+      "Tags": ["treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "e",
+      "QuestionImage": "/images/treble_064_E4.png",
+      "Tags": ["treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "f",
+      "QuestionImage": "/images/treble_065_F4.png",
+      "Tags": ["treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "g",
+      "QuestionImage": "/images/treble_067_G4.png",
+      "Tags": ["treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "a",
+      "QuestionImage": "/images/treble_069_A4.png",
+      "Tags": ["treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "b",
+      "QuestionImage": "/images/treble_071_B4.png",
+      "Tags": ["treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "c",
+      "QuestionImage": "/images/treble_072_C5.png",
+      "Tags": ["treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "d",
+      "QuestionImage": "/images/treble_074_D5.png",
+      "Tags": ["treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "e",
+      "QuestionImage": "/images/treble_076_E5.png",
+      "Tags": ["treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "f",
+      "QuestionImage": "/images/treble_077_F5.png",
+      "Tags": ["treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "g",
+      "QuestionImage": "/images/treble_079_G5.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "a",
+      "QuestionImage": "/images/treble_081_A5.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "b",
+      "QuestionImage": "/images/treble_083_B5.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "c",
+      "QuestionImage": "/images/treble_084_C6.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "d",
+      "QuestionImage": "/images/treble_086_D6.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "e",
+      "QuestionImage": "/images/treble_088_E6.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "f",
+      "QuestionImage": "/images/treble_089_F6.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "g",
+      "QuestionImage": "/images/treble_091_G6.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "a",
+      "QuestionImage": "/images/treble_093_A6.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "b",
+      "QuestionImage": "/images/treble_095_B6.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    },
+    {
+      "Answer": "c",
+      "QuestionImage": "/images/treble_096_C7.png",
+      "Tags": ["outer-treble"],
+      "Type": "notes"
+    }
+  ]
 }
