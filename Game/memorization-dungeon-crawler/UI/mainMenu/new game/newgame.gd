@@ -1,12 +1,9 @@
 extends Control
 const SaveHandler = preload("uid://bgwdh30vglopu")
 
-@onready var name_box: LineEdit = $CanvasLayer/ColorRect/nameBox
+@onready var name_box: LineEdit = %nameBox
 @onready var template_box: ItemList = %templateBox
-
 @onready var message_box: MessageBox = %MessageBox
-
-
 @onready var custom_template: LineEdit = %customTemplate
 @onready var copy_game_to_appdata: CheckBox = %copyGameToAppdata
 @onready var open_app_data: Button = %openAppData
