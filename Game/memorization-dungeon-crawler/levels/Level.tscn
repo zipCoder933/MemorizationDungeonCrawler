@@ -23,7 +23,7 @@ background_mode = 2
 background_energy_multiplier = 0.3
 sky = SubResource("Sky_ghmtr")
 
-[node name="Level" type="Node3D"]
+[node name="Level" type="Node3D" groups=["level"]]
 script = ExtResource("1_aevpi")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]

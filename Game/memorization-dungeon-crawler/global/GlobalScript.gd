@@ -12,19 +12,12 @@ signal signal_victory
 static var SAVE_FILE
 static var CUSTOM_GAMES_DIR
 
-enum GameMode{
-NORMAL, VICTORY, GAME_OVER	
-}
-var game_mode:GameMode = GameMode.NORMAL
-
 func _ready():
 	print("Global loaded!")
-	game_mode = GameMode.NORMAL
 	SAVE_FILE = ProjectSettings.globalize_path("user://save.json")
 	CUSTOM_GAMES_DIR = ProjectSettings.globalize_path("user://data")
 	var da := DirAccess.open("user://")
 	da.make_dir_recursive(CUSTOM_GAMES_DIR)
-
 	
 	print("SAVE FILE: ", SAVE_FILE)
 	#Write the new file if not exist
@@ -35,16 +28,21 @@ func _ready():
 		file.close()
 		print("✨ Created empty JSON file at:", ProjectSettings.globalize_path(SAVE_FILE))
 
+#Called by the level node
+func _on_level_loaded():
+	print("Globals ready for new level!")
+	clear_flashcard()
+
 func game_over_event():
-	if(game_mode != GameMode.GAME_OVER):
-		game_mode = GameMode.GAME_OVER
+	if(get_level().game_mode != LevelData.GameMode.GAME_OVER):
+		get_level().game_mode = LevelData.GameMode.GAME_OVER
 		signal_game_over.emit()
 		questions.clear()
 		clear_flashcard()
 
 func victory_event():
-	if(game_mode != GameMode.VICTORY):
-		game_mode = GameMode.VICTORY
+	if(get_level().game_mode != LevelData.GameMode.VICTORY):
+		get_level().game_mode = LevelData.GameMode.VICTORY
 		signal_victory.emit()
 		SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level+1, 0, LevelsHandler.levels.size()-1)
 		SaveHandler.save_to_file(Globals.SAVE_FILE)
@@ -238,6 +236,12 @@ func boss_defeated_event(enemy:GoblinTrigger, results:FlashcardDrillResults):
 
 func get_player() -> Player:
 	var list = get_tree().get_nodes_in_group("player")
+	if list.size() > 0:
+		return list[0]
+	return null
+
+func get_level() -> LevelData:
+	var list = get_tree().get_nodes_in_group("level")
 	if list.size() > 0:
 		return list[0]
 	return null
