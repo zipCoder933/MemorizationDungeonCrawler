@@ -4,7 +4,6 @@ class_name MainMenu
 @onready var start_button: Button = $CanvasLayer/ColorRect/Buttons/StartButton
 @onready var delete_confirm: Panel = %DeleteConfirm
 @onready var v_box_container: VBoxContainer = %VBoxContainer
-@onready var version: Label = $CanvasLayer/version
 @onready var menu_message_box: MessageBox = $CanvasLayer/MessageBox
 @onready var loading: Panel = %Loading
 
@@ -57,7 +56,6 @@ func reload():
 
 func _ready():
 	loading.visible=false
-	version.text = " v"+ProjectSettings.get_setting("application/config/version")
 	SaveHandler.load_from_file(Globals.SAVE_FILE)
 	for entry in SaveHandler.saves:
 		var node = GAME_ENTRY.instantiate()

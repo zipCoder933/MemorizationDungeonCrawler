@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://laf057gsoqjg"]
+[gd_scene load_steps=4 format=3 uid="uid://laf057gsoqjg"]
 
 [ext_resource type="Texture2D" uid="uid://cc3nxvtm6vx7j" path="res://assets/background10.png" id="1_abkjh"]
+[ext_resource type="Script" uid="uid://do1fgwffaqsp7" path="res://UI/mainMenu/backdrop.gd" id="1_ahd0u"]
+[ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="3_ts40u"]
 
 [node name="Backdrop" type="Node"]
+script = ExtResource("1_ahd0u")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -23,3 +26,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.08, 0.08, 0.08, 0.16470589)
+
+[node name="version" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+offset_right = 159.0
+grow_vertical = 0
+theme = ExtResource("3_ts40u")
+theme_override_font_sizes/font_size = 14
+text = "V1.0.0"
