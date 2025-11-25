@@ -32,7 +32,6 @@ bg_color = Color(1, 0.28764555, 0.22208649, 1)
 bg_color = Color(0, 0, 0, 1)
 
 [node name="PlayerHUD" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +42,6 @@ theme = ExtResource("5_f2wx0")
 script = ExtResource("1_ijstf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="keys_hud" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true

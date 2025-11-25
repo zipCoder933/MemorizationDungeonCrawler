@@ -10,7 +10,10 @@ config_version=5
 
 [application]
 
-config/name="MemorizationDungeonCrawler"
+config/name="Cogni Crawl"
+config/name_localized={
+"en": "Cogni Crawl"
+}
 config/description="A Flashcard Memorization Dungeon Crawler"
 config/version="1.0.0"
 run/main_scene="uid://cpl08t4hcotn"
