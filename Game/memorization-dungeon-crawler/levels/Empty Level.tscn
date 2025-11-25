@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://b814qo7tsdd6q"]
+[gd_scene load_steps=14 format=3 uid="uid://b814qo7tsdd6q"]
 
-[ext_resource type="Script" uid="uid://qnek84emx4ad" path="res://levels/empty_level.gd" id="1_xvfop"]
+[ext_resource type="Script" uid="uid://btmeorhdo0pat" path="res://levels/level.gd" id="1_pjl06"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_6awyk"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_gwgf1"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_36vw8"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bvoe5plbouam2" path="res://levels/universal/floor/floor.tscn" id="6_6awyk"]
 [ext_resource type="PackedScene" uid="uid://bpunwt6bwc3bm" path="res://levels/dungeons/medeval/environment/9/wall9.tscn" id="7_io462"]
 [ext_resource type="PackedScene" uid="uid://bdnosseu7fsm" path="res://levels/dungeons/medeval/environment/9/door9.tscn" id="8_io462"]
-[ext_resource type="PackedScene" uid="uid://bqoufhp54uwue" path="res://levels/dungeons/medeval/enemies/goblin.tscn" id="9_36vw8"]
 [ext_resource type="PackedScene" uid="uid://bobtcptejmn2a" path="res://levels/dungeons/medeval/enemies/orc_boss.tscn" id="10_xvfop"]
 [ext_resource type="PackedScene" uid="uid://c4iomrx46ssjc" path="res://levels/universal/potion/potion.tscn" id="11_asn8m"]
 [ext_resource type="PackedScene" uid="uid://cima58l8yrht0" path="res://levels/universal/key/key.tscn" id="12_0grop"]
@@ -17,8 +16,9 @@
 [sub_resource type="Resource" id="Resource_pjl06"]
 script = ExtResource("3_gwgf1")
 
-[node name="Level" type="Node3D"]
-script = ExtResource("1_xvfop")
+[node name="EmptyLevel" type="Node3D" groups=["level"]]
+script = ExtResource("1_pjl06")
+auto_load_game = true
 
 [node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.973, 4)
@@ -251,12 +251,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.614819, 0, 44.474987)
 [node name="Door" parent="." instance=ExtResource("8_io462")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.969955, -0.06306267, 9.081865)
 
-[node name="goblin" parent="." instance=ExtResource("9_36vw8")]
-transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, -19.07626)
-
-[node name="orc_boss" parent="." instance=ExtResource("10_xvfop")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.347, 0, 21.797)
-
 [node name="potion" parent="." instance=ExtResource("11_asn8m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2377577, 2.6058052, 0.17240429)
 
@@ -364,3 +358,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.151375, 0.23181367, 5.938
 
 [node name="Door7" parent="." instance=ExtResource("13_gwgf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.948475, 0.23181367, -8.287373)
+
+[node name="Boss" parent="." instance=ExtResource("10_xvfop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.236335, -0.7387438, 23.505735)

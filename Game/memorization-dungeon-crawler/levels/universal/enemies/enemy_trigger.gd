@@ -41,10 +41,9 @@ func _ready():
 	_animation_player.animation_started.connect(_animation_started)
 	_animation_player.animation_changed.connect(_animation_changed)
 	
-	if(take_hit_animation != null):
-		var anim = _animation_player.get_animation(take_hit_animation)
-		if(anim != null):
-			anim.loop_mode = Animation.LOOP_NONE
+	#if(take_hit_animation != null):
+		#var anim = _animation_player.get_animation(take_hit_animation)
+		#print("take hit animation loop mode: ", anim.loop_mode)
 
 func _animation_started(anim_name: StringName):
 	#print("Started animation: ", anim_name)
@@ -58,13 +57,17 @@ func _animation_finished(animName:StringName):
 	if animName == death_animation:
 		death_animation_finished = true
 	#print("Finished animation: ",animName)
-	pass
+	if !isDead and animName != idle_animation:
+		_animation_player.play(idle_animation,0.4)
 
 func _single_drill(success):
 	if(success):
 		player.change_health(success_health_add)
 		if(!isDead && take_hit_animation != null):
-			_animation_player.play(take_hit_animation,0.2,take_hit_animation_speed)
+			#print("take hit ANIMATION STARTED BY PLAYER")
+			#_animation_player.stop()
+			_animation_player.play(take_hit_animation,0.2,take_hit_animation_speed,false)
+			_animation_player.seek(0, true)
 	else:
 		player.change_health(fail_health_add)
 
@@ -112,7 +115,10 @@ func _process(delta):
 				root_node.queue_free()
 	else:  #If not dead
 		if(is_boss):
-			if(Globals.get_player().keys < Globals.totalArenas and !Engine.is_embedded_in_editor()):
+			if Engine.is_embedded_in_editor():
+				enemy_model.visible=true
+				collision_shape_3d.disabled=false
+			elif(Globals.get_player().keys < Globals.totalArenas):
 				enemy_model.visible=false
 				collision_shape_3d.disabled = true
 			else:

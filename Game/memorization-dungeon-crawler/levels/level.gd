@@ -7,8 +7,12 @@ enum GameMode{
 NORMAL, VICTORY, GAME_OVER	
 }
 var game_mode:GameMode = GameMode.NORMAL
+@export var auto_load_game = false
 
 func _ready():
+	if auto_load_game and Engine.is_editor_hint(): #For testing purposes
+		SaveHandler.load_from_file(Globals.SAVE_FILE)
+		Globals.start_game(SaveHandler.saves[0], false)
 	print("Level ready!")
 	game_mode = GameMode.NORMAL
 	Globals._on_level_loaded()
