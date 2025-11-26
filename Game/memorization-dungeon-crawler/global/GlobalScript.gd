@@ -13,6 +13,7 @@ static var SAVE_FILE
 static var CUSTOM_GAMES_DIR
 
 func _ready():
+	
 	print("Global loaded!")
 	SAVE_FILE = ProjectSettings.globalize_path("user://save.json")
 	CUSTOM_GAMES_DIR = ProjectSettings.globalize_path("user://data")

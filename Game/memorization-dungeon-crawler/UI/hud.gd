@@ -21,7 +21,7 @@ var fade_speed = 0.8
 
 func panelsVisible():
 	return game_over_panel.visible or victory_panel.visible\
-	 or menu_panel.visible
+		or menu_panel.visible
 
 var current_question:Question
 var bossfight_accuracy = 0
@@ -32,7 +32,7 @@ var animation_accuracy = 0
 
 
 func _key_obtained(keys:int):
-	keys_info.text = "KEYS: "+str(keys)+" / "+str(Globals.totalArenas) 
+	keys_info.text = "KEYS: "+str(keys)+" / "+str(Globals.totalArenas)
 	var key_texture = load("res://assets/textures/key2.png")
 	for i in keys:
 		if(key_nodes.size() > i):
@@ -49,10 +49,10 @@ func _global_adventure_mode():
 var key_nodes = []
 
 func _ready():
+	fps.visible = false
 	key.visible=false
 	key_container.visible=false
 
-	
 	player.signal_key_obtained.connect(_key_obtained)
 	bossfight_stats.visible=false
 	game_over_panel.visible=false
@@ -70,10 +70,10 @@ func _ready():
 	if(SaveHandler.currentLevel != null and  SaveHandler.currentGame !=null):
 		if(SaveHandler.currentLevel.levelType == Level.LevelType.BOSS):
 			level_indicator.text = "LEVEL " +\
-			 str(SaveHandler.currentGame.completed_level+1) +" / "+\
-			 str(SaveHandler.currentGame.total_levels) +": "+\
+				str(SaveHandler.currentGame.completed_level+1) +" / "+\
+				str(SaveHandler.currentGame.total_levels) +": "+\
 			SaveHandler.currentLevel.boss_name + " ("+SaveHandler.currentLevel.level_name+")\n"+\
-						"All keys must be obtained before conquering the boss!"
+				"All keys must be obtained before conquering the boss!"
 		else:
 			level_indicator.text = "LEVEL " +\
 				str(SaveHandler.currentGame.completed_level+1) +" / "+\
@@ -94,8 +94,11 @@ func _ready():
 
 func _input(event):
 	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_ESCAPE:
-			menu_panel.visible = !menu_panel.visible
+		if event.pressed:
+			if event.keycode == KEY_ESCAPE:
+				menu_panel.visible = !menu_panel.visible
+		elif event.keycode == KEY_CTRL:
+				fps.visible = !fps.visible
 
 func _process(delta):
 	if(menu_panel.visible):#We cant have menu open if we are already in another menu
@@ -114,7 +117,7 @@ func _process(delta):
 			clone.visible=true
 			key_nodes.append(clone)
 			key_container.add_child(clone)
-		keys_info.text = "KEYS: "+str(player.keys)+" / "+str(Globals.totalArenas) 
+		keys_info.text = "KEYS: "+str(player.keys)+" / "+str(Globals.totalArenas)
 		
 	card_ui.visible = Globals.has_flashcard()
 	
