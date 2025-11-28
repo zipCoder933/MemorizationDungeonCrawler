@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://5y762rk4c3mt"]
+
+[ext_resource type="Texture2D" uid="uid://kp2d542s0bnn" path="res://levels/dungeons/medeval/assets/variants/wall/5/texture.jpg" id="1_i3qpj"]
+[ext_resource type="Texture2D" uid="uid://bkav5n3w33qpi" path="res://levels/dungeons/medeval/assets/variants/wall/5/normal.jpg" id="2_e52ce"]
+
+[resource]
+albedo_texture = ExtResource("1_i3qpj")
+normal_enabled = true
+normal_texture = ExtResource("2_e52ce")
+uv1_scale = Vector3(2.955, 2.955, 2.955)

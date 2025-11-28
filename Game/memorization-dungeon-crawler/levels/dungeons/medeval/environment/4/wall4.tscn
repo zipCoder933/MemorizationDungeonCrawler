@@ -1,6 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://kyolc7snufaa"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_v1tk0"]
+[ext_resource type="Material" uid="uid://5y762rk4c3mt" path="res://levels/dungeons/medeval/environment/wall4.tres" id="2_nlrdq"]
 [ext_resource type="Texture2D" uid="uid://kp2d542s0bnn" path="res://levels/dungeons/medeval/assets/variants/wall/5/texture.jpg" id="2_v1tk0"]
 [ext_resource type="Texture2D" uid="uid://bkav5n3w33qpi" path="res://levels/dungeons/medeval/assets/variants/wall/5/normal.jpg" id="3_5sar5"]
 [ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://levels/dungeons/medeval/assets/pillar/pillar.glb" id="3_h5g5c"]
@@ -9,12 +10,6 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1.315918, 5, 5.640503)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qgi6"]
-albedo_texture = ExtResource("2_v1tk0")
-normal_enabled = true
-normal_texture = ExtResource("3_5sar5")
-uv1_scale = Vector3(2.955, 2.955, 2.955)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5vrq6"]
 size = Vector3(1, 5, 5)
@@ -45,7 +40,7 @@ shape = SubResource("BoxShape3D_xfbw5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-material_override = SubResource("StandardMaterial3D_2qgi6")
+material_override = ExtResource("2_nlrdq")
 mesh = SubResource("BoxMesh_5vrq6")
 
 [node name="pillar" parent="." instance=ExtResource("3_h5g5c")]

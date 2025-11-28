@@ -11,6 +11,7 @@ var game_mode:GameMode = GameMode.NORMAL
 
 func _ready():
 	if auto_load_game and Engine.is_editor_hint(): #For testing purposes
+		print("Loaded save 0")
 		SaveHandler.load_from_file(Globals.SAVE_FILE)
 		Globals.start_game(SaveHandler.saves[0], false)
 	print("Level ready!")

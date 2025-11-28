@@ -347,7 +347,7 @@ func _material(prefix: String) -> StandardMaterial3D:
 	mat.albedo_texture = load_tex(prefix + "/texture")
 	mat.normal_texture = load_tex(prefix + "/normal")
 	mat.texture_repeat = true
-	mat.uv1_scale = Vector3(40, 40, 1)
+	mat.uv1_scale = Vector3(45, 45, 1)
 	return mat
 
 
