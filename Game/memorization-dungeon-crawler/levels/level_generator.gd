@@ -424,6 +424,8 @@ func set_dungeon_theme(level:Level, game:SaveEntry):
 			floor_choice=0
 		WALL = wall_choices[wall_choice]
 		DOOR = door_choices[wall_choice]
+		print("Ceiling: ",ceiling_choice)
+		print("Floor: ",floor_choice)
 		FloorCeiling.ceiling_material = _material(ceiling_prefix + cdirs[ceiling_choice])
 		FloorCeiling.floor_material = _material(floor_prefix + fdirs[floor_choice])
 

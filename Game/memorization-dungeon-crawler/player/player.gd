@@ -187,8 +187,9 @@ func get_normalized_mouse() -> Vector2:
 
 const TURN_SPEED = 4;
 const FLASHCARD_MAX_TURN_SPEED = 4
-const FLASHCARD_MIN_TURN_SPEED = 0.1
+const FLASHCARD_MIN_TURN_SPEED = 0.4
 const MOUSE_SENSITIVITY = 0.06
+const CAMERA_FLASHCARD_MOVE_DEG = 20.0
 
 func _process(delta:float):
 	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):
@@ -203,7 +204,7 @@ func _process(delta:float):
 		var dir_to_target = (flash_card.global_position - global_position).normalized()
 		var target_angle = atan2(dir_to_target.x, dir_to_target.z) + PI  # Y-rotation
 		var angle_diff = wrapf(target_angle - camRotation.y, -PI, PI)
-		var threshold = deg_to_rad(30) #We can be X degrees to the left or right without being bothered
+		var threshold = deg_to_rad(CAMERA_FLASHCARD_MOVE_DEG) #We can be X degrees to the left or right without being bothered
 		#Move the camera towards the flashcard if we are pointing the wrong direction
 		if abs(angle_diff) > threshold:
 			var desired_angle = camRotation.y + (angle_diff - sign(angle_diff) * threshold)
