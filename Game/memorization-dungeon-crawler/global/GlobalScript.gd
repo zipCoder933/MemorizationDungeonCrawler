@@ -82,15 +82,45 @@ func get_base36_time() -> String:
 	var ms: int = Time.get_ticks_msec()
 	return String.num_int64(ms, 36)
 
-func copy_game(origin:String, target:String):
-	if _copy_file(origin+"/cards.json", target+"/cards.json"):
-		if _copy_file(origin+"/level.json", target+"/level.json"):
-			return true
-		else:
-			return false
-	else:
+func copy_game(origin:String, target:String, feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
+	DirAccess.make_dir_recursive_absolute(target)
+
+	# --- 1. Copy VIP files first ---
+	if not _copy_file(origin + "/cards.json", target + "/cards.json"):
 		return false
-	
+	if not _copy_file(origin + "/level.json", target + "/level.json"):
+		return false
+
+	# --- 2. Copy all other files in immediate directory ---
+	var dir := DirAccess.open(origin)
+	if dir == null:
+		feedback.write("Can't open origin folder: " + origin)
+		return false
+
+	dir.list_dir_begin()
+	var file := dir.get_next()
+
+	while file != "":
+		if file in [".", "..", "cards.json", "level.json"]:
+			file = dir.get_next()
+			continue
+
+		var full_path := origin + "/" + file
+
+		if dir.current_is_dir():
+			# Folders get skipped — warn just once per folder!
+			feedback.write("Warning: Subfolder copying is not supported. Folder '" + file + "' will NOT be copied.")
+		else:
+			# Files get copied
+			var dst := target + "/" + file
+			if not _copy_file(full_path, dst):
+				feedback.write("Failed copying: " + full_path)
+				return false
+
+		file = dir.get_next()
+
+	dir.list_dir_end()
+	return true
 
 func load_game_data(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
 	if !DirAccess.dir_exists_absolute(dir_path):
