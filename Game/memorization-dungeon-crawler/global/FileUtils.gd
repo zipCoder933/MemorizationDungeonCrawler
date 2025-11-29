@@ -121,7 +121,7 @@ static func copy_recursive(from_dir: String, to_dir: String,\
 		if src.current_is_dir():
 			# Tunnel deeper like a hyperactive gopher
 			if max_steps == 0 or steps < max_steps:
-				copy_recursive(full_src, full_dst, feedback, max_steps,steps)
+				copy_recursive(full_src, full_dst, feedback, max_steps,steps+1)
 			elif steps >= max_steps:
 				feedback.write("Cannot copy folder with more than "+str(max_steps)+" subdirectories!")
 				return false
