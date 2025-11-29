@@ -1,6 +1,6 @@
 {
-  "starting_answer_speed_sec": 5,
-  "goal_answer_speed_sec": 0.4,
+  "starting_answer_speed_sec": 7,
+  "goal_answer_speed_sec": 0.31,
   "name": "Treble and Base",
   "dungeons": [
 	{
@@ -22,22 +22,17 @@
 	  "themed_drill_levels": [
 		{
 		  "tags": ["bass"],
-		  "count": 3
+		  "count": 6
 		}
 	  ],
-	  "complete_drill_levels": 6
+	  "complete_drill_levels": 0
 	},
 	{
 	  "name": "Treble and Bass Dungeon",
 	  "theme": "Antarctic",
 	  "boss_name": "Frozen Solid",
-	  "themed_drill_levels": [
-		{
-		  "tags": ["treble", "bass"],
-		  "count": 3
-		}
-	  ],
-	  "complete_drill_levels": 3
+	  "themed_drill_levels": [],
+	  "complete_drill_levels": 6
 	},
 	{
 	  "name": "Outer treble Dungeon",

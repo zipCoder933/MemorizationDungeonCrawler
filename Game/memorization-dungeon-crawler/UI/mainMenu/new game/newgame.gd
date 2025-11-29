@@ -69,29 +69,30 @@ func _on_start_button_pressed() -> void:
 		message_box.show_message("Name is empty","You must enter a name for your game")
 		return
 	
-	print("NAME: ",name_box.text," TEMPLATE: ",template_dir)
-	
-	var seed = randi_range(-12233720365808,12233720368807)
-	print("seed: ",seed)
-	var save1 = SaveEntry.new(name_box.text, seed, template_dir, 0)
-	SaveHandler.saves.append(save1)
-	SaveHandler.save_to_file(Globals.SAVE_FILE)
-	
 	if load_game(template_dir):
 		if DirAccess.dir_exists_absolute(template_dir):
 			#If this is a custom game, Copy the game into a new folder in our appData directory
 			var dest_dir = Globals.CUSTOM_GAMES_DIR+"/"+name_box.text+" "+\
 							Globals.get_base36_time()
 			if(copy_game_to_appdata.button_pressed):
-				if Globals.copy_game(template_dir, dest_dir):
+				if FileUtils.copy_game(template_dir, dest_dir):
 					template_dir = dest_dir
 					print("Made game in directory: ",template_dir)
 					if(load_game(dest_dir)):
-						_go_home()
+						_make_game(template_dir)
 			else:
-				_go_home()
+				_make_game(template_dir)
 		else:
-			_go_home()
+			#If this is not a custom game
+			_make_game(template_dir)
+
+func _make_game(template_dir:String):
+	print("NAME: ",name_box.text," DIR: ",template_dir)
+	var seed = randi_range(-12233720365808,12233720368807)
+	var save1 = SaveEntry.new(name_box.text, seed, template_dir, 0)
+	SaveHandler.saves.append(save1)
+	SaveHandler.save_to_file(Globals.SAVE_FILE)
+	_go_home()
 
 func load_game(template_dir:String):
 	var feedback = GameJsonLoadInfo.new()

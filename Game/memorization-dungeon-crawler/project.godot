@@ -34,6 +34,7 @@ LevelsHandler="*res://global/levels/LevelsHandlerNode.tscn"
 SaveHandlerGlobal="*res://global/saves/SaveHandlerNode.tscn"
 CardsHandlerGlobal="*res://global/cards/CardsHandlerNode.tscn"
 DisplayBoot="*res://global/DisplayBoot.tscn"
+FileUtilsNode="*res://global/FileUtilsNode.tscn"
 
 [display]
 

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyqc1bp4kshuy"]
+
+[ext_resource type="Script" uid="uid://dxfogst3ambl1" path="res://global/FileUtils.gd" id="1_vhbql"]
+
+[node name="FileUtilsNode" type="Node"]
+script = ExtResource("1_vhbql")
