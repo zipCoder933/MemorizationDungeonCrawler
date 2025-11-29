@@ -57,8 +57,11 @@ func _animation_finished(animName:StringName):
 	if animName == death_animation:
 		death_animation_finished = true
 	#print("Finished animation: ",animName)
-	if !isDead and animName != idle_animation:
-		_animation_player.play(idle_animation,0.4)
+	if !isDead and (animName != idle_animation or animName != fight_idle_animation):
+		if(fighting and fight_idle_animation != null):
+			_animation_player.play(fight_idle_animation,0.4,idle_animation_speed)
+		else:
+			_animation_player.play(idle_animation,0.4,idle_animation_speed)
 
 func _single_drill(success):
 	if(success):
