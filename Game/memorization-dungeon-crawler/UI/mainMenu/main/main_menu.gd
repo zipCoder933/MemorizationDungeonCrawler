@@ -17,19 +17,11 @@ func confirm_deletion(_delete_entry:SaveEntry):
 func _on_delete_no_pressed() -> void:
 	delete_entry = null
 
-func _is_inside(base_path: String, target_path: String) -> bool:
-	base_path = base_path.simplify_path()
-	target_path = target_path.simplify_path()
-	return target_path.begins_with(base_path)
+
 
 func _on_delete_yes_pressed() -> void:
 	if(delete_entry!=null):
-		if(_is_inside(Globals.CUSTOM_GAMES_DIR, delete_entry.path)):
-			print("Deleting app-data dir: ",delete_entry.path)
-			DirAccess.remove_absolute(delete_entry.path+"/cards.json")
-			DirAccess.remove_absolute(delete_entry.path+"/level.json")
-			DirAccess.remove_absolute(delete_entry.path)
-		
+		FileUtils.delete_game(delete_entry)
 		SaveHandler.saves.erase(delete_entry)
 		SaveHandler.save_to_file(Globals.SAVE_FILE)
 	reload()

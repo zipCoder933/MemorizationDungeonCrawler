@@ -82,7 +82,7 @@ static func get_random_cards(card_tags:Array[String], quantity: int, unique_fact
 
 
 
-static func load_from_file(jsonFile, results:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
+static func load_from_file(jsonFile, results:GameJsonLoadInfo = GameJsonLoadInfo.new(), verbose:bool = false) -> bool:
 	print("Loading cards from ",jsonFile)
 	#reset everything first
 	tag_dict={}
@@ -126,11 +126,11 @@ static func load_from_file(jsonFile, results:GameJsonLoadInfo = GameJsonLoadInfo
 						tag_dict[tag] = []
 					tag_dict[tag].append(card)
 
-			# 🎉 Example: print all cards grouped by tag
-			for tag in tag_dict.keys():
-				print("Tag:", tag)
-				for card in tag_dict[tag]:
-					print("   ", card.toString())
+			if(verbose): # 🎉 Example: print all cards grouped by tag
+				for tag in tag_dict.keys():
+					print("Tag:", tag)
+					for card in tag_dict[tag]:
+						print("   ", card.toString())
 			return true
 		else:
 			results.write("JSON parsing failed!")
@@ -169,10 +169,10 @@ static func find_best_image_path(base_dir:String, base_path: String) -> String:
 
 	# --- Try both paths in order ---
 	for path in possible_paths:
-		print("Testing ",path)
+		#print("Testing ",path)
 		var tex: Texture2D = load(path)
 		if tex != null:
-			print("Image Path: ",path)
+			#print("Image Path: ",path)
 			return path  # success! use this one
 
 	# --- If nothing worked ---

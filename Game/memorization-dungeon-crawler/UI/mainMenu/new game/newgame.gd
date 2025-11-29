@@ -72,14 +72,17 @@ func _on_start_button_pressed() -> void:
 	if load_game(template_dir):
 		if DirAccess.dir_exists_absolute(template_dir):
 			#If this is a custom game, Copy the game into a new folder in our appData directory
-			var dest_dir = Globals.CUSTOM_GAMES_DIR+"/"+name_box.text+" "+\
-							Globals.get_base36_time()
+			var dest_dir = Globals.CUSTOM_GAMES_DIR+"/"+name_box.text+" "+Globals.get_base36_time()
 			if(copy_game_to_appdata.button_pressed):
-				if FileUtils.copy_game(template_dir, dest_dir):
+				var feedback = GameJsonLoadInfo.new()
+				if FileUtils.copy_game(template_dir, dest_dir, feedback):
 					template_dir = dest_dir
 					print("Made game in directory: ",template_dir)
 					if(load_game(dest_dir)):
 						_make_game(template_dir)
+				else:
+					message_box.show_message("Unable to copy to AppData",feedback.message)
+					return
 			else:
 				_make_game(template_dir)
 		else:

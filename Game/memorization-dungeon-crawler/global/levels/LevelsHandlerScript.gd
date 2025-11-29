@@ -13,7 +13,7 @@ func _ready():
 	#load_levels("res://data/games/multiplication/level.json")  # path to your JSON file
 	#print("Loaded %d levels" % levels.size())
 
-static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
+static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJsonLoadInfo.new(), verbose:bool = false) -> bool:
 	# Reset globals safely
 	levels = []
 	start_speed = 0
@@ -90,7 +90,8 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			results.write("Dungeon %d is not a dictionary." % dungIndx)
 			return false
 
-		print("\n--- Dungeon #%d ---" % dungIndx)
+		if(verbose):
+			print("\n--- Dungeon #%d ---" % dungIndx)
 
 		# ---------------------------
 		# THEMATIC DRILL LEVELS
@@ -148,7 +149,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 					speed,
 					levelTags,
 					levelTags,
-					Level.LevelType.STANDARD
+					Level.LevelType.STANDARD, verbose
 				))
 
 			themed_tags.append_array(levelTags)
@@ -177,7 +178,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 				speed,
 				themed_tags,
 				learnedTags,
-				Level.LevelType.STANDARD
+				Level.LevelType.STANDARD, verbose
 			))
 
 		# ---------------------------
@@ -189,7 +190,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			complete_goal,
 			themed_tags,
 			learnedTags,
-			Level.LevelType.BOSS
+			Level.LevelType.BOSS, verbose
 		))
 
 	return true
@@ -197,7 +198,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 
 
 static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, themed_tags:Array[String],\
-					card_tags:Array[String], levelType: Level.LevelType) -> Level:
+					card_tags:Array[String], levelType: Level.LevelType, verbose:bool) -> Level:
 	#var typed_cards: Array[String] = []
 	#for c in card_tags:
 		#typed_cards.append(str(c))  # ensure every element is a string
@@ -213,5 +214,6 @@ static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, th
 		themed_tags.duplicate(),
 		card_tags.duplicate()
 	)
-	print(level.toString())
+	if(verbose):
+		print(level.toString())
 	return level
