@@ -2,6 +2,7 @@ extends Node
 class_name FileUtils
 
 static var valid_game_extensions:Array[String] = ["png","jpg","gif","json"]
+static var GAME_MAX_SUBDIRS = 2
 
 static func _copy_file(src: String, dst: String) -> bool:
 	# Read source
@@ -161,7 +162,7 @@ static func delete_game(delete_entry: SaveEntry) -> void:
 	var err := DirAccess.remove_absolute(canon_target)
 	if err != OK:
 		print("Directory wasn’t empty… sending in cleanup squad.")
-		delete_recursive(canon_target, 2)
+		delete_recursive(canon_target, GAME_MAX_SUBDIRS)
 
 
 
@@ -176,7 +177,7 @@ static func copy_game(origin:String, target:String, feedback:GameJsonLoadInfo = 
 	if(has_valid_extensions):
 		if FileAccess.file_exists(origin+"/cards.json") and FileAccess.file_exists(origin+"/level.json"):
 			var copy_feedback = GameJsonLoadInfo.new()
-			if copy_recursive(origin,target,copy_feedback,2):
+			if copy_recursive(origin,target,copy_feedback,GAME_MAX_SUBDIRS):
 				return true
 			else:
 				feedback.write("Failed to copy directory")
