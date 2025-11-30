@@ -33,7 +33,7 @@ static func _copy_file(src: String, dst: String) -> bool:
 	file.store_buffer(data)
 	return true
 
-static func get_extensions_recursive(path: String) -> Array:
+static func get_extensions_recursive(path: String, feedback:GameJsonLoadInfo, max_steps:int, steps:int = 1) -> Array:
 	var exts := {}
 	var dir := DirAccess.open(path)
 	if dir == null:
@@ -51,10 +51,13 @@ static func get_extensions_recursive(path: String) -> Array:
 		var full_path := path.path_join(fname)
 		
 		if dir.current_is_dir():
-			# Dive into the folder like a caffeinated squirrel
-			var sub_exts = get_extensions_recursive(full_path)
-			for e in sub_exts:
-				exts[e] = true
+			if steps+1 > max_steps and max_steps > 0:
+				feedback.write("Cannot copy folder with more than "+str(max_steps)+" directory levels.")
+				return []
+			else:
+				var sub_exts = get_extensions_recursive(full_path, feedback, max_steps, steps+1)
+				for e in sub_exts:
+					exts[e] = true
 		else:
 			var ext := fname.get_extension()
 			if ext != "":
@@ -81,7 +84,6 @@ static func delete_recursive(path: String, max_steps:int, steps:int=1) -> void:
 		var full := path.path_join(name)
 
 		if dir.current_is_dir():
-			# Dive downward like a ravenous void-otter
 			if(max_steps == 0 or steps < max_steps):
 				delete_recursive(full, max_steps, steps+1)
 			DirAccess.remove_absolute(full)
@@ -94,17 +96,15 @@ static func delete_recursive(path: String, max_steps:int, steps:int=1) -> void:
 	DirAccess.remove_absolute(path)
 
 
-static func copy_recursive(from_dir: String, to_dir: String,\
-	 feedback:GameJsonLoadInfo,\
-	 max_steps:int, steps:int = 1) -> bool:
+static func copy_recursive(from_dir: String, to_dir: String) -> bool:
 	var src := DirAccess.open(from_dir)
 	if src == null:
-		feedback.write("Can't open: %s" % from_dir)
+		print("Can't open: %s" % from_dir)
 		return false
 
 	# Create target directory using a fresh DirAccess instance
 	if DirAccess.make_dir_recursive_absolute(to_dir.get_base_dir()) != OK:
-		feedback.write("Could not create directories for:" + to_dir.get_base_dir())
+		print("Could not create directories for:" + to_dir.get_base_dir())
 		return false
 	
 	src.list_dir_begin()
@@ -119,12 +119,7 @@ static func copy_recursive(from_dir: String, to_dir: String,\
 		var full_dst := to_dir.path_join(name)
 
 		if src.current_is_dir():
-			# Tunnel deeper like a hyperactive gopher
-			if max_steps == 0 or steps < max_steps:
-				copy_recursive(full_src, full_dst, feedback, max_steps,steps+1)
-			elif steps >= max_steps:
-				feedback.write("Cannot copy folder with more than "+str(max_steps)+" subdirectories!")
-				return false
+			copy_recursive(full_src, full_dst)
 		else:
 			_copy_file(full_src, full_dst)
 
@@ -142,18 +137,18 @@ static func delete_game(delete_entry: SaveEntry) -> void:
 
 	# --- SAFETY CHECK 1: strict canonical containment ---
 	if !canon_target.begins_with(canon_root + "/"):
-		push_error("Path escapism detected, aborting delete.")
+		print("Path escapism detected, aborting delete.")
 		return
 
 	# --- SAFETY CHECK 2: never delete the root itself ---
 	if canon_target == canon_root:
-		push_error("Refusing to delete the ROOT custom games directory!")
+		print("Refusing to delete the ROOT custom games directory!")
 		return
 
 	# --- SAFETY CHECK 3: user-defined (redundant but safe) ---
 	# This is now just an extra watchdog for peace of mind.
 	if !_is_inside(canon_root, canon_target):
-		push_error("is_inside() rejected the path — aborting delete.")
+		print("is_inside() rejected the path — aborting delete.")
 		return
 
 	# --- PROCEED WITH DELETION ---
@@ -161,23 +156,30 @@ static func delete_game(delete_entry: SaveEntry) -> void:
 
 	var err := DirAccess.remove_absolute(canon_target)
 	if err != OK:
-		print("Directory wasn’t empty… sending in cleanup squad.")
-		delete_recursive(canon_target, GAME_MAX_SUBDIRS)
+		print("Directory wasn't empty, deleting all contents...")
+		delete_recursive(canon_target, 0)
 
 
 
 static func copy_game(origin:String, target:String, feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()):
-	print("\n\nCOPYING game from ",origin," to ",target)
+	print("\n\nCOPYING game from  \"",origin,"\"  to  \"",target,"\"")
 	#Check if the folder we are copying from is ok to begin with
 	var has_valid_extensions = true
-	for extension in get_extensions_recursive(origin):
+	
+	var copy_feedback = GameJsonLoadInfo.new()
+	var extensions = get_extensions_recursive(origin, copy_feedback, GAME_MAX_SUBDIRS)
+	if !copy_feedback.message.is_empty():
+		feedback.write(copy_feedback.message)
+		return false
+	
+	for extension in extensions:
 		if(!valid_game_extensions.has(extension)):
 			has_valid_extensions = false
 
 	if(has_valid_extensions):
 		if FileAccess.file_exists(origin+"/cards.json") and FileAccess.file_exists(origin+"/level.json"):
-			var copy_feedback = GameJsonLoadInfo.new()
-			if copy_recursive(origin,target,copy_feedback,GAME_MAX_SUBDIRS):
+			
+			if copy_recursive(origin,target):
 				return true
 			else:
 				feedback.write("Failed to copy directory")
