@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bpunwt6bwc3bm"]
+[gd_scene load_steps=8 format=3 uid="uid://bpunwt6bwc3bm"]
 
 [ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_x7e51"]
-[ext_resource type="Texture2D" uid="uid://cgf8xlisqm72v" path="res://levels/dungeons/medeval/environment/wall9.tres" id="2_nipq0"]
+[ext_resource type="Material" uid="uid://cgf8xlisqm72v" path="res://levels/dungeons/medeval/environment/wall9.tres" id="2_nipq0"]
 [ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://levels/dungeons/medeval/assets/pillar/pillar.glb" id="3_ctcnh"]
-[ext_resource type="Texture2D" uid="uid://psvhf04fotq7" path="res://levels/dungeons/medeval/assets/variants/wall/1/normal.png" id="3_igbtg"]
 [ext_resource type="PackedScene" uid="uid://ef8ir25xwge2" path="res://levels/dungeons/medeval/assets/sconce.glb" id="4_gicrq"]
 
 [sub_resource type="BoxOccluder3D" id="BoxOccluder3D_nipq0"]
@@ -11,12 +10,6 @@ size = Vector3(0.29630604, 5, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
 size = Vector3(1.234375, 5, 5.7211914)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7e51"]
-albedo_texture = ExtResource("2_nipq0")
-normal_enabled = true
-normal_scale = 0.37
-normal_texture = ExtResource("3_igbtg")
 
 [sub_resource type="BoxMesh" id="BoxMesh_5vrq6"]
 size = Vector3(1, 5, 5)
@@ -35,11 +28,14 @@ shape = SubResource("BoxShape3D_xfbw5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-material_override = SubResource("StandardMaterial3D_x7e51")
+material_override = ExtResource("2_nipq0")
 mesh = SubResource("BoxMesh_5vrq6")
 
 [node name="pillar" parent="." instance=ExtResource("3_ctcnh")]
 transform = Transform3D(1.15, 0, 0, 0, 1.02, 0, 0, 0, 1.15, 0, 0, 2.5)
+
+[node name="Cube" parent="pillar" index="0"]
+material_override = ExtResource("2_nipq0")
 
 [node name="sconce2" parent="." instance=ExtResource("4_gicrq")]
 transform = Transform3D(3.2783544e-07, 0, -2.5, 0, 2.5, 0, 2.5, 0, 3.2783544e-07, -0.74335897, 3, -0.1348089)
