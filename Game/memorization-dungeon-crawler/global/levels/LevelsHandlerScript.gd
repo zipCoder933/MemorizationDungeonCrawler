@@ -63,8 +63,8 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 	start_speed = JsonUtils.get_float(json_data, "starting_answer_speed_sec", 10.0)
 	goal_speed  = JsonUtils.get_float(json_data, "goal_answer_speed_sec", 2.0)
 
-	midgame_start_speed = lerp(start_speed, goal_speed, 0.1)
-	midgame_goal_speed  = lerp(start_speed, goal_speed, 0.7)
+	midgame_start_speed = lerp(start_speed, goal_speed, json_data.get("midgame_start_speed", 0.1))
+	midgame_goal_speed  = lerp(start_speed, goal_speed, json_data.get("midgame_goal_speed", 0.7))
 
 	print("GAME SPEED (SEC): start=%2f; end=%2f; mid-start=%2f; mid-end=%2f;" %
 		[start_speed, goal_speed, midgame_start_speed, midgame_goal_speed])

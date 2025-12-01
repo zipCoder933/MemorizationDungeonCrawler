@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dx1dgf7206w5f" path="res://levels/dungeons/medeval/assets/variants/wall/7/normal.png" id="6_7oyd6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
-size = Vector3(1.1831055, 5, 5.6485596)
+size = Vector3(1.5184021, 5, 5.7421265)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5vrq6"]
 size = Vector3(1, 5, 5)
@@ -63,7 +63,7 @@ collision_layer = 2
 script = ExtResource("1_s1ale")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.091552734, 2.5, 0.3242798)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0035552979, 2.5, 0.37106323)
 shape = SubResource("BoxShape3D_xfbw5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -85,7 +85,7 @@ omni_range = 5.034739
 transform = Transform3D(1, 0, 0, 0, 1.01, 0, 0, 0, 1, -0.066147804, 0, 2.4807127)
 
 [node name="Cube" type="MeshInstance3D" parent="pillar"]
-transform = Transform3D(0.6572464, 0, 0, 0, 2.2497516, 0, 0, 0, 0.6572464, 0, 0, 0)
+transform = Transform3D(0.8, 0, 0, 0, 2.25, 0, 0, 0, 0.8, 0.0565449, 0, 0)
 mesh = SubResource("ArrayMesh_6ojuy")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_atnjh")
