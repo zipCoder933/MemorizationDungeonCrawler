@@ -1,16 +1,46 @@
 extends Node
 #class_name GlobalScript
 
-static var CARD_MISSING_IMAGE: Texture2D
-static var totalArenas = 0
-
+#Signals
 signal fact_answering_mode
 signal adventure_mode
 signal signal_game_over
 signal signal_victory
+signal signal_new_flashcard
+signal signal_flashcard_single_drill
+signal signal_flashcard_finished_drill
+signal signal_flashcard_answer_changed
+signal signal_boss_defeated
 
+static var CARD_MISSING_IMAGE: Texture2D
 static var SAVE_FILE
 static var CUSTOM_GAMES_DIR
+static var totalArenas = 0
+
+##Flashcard stuff
+var ignored_keys = [
+	Key.KEY_SPACE,
+	Key.KEY_ENTER,
+	Key.KEY_UP, Key.KEY_DOWN, Key.KEY_LEFT, Key.KEY_RIGHT,
+	Key.KEY_SHIFT, Key.KEY_CTRL, Key.KEY_ALT,
+	Key.KEY_TAB, Key.KEY_ESCAPE, Key.KEY_BACKSPACE
+]
+static var _current_flashcard_question:Question
+static var current_flashcard_answer:String
+static var _has_flashcard:bool
+static var deckSize:int = 0
+static var themed_cards:int = 0
+static var themed_succeeded:int= 0
+static var succeeded:int = 0
+static var questions:Array[Question];
+static var _flashcardNode:WorldFlashCard
+static var failed_flashcards:Array[Question]
+static var _allow_end_on_failure = false
+
+##If we are in the middle of a long bossfight, we may want to give our player a short break
+static var FLASHCARD_BREAK_INTERVAL = 25
+static var FLASHCARD_BREAK_TIME_MULTIPLIER = 1.5
+
 
 func _ready():
 	print("Global loaded!")
@@ -135,27 +165,6 @@ func _load_level_current_game():
 	print("Loading level ",SaveHandler.currentGame.completed_level)
 	SaveHandler.currentLevel = LevelsHandler.levels[SaveHandler.currentGame.completed_level]
 
-var ignored_keys = [
-	Key.KEY_SPACE,
-	Key.KEY_ENTER,
-	Key.KEY_UP, Key.KEY_DOWN, Key.KEY_LEFT, Key.KEY_RIGHT,
-	Key.KEY_SHIFT, Key.KEY_CTRL, Key.KEY_ALT,
-	Key.KEY_TAB, Key.KEY_ESCAPE, Key.KEY_BACKSPACE
-]
-
-
-static var _current_flashcard_question:Question
-static var current_flashcard_answer:String
-static var _has_flashcard:bool
-static var deckSize:int = 0
-static var themed_cards:int = 0
-static var themed_succeeded:int= 0
-static var succeeded:int = 0
-static var questions:Array#[Question];
-static var _flashcardNode:WorldFlashCard
-static var failed_flashcards:Array[Question]
-static var _allow_end_on_failure = false
-
 func has_flashcard():
 	return _current_flashcard_question!=null and _has_flashcard
 
@@ -186,11 +195,7 @@ func new_flashcard_question(current_flashcard_question2:Question):
 	_flashcardNode.signal_flashcard_answer_changed.emit(current_flashcard_answer)
 	signal_flashcard_answer_changed.emit(current_flashcard_answer)
 
-signal signal_new_flashcard
-signal signal_flashcard_single_drill
-signal signal_flashcard_finished_drill
-signal signal_flashcard_answer_changed
-signal signal_boss_defeated
+
 
 func boss_defeated_event(enemy:GoblinTrigger, results:FlashcardDrillResults):
 	signal_boss_defeated.emit(enemy, results)
@@ -278,12 +283,18 @@ func submit_flashcard(succeed:bool):
 	_flashcardNode.signal_flashcard_single_drill.emit(succeed)
 	signal_flashcard_single_drill.emit(_flashcardNode, succeed)
 	questions.remove_at(0)
+	var totalCompletedCards = deckSize - questions.size()
 	
 	if(!succeed):
 		failed_flashcards.append(_current_flashcard_question)
 		await get_tree().create_timer(1).timeout
 	
 	if(questions.size() > 0):
+		
+		if(FLASHCARD_BREAK_INTERVAL > 0 and totalCompletedCards >= FLASHCARD_BREAK_INTERVAL and totalCompletedCards % FLASHCARD_BREAK_INTERVAL == 0):
+			#If it has been more than 15 cards, give the user a short rest
+			questions[0].time_limit *= FLASHCARD_BREAK_TIME_MULTIPLIER
+		
 		new_flashcard_question(questions[0])
 	else:
 		#If we want the last one to be good, we will just keep reviewing missed cards until then
