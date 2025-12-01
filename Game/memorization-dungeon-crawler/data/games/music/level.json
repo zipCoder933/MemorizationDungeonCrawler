@@ -15,6 +15,8 @@
 		  "count": 6
 		}
 	  ],
+	  "card_review_number": 5,
+	  "boss_card_review_number":2,
 	  "complete_drill_levels": 0
 	},
 	{
@@ -24,9 +26,11 @@
 	  "themed_drill_levels": [
 		{
 		  "tags": ["bass"],
-		  "count": 6
+		  "count": 5
 		}
 	  ],
+	  "card_review_number": 5,
+	  "boss_card_review_number":2,
 	  "complete_drill_levels": 0
 	},
 	{
@@ -46,6 +50,8 @@
 		  "count": 3
 		}
 	  ],
+	  "card_review_number": 5,
+	  "boss_card_review_number": 2,
 	  "complete_drill_levels": 3
 	},
 	{
@@ -58,6 +64,8 @@
 		  "count": 3
 		}
 	  ],
+	  "card_review_number": 5,
+	  "boss_card_review_number": 2,
 	  "complete_drill_levels": 5
 	}
   ]

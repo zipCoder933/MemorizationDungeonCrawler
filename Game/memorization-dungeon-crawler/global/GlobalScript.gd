@@ -39,7 +39,7 @@ static var _allow_end_on_failure = false
 
 ##If we are in the middle of a long bossfight, we may want to give our player a short break
 static var FLASHCARD_BREAK_INTERVAL = 25
-static var FLASHCARD_BREAK_TIME_MULTIPLIER = 1.5
+static var FLASHCARD_BREAK_TIME_MULTIPLIER = 1.6
 
 
 func _ready():

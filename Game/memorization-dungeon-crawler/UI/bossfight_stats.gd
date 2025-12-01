@@ -13,7 +13,7 @@ class_name BossfightStats
 @onready var overall_accuracy_label: Label = %overall_accuracy_label
 @onready var overall_accuracy: Label = %overall_accuracy
 
-var animation_speed:float = 0.5
+var animation_speed:float = 0.65
 var animation_accuracy: float = 0
 var enemy: GoblinTrigger
 var results: FlashcardDrillResults

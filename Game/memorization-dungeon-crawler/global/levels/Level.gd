@@ -23,9 +23,10 @@ var card_count_multiplier:float = 1 #How many times we want to review each card 
 var boss_card_count_multiplier:float = 2 #How many times we want to review each card during a bossfight
 
 # Constructor
-func _init(_dungeon_index:int, _level_index:int, _name: String, _theme: String, _card_review_number:float, _boss_card_review_number:float,\
+func _init(_dungeon_index:int, _level_index:int, _name: String, _theme: String,\
+		_card_review_number:float, _boss_card_review_number:float,\
 		_levelType: LevelType = LevelType.STANDARD, _boss_name: String = "",\
-		 _time_to_answer_sec: float = 30.0, _themed_cards: Array[String] = [], _card_tags: Array[String] = []):
+		_time_to_answer_sec: float = 30.0, _themed_cards: Array[String] = [], _card_tags: Array[String] = []):
 	
 	level_name = _name
 	dungeon_index = _dungeon_index
