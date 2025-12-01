@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=4 uid="uid://bqoufhp54uwue"]
 
-[ext_resource type="Texture2D" uid="uid://bvqmk01v8te54" path="res://levels/dungeons/medeval/goblin/goblin_71721ff8-71721ff8.png" id="1_reyqm"]
+[ext_resource type="Texture2D" uid="uid://bvqmk01v8te54" path="res://levels/dungeons/medeval/enemies/goblin/goblin_71721ff8-71721ff8.png" id="1_reyqm"]
 [ext_resource type="Shape3D" uid="uid://buyo0b18x10xd" path="res://levels/universal/enemy_trigger.tres" id="2_exdxh"]
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="2_reyqm"]
 [ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://flashcard/worldFlashcard.tscn" id="2_s4b0v"]

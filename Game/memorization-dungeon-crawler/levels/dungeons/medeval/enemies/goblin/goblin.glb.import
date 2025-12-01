@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://csu8d43p8v4bu"
-path="res://.godot/imported/goblin.glb-7bed31211e1278d42124822259d5fe61.scn"
+path="res://.godot/imported/goblin.glb-09a9e8dbf7505c8011bccf55f3a16038.scn"
 
 [deps]
 
-source_file="res://levels/dungeons/medeval/goblin/goblin.glb"
-dest_files=["res://.godot/imported/goblin.glb-7bed31211e1278d42124822259d5fe61.scn"]
+source_file="res://levels/dungeons/medeval/enemies/goblin/goblin.glb"
+dest_files=["res://.godot/imported/goblin.glb-09a9e8dbf7505c8011bccf55f3a16038.scn"]
 
 [params]
 
