@@ -63,8 +63,11 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 	start_speed = JsonUtils.get_float(json_data, "starting_answer_speed_sec", 10.0)
 	goal_speed  = JsonUtils.get_float(json_data, "goal_answer_speed_sec", 2.0)
 
-	midgame_start_speed = lerp(start_speed, goal_speed, json_data.get("midgame_start_speed", 0.1))
-	midgame_goal_speed  = lerp(start_speed, goal_speed, json_data.get("midgame_goal_speed", 0.7))
+	var default_start_speed = lerp(start_speed, goal_speed, json_data.get("midgame_start_speed_percent", 0.1))
+	var default_goal_speed  = lerp(start_speed, goal_speed, json_data.get("midgame_goal_speed_percent", 0.7))
+	midgame_start_speed = default_start_speed
+	midgame_goal_speed  = default_goal_speed
+	
 
 	print("GAME SPEED (SEC): start=%2f; end=%2f; mid-start=%2f; mid-end=%2f;" %
 		[start_speed, goal_speed, midgame_start_speed, midgame_goal_speed])
@@ -84,7 +87,6 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 
 	for dungIndx in dungeons.size():
 		var dungeon = dungeons[dungIndx]
-
 		# Dungeon validation
 		if typeof(dungeon) != TYPE_DICTIONARY:
 			results.write("Dungeon %d is not a dictionary." % dungIndx)
@@ -92,6 +94,13 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 
 		if(verbose):
 			print("\n--- Dungeon #%d ---" % dungIndx)
+
+		# ---------------------------
+		# SPEED 
+		# We can get the speed from each dungeon or from the default valeus
+		# ---------------------------
+		midgame_start_speed = JsonUtils.get_float(json_data, "start_speed_percent", default_start_speed)
+		midgame_goal_speed  = JsonUtils.get_float(json_data, "goal_speed_percent", default_goal_speed)
 
 		# ---------------------------
 		# THEMATIC DRILL LEVELS
