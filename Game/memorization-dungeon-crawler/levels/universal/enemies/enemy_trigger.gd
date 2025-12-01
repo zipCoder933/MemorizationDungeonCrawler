@@ -9,7 +9,6 @@ const SHRINK_SPEED:float = 1.5
 @export var collision_shape_3d:CollisionShape3D
 @export var fail_health_add:float = -0.5
 @export var success_health_add:float = 0
-@export var speed:float = 0.8
 
 #Animaitons
 @export var idle_animation:String
@@ -45,8 +44,8 @@ func _ready():
 		#var anim = _animation_player.get_animation(take_hit_animation)
 		#print("take hit animation loop mode: ", anim.loop_mode)
 
-func _animation_started(anim_name: StringName):
-	#print("Started animation: ", anim_name)
+func _animation_started(animName: StringName):
+	#print("Started animation: ", animName)
 	pass
 
 func _animation_changed(animName:StringName):
@@ -54,21 +53,24 @@ func _animation_changed(animName:StringName):
 	pass
 
 func _animation_finished(animName:StringName):
+	#print("Finished animation: ",animName)
 	if animName == death_animation:
 		death_animation_finished = true
-	#print("Finished animation: ",animName)
-	if !isDead and (animName != idle_animation or animName != fight_idle_animation):
-		if(fighting and fight_idle_animation != null):
-			_animation_player.play(fight_idle_animation,0.4,idle_animation_speed)
-		else:
-			_animation_player.play(idle_animation,0.4,idle_animation_speed)
+	
+	if !isDead and animName != idle_animation and animName != fight_idle_animation:
+		play_idle_animation()
+
+func play_idle_animation():
+	if(fighting and fight_idle_animation != null):
+		_animation_player.play(fight_idle_animation,0.4,idle_animation_speed)
+	else:
+		_animation_player.play(idle_animation,0.4,idle_animation_speed)
 
 func _single_drill(success):
 	if(success):
 		player.change_health(success_health_add)
 		if(!isDead && take_hit_animation != null):
-			#print("take hit ANIMATION STARTED BY PLAYER")
-			#_animation_player.stop()
+			print("Playing take hit animation...")
 			_animation_player.play(take_hit_animation,0.2,take_hit_animation_speed,false)
 			_animation_player.seek(0, true)
 	else:
@@ -129,10 +131,7 @@ func _process(delta):
 				collision_shape_3d.disabled=false
 		
 		if(is_instance_valid(_animation_player) and !_animation_player.is_playing()):
-			if(fighting and fight_idle_animation != null):
-				_animation_player.play(fight_idle_animation,0.2,idle_animation_speed)
-			else:
-				_animation_player.play(idle_animation,0.2,idle_animation_speed)
+			play_idle_animation()
 		var dir = target_pos - self_pos
 		dir.y = 0
 		dir = dir.normalized()
@@ -148,12 +147,14 @@ func trigger():
 		fighting=true
 		
 		if(is_boss):
+			var SPEED_MULTIPLIER = 1.0
 			for i in range(0, SaveHandler.currentLevel.boss_card_count_multiplier):#We want to go through the entire deck X times
 				for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, 0):
-					questions.append(card.toQuestion(speed, SaveHandler.currentLevel))
+					questions.append(card.toQuestion(SPEED_MULTIPLIER, SaveHandler.currentLevel))
 		else:
+			var SPEED_MULTIPLIER = 1.0
 			for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, SaveHandler.currentLevel.enemy_card_count):
-				questions.append(card.toQuestion(speed, SaveHandler.currentLevel))
+				questions.append(card.toQuestion(SPEED_MULTIPLIER, SaveHandler.currentLevel))
 		
 		print("Drilling player on deck; size: ",questions.size(),"; tags: ",SaveHandler.currentLevel.card_tags)
 		Globals.drill_questions(questions, _3d_flashcard, begin_delay)
