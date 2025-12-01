@@ -1,7 +1,7 @@
 extends Node
 #class_name GlobalScript
 
-static var CARD_MISSING_IMAGE = "res://assets/icons/card_missing_image.png"
+static var CARD_MISSING_IMAGE: Texture2D
 static var totalArenas = 0
 
 signal fact_answering_mode
@@ -13,8 +13,8 @@ static var SAVE_FILE
 static var CUSTOM_GAMES_DIR
 
 func _ready():
-	
 	print("Global loaded!")
+	CARD_MISSING_IMAGE = load("res://assets/icons/card_missing_image.png")
 	SAVE_FILE = ProjectSettings.globalize_path("user://save.json")
 	CUSTOM_GAMES_DIR = ProjectSettings.globalize_path("user://data")
 	var da := DirAccess.open("user://")
@@ -47,9 +47,6 @@ func victory_event():
 		signal_victory.emit()
 		SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level+1, 0, LevelsHandler.levels.size()-1)
 		SaveHandler.save_to_file(Globals.SAVE_FILE)
-
-
-
 
 func get_base36_time() -> String:
 	var ms: int = Time.get_ticks_msec()

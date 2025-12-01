@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://215hrdkdicir"
-path="res://.godot/imported/base-cleft.png-bb1d6ce067a9b3c7da36011743805889.ctex"
+path="res://.godot/imported/base-cleft.png-18937d43017199f8a834cfcc87e8d278.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/games/music/generation/base-cleft.png"
-dest_files=["res://.godot/imported/base-cleft.png-bb1d6ce067a9b3c7da36011743805889.ctex"]
+source_file="res://data/generation/base-cleft.png"
+dest_files=["res://.godot/imported/base-cleft.png-18937d43017199f8a834cfcc87e8d278.ctex"]
 
 [params]
 

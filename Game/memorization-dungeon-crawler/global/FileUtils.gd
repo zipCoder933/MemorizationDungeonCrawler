@@ -192,4 +192,22 @@ static func copy_game(origin:String, target:String, feedback:GameJsonLoadInfo = 
 		feedback.write("Folder contains invalid files. Valid file types are " + str(valid_game_extensions))
 		return false
 	
-	
+static func load_texture_anywhere(path: String) -> Texture2D:
+	# Normalize slashes
+	path = path.replace("\\", "/")
+	# ABSOLUTE PATH CASE 
+	if path.is_absolute_path():
+		var img := Image.new()
+		var err := img.load(path)
+		if err == OK:
+			var tex := ImageTexture.create_from_image(img)
+			return tex
+		else:
+			push_error("❌ Failed absolute load: " + path)
+			return null
+	# NON-ABSOLUTE (res:// or user:// or relative)
+	var tex: Texture2D = load(path)
+	if tex != null:
+		return tex
+	push_error("❌ Failed non-absolute load: " + path)
+	return null

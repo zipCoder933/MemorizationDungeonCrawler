@@ -170,10 +170,10 @@ static func find_best_image_path(base_dir:String, base_path: String) -> String:
 	# --- Try both paths in order ---
 	for path in possible_paths:
 		#print("Testing ",path)
-		var tex: Texture2D = load(path)
-		if tex != null:
-			#print("Image Path: ",path)
-			return path  # success! use this one
+		if FileUtils.load_texture_anywhere(path) != null:
+			#print("Found path: ",path)
+			return path
+
 
 	# --- If nothing worked ---
 	push_error("❌ Could not find valid image path for: " + base_path)

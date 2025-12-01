@@ -70,7 +70,9 @@ func _on_start_button_pressed() -> void:
 		return
 	
 	if load_game(template_dir):
-		if DirAccess.dir_exists_absolute(template_dir):
+		#Really stupid but we have to check if it starts with res to determine if its REALLY not absolute
+		if DirAccess.dir_exists_absolute(template_dir) and !template_dir.strip_edges().begins_with("res://"):
+			print("Making game in absolute directory: ",template_dir)
 			#If this is a custom game, Copy the game into a new folder in our appData directory
 			var dest_dir = Globals.CUSTOM_GAMES_DIR+"/"+name_box.text+" "+Globals.get_base36_time()
 			if(copy_game_to_appdata.button_pressed):
@@ -86,6 +88,7 @@ func _on_start_button_pressed() -> void:
 			else:
 				_make_game(template_dir)
 		else:
+			print("Making game in resource directory: ",template_dir)
 			#If this is not a custom game
 			_make_game(template_dir)
 

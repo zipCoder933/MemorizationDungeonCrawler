@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0u0yijyytslx"
-path="res://.godot/imported/treble-cleft.png-9556de83f86c743bc3046772a8982282.ctex"
+uid="uid://ovcetcnuanot"
+path="res://.godot/imported/bass-cleft.png-232492e1b25338b3fb5a75b4162fd6ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/games/music/generation/treble-cleft.png"
-dest_files=["res://.godot/imported/treble-cleft.png-9556de83f86c743bc3046772a8982282.ctex"]
+source_file="res://data/generation/bass-cleft.png"
+dest_files=["res://.godot/imported/bass-cleft.png-232492e1b25338b3fb5a75b4162fd6ce.ctex"]
 
 [params]
 
