@@ -15,14 +15,13 @@ config/name_localized={
 "en": "Cogni Crawl"
 }
 config/description="A Flashcard Memorization Dungeon Crawler"
-config/version="1.0.2"
+config/version="1.0.3"
 run/main_scene="uid://cpl08t4hcotn"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/fullsize=false
 boot_splash/image="uid://7ksq3q1yh5he"
 config/icon="uid://d260hqcqu35ev"
-config/macos_native_icon="uid://bbn0n0yg17n1x"
 config/windows_native_icon="res://assets/icon.ico"
 boot_splash/minimum_display_time=400
 

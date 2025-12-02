@@ -100,12 +100,16 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 		# We can get the speed from each dungeon or from the default valeus
 		# ---------------------------
 		if(dungeon.has("start_speed_percent")):
-			midgame_start_speed = lerp(start_speed, goal_speed, JsonUtils.get_float(dungeon, "start_speed_percent",0))
+			var lerp_value =  JsonUtils.get_float(dungeon, "start_speed_percent",0)
+			print("Start lerp ",lerp_value)
+			midgame_start_speed = lerp(start_speed, goal_speed,lerp_value)
 		else:
 			midgame_start_speed = default_start_speed
 		
 		if(dungeon.has("goal_speed_percent")):
-			midgame_goal_speed  = lerp(start_speed, goal_speed, JsonUtils.get_float(dungeon, "goal_speed_percent",0))
+			var lerp_value =  JsonUtils.get_float(dungeon, "goal_speed_percent",0)
+			print("End lerp ",lerp_value)
+			midgame_goal_speed  = lerp(start_speed, goal_speed,lerp_value)
 		else:
 			midgame_goal_speed = default_goal_speed
 		
@@ -157,8 +161,10 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			# Create themed levels
 			for j in range(levelCount):
 				var t = float(j) / max(1, levelCount)
-				var speed = lerp(start_speed, midgame_goal_speed, t) if hasNewCards \
-			else lerp(midgame_start_speed, midgame_goal_speed, t)
+				var speed = lerp(midgame_start_speed, midgame_goal_speed, t)
+				#If we are running through entirely new cards and the midgame speed is the same as the default setting
+				if(hasNewCards and midgame_start_speed == default_start_speed):
+					speed = lerp(start_speed, midgame_goal_speed, t)
 
 
 

@@ -30,8 +30,8 @@
 		  "count": 5
 		}
 	  ],
-	"start_speed_percent": 0.5,
-  	"goal_speed_percent": 1,
+	  "start_speed_percent": 0.2,
+	  "goal_speed_percent": 0.7,
 	  "card_review_number": 5,
 	  "boss_card_review_number":2,
 	  "complete_drill_levels": 0
@@ -40,6 +40,8 @@
 	  "name": "Treble and Bass Dungeon",
 	  "theme": "Antarctic",
 	  "boss_name": "Frozen Solid",
+	  "start_speed_percent": 0.3,
+	  "goal_speed_percent": 0.8,
 	  "themed_drill_levels": [],
 	  "complete_drill_levels": 6
 	},
