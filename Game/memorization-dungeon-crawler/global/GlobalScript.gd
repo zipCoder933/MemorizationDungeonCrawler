@@ -89,14 +89,14 @@ func load_game_data(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoadInf
 		return false
 	
 	var jsonFeedback = GameJsonLoadInfo.new()
-	var out = CardsHandler.load_from_file(dir_path+"/cards.json",jsonFeedback)
+	var out = CardsHandler.load_from_file(dir_path+"/cards.json",jsonFeedback,true)
 	if(!out):
 		feedback.write("Failed to load cards.json")
 		feedback.write(jsonFeedback.message)
 		return false
 	
 	jsonFeedback = GameJsonLoadInfo.new()
-	out = LevelsHandler.load_from_file(dir_path+"/level.json", jsonFeedback)
+	out = LevelsHandler.load_from_file(dir_path+"/level.json", jsonFeedback,true)
 	if(!out):
 		feedback.write("Failed to load level.json")
 		feedback.write(jsonFeedback.message)

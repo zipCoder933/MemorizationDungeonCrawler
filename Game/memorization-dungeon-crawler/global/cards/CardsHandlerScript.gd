@@ -108,7 +108,12 @@ static func load_from_file(jsonFile, results:GameJsonLoadInfo = GameJsonLoadInfo
 					questions.append_array(c["Questions"])
 				elif(c.has("QuestionImage")):
 					isImage=true
-					questions.append(find_best_image_path(base_dir, c["QuestionImage"]))
+					var image_json_path:String = c["QuestionImage"]
+					var image_path = find_best_image_path(base_dir, image_json_path)
+					if(image_path == ""):
+						results.write("Invalid image path for "+str(image_json_path))
+						return false
+					questions.append(image_path)
 				
 				var tags = c["Tags"]
 				var type = c["Type"]

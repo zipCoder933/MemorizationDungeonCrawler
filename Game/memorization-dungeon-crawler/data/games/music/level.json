@@ -30,6 +30,8 @@
 		  "count": 5
 		}
 	  ],
+	"start_speed_percent": 0.5,
+  	"goal_speed_percent": 1,
 	  "card_review_number": 5,
 	  "boss_card_review_number":2,
 	  "complete_drill_levels": 0

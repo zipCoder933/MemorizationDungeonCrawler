@@ -63,8 +63,8 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 	start_speed = JsonUtils.get_float(json_data, "starting_answer_speed_sec", 10.0)
 	goal_speed  = JsonUtils.get_float(json_data, "goal_answer_speed_sec", 2.0)
 
-	var default_start_speed = lerp(start_speed, goal_speed, json_data.get("midgame_start_speed_percent", 0.1))
-	var default_goal_speed  = lerp(start_speed, goal_speed, json_data.get("midgame_goal_speed_percent", 0.7))
+	var default_start_speed = lerp(start_speed, goal_speed, JsonUtils.get_float(json_data, "midgame_start_speed_percent", 0.1))
+	var default_goal_speed  = lerp(start_speed, goal_speed, JsonUtils.get_float(json_data, "midgame_goal_speed_percent", 0.7))
 	midgame_start_speed = default_start_speed
 	midgame_goal_speed  = default_goal_speed
 	
@@ -99,8 +99,18 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 		# SPEED 
 		# We can get the speed from each dungeon or from the default valeus
 		# ---------------------------
-		midgame_start_speed = JsonUtils.get_float(json_data, "start_speed_percent", default_start_speed)
-		midgame_goal_speed  = JsonUtils.get_float(json_data, "goal_speed_percent", default_goal_speed)
+		if(dungeon.has("start_speed_percent")):
+			midgame_start_speed = lerp(start_speed, goal_speed, JsonUtils.get_float(dungeon, "start_speed_percent",0))
+		else:
+			midgame_start_speed = default_start_speed
+		
+		if(dungeon.has("goal_speed_percent")):
+			midgame_goal_speed  = lerp(start_speed, goal_speed, JsonUtils.get_float(dungeon, "goal_speed_percent",0))
+		else:
+			midgame_goal_speed = default_goal_speed
+		
+		if(verbose):
+			print("Dungeon speed: start=",midgame_start_speed,"; end=",midgame_goal_speed)
 
 		# ---------------------------
 		# THEMATIC DRILL LEVELS
