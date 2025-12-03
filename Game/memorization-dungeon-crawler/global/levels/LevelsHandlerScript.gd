@@ -229,15 +229,16 @@ static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, th
 		#typed_cards.append(str(c))  # ensure every element is a string
 	level_index+=1
 	var level =  Level.new(dungeonIndex, level_index,
-		dungeon.get("name", ""),
-		dungeon.get("theme", ""),
-		dungeon.get("card_review_number", 3),
-		dungeon.get("boss_card_review_number", 2),
+		JsonUtils.get_string(dungeon,"name", ""),
+		JsonUtils.get_string(dungeon,"theme", ""),
+		JsonUtils.get_int(dungeon,"card_review_number", 3),
+		JsonUtils.get_int(dungeon,"boss_card_review_number", 2),
 		levelType,
-		dungeon.get("boss_name", ""),
+		JsonUtils.get_string(dungeon,"boss_name", ""),
 		speed_seconds,  # or any logic to set time_to_answer_sec
 		themed_tags.duplicate(),
-		card_tags.duplicate()
+		card_tags.duplicate(),
+		JsonUtils.get_int(dungeon,"enemy_card_count", Level.DEFAULT_ENEMY_CARD_COUNT),
 	)
 	if(verbose):
 		print(level.toString())

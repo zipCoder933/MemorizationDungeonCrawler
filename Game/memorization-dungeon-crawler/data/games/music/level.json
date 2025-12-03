@@ -16,7 +16,8 @@
 		  "count": 6
 		}
 	  ],
-	  "card_review_number": 5,
+	  "goal_speed_percent": 0.85,
+	  "card_review_number": 8,
 	  "boss_card_review_number":2,
 	  "complete_drill_levels": 0
 	},
@@ -27,12 +28,11 @@
 	  "themed_drill_levels": [
 		{
 		  "tags": ["bass"],
-		  "count": 5
+		  "count": 6
 		}
 	  ],
-	  "start_speed_percent": 0.2,
-	  "goal_speed_percent": 0.7,
-	  "card_review_number": 5,
+	  "goal_speed_percent": 0.85,
+	  "card_review_number": 8,
 	  "boss_card_review_number":2,
 	  "complete_drill_levels": 0
 	},
@@ -40,8 +40,9 @@
 	  "name": "Treble and Bass Dungeon",
 	  "theme": "Antarctic",
 	  "boss_name": "Frozen Solid",
-	  "start_speed_percent": 0.3,
-	  "goal_speed_percent": 0.8,
+	  "card_review_number": 8,
+	  "start_speed_percent": 0.4,
+	  "goal_speed_percent": 0.9,
 	  "themed_drill_levels": [],
 	  "complete_drill_levels": 6
 	},
@@ -55,7 +56,8 @@
 		  "count": 3
 		}
 	  ],
-	  "card_review_number": 5,
+	  "goal_speed_percent": 0.9,
+	  "card_review_number": 8,
 	  "boss_card_review_number": 2,
 	  "complete_drill_levels": 3
 	},
@@ -69,9 +71,10 @@
 		  "count": 3
 		}
 	  ],
-	  "card_review_number": 5,
+	  "goal_speed_percent": 1,
+	  "card_review_number": 8,
 	  "boss_card_review_number": 2,
-	  "complete_drill_levels": 5
+	  "complete_drill_levels": 6
 	}
   ]
 }

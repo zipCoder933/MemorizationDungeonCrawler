@@ -7,8 +7,8 @@ const SHRINK_SPEED:float = 1.5
 @onready var player:Player = get_tree().get_first_node_in_group("player");
 @export var enemy_model:Node
 @export var collision_shape_3d:CollisionShape3D
-@export var fail_health_add:float = -0.5
-@export var success_health_add:float = 0
+var fail_health_add:float;
+var success_health_add:float;
 
 #Animaitons
 @export var idle_animation:String
@@ -40,6 +40,12 @@ func _ready():
 	_animation_player.animation_started.connect(_animation_started)
 	_animation_player.animation_changed.connect(_animation_changed)
 	
+	if(is_boss):
+		fail_health_add = -0.10
+		success_health_add = 0.05
+	else:
+		fail_health_add = -0.30
+		success_health_add = 0.05
 	#if(take_hit_animation != null):
 		#var anim = _animation_player.get_animation(take_hit_animation)
 		#print("take hit animation loop mode: ", anim.loop_mode)
