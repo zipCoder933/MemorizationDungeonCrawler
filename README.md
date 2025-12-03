@@ -10,6 +10,7 @@ A spooky-fun dungeon crawler that tests your memory, your reflexes, and your abi
 
 ---
 
+![Enemy Fight](https://github.com/Lightning323/MemorizationDungeonCrawler/blob/main/assets/screenshots/Screenshot%202025-11-25%20151800.png)
 ## 🧠 Features
 - Procedurally generated dungeons
 - Fight enemies and earn keys
@@ -17,6 +18,7 @@ A spooky-fun dungeon crawler that tests your memory, your reflexes, and your abi
 
 ---
 
+![Movement](https://github.com/Lightning323/MemorizationDungeonCrawler/blob/main/assets/screenshots/Screenshot%202025-11-25%20150412.jpg)
 ## 🎮 Controls
 - **WASD** → walk around like you mean it  
 - **Mouse** → look around suspiciously
