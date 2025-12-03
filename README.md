@@ -1,4 +1,5 @@
-# 🏰 MemorizationDungeonCrawler  
+![Splash](https://github.com/Lightning323/MemorizationDungeonCrawler/blob/main/assets/splash.jpg)
+# Cogni Crawl
 ### Built for the 2025 Hackathon  
 A spooky-fun dungeon crawler that tests your memory, your reflexes, and your ability to avoid being bonked by pixel monsters.
 
