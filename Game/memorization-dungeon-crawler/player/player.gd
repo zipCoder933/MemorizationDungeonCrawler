@@ -110,27 +110,31 @@ func obtain_key(key:KeyNode):
 	key.queue_free()
 
 func set_health(value:float):
-	if(health != value):
-		if(health > value):
-			animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.2, 2)
-		if(value > MAX_HEALTH):
-			health = MAX_HEALTH
-		elif(value <= 0):
-			#If we have at least 1% in our health backup
-			if(health2_increment > 0.01):
-				#Fill the equivalent of the health 2 increment left
-				var backup_health = clamp(Globals.map(health2,0,health2_increment,0,1),0,1)
-				change_health2(-health2_increment)
-				health = clamp(health+backup_health,0,MAX_HEALTH)
-			
-			#If health is lower than 0.1%
-			if(health <= 0.001):
-				health = 0
-				Globals.game_over_event()
-		else:
-			health = value
-		health_changed.emit(health)
+	var last_health = health
+	
+	if(health > value):
+		animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.2, 2)
+	if(value > MAX_HEALTH):
+		health = MAX_HEALTH
+	elif(value <= 0):
+		health = 0
 		
+		#If we have at least 0.5% in our health backup
+		if(health2 > 0.005): #Fill the equivalent of the health 2 increment left
+			var backup_health = clamp(Globals.map(health2,0,health2_increment,0,1),0,1)
+			print("Restoring health by ",backup_health)
+			change_health2(-health2_increment)
+			health = clamp(health+backup_health,0,MAX_HEALTH)
+		
+		#If health is still 0 or lower than 0.1%
+		if(health <= 0.001):
+			Globals.game_over_event()
+	else:
+		health = value
+	
+	if(last_health != health):
+		health_changed.emit(health)
+
 func set_health2(value:float):
 	if(health2 != value):
 		if(value > MAX_HEALTH):
