@@ -133,7 +133,6 @@ texture = ExtResource("1_yixhe")
 
 [node name="DamageBar2" type="ProgressBar" parent="CanvasLayer/health"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0

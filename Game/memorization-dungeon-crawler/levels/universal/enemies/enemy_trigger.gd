@@ -87,6 +87,8 @@ func _finish_drill(results:FlashcardDrillResults):
 		Globals.boss_defeated_event(self, results)
 	else:
 		if(results.succeeded > 0):
+			#Increment our safety net by our accuracy
+			player.change_health2(player.health2_fill * results.get_accuracy())
 			die()
 
 func die():

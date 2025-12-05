@@ -175,7 +175,7 @@ func clear_flashcard():
 	themed_succeeded = 0
 	succeeded = 0
 	themed_cards = 0
-	if(has_flashcard()):
+	if(_flashcardNode != null):
 		_flashcardNode.visible = false
 	_has_flashcard = false
 
@@ -255,14 +255,16 @@ func _question_in_dungeon_themed_cards(question:Question) -> bool:
 
 
 func submit_flashcard(succeed:bool):
+	#If we dont have a flashcard anymore (We already submitted the last one)	
+	if(!has_flashcard()):
+		return
+	
 	var player =  get_player()
 	var accuracy = 0
 	var time_ms = _flashcardNode.get_time_elapsed_MS()
 	var question = _current_flashcard_question
 
-	#If we dont have a flashcard anymore (We already submitted the last one)	
-	if(!has_flashcard()):
-		return
+
 	
 	if(succeed):
 		accuracy = 100
@@ -281,9 +283,12 @@ func submit_flashcard(succeed:bool):
 		else:
 			SaveHandler.currentGame.tag_mastery[tag] = SaveEntry.CardMastery.new(time_ms, accuracy,1)
 	
+	#print("Single drill submitted")
 	_flashcardNode.signal_flashcard_single_drill.emit(succeed)
 	signal_flashcard_single_drill.emit(_flashcardNode, succeed)
 	questions.remove_at(0)
+	#Set current flashcard question to null to prevent from submitting twice
+	_has_flashcard = false
 	var totalCompletedCards = deckSize - questions.size()
 	
 	if(!succeed):

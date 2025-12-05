@@ -53,7 +53,6 @@ func _ready():
 	fps.visible = false
 	key.visible=false
 	key_container.visible=false
-
 	player.signal_key_obtained.connect(_key_obtained)
 	bossfight_stats.visible=false
 	game_over_panel.visible=false
@@ -62,11 +61,15 @@ func _ready():
 	victory_panel.visible = false
 	loading_panel.visible = true
 	player.health_changed.connect(_player_health_changed)
+	player.signal_health2_changed.connect(_player_health2_changed)
 	Globals.signal_game_over.connect(_game_over)
 	Globals.signal_boss_defeated.connect(bossfight_stats.complete_boss_fight)
 	Globals.signal_victory.connect(_victory)
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
 	Globals.adventure_mode.connect(_global_adventure_mode)
+	
+	_player_health_changed(player.health)
+	_player_health2_changed(player.health2)
 	
 	if(SaveHandler.currentLevel != null and  SaveHandler.currentGame !=null):
 		if(SaveHandler.currentLevel.levelType == Level.LevelType.BOSS):
@@ -132,6 +135,9 @@ func _process(delta):
 
 func _player_health_changed(health:float):
 	damage_bar.value = clamp(health, 0, Player.MAX_HEALTH)
+
+func _player_health2_changed(health:float):
+	damage_bar_2.value = clamp(health, 0, Player.MAX_HEALTH)
 
 func _game_over():
 	game_over_panel.visible = true

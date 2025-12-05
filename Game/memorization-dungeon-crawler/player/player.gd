@@ -42,9 +42,18 @@ var bossfight_finish_entity
 
 #health / status
 signal health_changed
+signal signal_health2_changed
+signal signal_key_obtained
+
 const MAX_HEALTH = 1
+
+#How much health2 is taken to restore us when our health runs out
+var health2_increment:float = 0.33
+#How much health is filled when we defeat an enemy
+var health2_fill:float = 0.25
+
 var health:float = 1
-var health2:float = 1
+var health2:float = 0
 var keys:int = 0
 
 @onready var sword_mesh: MeshInstance3D = $Knight2/Knight/Skeleton3D/sword
@@ -90,7 +99,8 @@ func _set_mesh_alpha(mesh: MeshInstance3D, alpha: float):
 func obtain_key(key:KeyNode):
 	keys+=1
 	signal_key_obtained.emit(keys)
-	change_health(0.75)
+	change_health(0.6)
+	#change_health2(health2_increment)
 	if(SaveHandler.currentLevel.levelType == Level.LevelType.STANDARD):
 		if(keys >= Globals.totalArenas):
 			Globals.victory_event()
@@ -106,8 +116,17 @@ func set_health(value:float):
 		if(value > MAX_HEALTH):
 			health = MAX_HEALTH
 		elif(value <= 0):
-			health = 0
-			Globals.game_over_event()
+			#If we have at least 1% in our health backup
+			if(health2_increment > 0.01):
+				#Fill the equivalent of the health 2 increment left
+				var backup_health = clamp(Globals.map(health2,0,health2_increment,0,1),0,1)
+				change_health2(-health2_increment)
+				health = clamp(health+backup_health,0,MAX_HEALTH)
+			
+			#If health is lower than 0.1%
+			if(health <= 0.001):
+				health = 0
+				Globals.game_over_event()
 		else:
 			health = value
 		health_changed.emit(health)
@@ -119,21 +138,25 @@ func set_health2(value:float):
 		elif(value <= 0):
 			health2 = 0
 		else:
-			health = value
+			health2 = value
+		signal_health2_changed.emit(health2)
 
 func change_health(amt:float):
+	print("CHANGING HEALTH BY ",amt)
 	set_health(health+amt)
 
 func change_health2(amt:float):
+	print("CHANGING HEALTH2 BY ",amt)
 	set_health2(health2+amt)
 
 func _global_boss_defeated(_boss:GoblinTrigger, accuracy:float):
 	bossfight_finish_entity = _boss
 	mode = PlayerMode.STILL
 
-signal signal_key_obtained
+
 
 func _ready():
+	print("Health increment: ",health2_increment)
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
 	Globals.signal_game_over.connect(_game_over)
 	Globals.adventure_mode.connect(_global_adventure_mode)
