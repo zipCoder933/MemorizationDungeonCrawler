@@ -12,6 +12,7 @@ const IDLE_ANIMATIONS = ["sword idle Retarget"]
 const HIT_ANIMATION = ["hit1 Retarget","hit2 Retarget","hit3 Retarget"]
 const VICTORY_ANIMATION = "victory"
 var mode:PlayerMode = PlayerMode.ADVENTURE
+
 enum PlayerMode{
 	ADVENTURE,
 	FACTS,
@@ -43,6 +44,7 @@ var bossfight_finish_entity
 signal health_changed
 const MAX_HEALTH = 1
 var health:float = 1
+var health2:float = 1
 var keys:int = 0
 
 @onready var sword_mesh: MeshInstance3D = $Knight2/Knight/Skeleton3D/sword
@@ -109,9 +111,21 @@ func set_health(value:float):
 		else:
 			health = value
 		health_changed.emit(health)
+		
+func set_health2(value:float):
+	if(health2 != value):
+		if(value > MAX_HEALTH):
+			health2 = MAX_HEALTH
+		elif(value <= 0):
+			health2 = 0
+		else:
+			health = value
 
 func change_health(amt:float):
 	set_health(health+amt)
+
+func change_health2(amt:float):
+	set_health2(health2+amt)
 
 func _global_boss_defeated(_boss:GoblinTrigger, accuracy:float):
 	bossfight_finish_entity = _boss

@@ -23,14 +23,13 @@ static func card_count(tags:Array[String]) -> int:
 static func get_random_cards(card_tags:Array[String], quantity: int, unique_facts: int = 2) -> Array[Card]:
 	var tags = card_tags
 	
-	var all_available: Array[Card] = []
+	var all_available: Array[Card] = [] #All cards in the tags we specified
 	var card_tag_map: Dictionary = {}  # card -> tag
 
 	# Collect available cards from all tags
 	for tag in tags:
 		if not tag_dict.has(tag):
 			continue
-
 		if not used_cards.has(tag):
 			used_cards[tag] = []
 		
@@ -40,11 +39,9 @@ static func get_random_cards(card_tags:Array[String], quantity: int, unique_fact
 			used_cards[tag] = []  # reset memory
 
 		var available: Array[Card] = []
-		for c in tag_dict[tag]:
+		for c in tag_dict[tag]:#Iterate over all cards in the tag
 			if not used_cards[tag].has(c):
 				available.append(c)
-
-
 		# Add to global pool
 		for c in available:
 			all_available.append(c)
@@ -61,12 +58,15 @@ static func get_random_cards(card_tags:Array[String], quantity: int, unique_fact
 		quantity = all_available.size() 
 	
 	# Randomly pick across all available cards
+	var temp_available = all_available.duplicate()
 	for i in range(quantity):
-		if all_available.is_empty():
-			break
+		#If we already iterated over all cards, refresh available and try again
+		#We may want to go over cards multiple times anyway
+		if temp_available.is_empty():
+			temp_available = all_available.duplicate()
 
-		var index = randi() % all_available.size()
-		var picked: Card = all_available[index]
+		var index = randi() % temp_available.size()
+		var picked: Card = temp_available[index]
 		picked_cards.append(picked)
 
 		var picked_tag = card_tag_map[picked]
@@ -76,7 +76,8 @@ static func get_random_cards(card_tags:Array[String], quantity: int, unique_fact
 		if unique_facts > 0 and used_cards[picked_tag].size() > unique_facts:
 			used_cards[picked_tag].pop_front()
 
-		all_available.remove_at(index)
+		#Remove the card so we dont use it twice
+		temp_available.remove_at(index)
 
 	return picked_cards
 

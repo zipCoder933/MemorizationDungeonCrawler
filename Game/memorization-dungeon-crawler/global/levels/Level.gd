@@ -21,7 +21,7 @@ var themed_card_tags: Array[String] = []
 var enemy_card_count:int
 var card_count_multiplier:float = 1 #How many times we want to review each card in this level
 var boss_card_count_multiplier:float = 2 #How many times we want to review each card during a bossfight
-const DEFAULT_ENEMY_CARD_COUNT = 20
+const DEFAULT_ENEMY_CARD_COUNT = 15
 
 # Constructor
 func _init(_dungeon_index:int, _level_index:int, _name: String, _theme: String,\
@@ -29,7 +29,6 @@ func _init(_dungeon_index:int, _level_index:int, _name: String, _theme: String,\
 		_levelType: LevelType = LevelType.STANDARD, _boss_name: String = "",\
 		_time_to_answer_sec: float = 30.0, _themed_cards: Array[String] = [],\
 		 _card_tags: Array[String] = [], _enemy_card_count:int = DEFAULT_ENEMY_CARD_COUNT):
-	
 	enemy_card_count = _enemy_card_count
 	level_name = _name
 	dungeon_index = _dungeon_index

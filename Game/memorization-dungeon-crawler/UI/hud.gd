@@ -3,6 +3,7 @@ class_name HUD
 @export var player:Player
 @onready var damage_bar: ProgressBar = %DamageBar
 @onready var keys_info: Label = %keysInfo
+@onready var damage_bar_2: ProgressBar = %DamageBar2
 
 
 @onready var game_over_panel: Panel = $CanvasLayer/GameOverPanel

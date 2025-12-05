@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfj67b4iujjtf"]
+[gd_scene load_steps=17 format=3 uid="uid://bfj67b4iujjtf"]
 
 [ext_resource type="Script" uid="uid://qn46exgdgmle" path="res://UI/hud.gd" id="1_ijstf"]
 [ext_resource type="Texture2D" uid="uid://ch714bgi1e00f" path="res://assets/textures/health_indicator.png" id="1_yixhe"]
@@ -27,6 +27,9 @@ corner_detail = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3xbc"]
 bg_color = Color(1, 0.28764555, 0.22208649, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbci0"]
+bg_color = Color(0.41239682, 0.28710702, 0.9308016, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ptjp"]
 bg_color = Color(0, 0, 0, 1)
@@ -110,7 +113,7 @@ anchor_bottom = 0.5
 offset_left = -184.00005
 offset_top = -16.5
 offset_right = 40.50009
-offset_bottom = 13.454987
+offset_bottom = 10.5
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.7999998, 1.0515778)
@@ -127,6 +130,32 @@ value = 1.0
 position = Vector2(-31.250015, 15.215232)
 scale = Vector2(0.29334688, 0.20563807)
 texture = ExtResource("1_yixhe")
+
+[node name="DamageBar2" type="ProgressBar" parent="CanvasLayer/health"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -184.00005
+offset_top = 15.0
+offset_right = 40.50009
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.7999998, 1.0515778)
+size_flags_vertical = 12
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("5_f2wx0")
+theme_override_colors/font_outline_color = Color(0.4833359, 0.26642418, 0.6669199, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/background = SubResource("StyleBoxFlat_4idxp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rbci0")
+max_value = 1.0
+value = 1.0
 
 [node name="CardUI" parent="CanvasLayer" instance=ExtResource("6_gppie")]
 unique_name_in_owner = true
