@@ -6,6 +6,7 @@ static var start_speed
 static var goal_speed
 static var midgame_start_speed
 static var midgame_goal_speed
+static var _last_level_tags:Array[String] = []
 #---
 static var level_index:int = 0
 func _ready():
@@ -16,6 +17,7 @@ func _ready():
 static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJsonLoadInfo.new(), verbose:bool = false) -> bool:
 	# Reset globals safely
 	levels = []
+	_last_level_tags = []
 	start_speed = 0
 	goal_speed = 0
 	level_index = 0
@@ -209,12 +211,16 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 		# ---------------------------
 		# BOSS LEVEL
 		# ---------------------------
+		#Get the tags from the last level
+		if _last_level_tags.is_empty():
+			_last_level_tags = learnedTags
+		
 		levels.append(makeLevel(
 			dungIndx,
 			dungeon,
 			complete_goal,
 			themed_tags,
-			learnedTags,
+			_last_level_tags,
 			Level.LevelType.BOSS, verbose
 		))
 
@@ -228,6 +234,7 @@ static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, th
 	#for c in card_tags:
 		#typed_cards.append(str(c))  # ensure every element is a string
 	level_index+=1
+	_last_level_tags = card_tags.duplicate()
 	var level =  Level.new(dungeonIndex, level_index,
 		JsonUtils.get_string(dungeon,"name", ""),
 		JsonUtils.get_string(dungeon,"theme", ""),

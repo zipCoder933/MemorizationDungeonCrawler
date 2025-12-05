@@ -180,7 +180,7 @@ func clear_flashcard():
 	_has_flashcard = false
 
 func new_flashcard_question(current_flashcard_question2:Question):
-	if(get_player().mode != Player.PlayerMode.FACTS):
+	if(get_player() == null or get_player().mode != Player.PlayerMode.FACTS):
 		#If the player says nope, forget about the new flashcard question
 		return
 	
