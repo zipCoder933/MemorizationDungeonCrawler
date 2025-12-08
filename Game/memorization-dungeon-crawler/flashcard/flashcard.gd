@@ -8,7 +8,7 @@ class_name FlashcardUI
 @export var worldFlashcardNode:WorldFlashCard;
 
 const OPACITY = 0.9
-const DEFAULT_COLOR = Color(0.194, 0.194, 0.194, OPACITY)
+const DEFAULT_COLOR = Color(0.18, 0.18, 0.18, OPACITY)
 const FAILED_COLOR = Color(0.973, 0.0, 0.245, OPACITY)
 
 var start_time:int

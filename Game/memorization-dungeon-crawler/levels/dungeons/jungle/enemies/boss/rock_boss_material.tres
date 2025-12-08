@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://cglotfwlnsea7" path="res://levels/dungeons/jungle/enemies/rock monster_rock_face_03_rough_2k.png" id="3_hhxn1"]
 
 [resource]
-albedo_color = Color(1, 0.5228889, 0.67313486, 1)
+albedo_color = Color(0.8068494, 0.41039276, 0.23361364, 1)
 albedo_texture = ExtResource("1_kcqvf")
-roughness = 0.25
+roughness = 0.43
 roughness_texture = ExtResource("3_hhxn1")
 normal_enabled = true
 normal_texture = ExtResource("2_p2pt2")

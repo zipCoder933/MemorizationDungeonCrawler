@@ -13,7 +13,7 @@ class_name BossfightStats
 @onready var overall_accuracy_label: Label = %overall_accuracy_label
 @onready var overall_accuracy: Label = %overall_accuracy
 
-var animation_speed:float = 0.65
+var animation_speed:float = 0.67
 var animation_accuracy: float = 0
 var enemy: GoblinTrigger
 var results: FlashcardDrillResults
@@ -97,12 +97,12 @@ func _show_final_result():
 		bossfight_stat_label.text = "Congratulations!"
 		if enemy:
 			enemy.die()
-		get_tree().create_timer(5).timeout.connect(func():
+		get_tree().create_timer(4).timeout.connect(func():
 			visible = false
 			Globals.victory_event())
 	else:
 		bossfight_stat_label.text = "Fail..."
-		get_tree().create_timer(5).timeout.connect(func():
+		get_tree().create_timer(4).timeout.connect(func():
 			visible = false
 			Globals.game_over_event())
 

@@ -2156,10 +2156,6 @@ _animation_player = NodePath("../robotMesh/AnimationPlayer")
 root_node = NodePath("..")
 enemy_model = NodePath("../robotMesh")
 collision_shape_3d = NodePath("CollisionShape3D")
-fail_health_add = -0.25
-success_health_add = 0.05
-speed = 1.0
-cardNumber = 2
 idle_animation = "still"
 fight_idle_animation = "idle"
 take_hit_animation = "takeHit"
@@ -2171,10 +2167,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2924864, 0.0063762665)
 shape = ExtResource("2_v1bng")
 
 [node name="robotMesh" type="Node3D" parent="."]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.97885776, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97885776, 0)
 
 [node name="Bip001" type="Node3D" parent="robotMesh"]
-transform = Transform3D(3.7848945e-08, 0, -0.025399998, 0, 0.0254, 0, 0.025399998, 0, 3.7848945e-08, 0, 2.803483, 0)
+transform = Transform3D(3.3132206e-08, 0, -0.022, 0, 0.022, 0, 0.022, 0, 3.3132206e-08, 0, 2.4566002, 0)
 
 [node name="Bip001 Footsteps" type="Node3D" parent="robotMesh/Bip001"]
 transform = Transform3D(1.4901161e-06, 0, 1, 0, 1, 0, -1, 0, 1.4901161e-06, 0, -109.71993, 0)
@@ -2676,7 +2672,7 @@ libraries = {
 }
 
 [node name="WorldFlashcard" parent="robotMesh" instance=ExtResource("3_sukdv")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 2.236231, 1.5831453)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.236231, 1.3899984)
 texture = SubResource("ViewportTexture_nw521")
 
 [node name="BossArenaA" type="MeshInstance3D" parent="."]
