@@ -19,7 +19,8 @@ data = PackedVector3Array(1.3105, -1.2385, 0.0676, 0.58709997, -1.2238, 0.0765, 
 [node name="Door" type="StaticBody3D" node_paths=PackedStringArray("door")]
 collision_layer = 2
 script = ExtResource("1_kte1s")
-door_open_y = 0.5
+door_open_y = 0.05
+slide_speed = 3
 door = NodePath("door")
 
 [node name="trigger" parent="." node_paths=PackedStringArray("door") instance=ExtResource("4_avgtw")]
