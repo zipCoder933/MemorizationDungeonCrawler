@@ -14,6 +14,7 @@ var success_health_add:float;
 @export var idle_animation:String
 @export var idle_animation_speed:float = 1
 @export var fight_idle_animation:String
+@export var fight_idle_animation_speed:float = 1
 @export var punch_animation:String
 @export var take_hit_animation:String
 @export var take_hit_animation_speed:float = 1
@@ -70,7 +71,7 @@ func play_idle_animation():
 	if(fighting and fight_idle_animation != null):
 		_animation_player.play(fight_idle_animation,0.4,idle_animation_speed)
 	else:
-		_animation_player.play(idle_animation,0.4,idle_animation_speed)
+		_animation_player.play(idle_animation,0.4,fight_idle_animation_speed)
 
 func _single_drill(success):
 	if(success):

@@ -1759,14 +1759,10 @@ _animation_player = NodePath("../mesh/yeti/AnimationPlayer")
 root_node = NodePath("..")
 enemy_model = NodePath("../mesh")
 collision_shape_3d = NodePath("CollisionShape3D")
-fail_health_add = -0.25
-success_health_add = 0.05
-speed = 1.0
-cardNumber = 2
 idle_animation = "idle"
 fight_idle_animation = "idle"
-take_hit_animation = "takeHit"
-take_hit_animation_speed = 2.0
+fight_idle_animation_speed = 2.0
+take_hit_animation = "ArmatureAction"
 death_animation = "death"
 is_boss = true
 
