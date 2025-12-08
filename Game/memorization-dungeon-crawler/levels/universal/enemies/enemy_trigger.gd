@@ -88,7 +88,8 @@ func _finish_drill(results:FlashcardDrillResults):
 	else:
 		if(results.succeeded > 0):
 			#Increment our safety net by our accuracy
-			player.change_health2(player.health2_fill * results.get_accuracy())
+			var fill = Globals.map(results.get_accuracy(), 0.5, 1,  0, player.health2_fill)
+			player.change_health2(fill)
 			die()
 
 func die():
