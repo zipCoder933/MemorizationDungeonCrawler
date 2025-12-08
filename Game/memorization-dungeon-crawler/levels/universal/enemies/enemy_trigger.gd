@@ -69,9 +69,9 @@ func _animation_finished(animName:StringName):
 
 func play_idle_animation():
 	if(fighting and fight_idle_animation != null):
-		_animation_player.play(fight_idle_animation,0.4,idle_animation_speed)
+		_animation_player.play(fight_idle_animation,0.4,fight_idle_animation_speed)
 	else:
-		_animation_player.play(idle_animation,0.4,fight_idle_animation_speed)
+		_animation_player.play(idle_animation,0.4,idle_animation_speed)
 
 func _single_drill(success):
 	if(success):
