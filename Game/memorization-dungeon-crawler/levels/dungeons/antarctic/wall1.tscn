@@ -18,7 +18,7 @@ script = ExtResource("1_bdvot")
 transform = Transform3D(0.017452383, 0, -0.9998477, 0, 1, 0, 0.9998477, 0, 0.017452383, 0, 0, 0)
 
 [node name="antarctic_wall" parent="wall" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 0, 0)
+transform = Transform3D(0.99971795, 0, -0.01900136, 0, 1, 0, 0.0237517, 0, 0.79977435, -0.23928729, 0, -0.0041767694)
 
 [node name="WallCollisionShape" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
@@ -27,7 +27,7 @@ mesh = ExtResource("5_bdvot")
 skeleton = NodePath("../wall")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, -1.23, 0, 1, 0, 1, 0, -5.3765007e-08, 0.04498806, 0, 0)
+transform = Transform3D(-4.9612424e-08, 0, -0.895, 0, 1, 0, 1.135, 0, -3.912169e-08, 0.04498806, 0, -0.1356659)
 shape = SubResource("ConcavePolygonShape3D_kmcwc")
 
 [node name="decorations" type="Node3D" parent="."]
