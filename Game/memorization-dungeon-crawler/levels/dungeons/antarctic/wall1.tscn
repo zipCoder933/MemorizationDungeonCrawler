@@ -17,6 +17,9 @@ script = ExtResource("1_bdvot")
 [node name="wall" parent="." instance=ExtResource("4_bdvot")]
 transform = Transform3D(0.017452383, 0, -0.9998477, 0, 1, 0, 0.9998477, 0, 0.017452383, 0, 0, 0)
 
+[node name="antarctic_wall" parent="wall" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 0, 0)
+
 [node name="WallCollisionShape" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 visible = false
@@ -24,44 +27,38 @@ mesh = ExtResource("5_bdvot")
 skeleton = NodePath("../wall")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.1, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, -1.23, 0, 1, 0, 1, 0, -5.3765007e-08, 0.04498806, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_kmcwc")
 
 [node name="decorations" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.700716, 0, 0)
 
 [node name="Icicle3" type="MeshInstance3D" parent="decorations"]
-transform = Transform3D(0.69944566, 0.014508325, -0.02377563, -0.012507493, 0.69750744, 0.057678927, 0.024886433, -0.05720843, 0.69721437, -1.2529724, 4.78555, -1.3192261)
+transform = Transform3D(0.77447194, -0.19566227, -0.043698728, 0.19845504, 0.77294326, 0.05633853, 0.028441649, -0.06538104, 0.79681647, 1.1769344, 5.140571, -1.4065305)
 mesh = ExtResource("4_b8u4o")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_kmcwc")
 
 [node name="Icicle4" type="MeshInstance3D" parent="decorations"]
-transform = Transform3D(0.69944566, 0.014508325, -0.023775639, -0.017507598, 0.6937451, -0.09171295, 0.021662332, 0.09223497, 0.6935586, -1.4911959, 5.0113792, 0.10221881)
+transform = Transform3D(0.68690515, -0.13471854, -0.0035385643, 0.13301262, 0.68069345, -0.09467853, 0.021662328, 0.09223495, 0.69355845, 0.22928405, 5.1426773, -0.24028283)
 mesh = ExtResource("4_b8u4o")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_kmcwc")
 
 [node name="Icicle7" type="MeshInstance3D" parent="decorations"]
-transform = Transform3D(0.69944566, 0.014508327, -0.02377563, -0.0145220235, 0.6998493, -0.00015662417, 0.023767266, 0.00064974336, 0.6995961, -1.4911959, 5.4549904, 0.6232372)
+transform = Transform3D(0.98037744, -0.19432658, -0.03312572, 0.19418374, 0.9809367, -0.0075080083, 0.033953257, 0.00092820445, 0.9994234, 0.22632146, 5.1561604, 0.62323725)
 mesh = ExtResource("4_b8u4o")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_kmcwc")
 
 [node name="Icicle6" type="MeshInstance3D" parent="decorations"]
-transform = Transform3D(0.69844645, -0.03727143, -0.027988644, 0.039410517, 0.69666207, 0.05575639, 0.02488644, -0.05720843, 0.69721437, -1.0464456, 4.6733017, 0.10766268)
-mesh = ExtResource("4_b8u4o")
-skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("3_kmcwc")
-
-[node name="Icicle5" type="MeshInstance3D" parent="decorations"]
-transform = Transform3D(0.69944566, 0.014508325, -0.02377563, -0.012507493, 0.69750744, 0.057678927, 0.024886433, -0.05720843, 0.69721437, -1.2127593, 4.954698, 1.9548823)
+transform = Transform3D(0.6737135, -0.1859178, -0.03930268, 0.1883899, 0.67242974, 0.048450384, 0.024886442, -0.05720845, 0.6972144, 1.1646684, 5.235238, -0.05351472)
 mesh = ExtResource("4_b8u4o")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_kmcwc")
 
 [node name="light" type="OmniLight3D" parent="decorations"]
-transform = Transform3D(1, 0, 5.8483324e-10, 0, 1, 0, -5.8483324e-10, 0, 1, -1.6616092, 5.0008183, 0.047252953)
+transform = Transform3D(1, 0, 5.8483324e-10, 0, 1, 0, -5.8483324e-10, 0, 1, -0.39183903, 4.2267547, 0.047252953)
 light_color = Color(0.8, 0.8933333, 1, 1)
 omni_range = 9.0
 

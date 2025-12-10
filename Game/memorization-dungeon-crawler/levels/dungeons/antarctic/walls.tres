@@ -1,10 +1,17 @@
-[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bufg64lkge8ug"]
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://bufg64lkge8ug"]
 
-[ext_resource type="Texture2D" uid="uid://b3ym8jftv2jwv" path="res://levels/dungeons/antarctic/texture/texture.png" id="1_doryo"]
-[ext_resource type="Texture2D" uid="uid://2cd1cam2by5d" path="res://levels/dungeons/antarctic/texture/normal.jpg" id="2_wic4v"]
+[ext_resource type="Texture2D" uid="uid://dg1jvdkjvmvo3" path="res://levels/dungeons/antarctic/texture_ceiling/texture.jpg" id="1_wic4v"]
+[ext_resource type="Texture2D" uid="uid://ci6i0l7l0fmy6" path="res://levels/dungeons/antarctic/texture_ceiling/snow_02_nor_gl_2k.png" id="2_ho74l"]
+[ext_resource type="Texture2D" uid="uid://4uo87tijvkv0" path="res://levels/dungeons/antarctic/texture_ceiling/snow_02_rough_2k.jpg" id="3_veagf"]
 
 [resource]
-albedo_color = Color(1.3374829, 1.3374829, 1.3374829, 1)
-albedo_texture = ExtResource("1_doryo")
+albedo_color = Color(1.3106908, 1.3304832, 1.3370808, 1)
+albedo_texture = ExtResource("1_wic4v")
+metallic_specular = 1.0
+roughness = 0.5
+roughness_texture = ExtResource("3_veagf")
 normal_enabled = true
-normal_texture = ExtResource("2_wic4v")
+normal_scale = 1.1
+normal_texture = ExtResource("2_ho74l")
+uv1_scale = Vector3(0.9, 0.9, 0.9)
+uv1_offset = Vector3(0.85, 0, 0)

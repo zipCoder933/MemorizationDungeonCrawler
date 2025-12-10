@@ -19,15 +19,16 @@ data = PackedVector3Array(1.3105, -1.2385, 0.0676, 0.58709997, -1.2238, 0.0765, 
 [node name="Door" type="StaticBody3D" node_paths=PackedStringArray("door")]
 collision_layer = 2
 script = ExtResource("1_kte1s")
-door_open_y = 0.05
+door_open_y = 7.0
 slide_speed = 3
 door = NodePath("door")
 
 [node name="trigger" parent="." node_paths=PackedStringArray("door") instance=ExtResource("4_avgtw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14040375, 0, 0)
 door = NodePath("..")
 
 [node name="trigger2" parent="." node_paths=PackedStringArray("door") instance=ExtResource("4_avgtw")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.14919901, 0, 0)
 door = NodePath("..")
 
 [node name="frame" type="CollisionShape3D" parent="."]
@@ -35,7 +36,7 @@ transform = Transform3D(-4.371139e-08, 0, 1.4650321, 0, 1.14, 0, -1, 0, -6.40385
 shape = SubResource("ConcavePolygonShape3D_avgtw")
 
 [node name="DoorFrame" type="MeshInstance3D" parent="frame"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+transform = Transform3D(1, 0, -2.842171e-15, 0, 1, 0, 3.5527137e-15, 0, 0.8, 0, 0, 0)
 mesh = ExtResource("7_avgtw")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_avgtw")
@@ -49,11 +50,11 @@ transform = Transform3D(4.4585615e-08, -6.7322407e-15, -1, -1.5401571e-07, -1.02
 collision_layer = 2
 
 [node name="Door2" type="MeshInstance3D" parent="door"]
-transform = Transform3D(0.9803922, -1.4803511e-07, 8.5708606e-08, -1.4803511e-07, -0.9803922, -1.294164e-14, 8.742278e-08, 4.0707086e-22, -1, -0.026820824, 3.5318666, -1.1958394e-09)
+transform = Transform3D(-0.9803922, 0, -1.509958e-07, 0, 0.9803922, 0, 1.4803511e-07, 0, -1, -0.026821245, 0.7903378, -0.0731256)
 mesh = ExtResource("5_xjpgi")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("6_v4ab7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door"]
-transform = Transform3D(0.9803922, -1.4803511e-07, 8.5708606e-08, -1.4803511e-07, -0.9803922, -1.294164e-14, 8.742278e-08, 4.0707086e-22, -1, -0.026820824, 3.5318666, -1.1958394e-09)
+transform = Transform3D(-0.9803922, 0, -8.742278e-08, 0, 0.9803922, 0, 8.570861e-08, 0, -1, -0.026821243, 0.79033804, -0.0731256)
 shape = SubResource("ConcavePolygonShape3D_xjpgi")
