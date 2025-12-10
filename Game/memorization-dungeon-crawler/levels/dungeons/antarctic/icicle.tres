@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cq6r4rkm1swlc" path="res://levels/dungeons/antarctic/texture_floor/snow_floor_rough_2k.jpg" id="3_mbs0y"]
 
 [resource]
-albedo_color = Color(0.45999998, 0.6759999, 1, 0.8156863)
+cull_mode = 2
+albedo_color = Color(0.7124328, 0.82735795, 1, 1)
 metallic_specular = 1.0
 roughness = 0.0
 roughness_texture_channel = 2
@@ -13,5 +14,4 @@ normal_texture = ExtResource("2_um4tc")
 subsurf_scatter_enabled = true
 subsurf_scatter_strength = 0.46
 subsurf_scatter_texture = ExtResource("3_mbs0y")
-refraction_enabled = true
 refraction_scale = -1.0

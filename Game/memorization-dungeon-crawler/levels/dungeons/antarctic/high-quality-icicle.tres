@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://baj0bhch5j0ju"]
+
+[ext_resource type="Texture2D" uid="uid://co6udnn1iimmf" path="res://levels/dungeons/antarctic/texture_ceiling/normal.jpg" id="1_pbvkc"]
+[ext_resource type="Texture2D" uid="uid://cq6r4rkm1swlc" path="res://levels/dungeons/antarctic/texture_floor/snow_floor_rough_2k.jpg" id="2_o445e"]
+
+[resource]
+albedo_color = Color(0.45999998, 0.6759999, 1, 0.8156863)
+metallic_specular = 1.0
+roughness = 0.0
+roughness_texture_channel = 2
+normal_enabled = true
+normal_texture = ExtResource("1_pbvkc")
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.46
+subsurf_scatter_texture = ExtResource("2_o445e")
+refraction_enabled = true
+refraction_scale = -1.0
