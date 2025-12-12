@@ -34,25 +34,25 @@ shape = SubResource("ConcavePolygonShape3D_kmcwc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.700716, 0, 0)
 
 [node name="Icicle3" type="MeshInstance3D" parent="decorations"]
-transform = Transform3D(0.77447194, -0.19566227, -0.043698728, 0.19845504, 0.77294326, 0.05633853, 0.028441649, -0.06538104, 0.79681647, 1.1769344, 5.140571, -1.4065305)
+transform = Transform3D(0.6776629, -0.17120449, -0.03823639, 0.17364812, 0.67632556, 0.049296223, 0.024886442, -0.057208423, 0.69721437, 1.1769344, 5.404437, -1.4651672)
 mesh = ExtResource("4_b8u4o")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_kmcwc")
 
 [node name="Icicle4" type="MeshInstance3D" parent="decorations"]
-transform = Transform3D(0.68690515, -0.13471854, -0.0035385643, 0.13301262, 0.68069345, -0.09467853, 0.021662328, 0.09223495, 0.69355845, 0.22928405, 5.1426773, -0.24028283)
+transform = Transform3D(0.5887757, -0.115473025, -0.0030330555, 0.11401079, 0.58345157, -0.081153, 0.018567704, 0.07905851, 0.5944788, 0.22928405, 5.4065433, -0.2989195)
 mesh = ExtResource("4_b8u4o")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_kmcwc")
 
 [node name="Icicle7" type="MeshInstance3D" parent="decorations"]
-transform = Transform3D(0.98037744, -0.19432658, -0.03312572, 0.19418374, 0.9809367, -0.0075080083, 0.033953257, 0.00092820445, 0.9994234, 0.22632146, 5.1561604, 0.62323725)
+transform = Transform3D(0.68626416, -0.13602862, -0.02318802, 0.13592862, 0.68665546, -0.0052556065, 0.023767278, 0.0006497415, 0.69959605, 0.22632146, 5.434685, 1.2389247)
 mesh = ExtResource("4_b8u4o")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_kmcwc")
 
 [node name="Icicle6" type="MeshInstance3D" parent="decorations"]
-transform = Transform3D(0.6737135, -0.1859178, -0.03930268, 0.1883899, 0.67242974, 0.048450384, 0.024886442, -0.05720845, 0.6972144, 1.1646684, 5.235238, -0.05351472)
+transform = Transform3D(0.57746875, -0.15935804, -0.03368802, 0.16147707, 0.5763684, 0.041528907, 0.021331243, -0.049035817, 0.5976123, 1.1646684, 5.425808, 0.09307742)
 mesh = ExtResource("4_b8u4o")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_kmcwc")
