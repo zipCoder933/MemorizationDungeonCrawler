@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dypvlfm8ktg62"
+path="res://.godot/imported/epic bossfight.ogg-8591829299351e5b213bdc9c5ea5eab4.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/gavin/music/epic bossfight.ogg"
+dest_files=["res://.godot/imported/epic bossfight.ogg-8591829299351e5b213bdc9c5ea5eab4.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

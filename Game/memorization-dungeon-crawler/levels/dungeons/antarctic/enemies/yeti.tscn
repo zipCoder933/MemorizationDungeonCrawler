@@ -3683,9 +3683,10 @@ _data = {
 
 [node name="mesh" type="Node3D" parent="."]
 
-[node name="WorldFlashcard" parent="mesh" instance=ExtResource("4_dmyxl")]
+[node name="WorldFlashcard" parent="mesh" node_paths=PackedStringArray("parent") instance=ExtResource("4_dmyxl")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.9817972, 0.4769901)
 texture = SubResource("ViewportTexture_behv3")
+parent = NodePath("../../trigger")
 
 [node name="yeti" type="Node3D" parent="mesh"]
 transform = Transform3D(1.39, 0, 0, 0, 1.39, 0, 0, 0, 1.39, 0, 0, 0)

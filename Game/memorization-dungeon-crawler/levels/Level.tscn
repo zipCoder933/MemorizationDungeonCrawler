@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_aevpi"]
 [ext_resource type="PackedScene" uid="uid://3cmqyetfdyvt" path="res://player/Player.tscn" id="4_n5p7m"]
 [ext_resource type="Texture2D" uid="uid://ddqrdhfnatubf" path="res://assets/qwantani_moon_noon_puresky_2k.exr" id="4_o5d2f"]
-[ext_resource type="AudioStream" uid="uid://8ne210lubb5v" path="res://assets/sounds/music/Background1.ogg" id="7_0oum7"]
+[ext_resource type="AudioStream" uid="uid://ns2vs4fvsl86" path="res://assets/sounds/pixabay/short-zap.wav" id="8_ddowk"]
 [ext_resource type="PackedScene" uid="uid://17b24tvmkjco" path="res://levels/LevelGenerator.tscn" id="8_o5d2f"]
 
 [sub_resource type="Resource" id="Resource_0oum7"]
@@ -64,7 +64,9 @@ light_energy = 0.01
 
 [node name="LevelGenerator" parent="." instance=ExtResource("8_o5d2f")]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_0oum7")
-volume_db = 2.0
-parameters/looping = true
+[node name="ambientSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -10.0
+
+[node name="drill_submit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ddowk")

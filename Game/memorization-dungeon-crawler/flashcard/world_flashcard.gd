@@ -7,6 +7,8 @@ signal signal_flashcard_single_drill
 signal signal_flashcard_finished_drill
 signal signal_flashcard_answer_changed
 
+@export var parent:Node = null
+
 var player:Player
 @onready var card_ui: FlashcardUI = %CardUI
 

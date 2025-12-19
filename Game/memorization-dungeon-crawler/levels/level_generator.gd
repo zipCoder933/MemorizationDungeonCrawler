@@ -1,6 +1,6 @@
 extends Node3D
 
-
+class_name LevelGenerator
 
 
 """
@@ -362,6 +362,16 @@ var ARENA_BOSS = preload("uid://bobtcptejmn2a")
 var FLOOR = preload("uid://bvoe5plbouam2")
 var PLAYER_SPAWN:Vector3
 var floor_size=250
+
+static func getAmbientSound(level:Level):
+	if(level.theme == Level.LevelTheme.ANTARCTIC):
+		return load("res://assets/sounds/pixabay/wind__artic__cold-6195.mp3")
+	elif(level.theme == Level.LevelTheme.MACHINE):
+		return load("res://assets/sounds/pixabay/industrial-ambience-67112.mp3")
+	elif(level.theme == Level.LevelTheme.LAVA):
+		return load("res://assets/sounds/pixabay/earth-01-17687.mp3")
+	else:
+		return load("res://assets/sounds/pixabay/droplets-in-a-cave-6785.mp3")
 
 func set_dungeon_theme(level:Level, game:SaveEntry):
 	var rd = Globals.random_deterministic(game.seed,game.completed_level)

@@ -11,6 +11,7 @@ signal signal_flashcard_single_drill
 signal signal_flashcard_finished_drill
 signal signal_flashcard_answer_changed
 signal signal_boss_defeated
+#signal signal_load_level
 
 static var CARD_MISSING_IMAGE: Texture2D
 static var SAVE_FILE

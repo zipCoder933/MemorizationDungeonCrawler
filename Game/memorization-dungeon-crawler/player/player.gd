@@ -13,6 +13,9 @@ const HIT_ANIMATION = ["hit1 Retarget","hit2 Retarget","hit3 Retarget"]
 const VICTORY_ANIMATION = "victory"
 var mode:PlayerMode = PlayerMode.ADVENTURE
 
+@onready var damage_sound: AudioStreamPlayer = $damageSound
+@onready var kill_sound: AudioStreamPlayer = $killSound
+
 enum PlayerMode{
 	ADVENTURE,
 	FACTS,
@@ -114,6 +117,7 @@ func set_health(value:float):
 	
 	if(health > value):
 		animation_player.play(HIT_ANIMATION[randi_range(0,HIT_ANIMATION.size()-1)], 0.2, 2)
+		damage_sound.play(0)
 	if(value > MAX_HEALTH):
 		health = MAX_HEALTH
 	elif(value <= 0):
@@ -187,8 +191,11 @@ func _victory():
 		set_alpha(false)
 		mouse_controller.unlock_mouse_forever()
 
+
 func _game_over():
 	if(mode != PlayerMode.GAME_OVER):
+		damage_sound.stop()
+		kill_sound.play(0)
 		animation_player.play(DEATH_ANIMATION, 0.2)
 		set_alpha(false)
 		phantom_camera_follow_node.flashcard = null
