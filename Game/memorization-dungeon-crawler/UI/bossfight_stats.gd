@@ -13,7 +13,12 @@ class_name BossfightStats
 @onready var overall_accuracy_label: Label = %overall_accuracy_label
 @onready var overall_accuracy: Label = %overall_accuracy
 
-var animation_speed:float = 0.67
+@onready var success: AudioStreamPlayer = $success
+@onready var fail: AudioStreamPlayer = $fail
+@onready var pound: AudioStreamPlayer = $pound
+
+
+var animation_speed:float = 0.78
 var animation_accuracy: float = 0
 var enemy: GoblinTrigger
 var results: FlashcardDrillResults
@@ -24,8 +29,8 @@ func _ready():
 	visible = false
 
 func complete_boss_fight(_enemy: GoblinTrigger, _results: FlashcardDrillResults):
-	await get_tree().create_timer(4).timeout
 	visible = true
+	pound.play(0)
 	enemy = _enemy
 	results = _results
 
@@ -41,6 +46,7 @@ func complete_boss_fight(_enemy: GoblinTrigger, _results: FlashcardDrillResults)
 
 	# Start with themed accuracy
 	await get_tree().create_timer(2).timeout
+	pound.play(0)
 	show_phase = "themed"
 	themed_accuracy_label.visible = true
 	print("Bossfight data: ",_results)
@@ -69,6 +75,7 @@ func _process(delta):
 		)
 
 	elif show_phase == "done":
+		#get_tree().create_timer(1).timeout.connect(func():
 		_show_final_result()
 
 
@@ -83,17 +90,22 @@ func _show_accuracy_animation(target_accuracy: float, label: Label, next_phase: 
 		# Move to next phase
 		show_phase = next_phase
 		if next_phase == "overall":
+			pound.play(0)
 			get_tree().create_timer(1.5).timeout.connect(func():
-				overall_accuracy_label.visible = true)
+				#pound.play(0)
+				overall_accuracy_label.visible = true;
+				)
 		elif next_phase == "done":
 			get_tree().create_timer(2).timeout.connect(func():
-				bossfight_stat_label.visible = true)
+				bossfight_stat_label.visible = true;
+				)
 
 
 func _show_final_result():
 	bossfight_stat_label.visible=true
 
 	if results.get_themed_accuracy() >= .9 and results.get_accuracy() >= .9:
+		success.play(0)
 		bossfight_stat_label.text = "Congratulations!"
 		if enemy:
 			enemy.die()
@@ -101,6 +113,7 @@ func _show_final_result():
 			visible = false
 			Globals.victory_event())
 	else:
+		fail.play(0)
 		bossfight_stat_label.text = "Fail..."
 		get_tree().create_timer(4).timeout.connect(func():
 			visible = false

@@ -365,13 +365,15 @@ var floor_size=250
 
 static func getAmbientSound(level:Level):
 	if(level.theme == Level.LevelTheme.ANTARCTIC):
-		return load("res://assets/sounds/pixabay/wind__artic__cold-6195.mp3")
+		return load("res://assets/sounds/pixabay/levels/arctic_ambient.ogg")
 	elif(level.theme == Level.LevelTheme.MACHINE):
-		return load("res://assets/sounds/pixabay/industrial-ambience-67112.mp3")
+		return load("res://assets/sounds/pixabay/levels/machine_ambient.ogg")
 	elif(level.theme == Level.LevelTheme.LAVA):
-		return load("res://assets/sounds/pixabay/earth-01-17687.mp3")
+		return load("res://assets/sounds/pixabay/levels/volcanic_ambient.ogg")
+	elif(level.theme == Level.LevelTheme.JUNGLE):
+		return load("res://assets/sounds/pixabay/levels/jungle_ambient.ogg")
 	else:
-		return load("res://assets/sounds/pixabay/droplets-in-a-cave-6785.mp3")
+		return load("res://assets/sounds/pixabay/levels/dungeon_ambient.ogg")
 
 func set_dungeon_theme(level:Level, game:SaveEntry):
 	var rd = Globals.random_deterministic(game.seed,game.completed_level)

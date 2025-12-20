@@ -7,6 +7,7 @@ signal signal_flashcard_single_drill
 signal signal_flashcard_finished_drill
 signal signal_flashcard_answer_changed
 
+@export var fightMusic:AudioStreamOggVorbis
 @export var parent:Node = null
 
 var player:Player

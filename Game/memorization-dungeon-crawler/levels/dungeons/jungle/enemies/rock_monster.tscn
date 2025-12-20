@@ -1,9 +1,10 @@
-[gd_scene load_steps=40 format=4 uid="uid://dv6oq3amn1brg"]
+[gd_scene load_steps=41 format=4 uid="uid://dv6oq3amn1brg"]
 
 [ext_resource type="Texture2D" uid="uid://dg78xl17a0bg7" path="res://levels/dungeons/jungle/enemies/rock monster_rock_face_03_diff_2k.jpg" id="1_6phiv"]
 [ext_resource type="Texture2D" uid="uid://cglotfwlnsea7" path="res://levels/dungeons/jungle/enemies/rock monster_rock_face_03_rough_2k.png" id="2_dp34s"]
 [ext_resource type="Texture2D" uid="uid://b4miwkcxn6f3r" path="res://levels/dungeons/jungle/enemies/rock monster_rock_face_03_nor_gl_2k.png" id="3_ukxxj"]
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="4_ukxxj"]
+[ext_resource type="AudioStream" uid="uid://dg8rqrk66fwnq" path="res://assets/sounds/gavin/music/JungleMelody.ogg" id="5_g2mx5"]
 [ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://flashcard/worldFlashcard.tscn" id="5_hnyqs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fcs5"]
@@ -4820,6 +4821,7 @@ libraries = {
 [node name="WorldFlashcard" parent="rockMesh" instance=ExtResource("5_hnyqs")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.825, 0)
 texture = SubResource("ViewportTexture_ukxxj")
+fightMusic = ExtResource("5_g2mx5")
 
 [node name="trigger" type="StaticBody3D" parent="." node_paths=PackedStringArray("_3d_flashcard", "_animation_player", "root_node", "enemy_model", "collision_shape_3d")]
 collision_layer = 4
@@ -4829,9 +4831,6 @@ _animation_player = NodePath("../rockMesh/rock monster/AnimationPlayer")
 root_node = NodePath("..")
 enemy_model = NodePath("../rockMesh")
 collision_shape_3d = NodePath("CollisionShape3D")
-fail_health_add = -0.25
-success_health_add = 0.05
-speed = 1.0
 idle_animation = "idle"
 fight_idle_animation = "fightIdle"
 take_hit_animation = "takeHit"

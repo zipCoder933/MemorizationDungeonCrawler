@@ -15,12 +15,11 @@ var success_health_add:float;
 @export var idle_animation_speed:float = 1
 @export var fight_idle_animation:String
 @export var fight_idle_animation_speed:float = 1
-@export var punch_animation:String
+#@export var punch_animation:String
 @export var take_hit_animation:String
 @export var take_hit_animation_speed:float = 1
 @export var death_animation:String
 
-@export var begin_delay = 1
 @export var is_boss = false
 
 var fighting = false
@@ -68,7 +67,9 @@ func _animation_finished(animName:StringName):
 		play_idle_animation()
 
 func play_idle_animation():
-	if(fighting and fight_idle_animation != null):
+	print("Playing idle animation")
+	#We want to check if fight idle animaiton is not null and is not empty
+	if(fighting and fight_idle_animation != null and !fight_idle_animation.strip_edges().is_empty()):
 		_animation_player.play(fight_idle_animation,0.4,fight_idle_animation_speed)
 	else:
 		_animation_player.play(idle_animation,0.4,idle_animation_speed)
@@ -84,9 +85,7 @@ func _single_drill(success):
 		player.change_health(fail_health_add)
 
 func _finish_drill(results:FlashcardDrillResults):
-	if(is_boss):
-		Globals.boss_defeated_event(self, results)
-	else:
+	if(not is_boss):
 		if(results.succeeded > 0):
 			#Increment our safety net by our accuracy
 			var fill = Globals.map(results.get_accuracy(), 0.5, 1,  0, player.health2_fill)
@@ -148,15 +147,22 @@ func _process(delta):
 		var target_yaw = atan2(dir.x, dir.z)
 		enemy_model.rotation.y = target_yaw
 
+var triggered:bool = false
+
 func trigger():
-	if(isDead):
+	#We can only trigger this once
+	if(isDead or triggered):
 		return
-		
+	
+	triggered = true
+	collision_shape_3d.disabled = true
+	
 	if SaveHandler.currentLevel != null:
 		var questions:Array[Question] = []
 		fighting=true
-		
+		var begin_delay:float = 1
 		if(is_boss):
+			begin_delay = 14.5
 			var SPEED_MULTIPLIER = 1.0
 			for i in range(0, SaveHandler.currentLevel.boss_card_count_multiplier):#We want to go through the entire deck X times
 				for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, 0):

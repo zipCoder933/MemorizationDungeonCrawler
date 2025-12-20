@@ -10,7 +10,7 @@ signal signal_new_flashcard
 signal signal_flashcard_single_drill
 signal signal_flashcard_finished_drill
 signal signal_flashcard_answer_changed
-signal signal_boss_defeated
+signal signal_show_bossfight_results
 #signal signal_load_level
 
 static var CARD_MISSING_IMAGE: Texture2D
@@ -199,9 +199,6 @@ func new_flashcard_question(current_flashcard_question2:Question):
 
 
 
-func boss_defeated_event(enemy:GoblinTrigger, results:FlashcardDrillResults):
-	signal_boss_defeated.emit(enemy, results)
-	Globals.get_player().mode = Player.PlayerMode.STILL
 
 func get_player() -> Player:
 	var list = get_tree().get_nodes_in_group("player")
@@ -259,8 +256,9 @@ func submit_flashcard(succeed:bool):
 	#If we dont have a flashcard anymore (We already submitted the last one)	
 	if(!has_flashcard()):
 		return
-	
+	print("SUBMITTED!!!!")
 	var player =  get_player()
+	player.play_submit_sound(succeed);
 	var accuracy = 0
 	var time_ms = _flashcardNode.get_time_elapsed_MS()
 	var question = _current_flashcard_question
@@ -320,9 +318,20 @@ func submit_flashcard(succeed:bool):
 		_flashcardNode.signal_flashcard_finished_drill.emit(results)
 		signal_flashcard_finished_drill.emit(results)
 		failed_flashcards.clear()
-		if(player !=null and player.health > 0):
-			adventure_mode.emit()
 		clear_flashcard()
+		
+		var isBossfight = false
+		if(_flashcardNode.parent != null and _flashcardNode.parent is GoblinTrigger):
+			var trigger:GoblinTrigger = _flashcardNode.parent
+			isBossfight = trigger.is_boss
+			if(isBossfight):
+				print("waiting to show results...")
+				Globals.get_player().mode = Player.PlayerMode.STILL
+				await get_tree().create_timer(4).timeout
+				signal_show_bossfight_results.emit(trigger, results)
+				
+		if(isBossfight==false and player !=null and player.health > 0):
+			adventure_mode.emit()
 
 
 func _input(event):

@@ -1,5 +1,6 @@
-[gd_scene load_steps=28 format=4 uid="uid://xuvau2pv8n6o"]
+[gd_scene load_steps=29 format=4 uid="uid://xuvau2pv8n6o"]
 
+[ext_resource type="AudioStream" uid="uid://cjf1rdcyh5lcj" path="res://assets/sounds/gavin/music/bossfight.ogg" id="2_behv3"]
 [ext_resource type="Texture2D" uid="uid://5nw3p5ff5n7t" path="res://levels/dungeons/antarctic/enemies/yeti_Image_0.jpg" id="2_dmyxl"]
 [ext_resource type="Texture2D" uid="uid://cr4dh76np36xg" path="res://levels/dungeons/antarctic/enemies/yeti_Image_1.jpg" id="3_ba0nk"]
 [ext_resource type="Texture2D" uid="uid://bnr70mmtdhxpq" path="res://levels/dungeons/antarctic/enemies/yeti_Image_2.jpg" id="4_behv3"]
@@ -3686,6 +3687,7 @@ _data = {
 [node name="WorldFlashcard" parent="mesh" node_paths=PackedStringArray("parent") instance=ExtResource("4_dmyxl")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.9817972, 0.4769901)
 texture = SubResource("ViewportTexture_behv3")
+fightMusic = ExtResource("2_behv3")
 parent = NodePath("../../trigger")
 
 [node name="yeti" type="Node3D" parent="mesh"]

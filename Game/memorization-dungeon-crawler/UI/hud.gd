@@ -63,7 +63,7 @@ func _ready():
 	player.health_changed.connect(_player_health_changed)
 	player.signal_health2_changed.connect(_player_health2_changed)
 	Globals.signal_game_over.connect(_game_over)
-	Globals.signal_boss_defeated.connect(bossfight_stats.complete_boss_fight)
+	Globals.signal_show_bossfight_results.connect(bossfight_stats.complete_boss_fight)
 	Globals.signal_victory.connect(_victory)
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
 	Globals.adventure_mode.connect(_global_adventure_mode)

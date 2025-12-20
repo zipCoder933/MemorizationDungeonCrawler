@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://ts0w5nrycjvg"]
+[gd_scene load_steps=48 format=4 uid="uid://ts0w5nrycjvg"]
 
 [ext_resource type="Script" uid="uid://dmcdxedmm8xac" path="res://levels/universal/enemies/enemy_trigger.gd" id="1_i07kj"]
 [ext_resource type="Shape3D" uid="uid://b0tr65p26nb77" path="res://levels/universal/boss_trigger.tres" id="2_prvwy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b4miwkcxn6f3r" path="res://levels/dungeons/jungle/enemies/rock monster_rock_face_03_nor_gl_2k.png" id="7_m8t5i"]
 [ext_resource type="Material" uid="uid://b3spqu1mjrspj" path="res://levels/dungeons/jungle/enemies/boss/rock_boss_material.tres" id="8_hfema"]
 [ext_resource type="Texture2D" uid="uid://c3nuen8u4q4xy" path="res://levels/dungeons/jungle/jungle/6/texture.jpg" id="8_prvwy"]
+[ext_resource type="AudioStream" uid="uid://dypvlfm8ktg62" path="res://assets/sounds/gavin/music/epic bossfight.ogg" id="8_uylr4"]
 [ext_resource type="PackedScene" uid="uid://do43srcrnuwks" path="res://flashcard/worldFlashcard.tscn" id="9_pyolf"]
 [ext_resource type="Texture2D" uid="uid://dvqca4p8uppip" path="res://levels/dungeons/jungle/jungle/6/normal.jpg" id="9_uylr4"]
 
@@ -4866,9 +4867,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_why23")
 }
 
-[node name="WorldFlashcard" parent="rockMesh" instance=ExtResource("9_pyolf")]
+[node name="WorldFlashcard" parent="rockMesh" node_paths=PackedStringArray("parent") instance=ExtResource("9_pyolf")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.5075364, 1.5654092)
 texture = SubResource("ViewportTexture_mx4bm")
+fightMusic = ExtResource("8_uylr4")
+parent = NodePath("../../trigger")
 
 [node name="BossArenaA" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5457938, 0)

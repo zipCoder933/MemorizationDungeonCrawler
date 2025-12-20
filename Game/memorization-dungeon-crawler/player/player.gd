@@ -4,6 +4,7 @@ class_name Player
 
 @onready var animation_player: AnimationPlayer = $Knight2/AnimationPlayer
 const RUNNING_ANIMATION = "running Retarget"
+const RUNNING_ANIMATION_SPEED = 1.1
 const JUMP_UP_ANIMATION = "jump up Retarget"
 const IDLE_ANIMATION = "Idle Retarget"
 const DEATH_ANIMATION = "death Retarget"
@@ -13,13 +14,19 @@ const HIT_ANIMATION = ["hit1 Retarget","hit2 Retarget","hit3 Retarget"]
 const VICTORY_ANIMATION = "victory"
 var mode:PlayerMode = PlayerMode.ADVENTURE
 
-@onready var damage_sound: AudioStreamPlayer = $damageSound
-@onready var kill_sound: AudioStreamPlayer = $killSound
+#Sounds
+@onready var drill_submit: AudioStreamPlayer = %drill_submit
+@onready var damage_sound: AudioStreamPlayer = %damageSound
+@onready var kill_sound: AudioStreamPlayer = %killSound
+@onready var success_sound: AudioStreamPlayer = %successSound
+@onready var running_sound: AudioStreamPlayer = %runningSound
+@onready var drill_fail: AudioStreamPlayer = %drill_fail
+
 
 enum PlayerMode{
-	ADVENTURE,
-	FACTS,
-	STILL, 
+	ADVENTURE, #0
+	FACTS, #1
+	STILL,  #2
 	GAME_OVER,
 	VICTORY
 }
@@ -27,6 +34,14 @@ enum PlayerMode{
 func _is_still():
 	return mode == PlayerMode.STILL or mode == PlayerMode.GAME_OVER or mode == PlayerMode.VICTORY\
 	 or !mouse_controller.mouse_locked or bossfight_finish_entity != null
+
+#Called from global for instant playback
+func play_submit_sound(succeed:bool):
+	if(succeed):
+		drill_submit.play(0.01)
+	else:
+		drill_fail.play(0)
+
 
 #camera
 @export var phantom_camera_3d: PhantomCamera3D
@@ -63,6 +78,28 @@ var keys:int = 0
 @onready var shield_mesh: MeshInstance3D = $Knight2/Knight/Skeleton3D/shield
 @onready var helmet_mesh: MeshInstance3D = $Knight2/Knight/Skeleton3D/helmet
 @onready var body_mesh: MeshInstance3D = $Knight2/Knight/Skeleton3D/body
+
+
+func _ready():
+	print("Health increment: ",health2_increment)
+	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
+	Globals.signal_game_over.connect(_game_over)
+	Globals.adventure_mode.connect(_global_adventure_mode)
+	Globals.signal_victory.connect(_victory)
+	Globals.signal_show_bossfight_results.connect(_global_boss_defeated)
+	
+	#success_sound.play(0)
+
+#Set phantom camera default parameters
+	#https://phantom-camera.dev/follow-modes/overview
+	#Follow mode should not change
+	phantom_camera_3d.follow_mode = PhantomCamera3D.FollowMode.THIRD_PERSON
+	phantom_camera_3d.follow_target = phantom_camera_follow_node
+	phantom_camera_3d.look_at_mode = PhantomCamera3D.LookAtMode.NONE
+	phantom_camera_3d.follow_damping = false
+	phantom_camera_3d.tween_on_load = false
+	phantom_camera_3d.spring_length = phantom_camera_follow_node.length
+
 
 func set_alpha(transparent:bool):
 	if(transparent):
@@ -110,6 +147,7 @@ func obtain_key(key:KeyNode):
 	elif(SaveHandler.currentLevel.levelType == Level.LevelType.BOSS):
 		if(key.is_boss_key):
 			Globals.victory_event()
+	success_sound.play(0)
 	key.queue_free()
 
 func set_health(value:float):
@@ -157,29 +195,11 @@ func change_health2(amt:float):
 	print("CHANGING HEALTH2 BY ",amt)
 	set_health2(health2+amt)
 
-func _global_boss_defeated(_boss:GoblinTrigger, accuracy:float):
+func _global_boss_defeated(_boss:GoblinTrigger, results:FlashcardDrillResults):
 	bossfight_finish_entity = _boss
 	mode = PlayerMode.STILL
 
 
-
-func _ready():
-	print("Health increment: ",health2_increment)
-	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
-	Globals.signal_game_over.connect(_game_over)
-	Globals.adventure_mode.connect(_global_adventure_mode)
-	Globals.signal_victory.connect(_victory)
-	Globals.signal_boss_defeated.connect(_global_boss_defeated)
-
-	#Set phantom camera default parameters
-	#https://phantom-camera.dev/follow-modes/overview
-	#Follow mode should not change
-	phantom_camera_3d.follow_mode = PhantomCamera3D.FollowMode.THIRD_PERSON
-	phantom_camera_3d.follow_target = phantom_camera_follow_node
-	phantom_camera_3d.look_at_mode = PhantomCamera3D.LookAtMode.NONE
-	phantom_camera_3d.follow_damping = false
-	phantom_camera_3d.tween_on_load = false
-	phantom_camera_3d.spring_length = phantom_camera_follow_node.length
 
 var flash_card:WorldFlashCard = null
 
@@ -234,8 +254,8 @@ func get_normalized_mouse() -> Vector2:
 @onready var mouse_controller: MouseController = $MouseController
 
 const TURN_SPEED = 4;
-const FLASHCARD_MAX_TURN_SPEED = 4.5
-const FLASHCARD_MIN_TURN_SPEED = 0.6
+const FLASHCARD_MAX_TURN_SPEED = 6
+const FLASHCARD_MIN_TURN_SPEED = .75
 const MOUSE_SENSITIVITY = 0.06
 const CAMERA_FLASHCARD_MOVE_DEG = 20.0
 
@@ -274,13 +294,13 @@ func _process(delta:float):
 	else:
 		if(mode == PlayerMode.FACTS):
 			if(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
-				animation_player.play(RUNNING_ANIMATION,0.1)
+				animation_player.play(RUNNING_ANIMATION,0.1,RUNNING_ANIMATION_SPEED)
 			elif (abs(movement.x) < 0.01 or abs(movement.z) < 0.01):
 				if !animation_player.is_playing() or animation_player.get_current_animation() == RUNNING_ANIMATION:
 						animation_player.play(FIGHT_IDLE_ANIMATION,0.21)
 		elif(mode == PlayerMode.ADVENTURE):
 			if(abs(linear_velocity.x) > 0 or abs(linear_velocity.z) > 0):
-				animation_player.play(RUNNING_ANIMATION,0.1)
+				animation_player.play(RUNNING_ANIMATION,0.1,RUNNING_ANIMATION_SPEED)
 			elif (abs(movement.x) < 0.01 or abs(movement.z) < 0.01):
 				if Time.get_ticks_msec() - last_movement_time > 10000: #If its been 10 seconds since we moved, play a random idle animation
 					animation_player.play(IDLE_ANIMATIONS[randi_range(0,IDLE_ANIMATIONS.size()-1)],0.21)
@@ -288,6 +308,11 @@ func _process(delta:float):
 				elif !animation_player.is_playing() or \
 					animation_player.get_current_animation() == RUNNING_ANIMATION:
 						animation_player.play(IDLE_ANIMATION,0.21)
+
+func fade_out(player: AudioStreamPlayer, time := 0.3):
+	var tween = create_tween()
+	tween.tween_property(player, "volume_db", -80, time)
+	tween.tween_callback(player.stop)
 
 
 func _physics_process(delta: float) -> void:
@@ -299,6 +324,15 @@ func _physics_process(delta: float) -> void:
 		var forwardDir = transform.basis.z.normalized()  # Godot's "forward" is -Z
 		var forward_movement = max(abs(movement.z),abs(movement.x))
 		var speed = FORWARD_SPEED
+		
+		if(forward_movement <= 0.001):
+			fade_out(running_sound)
+		elif(!running_sound.playing):
+			running_sound.volume_db = 0
+			running_sound.play()
+			#var tween = create_tween()
+			#tween.tween_property(player, "volume_db", 0, time)  # ramp up to 0 dB
+
 		
 		#We dont want the player to wander too far away from the flashcard and cheat
 		if(mode == PlayerMode.FACTS and flash_card !=null):

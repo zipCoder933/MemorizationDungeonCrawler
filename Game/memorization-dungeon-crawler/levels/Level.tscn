@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4y3srd4o2pb3"]
+[gd_scene load_steps=14 format=3 uid="uid://b4y3srd4o2pb3"]
 
 [ext_resource type="Script" uid="uid://btmeorhdo0pat" path="res://levels/level.gd" id="1_aevpi"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_n5p7m"]
@@ -6,8 +6,9 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_aevpi"]
 [ext_resource type="PackedScene" uid="uid://3cmqyetfdyvt" path="res://player/Player.tscn" id="4_n5p7m"]
 [ext_resource type="Texture2D" uid="uid://ddqrdhfnatubf" path="res://assets/qwantani_moon_noon_puresky_2k.exr" id="4_o5d2f"]
-[ext_resource type="AudioStream" uid="uid://ns2vs4fvsl86" path="res://assets/sounds/pixabay/short-zap.wav" id="8_ddowk"]
+[ext_resource type="AudioStream" uid="uid://p62l3tk24nub" path="res://assets/sounds/pixabay/short-whoosh.wav" id="8_ddowk"]
 [ext_resource type="PackedScene" uid="uid://17b24tvmkjco" path="res://levels/LevelGenerator.tscn" id="8_o5d2f"]
+[ext_resource type="AudioStream" uid="uid://c6ya83avd5b3" path="res://assets/sounds/pixabay/levels/victory.ogg" id="9_ddowk"]
 
 [sub_resource type="Resource" id="Resource_0oum7"]
 script = ExtResource("4_aevpi")
@@ -64,9 +65,13 @@ light_energy = 0.01
 
 [node name="LevelGenerator" parent="." instance=ExtResource("8_o5d2f")]
 
+[node name="shortWhooshSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_ddowk")
+
 [node name="ambientSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-volume_db = -10.0
 
-[node name="drill_submit" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_ddowk")
+[node name="victorySound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_ddowk")
