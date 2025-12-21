@@ -1,6 +1,6 @@
 class_name CardsHandler extends Node
 
-#A hashmap (dictionary)
+#A hashmap (dictionary) card (String) to card (Card)
 static var tag_dict = {}
 static var player_mastery_dict = {}
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://brmrlpnvb5ykq"]
+[gd_scene load_steps=6 format=3 uid="uid://brmrlpnvb5ykq"]
 
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="1_5rkgg"]
 [ext_resource type="Script" uid="uid://cr2gvwqau1e44" path="res://UI/mainMenu/gameInfo/mastery.gd" id="2_yifxd"]
+[ext_resource type="PackedScene" uid="uid://b4yoi6vvbosi2" path="res://UI/MessageBox.tscn" id="3_1dew5"]
 [ext_resource type="PackedScene" uid="uid://laf057gsoqjg" path="res://UI/mainMenu/backdrop.tscn" id="4_l67mc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqn84"]
@@ -19,6 +20,9 @@ theme = ExtResource("1_5rkgg")
 script = ExtResource("2_yifxd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="messageBoxContainer" parent="CanvasLayer" instance=ExtResource("3_1dew5")]
+z_index = 4096
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 8

@@ -40,9 +40,9 @@ func complete_boss_fight(_enemy: GoblinTrigger, _results: FlashcardDrillResults)
 	overall_accuracy_container.visible = false
 	themed_accuracy_container.visible = false
 	
-	themed_accuracy_label.text = "~~ "+ ", ".join(SaveHandler.currentLevel.themed_card_tags) +" ~~"
+	themed_accuracy_label.text = "~~ "+ ", ".join(SaveHandler.get_current_level().themed_card_tags) +" ~~"
 	animation_accuracy = 0
-	boss_name.text = SaveHandler.currentLevel.boss_name
+	boss_name.text = SaveHandler.get_current_level().boss_name
 
 	# Start with themed accuracy
 	await get_tree().create_timer(2).timeout

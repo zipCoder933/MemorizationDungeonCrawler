@@ -67,7 +67,7 @@ func _animation_finished(animName:StringName):
 		play_idle_animation()
 
 func play_idle_animation():
-	print("Playing idle animation")
+	#print("Playing idle animation")
 	#We want to check if fight idle animaiton is not null and is not empty
 	if(fighting and fight_idle_animation != null and !fight_idle_animation.strip_edges().is_empty()):
 		_animation_player.play(fight_idle_animation,0.4,fight_idle_animation_speed)
@@ -78,7 +78,7 @@ func _single_drill(success):
 	if(success):
 		player.change_health(success_health_add)
 		if(!isDead && take_hit_animation != null):
-			print("Playing take hit animation...")
+			#print("Playing take hit animation...")
 			_animation_player.play(take_hit_animation,0.2,take_hit_animation_speed,false)
 			_animation_player.seek(0, true)
 	else:
@@ -157,22 +157,22 @@ func trigger():
 	triggered = true
 	collision_shape_3d.disabled = true
 	
-	if SaveHandler.currentLevel != null:
+	if SaveHandler.get_current_level() != null:
 		var questions:Array[Question] = []
 		fighting=true
 		var begin_delay:float = 1
 		if(is_boss):
 			begin_delay = 14.5
 			var SPEED_MULTIPLIER = 1.0
-			for i in range(0, SaveHandler.currentLevel.boss_card_count_multiplier):#We want to go through the entire deck X times
-				for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, 0):
-					questions.append(card.toQuestion(SPEED_MULTIPLIER, SaveHandler.currentLevel))
+			for i in range(0, SaveHandler.get_current_level().boss_card_count_multiplier):#We want to go through the entire deck X times
+				for card in CardsHandler.get_random_cards(SaveHandler.get_current_level().card_tags, 0):
+					questions.append(card.toQuestion(SPEED_MULTIPLIER, SaveHandler.get_current_level()))
 		else:
 			var SPEED_MULTIPLIER = 1.0
-			for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, SaveHandler.currentLevel.enemy_card_count):
-				questions.append(card.toQuestion(SPEED_MULTIPLIER, SaveHandler.currentLevel))
+			for card in CardsHandler.get_random_cards(SaveHandler.get_current_level().card_tags, SaveHandler.get_current_level().enemy_card_count):
+				questions.append(card.toQuestion(SPEED_MULTIPLIER, SaveHandler.get_current_level()))
 		
-		print("Drilling player on deck; size: ",questions.size(),"; tags: ",SaveHandler.currentLevel.card_tags)
+		print("Drilling player on deck; size: ",questions.size(),"; tags: ",SaveHandler.get_current_level().card_tags)
 		Globals.drill_questions(questions, _3d_flashcard, begin_delay)
 		if(fight_idle_animation !=null):
 			_animation_player.play(fight_idle_animation,0.7,idle_animation_speed)

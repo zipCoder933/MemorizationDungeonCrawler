@@ -318,7 +318,7 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, \
 		else:
 			failures += 1
 		if(failures > max_failures):
-			print("Branch failed!")
+			#print("Branch failed!")
 			break
 		elif(place.distance_to(path_end) < CLOSENESS_TO_END_PATH_END):
 			break
@@ -376,7 +376,7 @@ static func getAmbientSound(level:Level):
 		return load("res://assets/sounds/pixabay/levels/dungeon_ambient.ogg")
 
 func set_dungeon_theme(level:Level, game:SaveEntry):
-	var rd = Globals.random_deterministic(game.seed,game.completed_level)
+	var rd = Globals.random_deterministic(game.seed,game.get_completed_level())
 	if(level.theme == Level.LevelTheme.MACHINE):
 		DOOR = preload("uid://bv0qtxxmmlnu")
 		WALL = preload("uid://c16k18ck0f1hj")
@@ -430,7 +430,7 @@ func set_dungeon_theme(level:Level, game:SaveEntry):
 		var ceiling_choice = rd.randi_range(0, cdirs.size()-1) #Random ceiling
 		var floor_choice = rd.randi_range(0, fdirs.size()-1)#Random floor
 		var wall_choice = rd.randi_range(0,wall_choices.size()-1) #random wall
-		if(game.completed_level==0):
+		if(game.get_completed_level() == 1):
 			wall_choice=0
 			ceiling_choice=0
 			floor_choice=0
@@ -442,7 +442,7 @@ func set_dungeon_theme(level:Level, game:SaveEntry):
 		FloorCeiling.floor_material = _material(floor_prefix + fdirs[floor_choice])
 
 func _ready():
-	var level = SaveHandler.currentLevel
+	var level = SaveHandler.get_current_level()
 	var game = SaveHandler.currentGame
 	var includeBossfight = false
 	var lotsOfArenas = false
@@ -453,11 +453,8 @@ func _ready():
 		print("\n\n--------------------------------------------------\n",
 		"GENERATING LEVEL: ",level.toString(),
 		"\n--------------------------------------------------\n")
-		
-		var next_level:Level = null
-		if SaveHandler.currentGame.completed_level+1 < LevelsHandler.levels.size():
-			next_level = LevelsHandler.levels[SaveHandler.currentGame.completed_level+1]
-			print("Next level: ",next_level.toString())
+		var next_level:Level = LevelsHandler.get_level(SaveHandler.currentGame.get_completed_level()+1)
+		print("Next level: ",next_level.toString())
 		
 		if(level.levelType == Level.LevelType.BOSS):
 			includeBossfight = true

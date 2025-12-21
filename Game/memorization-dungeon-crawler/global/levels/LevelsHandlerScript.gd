@@ -14,6 +14,9 @@ func _ready():
 	#load_levels("res://data/games/multiplication/level.json")  # path to your JSON file
 	#print("Loaded %d levels" % levels.size())
 
+func get_level(level_indx:int) -> Level:
+	return levels[clamp(level_indx-1, 0, levels.size()-1)]
+
 static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJsonLoadInfo.new(), verbose:bool = false) -> bool:
 	# Reset globals safely
 	levels = []

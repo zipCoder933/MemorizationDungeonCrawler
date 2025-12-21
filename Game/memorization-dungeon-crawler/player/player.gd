@@ -141,14 +141,15 @@ func obtain_key(key:KeyNode):
 	signal_key_obtained.emit(keys)
 	change_health(0.6)
 	#change_health2(health2_increment)
-	if(SaveHandler.currentLevel.levelType == Level.LevelType.STANDARD):
+	if(SaveHandler.get_current_level().levelType == Level.LevelType.STANDARD):
 		if(keys >= Globals.totalArenas):
 			Globals.victory_event()
-	elif(SaveHandler.currentLevel.levelType == Level.LevelType.BOSS):
-		if(key.is_boss_key):
-			Globals.victory_event()
+	#elif(SaveHandler.get_current_level().levelType == Level.LevelType.BOSS):
+		#if(key.is_boss_key):
+			#Globals.victory_event()
 	success_sound.play(0)
-	key.queue_free()
+	if(key != null):
+		key.queue_free()
 
 func set_health(value:float):
 	var last_health = health
@@ -188,11 +189,11 @@ func set_health2(value:float):
 		signal_health2_changed.emit(health2)
 
 func change_health(amt:float):
-	print("CHANGING HEALTH BY ",amt)
+	#print("CHANGING HEALTH BY ",amt)
 	set_health(health+amt)
 
 func change_health2(amt:float):
-	print("CHANGING HEALTH2 BY ",amt)
+	#print("CHANGING HEALTH2 BY ",amt)
 	set_health2(health2+amt)
 
 func _global_boss_defeated(_boss:GoblinTrigger, results:FlashcardDrillResults):
@@ -360,6 +361,11 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		var canUseWASD:bool = mode != PlayerMode.FACTS
 		if(event.pressed):
+			#Debug stuff to help us out
+			#Engine.is_editor_hint() and 
+			if(event.keycode == KEY_V):
+				Globals.victory_event()
+			
 			if(not _is_still()):
 				if Input.is_action_just_pressed("Forward") or (canUseWASD and event.keycode == KEY_W):
 					movement.z = 1;

@@ -62,7 +62,7 @@ func _ready():
 
 #Called by the level node
 func _on_level_loaded():
-	print("Globals ready for new level!")
+	#print("Globals ready for new level!")
 	clear_flashcard()
 
 func game_over_event():
@@ -76,19 +76,19 @@ func victory_event():
 	if(get_level().game_mode != LevelData.GameMode.VICTORY):
 		get_level().game_mode = LevelData.GameMode.VICTORY
 		signal_victory.emit()
-		SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level+1, 0, LevelsHandler.levels.size()-1)
 		SaveHandler.save_to_file(Globals.SAVE_FILE)
 
 func get_base36_time() -> String:
 	var ms: int = Time.get_ticks_msec()
 	return String.num_int64(ms, 36)
 
-
-func load_game_data(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
+#Loads the cards and levels before using the save entry
+func load_cards_levels(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
 	if !DirAccess.dir_exists_absolute(dir_path):
 		feedback.write("Directory \""+dir_path+"\" not found")
 		return false
 	
+	#Load cards 
 	var jsonFeedback = GameJsonLoadInfo.new()
 	var out = CardsHandler.load_from_file(dir_path+"/cards.json",jsonFeedback,true)
 	if(!out):
@@ -96,36 +96,33 @@ func load_game_data(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoadInf
 		feedback.write(jsonFeedback.message)
 		return false
 	
+	#Load levels
 	jsonFeedback = GameJsonLoadInfo.new()
 	out = LevelsHandler.load_from_file(dir_path+"/level.json", jsonFeedback,true)
 	if(!out):
 		feedback.write("Failed to load level.json")
 		feedback.write(jsonFeedback.message)
 		return false
-	
+
 	return true
 
-func start_game(entry:SaveEntry, goToLevel:bool = true,\
-	 feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
-		
+func start_game(entry:SaveEntry, goToLevel:bool = true, level:int = -1,\
+	feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
 	SaveHandler.currentGame = entry
-	if(load_game_data(SaveHandler.currentGame.path, feedback)):
+	
+	#load cards and levels
+	if(load_cards_levels(SaveHandler.currentGame.path, feedback)):
+		#Get and normalize completed levels
 		SaveHandler.currentGame.total_levels = LevelsHandler.levels.size()
-		SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level, 
-												0, LevelsHandler.levels.size()-1)
-		SaveHandler.save_to_file(SAVE_FILE)
-
-		print("Loaded %d levels" % LevelsHandler.levels.size())
-		_load_level_current_game()
-		if(goToLevel):
-			go_to_level()
+		load_level(goToLevel, level)
 		return true
 	return false
 
-func load_level(goToLevel:bool = true):
+func load_level(goToLevel:bool = true, level:int = -1):
 	SaveHandler.save_to_file(Globals.SAVE_FILE)
-	_load_level_current_game()
+	SaveHandler.set_current_level(level)
 	if(goToLevel):
+		print("Entering level ",SaveHandler.get_current_level().level_index,"; level array indx: ",level)
 		go_to_level()
 
 func go_home():
@@ -159,12 +156,6 @@ func spawn_key(pos:Vector3, _is_boss_key:bool):
 
 func go_to_level():
 	get_tree().change_scene_to_file("res://levels/Level.tscn")
-
-func _load_level_current_game():
-	SaveHandler.currentGame.completed_level = clamp(SaveHandler.currentGame.completed_level, 
-											0, LevelsHandler.levels.size()-1)
-	print("Loading level ",SaveHandler.currentGame.completed_level)
-	SaveHandler.currentLevel = LevelsHandler.levels[SaveHandler.currentGame.completed_level]
 
 func has_flashcard():
 	return _current_flashcard_question!=null and _has_flashcard
@@ -219,8 +210,8 @@ func get_level() -> LevelData:
 func drill_flashcards(quantity:int, flashcardElement:WorldFlashCard, time_multiplier:float = 1):
 	failed_flashcards.clear()
 	var questions:Array[Question] = []
-	for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, quantity):
-		questions.append(card.toQuestion(time_multiplier, SaveHandler.currentLevel))
+	for card in CardsHandler.get_random_cards(SaveHandler.get_current_level().card_tags, quantity):
+		questions.append(card.toQuestion(time_multiplier, SaveHandler.get_current_level()))
 	drill_questions(questions, flashcardElement)
 
 func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard, begin_delay_sec:float = 0, _allow_end_on_failure2:bool = false):
@@ -242,7 +233,7 @@ func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard
 	new_flashcard_question(questions[0])
 
 func _question_in_dungeon_themed_cards(question:Question) -> bool:
-	for levelTag in SaveHandler.currentLevel.themed_card_tags:
+	for levelTag in SaveHandler.get_current_level().themed_card_tags:
 		for tag in question.card.tags:
 			if tag == levelTag:
 				return true
@@ -256,7 +247,6 @@ func submit_flashcard(succeed:bool):
 	#If we dont have a flashcard anymore (We already submitted the last one)	
 	if(!has_flashcard()):
 		return
-	print("SUBMITTED!!!!")
 	var player =  get_player()
 	player.play_submit_sound(succeed);
 	var accuracy = 0
@@ -277,8 +267,7 @@ func submit_flashcard(succeed:bool):
 	for tag in _current_flashcard_question.card.tags:
 		var existing_entry:SaveEntry.CardMastery = SaveHandler.currentGame.tag_mastery.get(tag, null)
 		if existing_entry:
-			existing_entry.update_accuracy(accuracy)
-			existing_entry.update_speed(time_ms)
+			existing_entry.new_entry(accuracy,time_ms)
 		else:
 			SaveHandler.currentGame.tag_mastery[tag] = SaveEntry.CardMastery.new(time_ms, accuracy,1)
 	
@@ -309,8 +298,8 @@ func submit_flashcard(succeed:bool):
 				failed_flashcards.pop_back()
 				return
 			else: #Otherwise pick a random card fron one of our tags (This should never happen)
-				for card in CardsHandler.get_random_cards(SaveHandler.currentLevel.card_tags, 1):
-					new_flashcard_question(card.toQuestion(1, SaveHandler.currentLevel))
+				for card in CardsHandler.get_random_cards(SaveHandler.get_current_level().card_tags, 1):
+					new_flashcard_question(card.toQuestion(1, SaveHandler.get_current_level()))
 					return
 
 		var results:FlashcardDrillResults = FlashcardDrillResults.new(deckSize, themed_cards, succeeded, themed_succeeded, _flashcardNode)

@@ -27,6 +27,8 @@ func panelsVisible():
 var current_question:Question
 var bossfight_accuracy = 0
 var animation_accuracy = 0
+var currentLevel: int = 0;
+var nextLevel: int = 0;
 @onready var key_container: HBoxContainer = %keyContainer
 @onready var key: TextureRect = %key
 @onready var keys_hud: Panel = %keys_hud
@@ -71,24 +73,24 @@ func _ready():
 	_player_health_changed(player.health)
 	_player_health2_changed(player.health2)
 	
-	if(SaveHandler.currentLevel != null and  SaveHandler.currentGame !=null):
-		if(SaveHandler.currentLevel.levelType == Level.LevelType.BOSS):
+	if(SaveHandler.get_current_level() != null and  SaveHandler.currentGame !=null):
+		if(SaveHandler.get_current_level().levelType == Level.LevelType.BOSS):
 			level_indicator.text = "LEVEL " +\
-				str(SaveHandler.currentGame.completed_level+1) +" / "+\
+				str(SaveHandler.get_current_level().level_index) +" / "+\
 				str(SaveHandler.currentGame.total_levels) +": "+\
-			SaveHandler.currentLevel.boss_name + " ("+SaveHandler.currentLevel.level_name+")\n"+\
+			SaveHandler.get_current_level().boss_name + " ("+SaveHandler.get_current_level().level_name+")\n"+\
 				"All keys must be obtained before conquering the boss!"
 		else:
 			level_indicator.text = "LEVEL " +\
-				str(SaveHandler.currentGame.completed_level+1) +" / "+\
+				str(SaveHandler.get_current_level().level_index) +" / "+\
 				str(SaveHandler.currentGame.total_levels) +": "+\
-				SaveHandler.currentLevel.level_name;
+				SaveHandler.get_current_level().level_name;
 			
-			if SaveHandler.currentGame.completed_level < LevelsHandler.levels.size():
-				var current_dungeon_indx = SaveHandler.currentLevel.dungeon_index
+			if SaveHandler.currentGame.get_completed_level()-1 < LevelsHandler.levels.size():
+				var current_dungeon_indx = SaveHandler.get_current_level().dungeon_index
 				var levels_until_next_dungeon = 0
 				var next_dungeon = ""
-				for i in range(SaveHandler.currentGame.completed_level, LevelsHandler.levels.size()):
+				for i in range(SaveHandler.get_current_level().level_index, LevelsHandler.levels.size()):
 					if LevelsHandler.levels[i].dungeon_index > current_dungeon_indx:
 						next_dungeon = LevelsHandler.levels[i].level_name
 						break
@@ -146,12 +148,28 @@ func _game_over():
 @onready var next: Button = $CanvasLayer/VictoryPanel/Next
 
 func _victory():
+	currentLevel = SaveHandler.get_current_level().level_index #Current level array index
+	nextLevel = currentLevel #Next level array index
+	print("level indx: ",currentLevel,\
+	" savefile level indx: ",SaveHandler.currentGame.get_completed_level(),\
+	" levels size: ",LevelsHandler.levels.size())
+	
+	if currentLevel < LevelsHandler.levels.size():
+		nextLevel = currentLevel + 1
+		#Advance actual unlocked level if we reached that point
+		if(SaveHandler.currentGame.get_completed_level() == currentLevel):
+			SaveHandler.currentGame.set_completed_level(nextLevel)
+			print("Progressing savefile completed level to ",SaveHandler.currentGame.get_completed_level())
+	
+	SaveHandler.save_to_file(Globals.SAVE_FILE)
+	
 	var timer = get_tree().create_timer(1.5)
 	timer.timeout.connect(_on_victory_timer_timeout)
 
+
+
 func _on_victory_timer_timeout():
-	print("Completed level: ",SaveHandler.currentGame.completed_level," levels: ",LevelsHandler.levels.size())
-	if SaveHandler.currentGame.completed_level+1 >= LevelsHandler.levels.size():
+	if currentLevel >= LevelsHandler.levels.size():
 		victory_text.text = "Congratulations!\n\"" + SaveHandler.currentGame.name + "\" Complete!"
 		next.text = "Replay Final Level"
 	else:
@@ -166,6 +184,6 @@ func _on_back_pressed() -> void:
 func _on_home_pressed() -> void:
 	Globals.go_home()
 func _on_next_pressed() -> void:
-	Globals.load_level()
+	Globals.load_level(true, nextLevel)
 func _on_try_again_pressed() -> void:
 	Globals.load_level()

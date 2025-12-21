@@ -3,7 +3,15 @@ class_name SaveHandler
 static var saves:Array[SaveEntry] = []
 
 static var currentGame:SaveEntry
-static var currentLevel:Level
+static var _currentLevel:Level
+
+static func get_current_level():
+	return _currentLevel
+
+static func set_current_level(level:int):
+	if(level == -1):
+		level = currentGame.get_completed_level()
+	_currentLevel = LevelsHandler.get_level(level)
 
 static func load_from_file(file_path: String) -> void:
 	saves.clear()

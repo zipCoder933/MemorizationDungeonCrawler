@@ -95,14 +95,14 @@ func _on_start_button_pressed() -> void:
 func _make_game(template_dir:String):
 	print("NAME: ",name_box.text," DIR: ",template_dir)
 	var seed = randi_range(-12233720365808,12233720368807)
-	var save1 = SaveEntry.new(name_box.text, seed, template_dir, 0)
+	var save1 = SaveEntry.new(name_box.text, seed, template_dir, 1)
 	SaveHandler.saves.append(save1)
 	SaveHandler.save_to_file(Globals.SAVE_FILE)
 	_go_home()
 
 func load_game(template_dir:String):
 	var feedback = GameJsonLoadInfo.new()
-	if Globals.load_game_data(template_dir,feedback):
+	if Globals.load_cards_levels(template_dir,feedback):
 		return true
 	else:
 		message_box.show_message("Unable to load game",feedback.message)

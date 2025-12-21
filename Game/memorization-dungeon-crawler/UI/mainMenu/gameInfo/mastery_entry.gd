@@ -15,7 +15,7 @@ func set_details(info_tag:String, info:SaveEntry.CardMastery, initial_speed_sec:
 	mastery.text = "Mastery: %d%%" % [
 		int(mastery_value * 100)
 	]
-	stats.text = "Tag Attempts: %d\nAvg Accuracy: %d%%\nAvg Speed: %.2fs" % [
+	stats.text = "Attempts: %d\nAvg Accuracy: %d%%\nAvg Speed: %.2fs" % [
 		int(info.attempts),
 		int(info.average_accuracy),
 		info.average_speed_ms / 1000.0

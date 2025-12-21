@@ -21,7 +21,6 @@ func _ready():
 	if(saveEntry != null):
 		#We want to load the game without entering the level
 		Globals.start_game(saveEntry,false)
-		
 		title.text = "\""+str(saveEntry.name)+"\"";
 		
 		
@@ -33,12 +32,12 @@ func _ready():
 			mastery_entries.add_child(node)
 			node.set_details(tag, entry, LevelsHandler.start_speed, LevelsHandler.goal_speed)
 		
-		var completed = saveEntry.completed_level
+		var completed = saveEntry.get_completed_level()
 		print("Reading levels: ",LevelsHandler.levels.size()," level - ",completed)
 		for level in LevelsHandler.levels:
 			var node = LEVEL_ENTRY.instantiate()
 			level_entries.add_child(node)
-			node.set_details(level, level.level_index < completed)
+			node.set_details(saveEntry, level, level.level_index <= completed)
 			
 
 

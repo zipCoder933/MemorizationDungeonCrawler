@@ -9,9 +9,9 @@ func setDetails(_entry:SaveEntry):
 	entry = _entry
 	label.text = entry.name
 	if(entry.total_levels == 0):
-		level.text = " (lvl "+ str(entry.completed_level+1)+" / -- )"
+		level.text = " (lvl "+ str(entry.get_completed_level())+" / -- )"
 	else:
-		level.text = " (lvl "+ str(entry.completed_level+1) +" / "+str(entry.total_levels)+")"
+		level.text = " (lvl "+ str(entry.get_completed_level()) +" / "+str(entry.total_levels)+")"
 	
 func _on_play_game_pressed() -> void:
 	menu.load_game(entry)

@@ -29,13 +29,13 @@ func _on_delete_yes_pressed() -> void:
 #Load the game
 func load_game(entry:SaveEntry):
 	loading.visible = true #display a loading message
-	do_later(0.1, func(): _begin_game(entry))
-	
-func _begin_game(entry:SaveEntry):
-	var feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()
-	if Globals.start_game(entry, true, feedback) == false:
-		loading.visible = false
-		menu_message_box.show_message("Error Loading Game", feedback.message)
+	do_later(0.1, func():
+		var feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()
+		if Globals.start_game(entry, true,-1, feedback) == false:
+			loading.visible = false
+			menu_message_box.show_message("Error Loading Game", feedback.message)
+	)
+
 
 func do_later(seconds: float, action: Callable):
 	await get_tree().create_timer(seconds).timeout

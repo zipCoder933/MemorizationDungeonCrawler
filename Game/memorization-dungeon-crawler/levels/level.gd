@@ -27,7 +27,7 @@ func _ready():
 	game_mode = GameMode.NORMAL
 	Globals._on_level_loaded()
 	
-	default_ambient_sound = LevelGenerator.getAmbientSound(SaveHandler.currentLevel)
+	default_ambient_sound = LevelGenerator.getAmbientSound(SaveHandler.get_current_level())
 	
 	#Signals
 	
