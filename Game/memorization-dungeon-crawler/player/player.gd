@@ -362,8 +362,7 @@ func _input(event: InputEvent) -> void:
 		var canUseWASD:bool = mode != PlayerMode.FACTS
 		if(event.pressed):
 			#Debug stuff to help us out
-			#Engine.is_editor_hint() and 
-			if(event.keycode == KEY_V):
+			if(Globals.is_in_editor() and event.keycode == KEY_V):
 				Globals.victory_event()
 			
 			if(not _is_still()):

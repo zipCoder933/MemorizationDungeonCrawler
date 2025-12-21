@@ -42,9 +42,14 @@ static var _allow_end_on_failure = false
 static var FLASHCARD_BREAK_INTERVAL = 25
 static var FLASHCARD_BREAK_TIME_MULTIPLIER = 1.6
 
+static var _in_editor:bool
+
+static func is_in_editor() -> bool:
+	return _in_editor
 
 func _ready():
-	print("Global loaded!")
+	_in_editor = Engine.is_embedded_in_editor()
+	print("Global loaded! In editor: ",is_in_editor())
 	CARD_MISSING_IMAGE = load("res://assets/icons/card_missing_image.png")
 	SAVE_FILE = ProjectSettings.globalize_path("user://save.json")
 	CUSTOM_GAMES_DIR = ProjectSettings.globalize_path("user://data")

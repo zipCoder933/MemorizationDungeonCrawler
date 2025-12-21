@@ -19,7 +19,7 @@ var game_mode:GameMode = GameMode.NORMAL
 @export var auto_load_game = false
 
 func _ready():
-	if auto_load_game and Engine.is_editor_hint(): #For testing purposes
+	if auto_load_game and Globals.is_in_editor(): #For testing purposes
 		print("Loaded save 0")
 		SaveHandler.load_from_file(Globals.SAVE_FILE)
 		Globals.start_game(SaveHandler.saves[0], false)

@@ -21,7 +21,7 @@ func set_details(saveEntry:SaveEntry , level:Level, unlocked:bool):
 	self.level = level
 	self.saveEntry = saveEntry
 	number.text = str(level.level_index)
-	namePanel.text = level.level_name
+	
 	
 	if(level.card_tags.size() >= CardsHandler.tag_dict.size()):
 		tags.text ="Everything"
@@ -29,7 +29,10 @@ func set_details(saveEntry:SaveEntry , level:Level, unlocked:bool):
 		tags.text = ", ".join(level.card_tags)
 		
 	if(level.levelType == Level.LevelType.BOSS):
-		namePanel.text += " (Boss)";
+		namePanel.text = level.boss_name + " ("+level.level_name+")"
+	else:
+		namePanel.text = level.level_name
+
 	if(unlocked):
 		lock_button.visible=false;
 		play_button.visible=true;
