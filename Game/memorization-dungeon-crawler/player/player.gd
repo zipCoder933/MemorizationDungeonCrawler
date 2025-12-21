@@ -4,7 +4,7 @@ class_name Player
 
 @onready var animation_player: AnimationPlayer = $Knight2/AnimationPlayer
 const RUNNING_ANIMATION = "running Retarget"
-const RUNNING_ANIMATION_SPEED = 1.1
+const RUNNING_ANIMATION_SPEED = 1.15
 const JUMP_UP_ANIMATION = "jump up Retarget"
 const IDLE_ANIMATION = "Idle Retarget"
 const DEATH_ANIMATION = "death Retarget"
@@ -53,7 +53,7 @@ var target_cam_offset:Vector2 = Vector2(0,0)
 #movement
 var movement:Vector3 = Vector3.ZERO
 var is_on_floor:bool = false
-const FORWARD_SPEED = 600
+const FORWARD_SPEED = 700
 const PLAYER_STEER_MOUSE:bool = false
 var targetRotation:float;
 var bossfight_finish_entity

@@ -19,6 +19,9 @@ var game_mode:GameMode = GameMode.NORMAL
 @export var auto_load_game = false
 
 func _ready():
+	var viewport := get_viewport()
+	viewport.scaling_3d_scale = SaveHandler.graphics_render_scaling
+	
 	game_mode = GameMode.NORMAL
 	Globals._on_level_loaded()
 	

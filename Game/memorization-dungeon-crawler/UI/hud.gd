@@ -13,6 +13,7 @@ class_name HUD
 @onready var loading_panel: Panel = $CanvasLayer/LoadingPanel
 @onready var fps: Label = $fps
 @onready var bossfight_stats: BossfightStats = $CanvasLayer/BossfightStats
+@onready var graphics: Button = %graphics
 
 const LevelsHandler = preload("uid://bte11e0fapqes")
 const SaveHandler = preload("uid://bgwdh30vglopu")
@@ -207,3 +208,77 @@ func muteSound(is_muted:bool):
 		master_bus,
 		is_muted
 	)
+
+#func apply_graphics_level(level: int) -> void:
+	#var viewport := get_viewport()
+	#var env = get_node_or_null("WorldEnvironment").environment
+	#if env == null:
+		#return
+#
+	#match level:
+		#0: # LOW 🥔
+			#viewport.scaling_3d_scale = 0.4
+			#viewport.msaa_3d = Viewport.MSAA_DISABLED
+#
+			#env.ssao_enabled = false
+			#env.glow_enabled = false
+			#env.volumetric_fog_enabled = false
+#
+			#Engine.max_fps = 60
+			#graphics.text = "Graphics: Low"
+#
+		#1: # MID
+			#viewport.scaling_3d_scale = 0.6
+			#viewport.msaa_3d = Viewport.MSAA_DISABLED
+#
+			#env.ssao_enabled = false
+			#env.glow_enabled = false
+			#env.volumetric_fog_enabled = false
+#
+			#Engine.max_fps = 60
+			#graphics.text = "Graphics: Mid"
+#
+		#2: # HIGH
+			#viewport.scaling_3d_scale = 0.8
+			#viewport.msaa_3d = Viewport.MSAA_2X
+#
+			#env.ssao_enabled = true
+			#env.glow_enabled = false
+			#env.volumetric_fog_enabled = false
+#
+			#Engine.max_fps = 0
+			#graphics.text = "Graphics: High"
+#
+		#3: # MAX 💀
+			#viewport.scaling_3d_scale = 1.0
+			#viewport.msaa_3d = Viewport.MSAA_4X
+#
+			#env.ssao_enabled = true
+			#env.glow_enabled = true
+			#env.volumetric_fog_enabled = true
+#
+			#Engine.max_fps = 0
+			#graphics.text = "Graphics: Max"
+#
+	#SaveHandler.save_to_file(Globals.SAVE_FILE)
+
+
+
+func _on_graphics_pressed() -> void:
+	match SaveHandler.graphics_render_scaling:
+		0.4:
+			SaveHandler.graphics_render_scaling = 0.55
+			graphics.text = "Graphics: Mid"
+		0.55:
+			SaveHandler.graphics_render_scaling = 0.8
+			graphics.text = "Graphics: High"
+		0.8:
+			SaveHandler.graphics_render_scaling = 1.0
+			graphics.text = "Graphics: Max"
+		_:
+			SaveHandler.graphics_render_scaling = 0.4
+			graphics.text = "Graphics: Low"
+
+	var viewport := get_viewport()
+	viewport.scaling_3d_scale = SaveHandler.graphics_render_scaling
+	SaveHandler.save_to_file(Globals.SAVE_FILE)
