@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ba4xtnhu7h7l5"]
 
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="1_r5w7c"]
-[ext_resource type="Script" uid="uid://dwq0wobokqiea" path="res://UI/mainMenu/mastery/mastery_entry.gd" id="2_jjily"]
+[ext_resource type="Script" uid="uid://dwq0wobokqiea" path="res://UI/mainMenu/gameInfo/mastery_entry.gd" id="2_jjily"]
 [ext_resource type="FontFile" uid="uid://l2eim6vo1a7j" path="res://assets/fonts/New_Rocker/NewRocker-Regular.ttf" id="3_lem88"]
 
 [node name="Panel" type="Panel"]
