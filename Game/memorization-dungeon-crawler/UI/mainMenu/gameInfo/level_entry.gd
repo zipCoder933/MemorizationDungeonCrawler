@@ -43,4 +43,4 @@ func set_details(saveEntry:SaveEntry , level:Level, unlocked:bool):
 
 func _on_play_button_pressed() -> void:
 	if(level != null):
-		Globals.load_game(saveEntry, level.level_index)
+		Globals.load_game(saveEntry, true, level.level_index)

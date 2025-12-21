@@ -124,7 +124,6 @@ func load_game(entry:SaveEntry, goToLevel:bool = true, level:int = -1,\
 		await get_tree().create_timer(0.01).timeout
 	
 	Callable(func():
-		print("Starting to load game")
 		SaveHandler.currentGame = entry
 		#load cards and levels
 		if(load_cards_levels(SaveHandler.currentGame.path, feedback)):
