@@ -47,9 +47,7 @@ static var _in_editor:bool
 static func is_in_editor() -> bool:
 	return _in_editor
 
-func do_later(seconds: float, action: Callable):
-	await get_tree().create_timer(seconds).timeout
-	action.call()
+
 
 func _ready():
 	_in_editor = Engine.is_embedded_in_editor()
@@ -122,10 +120,11 @@ func load_game(entry:SaveEntry, goToLevel:bool = true, level:int = -1,\
 	
 	var loadingPanel:GameLoadingPanel = get_game_loading_panel()
 	if(loadingPanel != null):
-		print("Loading panel visible")
 		loadingPanel.visible=true
+		await get_tree().create_timer(0.01).timeout
 	
-	do_later(0.01, func():
+	Callable(func():
+		print("Starting to load game")
 		SaveHandler.currentGame = entry
 		#load cards and levels
 		if(load_cards_levels(SaveHandler.currentGame.path, feedback)):
@@ -137,7 +136,7 @@ func load_game(entry:SaveEntry, goToLevel:bool = true, level:int = -1,\
 			loadingPanel.visible = false
 		if doneCall.is_valid():
 			doneCall.call()
-	)
+	).call()
 
 func load_level(goToLevel:bool = true, level:int = -1):
 	SaveHandler.save_to_file(Globals.SAVE_FILE)

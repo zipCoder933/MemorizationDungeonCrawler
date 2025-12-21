@@ -1,8 +1,6 @@
 extends Control
 class_name MainMenu
 
-@onready var start_button: Button = $CanvasLayer/ColorRect/Buttons/StartButton
-@onready var delete_confirm: Panel = %DeleteConfirm
 @onready var v_box_container: VBoxContainer = %VBoxContainer
 
 var delete_entry:SaveEntry

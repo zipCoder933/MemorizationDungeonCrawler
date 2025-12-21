@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://ns2vs4fvsl86" path="res://assets/sounds/pixabay/short-zap.wav" id="6_06mnu"]
 [ext_resource type="AudioStream" uid="uid://c4ttssg4afiws" path="res://assets/sounds/gavin/FinalDamage1.wav" id="6_aqcbf"]
 [ext_resource type="AudioStream" uid="uid://d3dm2xnjderkn" path="res://assets/sounds/gavin/FinalDefeat.wav" id="7_gskgj"]
-[ext_resource type="AudioStream" uid="uid://bl7juo5tprntk" path="res://assets/sounds/pixabay/success-83493.mp3" id="9_mhpjh"]
+[ext_resource type="AudioStream" uid="uid://c6owhahacd3ti" path="res://assets/sounds/pixabay/success.wav" id="9_mhpjh"]
 [ext_resource type="AudioStream" uid="uid://caoy1eefj4ikr" path="res://assets/sounds/pixabay/levels/running3.ogg" id="10_ndjxb"]
 [ext_resource type="AudioStream" uid="uid://jn4aj2pvsoh" path="res://assets/sounds/pixabay/error.wav" id="11_5qrx2"]
 
