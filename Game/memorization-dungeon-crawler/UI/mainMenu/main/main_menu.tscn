@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bnoxfrvj5kcx6" path="res://UI/mainMenu/main/main_menu.gd" id="1_gmjeq"]
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="2_aqn84"]
 [ext_resource type="Texture2D" uid="uid://dg8j5ptwrgu52" path="res://assets/textures/Cogni-crawl_final.png" id="3_6kmto"]
-[ext_resource type="StyleBox" uid="uid://bxp67n10n2pan" path="res://styles/translucent_box.tres" id="4_57qux"]
 [ext_resource type="PackedScene" uid="uid://laf057gsoqjg" path="res://UI/mainMenu/backdrop.tscn" id="5_aqn84"]
+[ext_resource type="PackedScene" uid="uid://rgcsm0gumvs1" path="res://UI/mainMenu/LoadingPanel.tscn" id="5_c2l1m"]
 [ext_resource type="PackedScene" uid="uid://b4yoi6vvbosi2" path="res://UI/MessageBox.tscn" id="5_c84qs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqn84"]
@@ -155,38 +155,11 @@ texture = ExtResource("3_6kmto")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Loading" type="Panel" parent="CanvasLayer"]
-unique_name_in_owner = true
-visible = false
-z_index = 100
-z_as_relative = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -142.625
-offset_top = -97.5
-offset_right = 142.625
-offset_bottom = 97.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_aqn84")
-theme_override_styles/panel = ExtResource("4_57qux")
-
-[node name="Label" type="Label" parent="CanvasLayer/Loading"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Loading..."
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="MessageBox" parent="CanvasLayer" instance=ExtResource("5_c84qs")]
 visible = false
+
+[node name="LoadingPanel" parent="CanvasLayer" instance=ExtResource("5_c2l1m")]
+unique_name_in_owner = true
 
 [node name="credit" type="Label" parent="."]
 visible = false

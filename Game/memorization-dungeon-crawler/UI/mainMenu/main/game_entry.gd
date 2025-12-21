@@ -14,7 +14,7 @@ func setDetails(_entry:SaveEntry):
 		level.text = " (lvl "+ str(entry.get_completed_level()) +" / "+str(entry.total_levels)+")"
 	
 func _on_play_game_pressed() -> void:
-	menu.load_game(entry)
+	Globals.load_game(entry)
 
 func _on_delete_game_pressed() -> void:
 	menu.confirm_deletion(entry)

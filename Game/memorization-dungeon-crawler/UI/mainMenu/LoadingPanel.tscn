@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://rgcsm0gumvs1"]
+
+[ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="1_7b2ed"]
+[ext_resource type="Script" uid="uid://dqq646mf8k7lw" path="res://UI/mainMenu/loading_panel.gd" id="1_kpile"]
+[ext_resource type="StyleBox" uid="uid://bxp67n10n2pan" path="res://styles/translucent_box.tres" id="2_kpile"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bxcyh"]
+
+[node name="LoadingPanel" type="Panel" groups=["game_loading_panel"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bxcyh")
+script = ExtResource("1_kpile")
+
+[node name="Loading" type="Panel" parent="."]
+unique_name_in_owner = true
+z_index = 100
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.625
+offset_top = -97.5
+offset_right = 142.625
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7b2ed")
+theme_override_styles/panel = ExtResource("2_kpile")
+
+[node name="Label" type="Label" parent="Loading"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1

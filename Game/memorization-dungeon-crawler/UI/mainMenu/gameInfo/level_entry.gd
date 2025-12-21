@@ -5,7 +5,7 @@ extends Panel
 @onready var lock_button: Button = %lockButton
 @onready var panel: Panel = $"."
 @onready var tags: Label = %tags
-
+@onready var loading_panel: GameLoadingPanel = $CanvasLayer/LoadingPanel
 @onready var message_box_container: MessageBox = $CanvasLayer/messageBoxContainer
 
 var saveEntry:SaveEntry 
@@ -43,7 +43,4 @@ func set_details(saveEntry:SaveEntry , level:Level, unlocked:bool):
 
 func _on_play_button_pressed() -> void:
 	if(level != null):
-		var feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()
-		#Keep in mind that save.completedLevel is an array index, so 0 is the first level
-		if Globals.start_game(saveEntry, true, level.level_index, feedback) == false:
-			message_box_container.show_message("Error Loading Game", feedback.message)
+		Globals.load_game(saveEntry, level.level_index)

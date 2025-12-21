@@ -9,6 +9,8 @@ const LEVEL_ENTRY = preload("uid://bg6dyxvcv8cuf")
 
 @onready var mastery_panel: Panel = $CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/mastery_panel
 @onready var levels_panel: Panel = $CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/levels_panel
+@onready var loading_panel: GameLoadingPanel = $CanvasLayer/LoadingPanel
+
 
 
 func _on_quit_button_pressed() -> void:
@@ -20,26 +22,25 @@ func _ready():
 	selectTab(0)
 	if(saveEntry != null):
 		#We want to load the game without entering the level
-		Globals.start_game(saveEntry,false)
-		title.text = "\""+str(saveEntry.name)+"\"";
-		
-		
-		print("Reading entries: ",saveEntry.tag_mastery.size())
-		for tag in saveEntry.tag_mastery.keys():
-			print("Reading ", tag," start ", LevelsHandler.start_speed," goal ", LevelsHandler.goal_speed)
-			var entry:SaveEntry.CardMastery = saveEntry.tag_mastery[tag]
-			var node = MASTERY_ENTRY.instantiate()
-			mastery_entries.add_child(node)
-			node.set_details(tag, entry, LevelsHandler.start_speed, LevelsHandler.goal_speed)
-		
-		var completed = saveEntry.get_completed_level()
-		print("Reading levels: ",LevelsHandler.levels.size()," level - ",completed)
-		for level in LevelsHandler.levels:
-			var node = LEVEL_ENTRY.instantiate()
-			level_entries.add_child(node)
-			node.set_details(saveEntry, level, level.level_index <= completed)
+		Globals.load_game(saveEntry,false,-1, func():
 			
-
+			title.text = "\""+str(saveEntry.name)+"\"";
+			print("Reading entries: ",saveEntry.tag_mastery.size())
+			for tag in saveEntry.tag_mastery.keys():
+				print("Reading ", tag," start ", LevelsHandler.start_speed," goal ", LevelsHandler.goal_speed)
+				var entry:SaveEntry.CardMastery = saveEntry.tag_mastery[tag]
+				var node = MASTERY_ENTRY.instantiate()
+				mastery_entries.add_child(node)
+				node.set_details(tag, entry, LevelsHandler.start_speed, LevelsHandler.goal_speed)
+			
+			var completed = saveEntry.get_completed_level()
+			print("Reading levels: ",LevelsHandler.levels.size()," level - ",completed)
+			for level in LevelsHandler.levels:
+				var node = LEVEL_ENTRY.instantiate()
+				level_entries.add_child(node)
+				node.set_details(saveEntry, level, level.level_index <= completed)
+				
+		)
 
 func _on_tab_bar_tab_selected(tab: int) -> void:
 	selectTab(tab)

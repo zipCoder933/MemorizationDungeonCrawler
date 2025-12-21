@@ -47,6 +47,10 @@ static var _in_editor:bool
 static func is_in_editor() -> bool:
 	return _in_editor
 
+func do_later(seconds: float, action: Callable):
+	await get_tree().create_timer(seconds).timeout
+	action.call()
+
 func _ready():
 	_in_editor = Engine.is_embedded_in_editor()
 	print("Global loaded! In editor: ",is_in_editor())
@@ -111,17 +115,29 @@ func load_cards_levels(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoad
 
 	return true
 
-func start_game(entry:SaveEntry, goToLevel:bool = true, level:int = -1,\
-	feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()) -> bool:
-	SaveHandler.currentGame = entry
+
+
+func load_game(entry:SaveEntry, goToLevel:bool = true, level:int = -1,\
+		doneCall: Callable = Callable(), feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()):
 	
-	#load cards and levels
-	if(load_cards_levels(SaveHandler.currentGame.path, feedback)):
-		#Get and normalize completed levels
-		SaveHandler.currentGame.total_levels = LevelsHandler.levels.size()
-		load_level(goToLevel, level)
-		return true
-	return false
+	var loadingPanel:GameLoadingPanel = get_game_loading_panel()
+	if(loadingPanel != null):
+		print("Loading panel visible")
+		loadingPanel.visible=true
+	
+	do_later(0.01, func():
+		SaveHandler.currentGame = entry
+		#load cards and levels
+		if(load_cards_levels(SaveHandler.currentGame.path, feedback)):
+			SaveHandler.currentGame.total_levels = LevelsHandler.levels.size()
+			load_level(goToLevel, level)
+		elif(get_message_box() != null):
+			get_message_box().show_message("Error Loading Game", feedback.message)
+		if(loadingPanel !=null):
+			loadingPanel.visible = false
+		if doneCall.is_valid():
+			doneCall.call()
+	)
 
 func load_level(goToLevel:bool = true, level:int = -1):
 	SaveHandler.save_to_file(Globals.SAVE_FILE)
@@ -194,7 +210,18 @@ func new_flashcard_question(current_flashcard_question2:Question):
 	signal_flashcard_answer_changed.emit(current_flashcard_answer)
 
 
-
+#Groups
+func get_message_box() -> MessageBox:
+	var list = get_tree().get_nodes_in_group("message_box")
+	if list.size() > 0:
+		return list[0]
+	return null
+	
+func get_game_loading_panel() -> GameLoadingPanel:
+	var list = get_tree().get_nodes_in_group("game_loading_panel")
+	if list.size() > 0:
+		return list[0]
+	return null
 
 func get_player() -> Player:
 	var list = get_tree().get_nodes_in_group("player")
