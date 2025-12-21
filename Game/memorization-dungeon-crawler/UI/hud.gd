@@ -50,6 +50,7 @@ func _global_adventure_mode():
 var key_nodes = []
 
 func _ready():
+	currentLevel = SaveHandler.get_current_level().level_index
 	fps.visible = false
 	key.visible=false
 	menu_panel.visible = false
@@ -186,7 +187,7 @@ func _on_home_pressed() -> void:
 func _on_next_pressed() -> void:
 	Globals.load_level(true, nextLevel)
 func _on_try_again_pressed() -> void:
-	Globals.load_level(true, currentLevel)
+	Globals.load_level(true, SaveHandler.get_current_level().level_index)
 	
 
 
