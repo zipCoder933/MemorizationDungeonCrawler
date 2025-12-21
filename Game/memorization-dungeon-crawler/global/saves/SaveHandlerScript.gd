@@ -1,9 +1,10 @@
 extends Node
 class_name SaveHandler
-static var saves:Array[SaveEntry] = []
 
+static var saves:Array[SaveEntry] = []
 static var currentGame:SaveEntry
 static var _currentLevel:Level
+static var muted:bool
 
 static func get_current_level():
 	return _currentLevel
@@ -29,6 +30,7 @@ static func load_from_file(file_path: String) -> void:
 		return
 
 	print("Loading saves: ")
+	muted = parsed.get("muted", false)
 	for entry_data in parsed.get("games", []):
 		var save = SaveEntry.from_dictionary(entry_data)
 		print(save.toString())
@@ -46,6 +48,7 @@ static func save_to_file(file_path: String) -> void:
 			return
 
 	var root_data: Dictionary = {
+		"muted": muted,
 		"games": games_data
 	}
 	var json_string: String = JSON.stringify(root_data, "\t")

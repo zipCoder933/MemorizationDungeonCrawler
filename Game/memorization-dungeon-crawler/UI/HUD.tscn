@@ -217,6 +217,7 @@ grow_vertical = 0
 text = "Try Again"
 
 [node name="VictoryPanel" type="Panel" parent="CanvasLayer"]
+visible = false
 z_index = 100
 anchors_preset = 15
 anchor_right = 1.0
@@ -290,43 +291,48 @@ expand_mode = 1
 
 [node name="MenuPanel" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -124.25
-offset_top = -81.0
+offset_top = -95.5
 offset_right = 124.25
-offset_bottom = 81.0
+offset_bottom = 95.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_f2wx0")
 theme_override_styles/panel = ExtResource("3_uk570")
 
-[node name="Label" type="Label" parent="CanvasLayer/MenuPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuPanel"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 117.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MenuPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("5_f2wx0")
 text = "Game Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="home" type="Button" parent="CanvasLayer/MenuPanel"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -41.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="mute" type="Button" parent="CanvasLayer/MenuPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 theme = ExtResource("5_f2wx0")
-text = "Save & Quit"
+text = "Mute
+"
+
+[node name="home" type="Button" parent="CanvasLayer/MenuPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_f2wx0")
+text = "Quit to Main Menu"
 
 [node name="LoadingPanel" type="Panel" parent="CanvasLayer"]
 visible = false
@@ -379,4 +385,5 @@ vertical_alignment = 1
 [connection signal="pressed" from="CanvasLayer/GameOverPanel/try_again" to="." method="_on_try_again_pressed"]
 [connection signal="pressed" from="CanvasLayer/VictoryPanel/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/VictoryPanel/Next" to="." method="_on_next_pressed"]
-[connection signal="pressed" from="CanvasLayer/MenuPanel/home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuPanel/VBoxContainer/mute" to="." method="_on_mute_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuPanel/VBoxContainer/home" to="." method="_on_home_pressed"]

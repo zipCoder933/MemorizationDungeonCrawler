@@ -4,11 +4,9 @@ class_name HUD
 @onready var damage_bar: ProgressBar = %DamageBar
 @onready var keys_info: Label = %keysInfo
 @onready var damage_bar_2: ProgressBar = %DamageBar2
-
-
 @onready var game_over_panel: Panel = $CanvasLayer/GameOverPanel
 @onready var victory_panel: Panel = $CanvasLayer/VictoryPanel
-
+@onready var mute: Button = %mute
 @onready var card_ui: FlashcardUI = %CardUI
 @onready var menu_panel: Panel = %MenuPanel
 @onready var level_indicator: Label = %"level indicator"
@@ -54,6 +52,7 @@ var key_nodes = []
 func _ready():
 	fps.visible = false
 	key.visible=false
+	menu_panel.visible = false
 	key_container.visible=false
 	player.signal_key_obtained.connect(_key_obtained)
 	bossfight_stats.visible=false
@@ -69,6 +68,7 @@ func _ready():
 	Globals.signal_victory.connect(_victory)
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
 	Globals.adventure_mode.connect(_global_adventure_mode)
+	muteSound(SaveHandler.muted)
 	
 	_player_health_changed(player.health)
 	_player_health2_changed(player.health2)
@@ -186,4 +186,23 @@ func _on_home_pressed() -> void:
 func _on_next_pressed() -> void:
 	Globals.load_level(true, nextLevel)
 func _on_try_again_pressed() -> void:
-	Globals.load_level()
+	Globals.load_level(true, currentLevel)
+	
+
+
+func _on_mute_pressed() -> void:
+	muteSound(!SaveHandler.muted)
+
+func muteSound(is_muted:bool):
+	var master_bus := AudioServer.get_bus_index("Master")
+	if(is_muted):
+		mute.text = "Sound: OFF"
+	else:
+		mute.text = "Sound: ON"
+	
+	SaveHandler.muted = is_muted
+	SaveHandler.save_to_file(Globals.SAVE_FILE)
+	AudioServer.set_bus_mute(
+		master_bus,
+		is_muted
+	)
