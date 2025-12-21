@@ -376,7 +376,7 @@ static func getAmbientSound(level:Level):
 		return load("res://assets/sounds/pixabay/levels/dungeon_ambient.ogg")
 
 func set_dungeon_theme(level:Level, game:SaveEntry):
-	var rd = Globals.random_deterministic(game.seed,game.get_completed_level())
+	var rd = Globals.random_deterministic(game.seed,level.level_index)
 	if(level.theme == Level.LevelTheme.MACHINE):
 		DOOR = preload("uid://bv0qtxxmmlnu")
 		WALL = preload("uid://c16k18ck0f1hj")
@@ -430,7 +430,7 @@ func set_dungeon_theme(level:Level, game:SaveEntry):
 		var ceiling_choice = rd.randi_range(0, cdirs.size()-1) #Random ceiling
 		var floor_choice = rd.randi_range(0, fdirs.size()-1)#Random floor
 		var wall_choice = rd.randi_range(0,wall_choices.size()-1) #random wall
-		if(game.get_completed_level() == 1):
+		if(level.level_index <= 1):
 			wall_choice=0
 			ceiling_choice=0
 			floor_choice=0
