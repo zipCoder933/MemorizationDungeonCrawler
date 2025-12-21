@@ -5,7 +5,7 @@
   "dungeons": [
 	{
 	  "name": "Dungeon 1",
-	  "theme": "jungle",
+	  "theme": "antarctic",
 	  "boss_name": "Da Boss",
 	  "boss_card_review_number": 1,
 	  "themed_drill_levels": [
