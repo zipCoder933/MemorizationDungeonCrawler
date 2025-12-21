@@ -361,10 +361,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		var canUseWASD:bool = mode != PlayerMode.FACTS
 		if(event.pressed):
-			#Debug stuff to help us out
-			if(Globals.is_in_editor() and event.keycode == KEY_V):
-				Globals.victory_event()
-			
 			if(not _is_still()):
 				if Input.is_action_just_pressed("Forward") or (canUseWASD and event.keycode == KEY_W):
 					movement.z = 1;

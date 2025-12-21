@@ -232,6 +232,12 @@ func get_level() -> LevelData:
 	if list.size() > 0:
 		return list[0]
 	return null
+	
+func get_world_environment() -> WorldEnvironment:
+	var list = get_tree().get_nodes_in_group("world_environment")
+	if list.size() > 0:
+		return list[0]
+	return null
 
 #Drill the player on flashcards
 #Question2 = the questions

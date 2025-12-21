@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4y3srd4o2pb3"]
+[gd_scene load_steps=17 format=3 uid="uid://b4y3srd4o2pb3"]
 
 [ext_resource type="Script" uid="uid://btmeorhdo0pat" path="res://levels/level.gd" id="1_aevpi"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_n5p7m"]
@@ -23,6 +23,12 @@ sky_material = SubResource("PanoramaSkyMaterial_ddowk")
 background_mode = 2
 background_energy_multiplier = 0.3
 sky = SubResource("Sky_ghmtr")
+
+[sub_resource type="Environment" id="Environment_ddowk"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ghmtr"]
+
+[sub_resource type="Compositor" id="Compositor_nw5tl"]
 
 [node name="Level" type="Node3D" groups=["level"]]
 script = ExtResource("1_aevpi")
@@ -75,3 +81,8 @@ unique_name_in_owner = true
 [node name="victorySound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("9_ddowk")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." groups=["world_environment"]]
+environment = SubResource("Environment_ddowk")
+camera_attributes = SubResource("CameraAttributesPractical_ghmtr")
+compositor = SubResource("Compositor_nw5tl")

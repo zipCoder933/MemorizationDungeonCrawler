@@ -55,6 +55,7 @@ player=""
 level=""
 game_loading_panel=""
 message_box=""
+world_environment=""
 
 [input]
 
@@ -128,6 +129,10 @@ sprint={
 
 [rendering]
 
+lights_and_shadows/directional_shadow/size=2048
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
 scaling_3d/scale=0.8
+limits/opengl/max_renderable_lights=16
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 occlusion_culling/use_occlusion_culling=true

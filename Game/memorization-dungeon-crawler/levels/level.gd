@@ -19,9 +19,6 @@ var game_mode:GameMode = GameMode.NORMAL
 @export var auto_load_game = false
 
 func _ready():
-	var viewport := get_viewport()
-	viewport.scaling_3d_scale = SaveHandler.graphics_render_scaling
-	
 	game_mode = GameMode.NORMAL
 	Globals._on_level_loaded()
 	
@@ -103,3 +100,8 @@ func _global_adventure_mode():
 		ambient_sound.stream = default_ambient_sound
 		ambient_sound.stream.loop = true
 		ambient_sound.play()
+
+func _input(event: InputEvent) -> void:
+	if Globals.is_in_editor() and event is InputEventKey and event.pressed and not event.echo:
+		if(event.keycode == KEY_V):
+			Globals.victory_event()

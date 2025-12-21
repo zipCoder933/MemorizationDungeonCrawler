@@ -5,7 +5,7 @@ static var saves:Array[SaveEntry] = []
 static var currentGame:SaveEntry
 static var _currentLevel:Level
 static var muted:bool
-static var graphics_render_scaling:float
+static var graphics_level:int
 
 static func get_current_level():
 	return _currentLevel
@@ -32,7 +32,7 @@ static func load_from_file(file_path: String) -> void:
 
 	print("Loading saves: ")
 	muted = parsed.get("muted", false)
-	graphics_render_scaling = parsed.get("graphics_render_scaling", 0.8)
+	graphics_level = parsed.get("graphics_level", 3)
 	for entry_data in parsed.get("games", []):
 		var save = SaveEntry.from_dictionary(entry_data)
 		print(save.toString())
@@ -51,7 +51,7 @@ static func save_to_file(file_path: String) -> void:
 
 	var root_data: Dictionary = {
 		"muted": muted,
-		"graphics_render_scaling": graphics_render_scaling,
+		"graphics_level": graphics_level,
 		"games": games_data
 	}
 	var json_string: String = JSON.stringify(root_data, "\t")
