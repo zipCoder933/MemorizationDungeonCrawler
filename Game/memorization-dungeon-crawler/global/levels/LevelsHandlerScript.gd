@@ -173,7 +173,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 
 
 
-				levels.append(makeLevel(
+				levels.append(Level.makeLevel(
 					dungIndx,
 					dungeon,
 					speed,
@@ -202,7 +202,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			var t = float(i) / max(1, completeCount)
 			var speed = lerp(midgame_start_speed, complete_goal, t)
 
-			levels.append(makeLevel(
+			levels.append(Level.makeLevel(
 				dungIndx,
 				dungeon,
 				speed,
@@ -218,7 +218,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 		if _last_level_tags.is_empty():
 			_last_level_tags = learnedTags
 		
-		levels.append(makeLevel(
+		levels.append(Level.makeLevel(
 			dungIndx,
 			dungeon,
 			complete_goal,
@@ -228,28 +228,3 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 		))
 
 	return true
-
-
-
-static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, themed_tags:Array[String],\
-					card_tags:Array[String], levelType: Level.LevelType, verbose:bool) -> Level:
-	#var typed_cards: Array[String] = []
-	#for c in card_tags:
-		#typed_cards.append(str(c))  # ensure every element is a string
-	level_index+=1
-	_last_level_tags = card_tags.duplicate()
-	var level =  Level.new(dungeonIndex, level_index,
-		JsonUtils.get_string(dungeon,"name", ""),
-		JsonUtils.get_string(dungeon,"theme", ""),
-		JsonUtils.get_int(dungeon,"card_review_number", 3),
-		JsonUtils.get_int(dungeon,"boss_card_review_number", 2),
-		levelType,
-		JsonUtils.get_string(dungeon,"boss_name", ""),
-		speed_seconds,  # or any logic to set time_to_answer_sec
-		themed_tags.duplicate(),
-		card_tags.duplicate(),
-		JsonUtils.get_int(dungeon,"enemy_card_count", Level.DEFAULT_ENEMY_CARD_COUNT),
-	)
-	if(verbose):
-		print(level.toString())
-	return level

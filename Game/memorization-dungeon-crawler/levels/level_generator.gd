@@ -467,7 +467,7 @@ func _ready():
 		var total_drills = level.card_count_multiplier * cards
 		number_arenas = round(total_drills / level.enemy_card_count)
 		if(includeBossfight):
-			number_arenas = clamp(number_arenas, 3, 5)
+			number_arenas = level.boss_level_arenas
 		elif(lotsOfArenas):
 			number_arenas = clamp(number_arenas*2, 10, 25)
 		else:

@@ -21,14 +21,53 @@ var themed_card_tags: Array[String] = []
 var enemy_card_count:int
 var card_count_multiplier:float = 1 #How many times we want to review each card in this level
 var boss_card_count_multiplier:float = 2 #How many times we want to review each card during a bossfight
+var boss_level_arenas:float
+
 const DEFAULT_ENEMY_CARD_COUNT = 15
 
+#For levelsHandlerScript
+static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, themed_tags:Array[String],\
+					card_tags:Array[String], levelType: Level.LevelType, verbose:bool) -> Level:
+
+	LevelsHandler.level_index += 1
+	LevelsHandler._last_level_tags = card_tags.duplicate()
+	
+	var level =  Level.new(
+		dungeonIndex,
+		LevelsHandler.level_index,
+		JsonUtils.get_string(dungeon,"name", ""),
+		JsonUtils.get_string(dungeon,"theme", ""),
+		JsonUtils.get_int(dungeon,"card_review_number", 3),
+		JsonUtils.get_int(dungeon,"boss_card_review_number", 2),
+		levelType,
+		JsonUtils.get_string(dungeon,"boss_name", ""),
+		speed_seconds,  # or any logic to set time_to_answer_sec
+		themed_tags.duplicate(),
+		card_tags.duplicate(),
+		JsonUtils.get_int(dungeon,"enemy_card_count", Level.DEFAULT_ENEMY_CARD_COUNT),
+		JsonUtils.get_int(dungeon,"boss_level_arenas", 3)
+	)
+	if(verbose):
+		print(level.toString())
+	return level
+
+
 # Constructor
-func _init(_dungeon_index:int, _level_index:int, _name: String, _theme: String,\
-		_card_review_number:float, _boss_card_review_number:float,\
-		_levelType: LevelType = LevelType.STANDARD, _boss_name: String = "",\
-		_time_to_answer_sec: float = 30.0, _themed_cards: Array[String] = [],\
-		 _card_tags: Array[String] = [], _enemy_card_count:int = DEFAULT_ENEMY_CARD_COUNT):
+func _init(_dungeon_index:int,
+		_level_index:int,\
+		_name: String,\
+		_theme: String,\
+		_card_review_number:float, \
+		_boss_card_review_number:float,\
+		_levelType: LevelType, 
+		_boss_name: String,\
+		_time_to_answer_sec: float, \
+		_themed_cards: Array[String],\
+		_card_tags: Array[String],\
+		_enemy_card_count:int,\
+		_boss_level_arenas:int):
+	
+	self.boss_level_arenas = _boss_level_arenas
 	enemy_card_count = _enemy_card_count
 	level_name = _name
 	dungeon_index = _dungeon_index
