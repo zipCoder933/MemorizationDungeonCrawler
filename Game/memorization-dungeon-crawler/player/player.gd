@@ -45,6 +45,7 @@ func play_submit_sound(succeed:bool):
 
 #camera
 @export var phantom_camera_3d: PhantomCamera3D
+@export var camera:Camera3D
 var camRotation = Vector3(0, 0, 0)
 const cameraSensitivity:float = 4;
 var cam_offset:Vector2 = Vector2(0,0)
@@ -78,6 +79,7 @@ var keys:int = 0
 @onready var shield_mesh: MeshInstance3D = $Knight2/Knight/Skeleton3D/shield
 @onready var helmet_mesh: MeshInstance3D = $Knight2/Knight/Skeleton3D/helmet
 @onready var body_mesh: MeshInstance3D = $Knight2/Knight/Skeleton3D/body
+@onready var skeleton_3d: Skeleton3D = $Knight2/Knight/Skeleton3D
 
 
 func _ready():
@@ -101,17 +103,12 @@ func _ready():
 	phantom_camera_3d.spring_length = phantom_camera_follow_node.length
 
 
-func set_alpha(transparent:bool):
-	if(transparent):
-		_set_mesh_alpha(body_mesh, 0.6)
-		_set_mesh_alpha(sword_mesh, 0.5)
-		_set_mesh_alpha(shield_mesh, 0.5)
-		_set_mesh_alpha(helmet_mesh, 0.95)
-	else:
-		_set_mesh_alpha(body_mesh, 1)
-		_set_mesh_alpha(sword_mesh, 1)
-		_set_mesh_alpha(shield_mesh, 1)
-		_set_mesh_alpha(helmet_mesh, 1)
+func set_alpha(alpha:float):
+	skeleton_3d.visible = alpha > 0.01
+	_set_mesh_alpha(body_mesh, alpha)#0.6
+	_set_mesh_alpha(sword_mesh, alpha)#0.5
+	_set_mesh_alpha(shield_mesh, alpha)#0.5
+	_set_mesh_alpha(helmet_mesh, alpha * 1.3)#0.95
 
 func _set_mesh_alpha(mesh: MeshInstance3D, alpha: float):
 	var mat := mesh.get_active_material(0)
@@ -209,7 +206,7 @@ func _victory():
 		mode = PlayerMode.VICTORY
 		animation_player.play(VICTORY_ANIMATION,1)
 		phantom_camera_follow_node.flashcard = null
-		set_alpha(false)
+		set_alpha(1)
 		mouse_controller.unlock_mouse_forever()
 
 
@@ -218,32 +215,31 @@ func _game_over():
 		damage_sound.stop()
 		kill_sound.play(0)
 		animation_player.play(DEATH_ANIMATION, 0.2)
-		set_alpha(false)
+		set_alpha(1)
 		phantom_camera_follow_node.flashcard = null
 		mode = PlayerMode.GAME_OVER
 		mouse_controller.unlock_mouse_forever()
 
 func _global_fact_answering_mode(target2:WorldFlashCard):#target:Vector3
 	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):
-		set_alpha(false)
+		set_alpha(1)
 		return
 	flash_card = target2
 	phantom_camera_3d.look_at_targets = [self,target2]
 	phantom_camera_follow_node.flashcard = target2
 	mode = PlayerMode.FACTS
 	movement = Vector3.ZERO
-	set_alpha(true)
 	animation_player.play(FIGHT_IDLE_ANIMATION, 0.5)
 
 func _global_adventure_mode():
 	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):
-		set_alpha(false)
+		set_alpha(1)
 		return
 	if(health > 0):
 		phantom_camera_3d.look_at_targets = []
 		phantom_camera_follow_node.flashcard = null
 		flash_card = null
-		set_alpha(false)
+		set_alpha(1)
 		mode = PlayerMode.ADVENTURE
 
 func get_normalized_mouse() -> Vector2:
@@ -269,11 +265,34 @@ func _process(delta:float):
 	phantom_camera_3d.set_third_person_rotation(camRotation)
 	phantom_camera_3d.spring_length = phantom_camera_follow_node.length
 	
+		
+	
 	if mode == PlayerMode.FACTS and flash_card != null:
+		#Do a raycast from the camera to the player, set the player alpha based on how much the player is blocking the camera
+		var space_state = get_world_3d().direct_space_state
+		# Offset the camera back a bit along the view direction
+		var direction_to_player = (global_position - camera.global_position).normalized()
+		var offset_distance = 0.5  # tweak this as needed
+		var ray_start = camera.global_position - direction_to_player * offset_distance
+		# Create the ray query
+		var ray_params = PhysicsRayQueryParameters3D.new()
+		ray_params.from = ray_start
+		ray_params.to = global_position
+		ray_params.exclude = [camera]  # include player so it can be detected
+		# Cast the ray
+		var result = space_state.intersect_ray(ray_params)
+		if result and result.collider == self:
+			var hit_pos = result.position
+			var distance = camera.global_position.distance_to(hit_pos)
+			#print("Ray hit the player! ✅ dist: ",distance)
+			set_alpha(Globals.map(distance, 1.5,0.6, 1,0))
+		else:
+			#print("Clear line of sight!")
+			set_alpha(1)
+
+
 		var dir_to_target = Vector3(flash_card.global_position - global_position).normalized()
-		
 		var target_angle = atan2(dir_to_target.x, dir_to_target.z) + PI  # Y-rotation
-		
 		#Combine the angle of the card and player to the angle of the card itself
 		target_angle = lerp_angle(target_angle, flash_card.global_rotation.y, 0.7)
 		#print("Target angle: ",target_angle)
@@ -288,7 +307,8 @@ func _process(delta:float):
 				Globals.map(dist, 1, 10, FLASHCARD_MIN_TURN_SPEED, FLASHCARD_MAX_TURN_SPEED),
 				FLASHCARD_MIN_TURN_SPEED, FLASHCARD_MAX_TURN_SPEED)
 			camRotation.y = lerp_angle(camRotation.y, desired_angle, turn_multiplier * delta)
-
+	else:
+		skeleton_3d.visible=true
 
 	if(_is_still()):
 		movement = Vector3.ZERO

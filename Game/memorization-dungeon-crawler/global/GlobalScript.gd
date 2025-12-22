@@ -199,7 +199,7 @@ func new_flashcard_question(current_flashcard_question2:Question):
 	current_flashcard_answer = ""
 	_has_flashcard=true
 	_flashcardNode.visible = true
-	print("new_flashcard_question: ",current_flashcard_question2.toString())
+	#print("new_flashcard_question: ",current_flashcard_question2.toString())
 	
 	_flashcardNode.signal_new_flashcard.emit(_current_flashcard_question)
 	signal_new_flashcard.emit(_flashcardNode, _current_flashcard_question)
