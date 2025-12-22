@@ -3893,9 +3893,9 @@ root_node = NodePath("..")
 enemy_model = NodePath("../mesh")
 collision_shape_3d = NodePath("CollisionShape3D")
 idle_animation = "idle"
-fight_idle_animation = "idle_001 Retarget"
+idle_animation_speed = 0.5
+fight_idle_animation = "idle"
 take_hit_animation = "ArmatureAction"
-take_hit_animation_speed = 0.8
 death_animation = "death"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger"]
