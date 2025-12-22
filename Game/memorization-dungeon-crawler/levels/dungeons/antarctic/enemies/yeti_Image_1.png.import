@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnnfio1e5mslc"
-path.s3tc="res://.godot/imported/yeti_Image_2.jpg-caf0e67ef56eb23b0b3a11576253f32e.s3tc.ctex"
+uid="uid://c0y1bimugf0rg"
+path.s3tc="res://.godot/imported/yeti_Image_1.png-79424d91467a2d324e3987810b2bcab8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "e4f95a5ed77586dcc3d9bd2d03aec768"
+"md5": "5faf0e02c413a7d16622994de88c1feb"
 }
 
 [deps]
 
-source_file="res://levels/dungeons/antarctic/enemies/yeti_Image_2.jpg"
-dest_files=["res://.godot/imported/yeti_Image_2.jpg-caf0e67ef56eb23b0b3a11576253f32e.s3tc.ctex"]
+source_file="res://levels/dungeons/antarctic/enemies/yeti_Image_1.png"
+dest_files=["res://.godot/imported/yeti_Image_1.png-79424d91467a2d324e3987810b2bcab8.s3tc.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
