@@ -14,6 +14,9 @@ Example:
 import os
 import argparse
 from PIL import Image, ImageDraw, ImageFont
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 # =========================================================
 # CONFIG
@@ -69,7 +72,7 @@ def diatonic_distance(ref_midi: int, target_midi: int) -> int:
 def draw_staff(draw, top_y, left_x):
     for i in range(STAFF_LINES):
         y = top_y + i * LINE_SPACING
-        draw.line((left_x, y, IMG_W - MARGIN, y), fill=NOTE_STAFF_COLOR, width=1)
+        draw.line((left_x, y, IMG_W - MARGIN, y), fill=NOTE_STAFF_COLOR, width=2)
 
 def draw_notehead(draw, x, y):
     w, h = 18, 12
@@ -84,9 +87,12 @@ def generate_note_image(clef: str, midi: int, out_path: str, show_name=False):
     draw = ImageDraw.Draw(img)
 
     # Load clef image
-    clef_img_path = f"{clef}-cleft.png"
+    clef_img_path = f"{BASE_DIR}/{clef}-cleft.png"
+    # print("Loading clef image:", clef_img_path)
+
     if not os.path.exists(clef_img_path):
         raise FileNotFoundError(f"Missing {clef_img_path}")
+    
     clef_img = Image.open(clef_img_path).convert("RGBA")
     if INVERT_CLEFTS:
         r, g, b, a = clef_img.split()
