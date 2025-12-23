@@ -277,7 +277,11 @@ func _question_in_dungeon_themed_cards(question:Question) -> bool:
 
 
 	
-
+func flashcard_remaining_count():
+	return questions.size();
+	
+func flashcard_deck_size():
+	return deckSize;
 
 func submit_flashcard(succeed:bool):
 	#If we dont have a flashcard anymore (We already submitted the last one)	

@@ -6,6 +6,7 @@ class_name FlashcardUI
 @onready var answer_label: Label = %answerLabel
 @onready var background: ColorRect = %background
 @export var worldFlashcardNode:WorldFlashCard;
+@onready var drill_left_bar: ProgressBar = %drillLeftBar
 
 const OPACITY = 0.9
 const DEFAULT_COLOR = Color(0.18, 0.18, 0.18, OPACITY)
@@ -60,6 +61,7 @@ func _submitted(success:bool):
 		background.color = FAILED_COLOR
 
 func _ready():
+	drill_left_bar.value = 1;
 	Globals.signal_flashcard_answer_changed.connect(_flashcardAnswerChanged)
 	
 	if(worldFlashcardNode == null):
@@ -75,6 +77,9 @@ func get_time_elapsed_MS() -> int:
 
 func _process(delta:float):
 	if(q != null && Globals.has_flashcard()):
+		var remainingDrill:float = float(Globals.flashcard_remaining_count()) /  float(Globals.flashcard_deck_size())
+		drill_left_bar.value = remainingDrill;
+		
 		var timeElapsed = get_time_elapsed_MS()
 		var timeLimitMS = q.time_limit * 1000
 		time_left_bar.value = remap(timeElapsed, 0, timeLimitMS, 1, 0)

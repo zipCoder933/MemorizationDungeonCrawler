@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cynckudprgttu"]
+[gd_scene load_steps=8 format=3 uid="uid://cynckudprgttu"]
 
 [ext_resource type="Script" uid="uid://flme5w8omao0" path="res://flashcard/flashcard.gd" id="1_m84yh"]
 [ext_resource type="FontFile" uid="uid://d4l36d7861osl" path="res://assets/fonts/UnifrakturCook/UnifrakturCook-Bold.ttf" id="2_4or87"]
@@ -12,7 +12,11 @@ border_width_right = 1
 border_width_bottom = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7h1a"]
-bg_color = Color(0.099985994, 0.099985994, 0.099985994, 1)
+bg_color = Color(0.017732397, 0.01773239, 0.01773239, 1)
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eajrq"]
+bg_color = Color(0, 0.53334534, 0.9341477, 1)
 expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdqdw"]
@@ -43,8 +47,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="drillLeftBar" type="ProgressBar" parent="background/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_b7h1a")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eajrq")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
 [node name="timeLeftBar" type="ProgressBar" parent="background/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -65,7 +82,7 @@ size_flags_vertical = 10
 
 [node name="questionImage" type="TextureRect" parent="background/VBoxContainer/question"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 140)
+custom_minimum_size = Vector2(0, 135)
 layout_mode = 2
 texture = ExtResource("2_m84yh")
 expand_mode = 2

@@ -1,6 +1,6 @@
 {
   "starting_answer_speed_sec": 5,
-  "goal_answer_speed_sec": 0.3,
+  "goal_answer_speed_sec": 0.38,
   "midgame_start_speed_percent": 0.1,
   "midgame_goal_speed_percent": 0.7,
   "name": "Treble and Base",
@@ -16,9 +16,9 @@
 		  "count": 6
 		}
 	  ],
-	  "goal_speed_percent": 0.85,
-	  "card_review_number": 8,
-	  "boss_card_review_number":2,
+	  "goal_speed_percent": 0.8,
+	  "card_count_multiplier": 8,
+	  "boss_card_count_multiplier": 4,
 	  "complete_drill_levels": 0
 	},
 	{
@@ -31,18 +31,22 @@
 		  "count": 6
 		}
 	  ],
-	  "goal_speed_percent": 0.85,
-	  "card_review_number": 8,
-	  "boss_card_review_number":2,
+	  "goal_speed_percent": 0.8,
+	  "card_count_multiplier": 8,
+	  "boss_card_count_multiplier": 4,
+	  "boss_level_arenas": 3,
 	  "complete_drill_levels": 0
 	},
 	{
 	  "name": "Treble and Bass Dungeon",
 	  "theme": "Antarctic",
 	  "boss_name": "Frozen Solid",
-	  "card_review_number": 8,
+	  "card_count_multiplier": 5,
 	  "start_speed_percent": 0.4,
 	  "goal_speed_percent": 0.9,
+	  "boss_card_count_multiplier": 4,
+	  "enemy_card_count": 50,
+	  "boss_level_arenas": 4,
 	  "themed_drill_levels": [],
 	  "complete_drill_levels": 6
 	},
@@ -57,8 +61,9 @@
 		}
 	  ],
 	  "goal_speed_percent": 0.9,
-	  "card_review_number": 8,
-	  "boss_card_review_number": 2,
+	  "card_count_multiplier": 4,
+	  "boss_level_arenas": 4,
+	  "boss_card_count_multiplier": 2,
 	  "complete_drill_levels": 3
 	},
 	{
@@ -72,8 +77,9 @@
 		}
 	  ],
 	  "goal_speed_percent": 1,
-	  "card_review_number": 8,
-	  "boss_card_review_number": 2,
+	  "card_count_multiplier": 4,
+	  "boss_level_arenas": 4,
+	  "boss_card_count_multiplier": 2,
 	  "complete_drill_levels": 6
 	}
   ]

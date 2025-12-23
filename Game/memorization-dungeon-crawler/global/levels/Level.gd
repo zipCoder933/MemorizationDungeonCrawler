@@ -23,8 +23,6 @@ var card_count_multiplier:float = 1 #How many times we want to review each card 
 var boss_card_count_multiplier:float = 2 #How many times we want to review each card during a bossfight
 var boss_level_arenas:float
 
-const DEFAULT_ENEMY_CARD_COUNT = 15
-
 #For levelsHandlerScript
 static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, themed_tags:Array[String],\
 					card_tags:Array[String], levelType: Level.LevelType, verbose:bool) -> Level:
@@ -37,14 +35,14 @@ static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, th
 		LevelsHandler.level_index,
 		JsonUtils.get_string(dungeon,"name", ""),
 		JsonUtils.get_string(dungeon,"theme", ""),
-		JsonUtils.get_int(dungeon,"card_review_number", 3),
-		JsonUtils.get_int(dungeon,"boss_card_review_number", 2),
+		JsonUtils.get_float(dungeon,"card_count_multiplier", 1.5), #Card count multiplier
+		JsonUtils.get_float(dungeon,"boss_card_count_multiplier", 2), #boss card cound multiplier
 		levelType,
 		JsonUtils.get_string(dungeon,"boss_name", ""),
 		speed_seconds,  # or any logic to set time_to_answer_sec
 		themed_tags.duplicate(),
 		card_tags.duplicate(),
-		JsonUtils.get_int(dungeon,"enemy_card_count", Level.DEFAULT_ENEMY_CARD_COUNT),
+		JsonUtils.get_int(dungeon,"enemy_card_count", 15),
 		JsonUtils.get_int(dungeon,"boss_level_arenas", 3)
 	)
 	if(verbose):
@@ -57,8 +55,8 @@ func _init(_dungeon_index:int,
 		_level_index:int,\
 		_name: String,\
 		_theme: String,\
-		_card_review_number:float, \
-		_boss_card_review_number:float,\
+		_card_count_multiplier:float, \
+		_boss_card_count_multiplier:float,\
 		_levelType: LevelType, 
 		_boss_name: String,\
 		_time_to_answer_sec: float, \
@@ -80,8 +78,8 @@ func _init(_dungeon_index:int,
 			theme = LevelTheme[themeName]
 			break  # stop once we found a match
 	
-	card_count_multiplier = _card_review_number
-	boss_card_count_multiplier = _boss_card_review_number
+	card_count_multiplier = _card_count_multiplier
+	boss_card_count_multiplier = _boss_card_count_multiplier
 	levelType = _levelType
 	boss_name = _boss_name
 	time_to_answer_sec = _time_to_answer_sec
