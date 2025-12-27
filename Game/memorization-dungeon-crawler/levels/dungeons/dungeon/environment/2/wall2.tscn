@@ -1,0 +1,109 @@
+[gd_scene load_steps=15 format=4 uid="uid://bhsk3kl4m1dfo"]
+
+[ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_x1h0y"]
+[ext_resource type="Texture2D" uid="uid://p566760efq64" path="res://levels/dungeons/dungeon/assets/variants/wall/3/texture.jpg" id="2_fatia"]
+[ext_resource type="Texture2D" uid="uid://bdjbymk8cyf67" path="res://levels/dungeons/dungeon/assets/variants/wall/3/normal.png" id="3_kq2hq"]
+[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://levels/dungeons/dungeon/assets/pillar/pillar.glb" id="3_oyw1v"]
+[ext_resource type="Texture2D" uid="uid://d0k2qgtqonmr6" path="res://levels/dungeons/dungeon/assets/pillar/pillar_door frame_seaworn_stone_tiles_diff_4k.jpg" id="5_pk83m"]
+[ext_resource type="ArrayMesh" uid="uid://c757qo6ayxerk" path="res://levels/dungeons/dungeon/assets/light_cylinder.obj" id="6_oyw1v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
+size = Vector3(1.46875, 5, 6.0288086)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqau5"]
+albedo_texture = ExtResource("2_fatia")
+normal_enabled = true
+normal_texture = ExtResource("3_kq2hq")
+ao_enabled = true
+ao_texture = ExtResource("3_kq2hq")
+uv1_scale = Vector3(3.5, 3.5, 3.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5vrq6"]
+size = Vector3(1, 5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhtas"]
+albedo_texture = ExtResource("2_fatia")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwq43"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("5_pk83m")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_y2gmc"]
+_surfaces = [{
+"aabb": AABB(-1.1599947, 0.0062712673, -1.1599947, 2.3199894, 2.1908097, 2.3199894),
+"format": 34896613377,
+"index_count": 180,
+"index_data": PackedByteArray("AAABAAIAAQADAAIABAAAAAIAAAAFAAEABAACAAYABwAAAAQAAgADAAgAAgAIAAYAAwAJAAgACgAEAAYAAwALAAkACAAJAAwADAAJAAsABgAIAA0ACAAMAA0ADQAMAA4ADAALAA4ADwALAAMADwAOAAsADQAOAA8AAQAPAAMABgANABAAEAANAA8AEAAPAAEACgAGABAABQAQAAEABQAKABAAEQAKAAUAEgAEAAoAEQASAAoAEgAHAAQAEwARAAUAEwAFAAAABwATAAAAFAARABMAFQATAAcAFQAUABMAFgAHABIAFgAVAAcAFwASABEAFwAWABIAFAAXABEAFgAYABUAFQAZABQAFQAYABkAFgAaABgAFwAaABYAGAAbABkAFAAcABcAFwAcABoAFAAZABwAHAAdABoAGgAeABgAGAAeABsAGgAdAB4AGQAbAB8AGQAfABwAHwAbAB4AHAAfAB0AHwAeAB0A"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("5ScgyBnYAACnEff4pxEAAKcR9/hX7gAAOgRt+cT7AAAZ2CDIGdgAAOUnIMjlJwAAV+73+FfuAAAK0XYuCtEAAMT7bfnE+wAAxPv//8T7AAAZ2CDI5ScAADoE///E+wAAxPv//zoEAADE+235OgQAADoE//86BAAAOgRt+ToEAABX7vf4pxEAAPQudi70LgAACtF2LvQuAAD0LnYuCtEAAKcRRA9X7gAAV+5ED1fuAABX7kQPpxEAAKcRRA+nEQAA//8EBv//AAAAAAQG//8AAP//BAYAAAAAAAAAAP//AAAAAAQGAAAAAP//AAAAAAAA//8AAP//AAAAAAAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hp3bi"]
+resource_name = "pillar_Cube_001"
+_surfaces = [{
+"aabb": AABB(-1.1599947, 0.0062712673, -1.1599947, 2.3199894, 2.1908097, 2.3199894),
+"attribute_data": PackedByteArray("p2FGUfWhe5qnYXia9aFEUeGZ96I8WvRYApkJWcZZiqJ9SfBFMckMhyM6yYitvYdEFWJtQq2sdYr4WHWKkKNtQvh6KY7Na0NMr3xgVtFpZpyjeFtO7II8naN4YqbsgjJXEnUEyW1rw4sSdcOLbWsEydaGcpIscGBR1oZzXCxwhJ2Yg2qklmulUU+DtF+WaxSz+YpDh+RwrT7ciktM5HDLklEsMX4aZGhGGmQxflEsaEbugtmFS3vAWu6CwFpLe9mFZ4CnmTR803hngNN4NHynmciAxp0UeapfyICqXxR5xp22iuxUznbUn7aK1J/OduxUmnozRzyH6rCaem+ZXYiXNG+AGU1QiM2Fb4DihBGIGVeqfe1IvoiemKp9oI7ch+4+5Jsxfq3TaEat0zF+5JtoRp9D12upuoeICbt/bUBD34ZBjEVSaXksmfOMLJlpeUVSqYQdUItxZKjsgmSoi3EdULmlgsfqVfcduaX3HepVgsc5TD8QuacLujlMC7q5pz8QGGjpG+m1DckYaA3J6bXpG9hc6CmZsaHT2Fyh05mx6Cn5t1xcCVVuOvGqfjr9R0Zc74/pkaZbw2/jh8NvmlPpkRC2W4XFPRZiw6UWYngtW4UCQsw4vZWLW8xNi1uGocw4"),
+"format": 34896613399,
+"index_count": 180,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0AcABxAHIAcABzAHEAdAB1AHYAdAB3AHUA"),
+"material": SubResource("StandardMaterial3D_bwq43"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 120,
+"vertex_data": PackedByteArray("5ScgyBnYGvOnEff4pxEa86cR9/hX7hrz5ScgyOUnG/PlJyDI5Sf//1fu9/inEf//pxH3+KcR//8Z2CDI5Sf7/xnYIMjlJ+7yV+73+Ffu7vJX7vf4pxHu8hnYIMgZ2O3yGdggyBnY//+nEff4V+7//1fu9/hX7v//5ScgyBnY//9X7kQPV+7JswAABAb//33jpxFED1fuJuf//wQG//8es1fu9/inET7COgRt+ToElPSnEff4pxH/9cT7bfk6BCfCAAAEBv//VNUAAAAAAABU1QAABAYAAFTVAAAAAP//VNWnEUQPpxGf7v//BAYAAP7VV+5ED6cRGtUAAAQGAABe76cRRA9X7gXBAAAEBgAARs+nEUQPpxGg0QAABAb//0TBV+5ED6cR5t///wQG//+O8lfuRA9X7nrv//8EBgAA8d4AAAAAAAD/v///AAD///+///8AAAAA/78AAAAA////v///BAb///+/AAAAAP///78AAAQG////v///AAD///+/AAAEBgAA/////wAAAAD/////BAYAAP//AAAAAAAA/////wQGAABU1f//AAD//1TV//8EBv//VNX//wAAAABU1cT7bfk6BAAAOgT//zoEAAA6BG35OgQAAMT7//86BAAAV+73+FfugsnE+235OgTbzlfu9/inERnQxPtt+cT71MmnEff4pxGO2zoEbfnE+yjvpxH3+FfuFe06BG35OgT62qcR9/hX7tLExPtt+cT7U+tX7vf4V+6N7ToEbfnE+3XExPv//zoE//86BP//xPv//zoE//86BP//xPv//8T7///E+235xPv/P8T7//86BP8/xPtt+ToE/z/E+///xPv/PzoEbfk6BKoqOgT//8T7qio6BG35xPuqKjoE//86BKoqOgRt+cT7/z/E+///xPv/P8T7bfnE+/8/OgT//8T7/z8K0XYuCtH6geUnIMgZ2PqBGdggyBnY+oH0LnYuCtH6gQrRdi70Lpj+GdggyBnYmP4Z2CDI5SeY/grRdi4K0Zj+9C52LvQuA/4Z2CDI5ScD/uUnIMjlJwP+CtF2LvQuA/70LnYuCtGY/uUnIMjlJ5j+5ScgyBnYmP70LnYu9C6Y/qcRRA9X7vDF9C52LvQu8MX0LnYuCtHwxacRRA+nEfDFpxFED6cR//8K0XYu9C7///Qudi70Lv//V+5ED6cR//9X7kQPpxHyxQrRdi4K0fLFCtF2LvQu8sVX7kQPV+7yxVfuRA9X7v//9C52LgrR//8K0XYuCtH//6cRRA9X7v//j0bfcpBG3nKPRt9ykEbecvt/0xfuf90X/3/PF+l/4Rf4DHHG9wxwxvgMccb3DHDG/38vaP9/L2j/fy9o/38vaAHp+0MM1n4SKNUuEMHp8EXpHcxw7XMYRVd1YES9HGVxVNVU1VTVVNVU1VTVVNVU1TebK74ZzymeQ9T6miOa1b4lw8mvWPK+Rk/vwUJTwVKwsr5+B1+iVKm1pI2nCr+qCAAA/38AAP9/AAD/fwAA/3///////////////////////7//v/+//7//v/+//7//v6oqqiqqKqoqqiqqKqoqqir/P/+//z//v/8//7//P/+/ekTIXLwkKsuzJQjNJEV2XO1aH1OpOMzwtTfU7lJab1O+HG66NDUp7DI2Le4xHE+5/3//v/9//7//f/+//3//vxiAMgAYgDIAGIAyABiAMgBUVaqqVFWqqlRVqqpUVaqq/3//f/9//3//f/9//3//fwAA/38AAP9/AAD/fwAA/3+JAcTAiQHEwIkBxMCJAcTAAAD/fwAA/38AAP9/AAD/f8RAdX7EQHV+xEB1fsRAdX7znB7G85wexvScHsbznB7G/3+b2v9/m9r/f5va/3+b2t657xzeue8c3rnvHN657xz/f2Ol/39jpf9/Y6X/f2Ol")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_y2gmc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kq2hq"]
+albedo_color = Color(0.6419726, 0.29585797, 0.16255301, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.4
+
+[node name="wall" type="StaticBody3D"]
+collision_layer = 2
+script = ExtResource("1_x1h0y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.234375, 2.5, 0.5144043)
+shape = SubResource("BoxShape3D_xfbw5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = SubResource("StandardMaterial3D_kqau5")
+mesh = SubResource("BoxMesh_5vrq6")
+
+[node name="pillar" parent="." instance=ExtResource("3_oyw1v")]
+transform = Transform3D(1.0288152, 0, 0, 0, 1.02, 0, 0, 0, 1.008, 0, 0, 2.5)
+
+[node name="Cube" parent="pillar" index="0"]
+transform = Transform3D(0.60811466, 0, 0.3466937, 0, 2.2500002, 0, -0.3466937, 0, 0.6081146, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_lhtas")
+
+[node name="Cube2" type="MeshInstance3D" parent="pillar"]
+transform = Transform3D(0.6163763, 0, -0.22815126, 0, 2.2497513, 0, 0.22815125, 0, 0.6163763, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_lhtas")
+mesh = SubResource("ArrayMesh_hp3bi")
+skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6695981, 3.500515, -0.16882432)
+light_color = Color(1, 0.6837473, 0.4634379, 1)
+light_energy = 2.0
+light_indirect_energy = 3.1
+omni_range = 5.034739
+
+[node name="LightCylinder" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.1744927, 0, 0, 0, 1.1744927, 0, 0, 0, 1.1744927, -0.62826943, 3.5380006, -0.21699116)
+mesh = ExtResource("6_oyw1v")
+surface_material_override/0 = SubResource("StandardMaterial3D_kq2hq")
+
+[editable path="pillar"]

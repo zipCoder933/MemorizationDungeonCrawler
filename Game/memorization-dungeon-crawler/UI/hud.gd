@@ -14,6 +14,7 @@ class_name HUD
 @onready var fps: Label = $fps
 @onready var bossfight_stats: BossfightStats = $CanvasLayer/BossfightStats
 @onready var graphics: Button = %graphics
+@onready var next_button: Button = %Next
 
 const LevelsHandler = preload("uid://bte11e0fapqes")
 const SaveHandler = preload("uid://bgwdh30vglopu")
@@ -70,6 +71,7 @@ func _ready():
 	Globals.signal_victory.connect(_victory)
 	Globals.fact_answering_mode.connect(_global_fact_answering_mode)
 	Globals.adventure_mode.connect(_global_adventure_mode)
+	Globals.signal_flashcard_single_drill.connect(_flashcard_single_drill)
 	
 	#Settings
 	apply_graphics_level(SaveHandler.graphics_level)
@@ -78,8 +80,11 @@ func _ready():
 	_player_health_changed(player.health)
 	_player_health2_changed(player.health2)
 	
-	if(SaveHandler.get_current_level() != null and  SaveHandler.currentGame !=null):
-		if(SaveHandler.get_current_level().levelType == Level.LevelType.BOSS):
+	if(SaveHandler.get_current_level() != null and SaveHandler.currentGame !=null):
+		if(SaveHandler.get_current_level().levelType == Level.LevelType.PRACTICE):
+			next_button.visible=false;
+			level_indicator.text = "Practice level for "+SaveHandler.get_current_level().level_name;
+		elif(SaveHandler.get_current_level().levelType == Level.LevelType.BOSS):
 			level_indicator.text = "LEVEL " +\
 				str(SaveHandler.get_current_level().level_index) +" / "+\
 				str(SaveHandler.currentGame.total_levels) +": "+\
@@ -110,6 +115,25 @@ func _input(event):
 				menu_panel.visible = !menu_panel.visible
 		elif event.keycode == KEY_CTRL:
 				fps.visible = !fps.visible
+
+#For practice mode ------------------------------------------
+var averageTime: float = 0.0
+var averageAccuracy: float = 0.0
+var samples: int = 0
+
+func _flashcard_single_drill(node: WorldFlashCard, succeed: bool):
+	if SaveHandler.get_current_level().levelType == Level.LevelType.PRACTICE:
+		var time:int = node.drill_submit_time_ms
+		var accuracy: float = 1.0 if succeed else 0.0
+		samples += 1
+		averageTime = ((averageTime * (samples - 1)) + time) / samples
+		averageAccuracy = ((averageAccuracy * (samples - 1)) + accuracy) / samples
+		level_indicator.text = (
+			"Average Time: %.2fs\n" % float(averageTime / 1000.0) +
+			"Average Accuracy: %d%%" % int(round(averageAccuracy * 100))
+		)
+#-------------------------------------------------------------
+	
 
 func _process(delta):
 	if(menu_panel.visible):#We cant have menu open if we are already in another menu
@@ -189,10 +213,10 @@ func _on_back_pressed() -> void:
 func _on_home_pressed() -> void:
 	Globals.go_home()
 func _on_next_pressed() -> void:
-	Globals.load_level(true, nextLevel)
+	SaveHandler.set_current_level(LevelsHandler.get_level(nextLevel))
+	Globals.go_to_level()
 func _on_try_again_pressed() -> void:
-	Globals.load_level(true, SaveHandler.get_current_level().level_index)
-	
+	Globals.go_to_level()
 
 
 func _on_mute_pressed() -> void:

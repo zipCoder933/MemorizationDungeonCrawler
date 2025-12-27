@@ -22,8 +22,7 @@ func _ready():
 	selectTab(0)
 	if(saveEntry != null):
 		#We want to load the game without entering the level
-		Globals.load_game(saveEntry,false,-1, func():
-			
+		Globals.load_game(saveEntry, func():
 			title.text = "\""+str(saveEntry.name)+"\"";
 			print("Reading entries: ",saveEntry.tag_mastery.size())
 			for tag in saveEntry.tag_mastery.keys():
@@ -36,11 +35,16 @@ func _ready():
 			var completed = saveEntry.get_completed_level()
 			print("Reading levels: ",LevelsHandler.levels.size()," level - ",completed)
 			for level in LevelsHandler.levels:
-				var node = LEVEL_ENTRY.instantiate()
-				level_entries.add_child(node)
-				node.set_details(saveEntry, level, level.level_index <= completed)
-				
+				_add_level_entry(level,completed)
+				if(level.levelType == Level.LevelType.BOSS):
+					var practiceLevel = Level.makePracticeLevel(level)
+					_add_level_entry(practiceLevel,completed)
 		)
+
+func _add_level_entry(level:Level, completed:int):
+	var node = LEVEL_ENTRY.instantiate()
+	level_entries.add_child(node)
+	node.set_details(saveEntry, level, level.level_index <= completed)
 
 func _on_tab_bar_tab_selected(tab: int) -> void:
 	selectTab(tab)

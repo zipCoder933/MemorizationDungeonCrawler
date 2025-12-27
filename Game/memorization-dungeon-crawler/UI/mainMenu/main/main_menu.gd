@@ -13,8 +13,6 @@ func confirm_deletion(_delete_entry:SaveEntry):
 func _on_delete_no_pressed() -> void:
 	delete_entry = null
 
-
-
 func _on_delete_yes_pressed() -> void:
 	if(delete_entry!=null):
 		FileUtils.delete_game(delete_entry)

@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dxqlkqap0xetp"]
+
+[ext_resource type="Texture2D" uid="uid://bvauuuqsl0dpq" path="res://levels/dungeons/dungeon/assets/variants/wall/4/texture.jpg" id="1_n8gd5"]
+[ext_resource type="Texture2D" uid="uid://3emffumob4ha" path="res://levels/dungeons/dungeon/assets/variants/wall/4/normal.png" id="2_8lwr6"]
+
+[resource]
+albedo_texture = ExtResource("1_n8gd5")
+normal_enabled = true
+normal_scale = 0.53
+normal_texture = ExtResource("2_8lwr6")
+uv1_scale = Vector3(2, 2, 2)

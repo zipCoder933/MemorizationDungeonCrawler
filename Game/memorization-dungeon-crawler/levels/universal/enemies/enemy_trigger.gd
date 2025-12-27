@@ -46,6 +46,10 @@ func _ready():
 	else:
 		fail_health_add = -0.30
 		success_health_add = 0.05
+		
+	if(SaveHandler.get_current_level().levelType == Level.LevelType.PRACTICE):
+		fail_health_add = 0
+	
 	#if(take_hit_animation != null):
 		#var anim = _animation_player.get_animation(take_hit_animation)
 		#print("take hit animation loop mode: ", anim.loop_mode)

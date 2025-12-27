@@ -20,8 +20,11 @@ func set_details(saveEntry:SaveEntry , level:Level, unlocked:bool):
 	
 	self.level = level
 	self.saveEntry = saveEntry
-	number.text = str(level.level_index)
 	
+	if(level.levelType == Level.LevelType.PRACTICE):
+		number.text = ""
+	else:
+		number.text = str(level.level_index)
 	
 	if(level.card_tags.size() >= CardsHandler.tag_dict.size()):
 		tags.text ="Everything"
@@ -30,6 +33,8 @@ func set_details(saveEntry:SaveEntry , level:Level, unlocked:bool):
 		
 	if(level.levelType == Level.LevelType.BOSS):
 		namePanel.text = level.boss_name + " ("+level.level_name+")"
+	elif(level.levelType == Level.LevelType.PRACTICE):
+		namePanel.text =  "Practice - "+level.level_name
 	else:
 		namePanel.text = level.level_name
 
@@ -43,4 +48,6 @@ func set_details(saveEntry:SaveEntry , level:Level, unlocked:bool):
 
 func _on_play_button_pressed() -> void:
 	if(level != null):
-		Globals.load_game(saveEntry, true, level.level_index)
+		Globals.load_game(saveEntry)
+		SaveHandler.set_current_level(level)
+		Globals.go_to_level()

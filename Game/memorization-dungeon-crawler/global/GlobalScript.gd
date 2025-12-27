@@ -115,9 +115,7 @@ func load_cards_levels(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoad
 
 
 
-func load_game(entry:SaveEntry, goToLevel:bool = true, level:int = -1,\
-		doneCall: Callable = Callable(), feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()):
-	
+func load_game(entry:SaveEntry, successCall: Callable = Callable(), feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()):
 	var loadingPanel:GameLoadingPanel = get_game_loading_panel()
 	if(loadingPanel != null):
 		loadingPanel.visible=true
@@ -128,21 +126,14 @@ func load_game(entry:SaveEntry, goToLevel:bool = true, level:int = -1,\
 		#load cards and levels
 		if(load_cards_levels(SaveHandler.currentGame.path, feedback)):
 			SaveHandler.currentGame.total_levels = LevelsHandler.levels.size()
-			load_level(goToLevel, level)
+			if successCall.is_valid():
+				successCall.call()
 		elif(get_message_box() != null):
 			get_message_box().show_message("Error Loading Game", feedback.message)
 		if(loadingPanel !=null):
 			loadingPanel.visible = false
-		if doneCall.is_valid():
-			doneCall.call()
 	).call()
 
-func load_level(goToLevel:bool = true, level:int = -1):
-	SaveHandler.save_to_file(Globals.SAVE_FILE)
-	SaveHandler.set_current_level(level)
-	if(goToLevel):
-		print("Entering level ",SaveHandler.get_current_level().level_index,"; level array indx: ",level)
-		go_to_level()
 
 func go_home():
 	failed_flashcards = []
@@ -293,8 +284,6 @@ func submit_flashcard(succeed:bool):
 	var time_ms = _flashcardNode.get_time_elapsed_MS()
 	var question = _current_flashcard_question
 
-
-	
 	if(succeed):
 		accuracy = 100
 		succeeded += 1
@@ -311,7 +300,7 @@ func submit_flashcard(succeed:bool):
 		else:
 			SaveHandler.currentGame.tag_mastery[tag] = SaveEntry.CardMastery.new(time_ms, accuracy,1)
 	
-	#print("Single drill submitted")
+	_flashcardNode.drill_submit_time_ms = time_ms
 	_flashcardNode.signal_flashcard_single_drill.emit(succeed)
 	signal_flashcard_single_drill.emit(_flashcardNode, succeed)
 	questions.remove_at(0)

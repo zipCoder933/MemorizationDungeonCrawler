@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://0j4let3yj7fs"]
+
+[ext_resource type="Script" uid="uid://semtbjbhcepp" path="res://levels/universal/wall/wall.gd" id="1_x8a0n"]
+[ext_resource type="Texture2D" uid="uid://jnisvjl0pkl2" path="res://levels/dungeons/dungeon/assets/variants/wall/2/texture.jpg" id="2_banc1"]
+[ext_resource type="ArrayMesh" uid="uid://c757qo6ayxerk" path="res://levels/dungeons/dungeon/assets/light_cylinder.obj" id="2_qr03d"]
+[ext_resource type="PackedScene" uid="uid://bhrovx8m2rdgs" path="res://levels/dungeons/dungeon/assets/pillar/pillar.glb" id="3_qr03d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xfbw5"]
+size = Vector3(1.2944336, 5, 5.788086)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qr03d"]
+albedo_color = Color(0.6960091, 0.42247513, 0.057440683, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.16
+normal_enabled = true
+normal_scale = -1.36
+uv1_scale = Vector3(1.015, 1.015, 1.015)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1etba"]
+albedo_texture = ExtResource("2_banc1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5vrq6"]
+size = Vector3(1, 5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6u6w7"]
+albedo_texture = ExtResource("2_banc1")
+
+[node name="wall" type="StaticBody3D"]
+collision_layer = 2
+script = ExtResource("1_x8a0n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1472168, 2.5, 0.39404297)
+shape = SubResource("BoxShape3D_xfbw5")
+
+[node name="LightCylinder" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.1744927, 0, 0, 0, 1.1744927, 0, 0, 0, 1.1744927, -0.5552604, 3.2251825, -0.052034825)
+mesh = ExtResource("2_qr03d")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_qr03d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = SubResource("StandardMaterial3D_1etba")
+mesh = SubResource("BoxMesh_5vrq6")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 1.4210855e-14, 0, 1, -0.7689903, 3.6375546, -0.046917155)
+light_color = Color(1, 0.6837473, 0.4634379, 1)
+light_energy = 2.2
+light_indirect_energy = 3.1
+omni_range = 5.034739
+
+[node name="pillar" parent="." instance=ExtResource("3_qr03d")]
+transform = Transform3D(1.0288152, 0, 0, 0, 1.02, 0, 0, 0, 1.008, 0, 0, 2.5)
+
+[node name="Cube" parent="pillar" index="0"]
+transform = Transform3D(0.7, 0, 0, 0, 2.25, 0, 0, 0, 0.7, -0.0017496366, 0, 0)
+material_override = SubResource("StandardMaterial3D_6u6w7")
+extra_cull_margin = 1.0
+
+[editable path="pillar"]

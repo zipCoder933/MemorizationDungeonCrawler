@@ -403,8 +403,8 @@ func set_dungeon_theme(level:Level, game:SaveEntry):
 		DOOR = preload("uid://lfo3xvyqph2")
 		WALL = preload("uid://bul1mahgmqnrl")
 	elif(level.theme == Level.LevelTheme.DUNGEON):
-		var ceiling_prefix = "res://levels/dungeons/medeval/assets/variants/ceiling/"
-		var floor_prefix = "res://levels/dungeons/medeval/assets/variants/floor/"
+		var ceiling_prefix = "res://levels/dungeons/dungeon/assets/variants/ceiling/"
+		var floor_prefix = "res://levels/dungeons/dungeon/assets/variants/floor/"
 		var door_choices = [
 			preload("uid://bdnosseu7fsm"),
 			preload("uid://cybqn7iu5i8eg"),
@@ -482,6 +482,10 @@ func _ready():
 	var main_path_end =(Vector3(start_pos) + main_path_dir * main_path_length)
 	Globals.totalArenas = 0
 	
+	if(level.levelType == Level.LevelType.PRACTICE):
+		main_path_end = Vector3(start_pos)
+		main_path_end.x -= 5
+	
 	if(includeBossfight):
 		print("BOSS PATH: ",\
 		 path(start_pos, main_path_end, 25, 2, arenaSize+2, 1, true, true))
@@ -493,15 +497,16 @@ func _ready():
 	Globals.get_player().global_position.x = PLAYER_SPAWN.x
 	Globals.get_player().global_position.z = PLAYER_SPAWN.z
 	
-	for i in range(0, 2000):
-		place = searched.keys()[randi_range(0,searched.keys().size()-1)]
-		var direction = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()  # to the right
-		var length = randi_range(min_path_length,max_path_length)
-		var end_pls:Vector3 = (Vector3(place) + direction * length)
-		if is_area_clear(end_pls.x, end_pls.z, (arenaSize) + CLOSENESS_TO_END_PATH_END + 2):
-			var steps = path(place, end_pls, 5, 0, arenaSize, FAILED_LEVEL_SURVIVAL, false)
-		if(Globals.totalArenas >= number_arenas):
-			break
+	if(level.levelType != Level.LevelType.PRACTICE):
+		for i in range(0, 2000):
+			place = searched.keys()[randi_range(0,searched.keys().size()-1)]
+			var direction = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()  # to the right
+			var length = randi_range(min_path_length,max_path_length)
+			var end_pls:Vector3 = (Vector3(place) + direction * length)
+			if is_area_clear(end_pls.x, end_pls.z, (arenaSize) + CLOSENESS_TO_END_PATH_END + 2):
+				var steps = path(place, end_pls, 5, 0, arenaSize, FAILED_LEVEL_SURVIVAL, false)
+			if(Globals.totalArenas >= number_arenas):
+				break
 	
 	_place_floors(searched, floor_size)
 

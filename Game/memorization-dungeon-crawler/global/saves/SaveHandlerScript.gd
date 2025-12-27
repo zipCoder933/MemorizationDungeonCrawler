@@ -9,11 +9,9 @@ static var graphics_level:int
 
 static func get_current_level():
 	return _currentLevel
-
-static func set_current_level(level:int):
-	if(level == -1):
-		level = currentGame.get_completed_level()
-	_currentLevel = LevelsHandler.get_level(level)
+	
+static func set_current_level(level:Level):
+	_currentLevel = level
 
 static func load_from_file(file_path: String) -> void:
 	saves.clear()

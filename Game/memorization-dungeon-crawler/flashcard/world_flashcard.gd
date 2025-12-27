@@ -11,6 +11,7 @@ signal signal_flashcard_answer_changed
 @export var parent:Node = null
 
 var player:Player
+var drill_submit_time_ms:int
 @onready var card_ui: FlashcardUI = %CardUI
 
 const GLOBAL_NODE = preload("uid://d364dmqkqu5a0")
