@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfj67b4iujjtf"]
+[gd_scene load_steps=21 format=3 uid="uid://bfj67b4iujjtf"]
 
 [ext_resource type="Script" uid="uid://qn46exgdgmle" path="res://UI/hud.gd" id="1_ijstf"]
 [ext_resource type="Texture2D" uid="uid://ch714bgi1e00f" path="res://assets/textures/health_indicator.png" id="1_yixhe"]
 [ext_resource type="FontFile" uid="uid://l2eim6vo1a7j" path="res://assets/fonts/New_Rocker/NewRocker-Regular.ttf" id="3_4n7mi"]
 [ext_resource type="StyleBox" uid="uid://bxp67n10n2pan" path="res://styles/translucent_box.tres" id="3_uk570"]
+[ext_resource type="Theme" uid="uid://dsik3o7r2uwrj" path="res://UI/HUD text.tres" id="4_am7sw"]
 [ext_resource type="FontFile" uid="uid://d4l36d7861osl" path="res://assets/fonts/UnifrakturCook/UnifrakturCook-Bold.ttf" id="4_md4fy"]
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="5_f2wx0"]
 [ext_resource type="PackedScene" uid="uid://cynckudprgttu" path="res://flashcard/flashcard.tscn" id="6_gppie"]
@@ -30,6 +31,12 @@ bg_color = Color(1, 0.28764555, 0.22208649, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbci0"]
 bg_color = Color(0.41239682, 0.28710702, 0.9308016, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_am7sw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ixkb2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mms7u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ptjp"]
 bg_color = Color(0, 0, 0, 1)
@@ -88,10 +95,11 @@ offset_left = 7.0
 offset_top = -38.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("4_am7sw")
 theme_override_fonts/font = ExtResource("4_md4fy")
 text = "KEYS -/-"
 
-[node name="health" type="Panel" parent="CanvasLayer"]
+[node name="health_hud" type="Panel" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -102,7 +110,7 @@ offset_bottom = 45.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_md4fy")
 
-[node name="DamageBar" type="ProgressBar" parent="CanvasLayer/health"]
+[node name="DamageBar" type="ProgressBar" parent="CanvasLayer/health_hud"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
@@ -120,18 +128,17 @@ scale = Vector2(0.7999998, 1.0515778)
 size_flags_vertical = 12
 size_flags_stretch_ratio = 0.0
 theme = ExtResource("5_f2wx0")
-theme_override_font_sizes/font_size = 20
 theme_override_styles/background = SubResource("StyleBoxFlat_4idxp")
 theme_override_styles/fill = SubResource("StyleBoxFlat_o3xbc")
 max_value = 1.0
 value = 1.0
 
-[node name="HealthIndicator" type="Sprite2D" parent="CanvasLayer/health/DamageBar"]
+[node name="HealthIndicator" type="Sprite2D" parent="CanvasLayer/health_hud/DamageBar"]
 position = Vector2(-31.250015, 15.215232)
 scale = Vector2(0.29334688, 0.20563807)
 texture = ExtResource("1_yixhe")
 
-[node name="DamageBar2" type="ProgressBar" parent="CanvasLayer/health"]
+[node name="DamageBar2" type="ProgressBar" parent="CanvasLayer/health_hud"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
@@ -155,6 +162,104 @@ theme_override_styles/background = SubResource("StyleBoxFlat_4idxp")
 theme_override_styles/fill = SubResource("StyleBoxFlat_rbci0")
 max_value = 1.0
 value = 1.0
+
+[node name="practiceHUD" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_f2wx0")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_am7sw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/practiceHUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -312.0
+offset_top = 7.0
+offset_right = -7.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_constants/separation = 2
+
+[node name="accuracy" type="Panel" parent="CanvasLayer/practiceHUD/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ixkb2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/practiceHUD/VBoxContainer/accuracy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/practiceHUD/VBoxContainer/accuracy/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_am7sw")
+theme_override_font_sizes/font_size = 16
+text = "Avg Accuracy:"
+
+[node name="practiceHud_accuracy" type="ProgressBar" parent="CanvasLayer/practiceHUD/VBoxContainer/accuracy/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+theme = ExtResource("5_f2wx0")
+value = 100.0
+rounded = true
+
+[node name="time" type="Panel" parent="CanvasLayer/practiceHUD/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mms7u")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/practiceHUD/VBoxContainer/time"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/practiceHUD/VBoxContainer/time/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_am7sw")
+theme_override_font_sizes/font_size = 16
+text = "Avg Time:"
+
+[node name="practiceHud_timeColor" type="ColorRect" parent="CanvasLayer/practiceHUD/VBoxContainer/time/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+color = Color(0, 0.37353253, 0.3572697, 1)
+
+[node name="practiceHud_timeLabel" type="Label" parent="CanvasLayer/practiceHUD/VBoxContainer/time/HBoxContainer/practiceHud_timeColor"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.7176471)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "25s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/practiceHUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="CardUI" parent="CanvasLayer" instance=ExtResource("6_gppie")]
 unique_name_in_owner = true
@@ -360,6 +465,7 @@ offset_left = -44.0
 offset_top = -32.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("4_am7sw")
 theme_override_fonts/font = ExtResource("3_4n7mi")
 theme_override_font_sizes/font_size = 12
 text = "FPS"
@@ -377,6 +483,7 @@ offset_top = -24.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("4_am7sw")
 theme_override_fonts/font = ExtResource("3_4n7mi")
 theme_override_font_sizes/font_size = 12
 text = "LEVEL --"

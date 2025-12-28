@@ -1,6 +1,12 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bpaxcbhwijdid"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bpaxcbhwijdid"]
 
 [ext_resource type="FontFile" uid="uid://d4l36d7861osl" path="res://assets/fonts/UnifrakturCook/UnifrakturCook-Bold.ttf" id="1_pjbn5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjbn5"]
+bg_color = Color(0, 0, 0, 0.5294118)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6rto"]
+bg_color = Color(0.69, 0.138, 0.138, 1)
 
 [resource]
 default_font = ExtResource("1_pjbn5")
@@ -8,5 +14,9 @@ default_font_size = 25
 Button/colors/font_color = Color(1, 0.8117647, 0, 1)
 Button/constants/icon_max_width = 40
 ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
-ProgressBar/colors/font_outline_color = Color(0.7411765, 0, 0, 1)
+ProgressBar/colors/font_outline_color = Color(0.46186537, 0, 0, 1)
+ProgressBar/colors/outline_color = Color(1, 1, 1, 1)
 ProgressBar/constants/outline_size = 4
+ProgressBar/font_sizes/font_size = 20
+ProgressBar/styles/background = SubResource("StyleBoxFlat_pjbn5")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_g6rto")

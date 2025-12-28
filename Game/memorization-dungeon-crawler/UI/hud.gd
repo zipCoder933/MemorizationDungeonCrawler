@@ -15,9 +15,15 @@ class_name HUD
 @onready var bossfight_stats: BossfightStats = $CanvasLayer/BossfightStats
 @onready var graphics: Button = %graphics
 @onready var next_button: Button = %Next
+@onready var practice_hud: Panel = $CanvasLayer/practiceHUD
+@onready var health_hud: Panel = $CanvasLayer/health_hud
 
-const LevelsHandler = preload("uid://bte11e0fapqes")
-const SaveHandler = preload("uid://bgwdh30vglopu")
+@onready var practice_hud_time_color: ColorRect = %practiceHud_timeColor
+@onready var practice_hud_time_label: Label = %practiceHud_timeLabel
+@onready var practice_hud_accuracy: ProgressBar = %practiceHud_accuracy
+
+const COLOR_GREEN:Color = Color(0.0, 0.3, 0, 1.0)
+const COLOR_RED:Color = Color(.5, 0, 0, 1.0)
 var fade_speed = 0.8
 
 func panelsVisible():
@@ -52,7 +58,9 @@ func _global_adventure_mode():
 var key_nodes = []
 
 func _ready():
-	currentLevel = SaveHandler.get_current_level().level_index
+	
+	var level = SaveHandler.get_current_level()
+	currentLevel = level.level_index
 	fps.visible = false
 	key.visible=false
 	menu_panel.visible = false
@@ -79,28 +87,33 @@ func _ready():
 	
 	_player_health_changed(player.health)
 	_player_health2_changed(player.health2)
+	practice_hud.visible=false;
 	
-	if(SaveHandler.get_current_level() != null and SaveHandler.currentGame !=null):
-		if(SaveHandler.get_current_level().levelType == Level.LevelType.PRACTICE):
+	if(level != null and level !=null):
+		if(level.levelType == Level.LevelType.PRACTICE):
 			next_button.visible=false;
-			level_indicator.text = "Practice level for "+SaveHandler.get_current_level().level_name;
-		elif(SaveHandler.get_current_level().levelType == Level.LevelType.BOSS):
+			practice_hud.visible=true;
+			health_hud.visible=false;
+			#practice_hud_time.min_value = LevelsHandler.start_speed
+			#practice_hud_time.max_value = LevelsHandler.goal_speed
+			level_indicator.text = "Practice level for "+level.level_name;
+		elif(level.levelType == Level.LevelType.BOSS):
 			level_indicator.text = "LEVEL " +\
-				str(SaveHandler.get_current_level().level_index) +" / "+\
+				str(level.level_index) +" / "+\
 				str(SaveHandler.currentGame.total_levels) +": "+\
-			SaveHandler.get_current_level().boss_name + " ("+SaveHandler.get_current_level().level_name+")\n"+\
+			level.boss_name + " ("+level.level_name+")\n"+\
 				"All keys must be obtained before conquering the boss!"
 		else:
 			level_indicator.text = "LEVEL " +\
-				str(SaveHandler.get_current_level().level_index) +" / "+\
+				str(level.level_index) +" / "+\
 				str(SaveHandler.currentGame.total_levels) +": "+\
-				SaveHandler.get_current_level().level_name;
+				level.level_name;
 			
 			if SaveHandler.currentGame.get_completed_level()-1 < LevelsHandler.levels.size():
-				var current_dungeon_indx = SaveHandler.get_current_level().dungeon_index
+				var current_dungeon_indx = level.dungeon_index
 				var levels_until_next_dungeon = 0
 				var next_dungeon = ""
-				for i in range(SaveHandler.get_current_level().level_index, LevelsHandler.levels.size()):
+				for i in range(level.level_index, LevelsHandler.levels.size()):
 					if LevelsHandler.levels[i].dungeon_index > current_dungeon_indx:
 						next_dungeon = LevelsHandler.levels[i].level_name
 						break
@@ -128,10 +141,14 @@ func _flashcard_single_drill(node: WorldFlashCard, succeed: bool):
 		samples += 1
 		averageTime = ((averageTime * (samples - 1)) + time) / samples
 		averageAccuracy = ((averageAccuracy * (samples - 1)) + accuracy) / samples
-		level_indicator.text = (
-			"Average Time: %.2fs\n" % float(averageTime / 1000.0) +
-			"Average Accuracy: %d%%" % int(round(averageAccuracy * 100))
-		)
+		
+		practice_hud_time_label.text = "%.2fs" % float(averageTime/1000)
+		practice_hud_time_color.color = COLOR_GREEN.lerp(COLOR_RED,
+		Globals.map(float(averageTime/1000),LevelsHandler.midgame_goal_speed,LevelsHandler.midgame_start_speed,0,1));
+		practice_hud_accuracy.value = averageAccuracy*100
+		#var fill = StyleBoxFlat.new()
+		#fill.bg_color = COLOR_RED.lerp(COLOR_GREEN, accuracy)
+		#practice_hud_time_color.add_theme_stylebox_override("fill", fill)
 #-------------------------------------------------------------
 	
 
