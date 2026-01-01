@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://clk1bh4po4m41"
 path.s3tc="res://.godot/imported/weed_plant_02_1k2_weed_plant_02_nor_gl.png-6ccec191bf72508998e39c549ae85fe3.s3tc.ctex"
+path.etc2="res://.godot/imported/weed_plant_02_1k2_weed_plant_02_nor_gl.png-6ccec191bf72508998e39c549ae85fe3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/dungeons/jungle/jungle/weeds/weed_plant_02_1k2_weed_plant_02_nor_gl.png"
-dest_files=["res://.godot/imported/weed_plant_02_1k2_weed_plant_02_nor_gl.png-6ccec191bf72508998e39c549ae85fe3.s3tc.ctex"]
+dest_files=["res://.godot/imported/weed_plant_02_1k2_weed_plant_02_nor_gl.png-6ccec191bf72508998e39c549ae85fe3.s3tc.ctex", "res://.godot/imported/weed_plant_02_1k2_weed_plant_02_nor_gl.png-6ccec191bf72508998e39c549ae85fe3.etc2.ctex"]
 
 [params]
 

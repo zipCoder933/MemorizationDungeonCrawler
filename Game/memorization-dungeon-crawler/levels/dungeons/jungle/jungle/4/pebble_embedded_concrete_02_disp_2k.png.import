@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://otjnh8mbulyu"
 path.s3tc="res://.godot/imported/pebble_embedded_concrete_02_disp_2k.png-3ad82acb7715a5020adce72fccf0059c.s3tc.ctex"
+path.etc2="res://.godot/imported/pebble_embedded_concrete_02_disp_2k.png-3ad82acb7715a5020adce72fccf0059c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/jungle/jungle/4/pebble_embedded_concrete_02_disp_2k.png"
-dest_files=["res://.godot/imported/pebble_embedded_concrete_02_disp_2k.png-3ad82acb7715a5020adce72fccf0059c.s3tc.ctex"]
+dest_files=["res://.godot/imported/pebble_embedded_concrete_02_disp_2k.png-3ad82acb7715a5020adce72fccf0059c.s3tc.ctex", "res://.godot/imported/pebble_embedded_concrete_02_disp_2k.png-3ad82acb7715a5020adce72fccf0059c.etc2.ctex"]
 
 [params]
 

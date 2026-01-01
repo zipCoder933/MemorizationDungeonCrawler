@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bm6468j2kqrrs"
 path.s3tc="res://.godot/imported/ceiling.png-aeb794939fd72e5d50473574833fc905.s3tc.ctex"
+path.etc2="res://.godot/imported/ceiling.png-aeb794939fd72e5d50473574833fc905.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/machine/machine/ceiling.png"
-dest_files=["res://.godot/imported/ceiling.png-aeb794939fd72e5d50473574833fc905.s3tc.ctex"]
+dest_files=["res://.godot/imported/ceiling.png-aeb794939fd72e5d50473574833fc905.s3tc.ctex", "res://.godot/imported/ceiling.png-aeb794939fd72e5d50473574833fc905.etc2.ctex"]
 
 [params]
 

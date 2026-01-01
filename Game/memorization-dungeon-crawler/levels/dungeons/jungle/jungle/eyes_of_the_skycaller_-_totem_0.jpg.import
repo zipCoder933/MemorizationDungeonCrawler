@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://sicch2llshce"
 path.s3tc="res://.godot/imported/eyes_of_the_skycaller_-_totem_0.jpg-082beba205663d8fc8e2e1b690da6799.s3tc.ctex"
+path.etc2="res://.godot/imported/eyes_of_the_skycaller_-_totem_0.jpg-082beba205663d8fc8e2e1b690da6799.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/dungeons/jungle/jungle/eyes_of_the_skycaller_-_totem_0.jpg"
-dest_files=["res://.godot/imported/eyes_of_the_skycaller_-_totem_0.jpg-082beba205663d8fc8e2e1b690da6799.s3tc.ctex"]
+dest_files=["res://.godot/imported/eyes_of_the_skycaller_-_totem_0.jpg-082beba205663d8fc8e2e1b690da6799.s3tc.ctex", "res://.godot/imported/eyes_of_the_skycaller_-_totem_0.jpg-082beba205663d8fc8e2e1b690da6799.etc2.ctex"]
 
 [params]
 

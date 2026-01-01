@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://btuvc7uf3a8b3"
 path.s3tc="res://.godot/imported/door_specular.png-3e7e9aeba2bd875c5f2afcda456a8a27.s3tc.ctex"
+path.etc2="res://.godot/imported/door_specular.png-3e7e9aeba2bd875c5f2afcda456a8a27.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/dungeons/jungle/jungle/door/door_specular.png"
-dest_files=["res://.godot/imported/door_specular.png-3e7e9aeba2bd875c5f2afcda456a8a27.s3tc.ctex"]
+dest_files=["res://.godot/imported/door_specular.png-3e7e9aeba2bd875c5f2afcda456a8a27.s3tc.ctex", "res://.godot/imported/door_specular.png-3e7e9aeba2bd875c5f2afcda456a8a27.etc2.ctex"]
 
 [params]
 

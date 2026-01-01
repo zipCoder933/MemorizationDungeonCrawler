@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://brrnt71oof0gi"
 path.s3tc="res://.godot/imported/Dragon_3.png-d41da05c62d28b50bfc6347df99bef35.s3tc.ctex"
+path.etc2="res://.godot/imported/Dragon_3.png-d41da05c62d28b50bfc6347df99bef35.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/dungeons/lava/enemies/animated-dragon-three-motion-loops/source/Dragon_3.png"
-dest_files=["res://.godot/imported/Dragon_3.png-d41da05c62d28b50bfc6347df99bef35.s3tc.ctex"]
+dest_files=["res://.godot/imported/Dragon_3.png-d41da05c62d28b50bfc6347df99bef35.s3tc.ctex", "res://.godot/imported/Dragon_3.png-d41da05c62d28b50bfc6347df99bef35.etc2.ctex"]
 
 [params]
 

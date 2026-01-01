@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3028kpwhwd1t"
 path.s3tc="res://.godot/imported/lichen_rock_nor_dx_2k.jpg-a5426cdd82af70c79cd80001bf95c526.s3tc.ctex"
+path.etc2="res://.godot/imported/lichen_rock_nor_dx_2k.jpg-a5426cdd82af70c79cd80001bf95c526.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/lava/environment/texture/lichen_rock_nor_dx_2k.jpg"
-dest_files=["res://.godot/imported/lichen_rock_nor_dx_2k.jpg-a5426cdd82af70c79cd80001bf95c526.s3tc.ctex"]
+dest_files=["res://.godot/imported/lichen_rock_nor_dx_2k.jpg-a5426cdd82af70c79cd80001bf95c526.s3tc.ctex", "res://.godot/imported/lichen_rock_nor_dx_2k.jpg-a5426cdd82af70c79cd80001bf95c526.etc2.ctex"]
 
 [params]
 

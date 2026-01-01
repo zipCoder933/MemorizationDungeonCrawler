@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgub5vsxrvgvp"
 path.s3tc="res://.godot/imported/door_dungeon_door_UV.png-fa829c85a6622b12a52d98a3a9d6e9e6.s3tc.ctex"
+path.etc2="res://.godot/imported/door_dungeon_door_UV.png-fa829c85a6622b12a52d98a3a9d6e9e6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/dungeons/jungle/jungle/door/door_dungeon_door_UV.png"
-dest_files=["res://.godot/imported/door_dungeon_door_UV.png-fa829c85a6622b12a52d98a3a9d6e9e6.s3tc.ctex"]
+dest_files=["res://.godot/imported/door_dungeon_door_UV.png-fa829c85a6622b12a52d98a3a9d6e9e6.s3tc.ctex", "res://.godot/imported/door_dungeon_door_UV.png-fa829c85a6622b12a52d98a3a9d6e9e6.etc2.ctex"]
 
 [params]
 

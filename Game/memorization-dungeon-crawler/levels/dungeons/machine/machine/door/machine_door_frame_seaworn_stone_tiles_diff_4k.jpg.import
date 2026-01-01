@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://da1vdwjpthqaj"
 path.s3tc="res://.godot/imported/machine_door_frame_seaworn_stone_tiles_diff_4k.jpg-24a5ed8021c50eb18b5063dcddc81f2b.s3tc.ctex"
+path.etc2="res://.godot/imported/machine_door_frame_seaworn_stone_tiles_diff_4k.jpg-24a5ed8021c50eb18b5063dcddc81f2b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/dungeons/machine/machine/door/machine_door_frame_seaworn_stone_tiles_diff_4k.jpg"
-dest_files=["res://.godot/imported/machine_door_frame_seaworn_stone_tiles_diff_4k.jpg-24a5ed8021c50eb18b5063dcddc81f2b.s3tc.ctex"]
+dest_files=["res://.godot/imported/machine_door_frame_seaworn_stone_tiles_diff_4k.jpg-24a5ed8021c50eb18b5063dcddc81f2b.s3tc.ctex", "res://.godot/imported/machine_door_frame_seaworn_stone_tiles_diff_4k.jpg-24a5ed8021c50eb18b5063dcddc81f2b.etc2.ctex"]
 
 [params]
 

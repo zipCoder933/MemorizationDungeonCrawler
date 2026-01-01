@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0lcq44crmedi"
 path.s3tc="res://.godot/imported/worn_tile_floor_disp_2k.png-6b5847c943cb6330f8864ce3c353f5cf.s3tc.ctex"
+path.etc2="res://.godot/imported/worn_tile_floor_disp_2k.png-6b5847c943cb6330f8864ce3c353f5cf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/dungeon/assets/variants/floor/2/worn_tile_floor_disp_2k.png"
-dest_files=["res://.godot/imported/worn_tile_floor_disp_2k.png-6b5847c943cb6330f8864ce3c353f5cf.s3tc.ctex"]
+dest_files=["res://.godot/imported/worn_tile_floor_disp_2k.png-6b5847c943cb6330f8864ce3c353f5cf.s3tc.ctex", "res://.godot/imported/worn_tile_floor_disp_2k.png-6b5847c943cb6330f8864ce3c353f5cf.etc2.ctex"]
 
 [params]
 

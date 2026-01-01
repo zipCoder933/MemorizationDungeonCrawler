@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdsocmreghsto"
 path.s3tc="res://.godot/imported/grate normal.png-c02398449e3cf0abf4d191e8ea3523f6.s3tc.ctex"
+path.etc2="res://.godot/imported/grate normal.png-c02398449e3cf0abf4d191e8ea3523f6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/machine/machine/grate normal.png"
-dest_files=["res://.godot/imported/grate normal.png-c02398449e3cf0abf4d191e8ea3523f6.s3tc.ctex"]
+dest_files=["res://.godot/imported/grate normal.png-c02398449e3cf0abf4d191e8ea3523f6.s3tc.ctex", "res://.godot/imported/grate normal.png-c02398449e3cf0abf4d191e8ea3523f6.etc2.ctex"]
 
 [params]
 

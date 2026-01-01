@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://uj3f7wqkmd6o"
 path.s3tc="res://.godot/imported/Cylinder.png-d5c7dd21ad9391f869c7d718242b0d30.s3tc.ctex"
+path.etc2="res://.godot/imported/Cylinder.png-d5c7dd21ad9391f869c7d718242b0d30.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/potion/Cylinder.png"
-dest_files=["res://.godot/imported/Cylinder.png-d5c7dd21ad9391f869c7d718242b0d30.s3tc.ctex"]
+dest_files=["res://.godot/imported/Cylinder.png-d5c7dd21ad9391f869c7d718242b0d30.s3tc.ctex", "res://.godot/imported/Cylinder.png-d5c7dd21ad9391f869c7d718242b0d30.etc2.ctex"]
 
 [params]
 

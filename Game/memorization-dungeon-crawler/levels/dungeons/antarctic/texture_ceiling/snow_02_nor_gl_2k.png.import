@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ci6i0l7l0fmy6"
 path.s3tc="res://.godot/imported/snow_02_nor_gl_2k.png-1ee2d81c5612f2df2190e9ab294cc255.s3tc.ctex"
+path.etc2="res://.godot/imported/snow_02_nor_gl_2k.png-1ee2d81c5612f2df2190e9ab294cc255.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/antarctic/texture_ceiling/snow_02_nor_gl_2k.png"
-dest_files=["res://.godot/imported/snow_02_nor_gl_2k.png-1ee2d81c5612f2df2190e9ab294cc255.s3tc.ctex"]
+dest_files=["res://.godot/imported/snow_02_nor_gl_2k.png-1ee2d81c5612f2df2190e9ab294cc255.s3tc.ctex", "res://.godot/imported/snow_02_nor_gl_2k.png-1ee2d81c5612f2df2190e9ab294cc255.etc2.ctex"]
 
 [params]
 

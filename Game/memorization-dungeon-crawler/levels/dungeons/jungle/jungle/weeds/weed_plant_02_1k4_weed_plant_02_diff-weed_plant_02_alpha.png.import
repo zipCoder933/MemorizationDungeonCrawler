@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://du4vf17cg6h37"
 path.s3tc="res://.godot/imported/weed_plant_02_1k4_weed_plant_02_diff-weed_plant_02_alpha.png-3c8c04a954a8475f90c8a03c991c59ec.s3tc.ctex"
+path.etc2="res://.godot/imported/weed_plant_02_1k4_weed_plant_02_diff-weed_plant_02_alpha.png-3c8c04a954a8475f90c8a03c991c59ec.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/dungeons/jungle/jungle/weeds/weed_plant_02_1k4_weed_plant_02_diff-weed_plant_02_alpha.png"
-dest_files=["res://.godot/imported/weed_plant_02_1k4_weed_plant_02_diff-weed_plant_02_alpha.png-3c8c04a954a8475f90c8a03c991c59ec.s3tc.ctex"]
+dest_files=["res://.godot/imported/weed_plant_02_1k4_weed_plant_02_diff-weed_plant_02_alpha.png-3c8c04a954a8475f90c8a03c991c59ec.s3tc.ctex", "res://.godot/imported/weed_plant_02_1k4_weed_plant_02_diff-weed_plant_02_alpha.png-3c8c04a954a8475f90c8a03c991c59ec.etc2.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4miwkcxn6f3r"
 path.s3tc="res://.godot/imported/rock monster_rock_face_03_nor_gl_2k.png-41273694d1d929a2e8629d738034c93c.s3tc.ctex"
+path.etc2="res://.godot/imported/rock monster_rock_face_03_nor_gl_2k.png-41273694d1d929a2e8629d738034c93c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/dungeons/jungle/enemies/rock monster_rock_face_03_nor_gl_2k.png"
-dest_files=["res://.godot/imported/rock monster_rock_face_03_nor_gl_2k.png-41273694d1d929a2e8629d738034c93c.s3tc.ctex"]
+dest_files=["res://.godot/imported/rock monster_rock_face_03_nor_gl_2k.png-41273694d1d929a2e8629d738034c93c.s3tc.ctex", "res://.godot/imported/rock monster_rock_face_03_nor_gl_2k.png-41273694d1d929a2e8629d738034c93c.etc2.ctex"]
 
 [params]
 

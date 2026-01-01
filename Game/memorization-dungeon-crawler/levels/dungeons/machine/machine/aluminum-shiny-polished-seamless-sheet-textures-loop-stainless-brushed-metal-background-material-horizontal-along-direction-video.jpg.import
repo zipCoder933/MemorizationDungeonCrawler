@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bovts14ng7n10"
 path.s3tc="res://.godot/imported/aluminum-shiny-polished-seamless-sheet-textures-loop-stainless-brushed-metal-background-material-horizontal-along-direction-video.jpg-07717e657710715acc84691866a192e6.s3tc.ctex"
+path.etc2="res://.godot/imported/aluminum-shiny-polished-seamless-sheet-textures-loop-stainless-brushed-metal-background-material-horizontal-along-direction-video.jpg-07717e657710715acc84691866a192e6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/machine/machine/aluminum-shiny-polished-seamless-sheet-textures-loop-stainless-brushed-metal-background-material-horizontal-along-direction-video.jpg"
-dest_files=["res://.godot/imported/aluminum-shiny-polished-seamless-sheet-textures-loop-stainless-brushed-metal-background-material-horizontal-along-direction-video.jpg-07717e657710715acc84691866a192e6.s3tc.ctex"]
+dest_files=["res://.godot/imported/aluminum-shiny-polished-seamless-sheet-textures-loop-stainless-brushed-metal-background-material-horizontal-along-direction-video.jpg-07717e657710715acc84691866a192e6.s3tc.ctex", "res://.godot/imported/aluminum-shiny-polished-seamless-sheet-textures-loop-stainless-brushed-metal-background-material-horizontal-along-direction-video.jpg-07717e657710715acc84691866a192e6.etc2.ctex"]
 
 [params]
 

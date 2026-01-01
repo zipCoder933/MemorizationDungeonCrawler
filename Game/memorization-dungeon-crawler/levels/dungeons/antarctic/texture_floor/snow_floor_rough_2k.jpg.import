@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cq6r4rkm1swlc"
 path.s3tc="res://.godot/imported/snow_floor_rough_2k.jpg-8795cbd5d353a5a8341d9957cb74d18a.s3tc.ctex"
+path.etc2="res://.godot/imported/snow_floor_rough_2k.jpg-8795cbd5d353a5a8341d9957cb74d18a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/antarctic/texture_floor/snow_floor_rough_2k.jpg"
-dest_files=["res://.godot/imported/snow_floor_rough_2k.jpg-8795cbd5d353a5a8341d9957cb74d18a.s3tc.ctex"]
+dest_files=["res://.godot/imported/snow_floor_rough_2k.jpg-8795cbd5d353a5a8341d9957cb74d18a.s3tc.ctex", "res://.godot/imported/snow_floor_rough_2k.jpg-8795cbd5d353a5a8341d9957cb74d18a.etc2.ctex"]
 
 [params]
 

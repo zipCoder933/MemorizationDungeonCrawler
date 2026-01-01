@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8fpqd7fcmbuq"
 path.s3tc="res://.godot/imported/boss_arena_texture.png-1af9c4d4cd8a854d744a64ff4abf6b6d.s3tc.ctex"
+path.etc2="res://.godot/imported/boss_arena_texture.png-1af9c4d4cd8a854d744a64ff4abf6b6d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/dungeon/assets/boss_arena_texture.png"
-dest_files=["res://.godot/imported/boss_arena_texture.png-1af9c4d4cd8a854d744a64ff4abf6b6d.s3tc.ctex"]
+dest_files=["res://.godot/imported/boss_arena_texture.png-1af9c4d4cd8a854d744a64ff4abf6b6d.s3tc.ctex", "res://.godot/imported/boss_arena_texture.png-1af9c4d4cd8a854d744a64ff4abf6b6d.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8ivri4rcl8yi"
 path.s3tc="res://.godot/imported/—Pngtree—texture green vines_17327845.png-ea5e94c42d3071bb379fd3e778ca794f.s3tc.ctex"
+path.etc2="res://.godot/imported/—Pngtree—texture green vines_17327845.png-ea5e94c42d3071bb379fd3e778ca794f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/jungle/jungle/—Pngtree—texture green vines_17327845.png"
-dest_files=["res://.godot/imported/—Pngtree—texture green vines_17327845.png-ea5e94c42d3071bb379fd3e778ca794f.s3tc.ctex"]
+dest_files=["res://.godot/imported/—Pngtree—texture green vines_17327845.png-ea5e94c42d3071bb379fd3e778ca794f.s3tc.ctex", "res://.godot/imported/—Pngtree—texture green vines_17327845.png-ea5e94c42d3071bb379fd3e778ca794f.etc2.ctex"]
 
 [params]
 

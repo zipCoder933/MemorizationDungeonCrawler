@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://nqn50w4wjpjs"
 path.s3tc="res://.godot/imported/robot_robot_defaultMat_BOSS-Red.png-509328823200df7474c968af4cd550c4.s3tc.ctex"
+path.etc2="res://.godot/imported/robot_robot_defaultMat_BOSS-Red.png-509328823200df7474c968af4cd550c4.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/machine/machine/enemies/robot/boss/robot_robot_defaultMat_BOSS-Red.png"
-dest_files=["res://.godot/imported/robot_robot_defaultMat_BOSS-Red.png-509328823200df7474c968af4cd550c4.s3tc.ctex"]
+dest_files=["res://.godot/imported/robot_robot_defaultMat_BOSS-Red.png-509328823200df7474c968af4cd550c4.s3tc.ctex", "res://.godot/imported/robot_robot_defaultMat_BOSS-Red.png-509328823200df7474c968af4cd550c4.etc2.ctex"]
 
 [params]
 

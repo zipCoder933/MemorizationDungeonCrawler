@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cof33t5sqm541"
 path.s3tc="res://.godot/imported/machine_door_frame_machine_frame_emission.png-e64d327beace0dc4390828db283a5bfd.s3tc.ctex"
+path.etc2="res://.godot/imported/machine_door_frame_machine_frame_emission.png-e64d327beace0dc4390828db283a5bfd.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/dungeons/machine/machine/door/machine_door_frame_machine_frame_emission.png"
-dest_files=["res://.godot/imported/machine_door_frame_machine_frame_emission.png-e64d327beace0dc4390828db283a5bfd.s3tc.ctex"]
+dest_files=["res://.godot/imported/machine_door_frame_machine_frame_emission.png-e64d327beace0dc4390828db283a5bfd.s3tc.ctex", "res://.godot/imported/machine_door_frame_machine_frame_emission.png-e64d327beace0dc4390828db283a5bfd.etc2.ctex"]
 
 [params]
 

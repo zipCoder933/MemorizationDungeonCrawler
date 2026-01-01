@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxuff2iiocx6t"
 path.s3tc="res://.godot/imported/robot_robot_defaultMat_2D_View_1001.png-c4738e5b5d4a8999cfa57864874adc27.s3tc.ctex"
+path.etc2="res://.godot/imported/robot_robot_defaultMat_2D_View_1001.png-c4738e5b5d4a8999cfa57864874adc27.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/dungeons/machine/machine/enemies/robot/robot_robot_defaultMat_2D_View_1001.png"
-dest_files=["res://.godot/imported/robot_robot_defaultMat_2D_View_1001.png-c4738e5b5d4a8999cfa57864874adc27.s3tc.ctex"]
+dest_files=["res://.godot/imported/robot_robot_defaultMat_2D_View_1001.png-c4738e5b5d4a8999cfa57864874adc27.s3tc.ctex", "res://.godot/imported/robot_robot_defaultMat_2D_View_1001.png-c4738e5b5d4a8999cfa57864874adc27.etc2.ctex"]
 
 [params]
 

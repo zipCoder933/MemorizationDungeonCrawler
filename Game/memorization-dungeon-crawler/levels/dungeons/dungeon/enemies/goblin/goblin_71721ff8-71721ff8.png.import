@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvqmk01v8te54"
 path.s3tc="res://.godot/imported/goblin_71721ff8-71721ff8.png-95de520ff3a65021d174bb8bb6ebb08b.s3tc.ctex"
+path.etc2="res://.godot/imported/goblin_71721ff8-71721ff8.png-95de520ff3a65021d174bb8bb6ebb08b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/dungeons/dungeon/enemies/goblin/goblin_71721ff8-71721ff8.png"
-dest_files=["res://.godot/imported/goblin_71721ff8-71721ff8.png-95de520ff3a65021d174bb8bb6ebb08b.s3tc.ctex"]
+dest_files=["res://.godot/imported/goblin_71721ff8-71721ff8.png-95de520ff3a65021d174bb8bb6ebb08b.s3tc.ctex", "res://.godot/imported/goblin_71721ff8-71721ff8.png-95de520ff3a65021d174bb8bb6ebb08b.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dg1jvdkjvmvo3"
 path.s3tc="res://.godot/imported/texture.jpg-ff4de256d8cb54d2feccfcc784f6244b.s3tc.ctex"
+path.etc2="res://.godot/imported/texture.jpg-ff4de256d8cb54d2feccfcc784f6244b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/antarctic/texture_ceiling/texture.jpg"
-dest_files=["res://.godot/imported/texture.jpg-ff4de256d8cb54d2feccfcc784f6244b.s3tc.ctex"]
+dest_files=["res://.godot/imported/texture.jpg-ff4de256d8cb54d2feccfcc784f6244b.s3tc.ctex", "res://.godot/imported/texture.jpg-ff4de256d8cb54d2feccfcc784f6244b.etc2.ctex"]
 
 [params]
 

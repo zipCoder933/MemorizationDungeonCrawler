@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctwaju71evb6c"
 path.s3tc="res://.godot/imported/normal.png-97218648e1c0c92b88a52ea522f89c12.s3tc.ctex"
+path.etc2="res://.godot/imported/normal.png-97218648e1c0c92b88a52ea522f89c12.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/dungeon/assets/variants/floor/2/normal.png"
-dest_files=["res://.godot/imported/normal.png-97218648e1c0c92b88a52ea522f89c12.s3tc.ctex"]
+dest_files=["res://.godot/imported/normal.png-97218648e1c0c92b88a52ea522f89c12.s3tc.ctex", "res://.godot/imported/normal.png-97218648e1c0c92b88a52ea522f89c12.etc2.ctex"]
 
 [params]
 

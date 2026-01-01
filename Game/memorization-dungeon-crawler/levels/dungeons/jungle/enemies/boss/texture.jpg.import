@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://w2dx1dkh5a64"
 path.s3tc="res://.godot/imported/texture.jpg-a77835b9eb9950cf266ea9394c1b27ef.s3tc.ctex"
+path.etc2="res://.godot/imported/texture.jpg-a77835b9eb9950cf266ea9394c1b27ef.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/dungeons/jungle/enemies/boss/texture.jpg"
-dest_files=["res://.godot/imported/texture.jpg-a77835b9eb9950cf266ea9394c1b27ef.s3tc.ctex"]
+dest_files=["res://.godot/imported/texture.jpg-a77835b9eb9950cf266ea9394c1b27ef.s3tc.ctex", "res://.godot/imported/texture.jpg-a77835b9eb9950cf266ea9394c1b27ef.etc2.ctex"]
 
 [params]
 

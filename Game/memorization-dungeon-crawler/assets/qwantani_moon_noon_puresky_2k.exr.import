@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddqrdhfnatubf"
 path.bptc="res://.godot/imported/qwantani_moon_noon_puresky_2k.exr-f06a2f56792edc5eeb217f7b7267aab0.bptc.ctex"
+path.astc="res://.godot/imported/qwantani_moon_noon_puresky_2k.exr-f06a2f56792edc5eeb217f7b7267aab0.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/qwantani_moon_noon_puresky_2k.exr"
-dest_files=["res://.godot/imported/qwantani_moon_noon_puresky_2k.exr-f06a2f56792edc5eeb217f7b7267aab0.bptc.ctex"]
+dest_files=["res://.godot/imported/qwantani_moon_noon_puresky_2k.exr-f06a2f56792edc5eeb217f7b7267aab0.bptc.ctex", "res://.godot/imported/qwantani_moon_noon_puresky_2k.exr-f06a2f56792edc5eeb217f7b7267aab0.astc.ctex"]
 
 [params]
 

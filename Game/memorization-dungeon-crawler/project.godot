@@ -15,7 +15,7 @@ config/name_localized={
 "en": "Cogni Crawl"
 }
 config/description="A Flashcard Memorization Dungeon Crawler"
-config/version="1.1.1"
+config/version="1.2.0"
 run/main_scene="uid://cpl08t4hcotn"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -129,6 +129,7 @@ sprint={
 
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
 lights_and_shadows/directional_shadow/size=2048
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
