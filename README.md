@@ -5,8 +5,9 @@ A spooky-fun dungeon crawler that tests your memory, your reflexes, and your abi
 
 ![Status](https://img.shields.io/badge/Status-V1.2.0-blue)
 ![Hackathon](https://img.shields.io/badge/Hackathon-2025-purple)
-![Engine](https://img.shields.io/badge/Engine-Phantom_Camera-orange)
-![Magic](https://img.shields.io/badge/Powered_By-Caffeine_and_Chaos-green)
+![Engine](https://img.shields.io/badge/Engine-Godot-orange)
+
+[Watch the Demo Video](https://youtu.be/7NtKeN1fMC0?si=m0R-WZLCvUW9YDGo)
 
 ---
 
