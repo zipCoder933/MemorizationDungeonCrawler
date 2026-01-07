@@ -17,7 +17,7 @@
 		}
 	  ],
 	  "goal_speed_percent": 0.8,
-	  "card_count_multiplier": 8,
+	  "card_count_multiplier": 6,
 	  "boss_card_count_multiplier": 4,
 	  "complete_drill_levels": 0
 	},
@@ -32,7 +32,7 @@
 		}
 	  ],
 	  "goal_speed_percent": 0.8,
-	  "card_count_multiplier": 8,
+	  "card_count_multiplier": 6,
 	  "boss_card_count_multiplier": 4,
 	  "boss_level_arenas": 3,
 	  "complete_drill_levels": 0
@@ -41,11 +41,11 @@
 	  "name": "Treble and Bass Dungeon",
 	  "theme": "Antarctic",
 	  "boss_name": "Frozen Solid",
-	  "card_count_multiplier": 5,
+	  "card_count_multiplier": 3,
 	  "start_speed_percent": 0.4,
-	  "goal_speed_percent": 0.9,
+	  "goal_speed_percent": 0.8,
 	  "boss_card_count_multiplier": 4,
-	  "enemy_card_count": 50,
+	  "enemy_card_count": 35,
 	  "boss_level_arenas": 4,
 	  "themed_drill_levels": [],
 	  "complete_drill_levels": 6
@@ -60,9 +60,10 @@
 		  "count": 3
 		}
 	  ],
-	  "goal_speed_percent": 0.9,
+	  "goal_speed_percent": 0.8,
 	  "card_count_multiplier": 4,
 	  "boss_level_arenas": 4,
+	  "enemy_card_count": 35,
 	  "boss_card_count_multiplier": 2,
 	  "complete_drill_levels": 3
 	},
@@ -78,6 +79,7 @@
 	  ],
 	  "goal_speed_percent": 1,
 	  "card_count_multiplier": 4,
+	  "enemy_card_count": 35,
 	  "boss_level_arenas": 4,
 	  "boss_card_count_multiplier": 2,
 	  "complete_drill_levels": 6

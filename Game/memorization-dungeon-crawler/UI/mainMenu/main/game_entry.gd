@@ -16,7 +16,7 @@ func setDetails(_entry:SaveEntry):
 func _on_play_game_pressed() -> void:
 	Globals.load_game(entry, func():
 		SaveHandler.set_current_level(
-			LevelsHandler.levels[SaveHandler.currentGame.get_completed_level()]
+			LevelsHandler.levels[SaveHandler.currentGame.get_completed_level()-1]
 			)
 		Globals.go_to_level()
 	)
