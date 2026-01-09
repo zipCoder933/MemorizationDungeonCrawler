@@ -55,10 +55,11 @@ func _submitted_global(node:WorldFlashCard, success:bool):
 	_submitted(success)
 
 func _submitted(success:bool):
-	q = null
-	start_time = Time.get_ticks_msec()
 	if(!success):
 		background.color = FAILED_COLOR
+	answer_label.text = q.formattedAnswer()
+	start_time = Time.get_ticks_msec()
+	q = null
 
 func _ready():
 	drill_left_bar.value = 1;
@@ -85,12 +86,12 @@ func _process(delta:float):
 		time_left_bar.value = remap(timeElapsed, 0, timeLimitMS, 1, 0)
 		#print("Time elapsed: ",timeElapsed," Time MS: ",timeLimitMS)
 		
-		if(timeElapsed > timeLimitMS + DELAY_NEXT_CARD_MS):
+		if(timeElapsed > timeLimitMS):
+			answer_label.text = q.formattedAnswer()
 			Globals.submit_flashcard(false)
-		elif(timeElapsed > timeLimitMS):
 			background.color = FAILED_COLOR
-		
-		
+
 
 func _flashcardAnswerChanged(answer:String):
-	answer_label.text = answer
+	if(q != null  && Globals.has_flashcard()):
+		answer_label.text = answer

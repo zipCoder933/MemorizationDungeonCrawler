@@ -182,6 +182,7 @@ func clear_flashcard():
 	_has_flashcard = false
 
 func new_flashcard_question(current_flashcard_question2:Question):
+	last_flascard_answer = null
 	if(get_player() == null or get_player().mode != Player.PlayerMode.FACTS):
 		#If the player says nope, forget about the new flashcard question
 		return
@@ -191,12 +192,8 @@ func new_flashcard_question(current_flashcard_question2:Question):
 	_has_flashcard=true
 	_flashcardNode.visible = true
 	#print("new_flashcard_question: ",current_flashcard_question2.toString())
-	
 	_flashcardNode.signal_new_flashcard.emit(_current_flashcard_question)
 	signal_new_flashcard.emit(_flashcardNode, _current_flashcard_question)
-	
-	_flashcardNode.signal_flashcard_answer_changed.emit(current_flashcard_answer)
-	signal_flashcard_answer_changed.emit(current_flashcard_answer)
 
 
 #Groups
@@ -273,6 +270,8 @@ func flashcard_remaining_count():
 	
 func flashcard_deck_size():
 	return deckSize;
+
+var last_flascard_answer;
 
 func submit_flashcard(succeed:bool):
 	#If we dont have a flashcard anymore (We already submitted the last one)	
@@ -370,10 +369,10 @@ func _input(event):
 					or current_flashcard_answer.length() >= get_flashcard_question().get_answer_length()):
 						submit_flashcard(get_flashcard_question().answerEquals(current_flashcard_answer))
 				
+				signal_flashcard_answer_changed.emit(current_flashcard_answer)
 				if(get_flashcard_question().answerEquals(current_flashcard_answer)):
 					submit_flashcard(true)
-				_flashcardNode.signal_flashcard_answer_changed.emit(current_flashcard_answer)
-				signal_flashcard_answer_changed.emit(current_flashcard_answer)
+				
 
 static var rng = RandomNumberGenerator.new()
 

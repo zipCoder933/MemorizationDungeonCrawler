@@ -45,6 +45,12 @@ func get_answer_length():
 	# If it's not a number at all: just count the trimmed text
 	return txt.length()
 
+func formattedAnswer() -> String:
+	var real_val = answer_text.strip_edges()
+	if(is_numeric(real_val) and real_val.ends_with(".0")):
+		return real_val.substr(0,len(real_val)-2)
+	else:
+		return real_val
 
 func answerEquals(ans: String) -> bool:
 	var user_val = ans.strip_edges()
