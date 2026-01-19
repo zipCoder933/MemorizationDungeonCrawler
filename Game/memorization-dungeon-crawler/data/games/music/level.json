@@ -1,9 +1,9 @@
 {
-  "starting_answer_speed_sec": 5,
-  "goal_answer_speed_sec": 0.38,
+  "starting_answer_speed_sec": 10.0,
+  "goal_answer_speed_sec": 0.4,
   "midgame_start_speed_percent": 0.1,
-  "midgame_goal_speed_percent": 0.7,
-  "name": "Treble and Base",
+  "midgame_goal_speed_percent": 0.65,
+  "name": "Grand Staff Dungeons",
 
   "dungeons": [
 	{
@@ -22,9 +22,30 @@
 	  "complete_drill_levels": 0
 	},
 	{
-	  "name": "Bass Dungeon",
+	  "name": "Outer treble Dungeon",
 	  "theme": "Jungle",
-	  "boss_name": "The Bass Boss",
+	  "boss_name": "Outerlands Guardian",
+	  "themed_drill_levels": [
+		{
+		  "tags": ["outer-treble"],
+		  "count": 2
+		},
+		{
+		  "tags": ["outer-treble", "treble"],
+		  "count": 4
+		}
+	  ],
+	  "goal_speed_percent": 0.8,
+	  "card_count_multiplier": 4,
+	  "boss_level_arenas": 3,
+	  "enemy_card_count": 35,
+	  "boss_card_count_multiplier": 6,
+	  "complete_drill_levels": 0
+	},
+	{
+	  "name": "Bass Dungeon",
+	  "theme": "Antarctic",
+	  "boss_name": "The Abomination",
 	  "themed_drill_levels": [
 		{
 		  "tags": ["bass"],
@@ -34,55 +55,57 @@
 	  "goal_speed_percent": 0.8,
 	  "card_count_multiplier": 6,
 	  "boss_card_count_multiplier": 4,
+	  "complete_drill_levels": 0
+	},
+	{
+	  "name": "Outer Bass Dungeon",
+	  "theme": "Lava",
+	  "boss_name": "Fire and Bass",
+	  "themed_drill_levels": [
+		{
+		  "tags": ["outer-bass"],
+		  "count": 2
+		},
+		{
+		  "tags": ["outer-bass", "bass"],
+		  "count": 4
+		}
+	  ],
+	  "goal_speed_percent": 0.8,
+	  "card_count_multiplier": 4,
 	  "boss_level_arenas": 3,
+	  "enemy_card_count": 35,
+	  "boss_card_count_multiplier": 6,
 	  "complete_drill_levels": 0
 	},
 	{
 	  "name": "Treble and Bass Dungeon",
-	  "theme": "Antarctic",
-	  "boss_name": "Frozen Solid",
-	  "card_count_multiplier": 3,
-	  "start_speed_percent": 0.4,
-	  "goal_speed_percent": 0.8,
-	  "boss_card_count_multiplier": 4,
-	  "enemy_card_count": 35,
-	  "boss_level_arenas": 4,
-	  "themed_drill_levels": [],
-	  "complete_drill_levels": 6
-	},
-	{
-	  "name": "Outer treble Dungeon",
-	  "theme": "Lava",
-	  "boss_name": "Outerlands Guardian",
-	  "themed_drill_levels": [
-		{
-		  "tags": ["outer-treble", "treble"],
-		  "count": 3
-		}
-	  ],
-	  "goal_speed_percent": 0.8,
-	  "card_count_multiplier": 4,
-	  "boss_level_arenas": 4,
-	  "enemy_card_count": 35,
-	  "boss_card_count_multiplier": 2,
-	  "complete_drill_levels": 3
-	},
-	{
-	  "name": "The Final Dungeon",
 	  "theme": "Machine",
 	  "boss_name": "Intergalactic Overseer",
 	  "themed_drill_levels": [
 		{
-		  "tags": ["outer-bass", "bass"],
-		  "count": 3
+		  "tags": ["treble", "outer-treble"],
+		  "count": 1
+		},
+		{
+		  "tags": ["bass", "outer-bass"],
+		  "count": 1
+		},
+		{
+		  "tags": ["treble", "outer-treble"],
+		  "count": 1
+		},
+		{
+		  "tags": ["bass", "outer-bass"],
+		  "count": 1
 		}
 	  ],
-	  "goal_speed_percent": 1,
-	  "card_count_multiplier": 4,
+	  "card_count_multiplier": 3,
+	  "start_speed_percent": 0.4,
+	  "boss_card_count_multiplier": 4,
 	  "enemy_card_count": 35,
 	  "boss_level_arenas": 4,
-	  "boss_card_count_multiplier": 2,
-	  "complete_drill_levels": 6
+	  "complete_drill_levels": 4
 	}
   ]
 }

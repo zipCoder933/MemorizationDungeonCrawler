@@ -175,36 +175,6 @@
       "Type": "notes"
     },
     {
-      "Answer": "b",
-      "QuestionImage": "/images/treble_047_B2.png",
-      "Tags": ["outer-treble"],
-      "Type": "notes"
-    },
-    {
-      "Answer": "c",
-      "QuestionImage": "/images/treble_048_C3.png",
-      "Tags": ["outer-treble"],
-      "Type": "notes"
-    },
-    {
-      "Answer": "d",
-      "QuestionImage": "/images/treble_050_D3.png",
-      "Tags": ["outer-treble"],
-      "Type": "notes"
-    },
-    {
-      "Answer": "e",
-      "QuestionImage": "/images/treble_052_E3.png",
-      "Tags": ["outer-treble"],
-      "Type": "notes"
-    },
-    {
-      "Answer": "f",
-      "QuestionImage": "/images/treble_053_F3.png",
-      "Tags": ["outer-treble"],
-      "Type": "notes"
-    },
-    {
       "Answer": "g",
       "QuestionImage": "/images/treble_055_G3.png",
       "Tags": ["outer-treble"],
@@ -315,42 +285,6 @@
     {
       "Answer": "d",
       "QuestionImage": "/images/treble_086_D6.png",
-      "Tags": ["outer-treble"],
-      "Type": "notes"
-    },
-    {
-      "Answer": "e",
-      "QuestionImage": "/images/treble_088_E6.png",
-      "Tags": ["outer-treble"],
-      "Type": "notes"
-    },
-    {
-      "Answer": "f",
-      "QuestionImage": "/images/treble_089_F6.png",
-      "Tags": ["outer-treble"],
-      "Type": "notes"
-    },
-    {
-      "Answer": "g",
-      "QuestionImage": "/images/treble_091_G6.png",
-      "Tags": ["outer-treble"],
-      "Type": "notes"
-    },
-    {
-      "Answer": "a",
-      "QuestionImage": "/images/treble_093_A6.png",
-      "Tags": ["outer-treble"],
-      "Type": "notes"
-    },
-    {
-      "Answer": "b",
-      "QuestionImage": "/images/treble_095_B6.png",
-      "Tags": ["outer-treble"],
-      "Type": "notes"
-    },
-    {
-      "Answer": "c",
-      "QuestionImage": "/images/treble_096_C7.png",
       "Tags": ["outer-treble"],
       "Type": "notes"
     }
