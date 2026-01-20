@@ -36,6 +36,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 16
 text = "tag"
+text_overrun_behavior = 3
 
 [node name="mastery" type="Label" parent="MarginContainer/mastery entry"]
 unique_name_in_owner = true
