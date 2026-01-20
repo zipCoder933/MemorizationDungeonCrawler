@@ -50,9 +50,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -297.125
+offset_left = -300.0
 offset_top = -201.25
-offset_right = 297.125
+offset_right = 300.0
 offset_bottom = 201.25
 grow_horizontal = 2
 grow_vertical = 2
@@ -150,8 +150,8 @@ anchor_right = 1.0
 offset_bottom = 33.0
 grow_horizontal = 2
 theme = ExtResource("1_5rkgg")
-text = "Game Name"
 horizontal_alignment = 1
+text_overrun_behavior = 3
 
 [node name="QuitButton" type="Button" parent="CanvasLayer/ColorRect/LoadPanel"]
 layout_mode = 1

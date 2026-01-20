@@ -28,8 +28,8 @@ static func makePracticeLevel(level:Level) -> Level:
 	new_level.level_index=-1
 	new_level.theme = LevelTheme.DUNGEON
 	new_level.levelType = LevelType.PRACTICE
-	new_level.enemy_card_count *= 100
-	new_level.time_to_answer_sec = LevelsHandler.midgame_start_speed
+	new_level.enemy_card_count = min(new_level.enemy_card_count*100,2500)
+	new_level.time_to_answer_sec = LevelsHandler.start_speed
 	return new_level
 
 #For levelsHandlerScript

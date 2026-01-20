@@ -32,7 +32,7 @@
 		},
 		{
 		  "tags": ["outer-treble", "treble"],
-		  "count": 4
+		  "count": 3
 		}
 	  ],
 	  "goal_speed_percent": 0.8,
@@ -68,7 +68,7 @@
 		},
 		{
 		  "tags": ["outer-bass", "bass"],
-		  "count": 4
+		  "count": 3
 		}
 	  ],
 	  "goal_speed_percent": 0.8,
