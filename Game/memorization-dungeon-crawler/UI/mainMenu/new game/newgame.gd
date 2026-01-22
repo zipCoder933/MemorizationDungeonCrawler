@@ -110,13 +110,13 @@ func load_game(template_dir:String):
 		return false
 
 func _on_custom_template_text_changed(new_text: String) -> void:
-	open_app_data.disabled = custom_template.text.is_empty()
+	#open_app_data.disabled = custom_template.text.is_empty()
 	copy_game_to_appdata.disabled = new_text.is_empty()
 	if new_text.is_empty() == false:
 		template_box.deselect_all()
 
 func _on_custom_template_focus_entered() -> void:
-	open_app_data.disabled = custom_template.text.is_empty()
+	#open_app_data.disabled = custom_template.text.is_empty()
 	copy_game_to_appdata.disabled = custom_template.text.is_empty()
 
 func _on_copy_game_to_appdata_toggled(toggled_on: bool) -> void:

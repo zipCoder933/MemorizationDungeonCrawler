@@ -2,10 +2,13 @@ extends Node
 
 #An array of Levels
 static var levels: Array[Level] = []
+
+#start and goal speed in seconds
 static var start_speed
 static var goal_speed
 static var midgame_start_speed
 static var midgame_goal_speed
+
 static var _last_level_tags:Array[String] = []
 #---
 static var level_index:int = 0

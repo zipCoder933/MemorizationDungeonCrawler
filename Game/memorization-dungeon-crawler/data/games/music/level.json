@@ -2,7 +2,7 @@
   "starting_answer_speed_sec": 10.0,
   "goal_answer_speed_sec": 0.4,
   "midgame_start_speed_percent": 0.1,
-  "midgame_goal_speed_percent": 0.65,
+  "midgame_goal_speed_percent": 0.95,
   "name": "Grand Staff Dungeons",
 
   "dungeons": [
@@ -35,7 +35,6 @@
 		  "count": 3
 		}
 	  ],
-	  "goal_speed_percent": 0.8,
 	  "card_count_multiplier": 4,
 	  "boss_level_arenas": 3,
 	  "enemy_card_count": 35,
@@ -71,7 +70,6 @@
 		  "count": 3
 		}
 	  ],
-	  "goal_speed_percent": 0.8,
 	  "card_count_multiplier": 4,
 	  "boss_level_arenas": 3,
 	  "enemy_card_count": 35,

@@ -121,7 +121,6 @@ text = "Copy to Appdata"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-disabled = true
 text = "Open AppData"
 
 [node name="buttons" type="MarginContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2"]

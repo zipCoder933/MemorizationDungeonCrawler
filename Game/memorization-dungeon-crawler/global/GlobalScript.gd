@@ -280,7 +280,9 @@ func submit_flashcard(succeed:bool):
 	var player =  get_player()
 	player.play_submit_sound(succeed);
 	var accuracy = 0
-	var time_ms = _flashcardNode.get_time_elapsed_MS()
+	var time_ms = LevelsHandler.start_speed*1000
+	if(_flashcardNode.is_valid()):
+		time_ms = _flashcardNode.get_time_elapsed_MS()
 	var question = _current_flashcard_question
 
 	if(succeed):
