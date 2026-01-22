@@ -1,6 +1,6 @@
 {
   "starting_answer_speed_sec": 10,
-  "goal_answer_speed_sec": 1.75,
+  "goal_answer_speed_sec": 1.5,
   "name": "Addition",
   "dungeons": [
 	{

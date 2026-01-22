@@ -67,10 +67,10 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 	# TOP-LEVEL GAME SPEED PROPS
 	# ---------------------------
 	start_speed = JsonUtils.get_float(json_data, "starting_answer_speed_sec", 10.0)
-	goal_speed  = JsonUtils.get_float(json_data, "goal_answer_speed_sec", 2.0)
+	goal_speed  = JsonUtils.get_float(json_data, "goal_answer_speed_sec", 1.0)
 
 	var default_start_speed = lerp(start_speed, goal_speed, JsonUtils.get_float(json_data, "midgame_start_speed_percent", 0.1))
-	var default_goal_speed  = lerp(start_speed, goal_speed, JsonUtils.get_float(json_data, "midgame_goal_speed_percent", 0.7))
+	var default_goal_speed  = lerp(start_speed, goal_speed, JsonUtils.get_float(json_data, "midgame_goal_speed_percent", 0.82))
 	midgame_start_speed = default_start_speed
 	midgame_goal_speed  = default_goal_speed
 	

@@ -1,8 +1,6 @@
 {
   "starting_answer_speed_sec": 10,
-  "goal_answer_speed_sec": 1.75,
-  "midgame_start_speed_percent": 0.1,
-  "midgame_goal_speed_percent": 0.85,
+  "goal_answer_speed_sec": 1.5,
   "name": "Multiplication",
   "dungeons": [
 	{
