@@ -50,6 +50,11 @@ var camRotation = Vector3(0, 0, 0)
 const cameraSensitivity:float = 4;
 var cam_offset:Vector2 = Vector2(0,0)
 var target_cam_offset:Vector2 = Vector2(0,0)
+const TURN_SPEED = 4;
+const FLASHCARD_MAX_TURN_SPEED = 6
+const FLASHCARD_MIN_TURN_SPEED = 1.5
+const MOUSE_SENSITIVITY = 0.06
+const CAMERA_FLASHCARD_MOVE_DEG = 22.0
 
 #movement
 var movement:Vector3 = Vector3.ZERO
@@ -250,11 +255,7 @@ func get_normalized_mouse() -> Vector2:
 
 @onready var mouse_controller: MouseController = $MouseController
 
-const TURN_SPEED = 4;
-const FLASHCARD_MAX_TURN_SPEED = 6
-const FLASHCARD_MIN_TURN_SPEED = .75
-const MOUSE_SENSITIVITY = 0.06
-const CAMERA_FLASHCARD_MOVE_DEG = 20.0
+
 
 func _process(delta:float):
 	if(mode == PlayerMode.GAME_OVER || mode == PlayerMode.VICTORY):
