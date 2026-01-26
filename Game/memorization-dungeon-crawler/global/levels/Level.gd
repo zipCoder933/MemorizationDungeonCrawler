@@ -3,7 +3,7 @@ extends Node
 class_name Level
 
 enum LevelTheme {MACHINE, DUNGEON,JUNGLE,  LAVA,ANTARCTIC}
-enum LevelType { STANDARD, BOSS,PRACTICE }
+enum LevelType { STANDARD, PRE_BOSS, BOSS, PRACTICE }
 
 var dungeon_index:int
 var level_index:int
@@ -18,10 +18,9 @@ var levelType: LevelType = LevelType.STANDARD
 var card_tags: Array[String] = []
 var themed_card_tags: Array[String] = []
 
+var arena_count:int
 var enemy_card_count:int
-var card_count_multiplier:float = 1 #How many times we want to review each card in this level
 var boss_card_count_multiplier:float = 2 #How many times we want to review each card during a bossfight
-var boss_level_arenas:float
 
 static func makePracticeLevel(level:Level) -> Level:
 	var new_level:Level = Level.make_level(level)
@@ -33,8 +32,15 @@ static func makePracticeLevel(level:Level) -> Level:
 	return new_level
 
 #For levelsHandlerScript
-static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, themed_tags:Array[String],\
-					card_tags:Array[String], levelType: Level.LevelType, verbose:bool) -> Level:
+static func makeLevel(dungeonIndex:int,\
+					dungeon:Variant,\
+					speed_seconds:float,\
+					themed_tags:Array[String],\
+					card_tags:Array[String],\
+					levelType: Level.LevelType,\
+					nextLevelBoss:bool,\
+					verbose:bool) -> Level:
+						
 	LevelsHandler.level_index += 1
 	LevelsHandler._last_level_tags = card_tags.duplicate()
 	
@@ -46,66 +52,75 @@ static func makeLevel(dungeonIndex:int, dungeon:Variant, speed_seconds:float, th
 			theme = LevelTheme[themeName]
 			break  # stop once we found a match
 	
+	var arena_count = 4;
+	if(levelType == LevelType.BOSS):
+		arena_count = JsonUtils.get_int(dungeon,"boss_level_arenas", 3)
+	else:
+		var arena_range = JsonUtils.get_int_array(dungeon,"arena_count", [3,6])
+		if(arena_range.size() >=2):
+			arena_count = randi_range(arena_range[0],arena_range[1])
+		if(nextLevelBoss):
+			levelType = LevelType.PRE_BOSS
+			arena_count = max(clamp(arena_count*2,9,15),arena_count)
+	
 	var level =  Level.new(
 		dungeonIndex,
 		LevelsHandler.level_index,
 		JsonUtils.get_string(dungeon,"name", ""),
 		theme,
-		JsonUtils.get_float(dungeon,"card_count_multiplier", 1.5), #Card count multiplier
+		arena_count,
 		JsonUtils.get_float(dungeon,"boss_card_count_multiplier", 2), #boss card cound multiplier
 		levelType,
 		JsonUtils.get_string(dungeon,"boss_name", ""),
 		speed_seconds,  # or any logic to set time_to_answer_sec
 		themed_tags.duplicate(),
 		card_tags.duplicate(),
-		JsonUtils.get_int(dungeon,"enemy_card_count", 15),
-		JsonUtils.get_int(dungeon,"boss_level_arenas", 3)
+		JsonUtils.get_int(dungeon,"enemy_card_count", 15)
 	)
 	if(verbose):
 		print(level.toString())
 	return level
 
 
-
+#factory method for duplicating a level
 static func make_level(level: Level) -> Level:
 	return Level.new(
 		level.dungeon_index,
 		level.level_index,
 		level.level_name,
 		level.theme,       # Convert enum back to string if needed
-		level.card_count_multiplier,
+		level.arena_count,
 		level.boss_card_count_multiplier,
 		level.levelType,    # Convert enum back to string if needed
 		level.boss_name,
 		level.time_to_answer_sec,
 		level.themed_card_tags.duplicate(),
 		level.card_tags.duplicate(),
-		level.enemy_card_count,
-		level.boss_level_arenas
+		level.enemy_card_count
 	)
 
+func is_standard_level():
+	return levelType == LevelType.STANDARD or levelType == LevelType.PRE_BOSS;
 
 func _init(_dungeon_index:int,
 		_level_index:int,\
 		_name: String,\
 		_theme: LevelTheme,\
-		_card_count_multiplier:float, \
+		_arena_count:int, \
 		_boss_card_count_multiplier:float,\
 		_levelType: LevelType, 
 		_boss_name: String,\
 		_time_to_answer_sec: float, \
 		_themed_cards: Array[String],\
 		_card_tags: Array[String],\
-		_enemy_card_count:int,\
-		_boss_level_arenas:int):
+		_enemy_card_count:int):
 	
-	self.boss_level_arenas = _boss_level_arenas
 	self.enemy_card_count = _enemy_card_count
 	self.level_name = _name
 	self.theme = _theme
 	self.dungeon_index = _dungeon_index
 	self.level_index = _level_index
-	self.card_count_multiplier = _card_count_multiplier
+	self.arena_count = _arena_count
 	self.boss_card_count_multiplier = _boss_card_count_multiplier
 	self.levelType = _levelType
 	self.boss_name = _boss_name
@@ -131,6 +146,7 @@ func toString() -> String:
 	var theme_name = LevelTheme.keys()[theme]
 	var type_name = LevelType.keys()[levelType]
 
-	return "Level %s; (Dungeon %s: \"%s\"): |\t Time-Sec: %.2f |\t Theme: %s |\t Level-Type: %s |\t Boss-name: \"%s\" |\t Card-Tags: [%s] |\t Theme-Card-Tags: [%s] |\t Level Card X: %s; Boss Card X: %s" % [
-		level_index,dungeon_index, level_name, time_to_answer_sec, theme_name, type_name, boss_name,  ", ".join(card_tags),", ".join(themed_card_tags), card_count_multiplier, boss_card_count_multiplier
+	return "Level %s; (Dungeon %s: \"%s\"): \tTime: %.2fs \tArenas: %s\t Enemy cards: %s\t \t%s \tType: %s \tTags: [%s] \tThemed-Tags: [%s] \tBoss Card X: %s" % [
+		level_index,dungeon_index, level_name, time_to_answer_sec, arena_count, enemy_card_count, theme_name, type_name,  \
+		", ".join(card_tags),", ".join(themed_card_tags),boss_card_count_multiplier
 	]

@@ -120,3 +120,73 @@ static func get_bool(dict: Dictionary, key: String, default: bool = false) -> bo
 			return float(v) != 0.0
 
 	return default
+
+
+## Safely returns a PackedStringArray. Converts elements to strings if possible.
+static func get_string_array(dict: Dictionary, key: String, default: PackedStringArray = []) -> PackedStringArray:
+	if not dict.has(key) or typeof(dict[key]) != TYPE_ARRAY:
+		return default
+	
+	var result = PackedStringArray()
+	for item in dict[key]:
+		# Reuse your existing get_string logic by passing a dummy dict
+		# or just handle the basic conversion here:
+		if typeof(item) == TYPE_STRING:
+			result.append(item)
+		elif typeof(item) in [TYPE_INT, TYPE_FLOAT, TYPE_BOOL]:
+			result.append(str(item))
+	return result
+
+
+## Safely returns a PackedInt32Array or PackedInt64Array.
+static func get_int_array(dict: Dictionary, key: String, default: PackedInt32Array = []) -> PackedInt32Array:
+	if not dict.has(key) or typeof(dict[key]) != TYPE_ARRAY:
+		return default
+	
+	var result = PackedInt32Array()
+	for item in dict[key]:
+		var t = typeof(item)
+		if t == TYPE_INT:
+			result.append(item)
+		elif t == TYPE_FLOAT:
+			result.append(int(item))
+		elif t == TYPE_STRING and item.is_valid_int():
+			result.append(item.to_int())
+	return result
+
+
+## Safely returns a PackedFloat32Array.
+static func get_float_array(dict: Dictionary, key: String, default: PackedFloat32Array = []) -> PackedFloat32Array:
+	if not dict.has(key) or typeof(dict[key]) != TYPE_ARRAY:
+		return default
+	
+	var result = PackedFloat32Array()
+	for item in dict[key]:
+		var t = typeof(item)
+		if t == TYPE_FLOAT:
+			result.append(item)
+		elif t == TYPE_INT:
+			result.append(float(item))
+		elif t == TYPE_STRING and item.is_valid_float():
+			result.append(item.to_float())
+	return result
+
+
+## Returns an array of Dictionaries (useful for nested JSON structures).
+static func get_dict_array(dict: Dictionary, key: String, default: Array[Dictionary] = []) -> Array[Dictionary]:
+	if not dict.has(key) or typeof(dict[key]) != TYPE_ARRAY:
+		return default
+	
+	var result: Array[Dictionary] = []
+	for item in dict[key]:
+		if typeof(item) == TYPE_DICTIONARY:
+			result.append(item)
+	return result
+
+
+## Returns a Dictionary at the specific key, or an empty one if missing/wrong type.
+static func get_dict(dict: Dictionary, key: String, default: Dictionary = {}) -> Dictionary:
+	var v = dict.get(key)
+	if typeof(v) == TYPE_DICTIONARY:
+		return v
+	return default

@@ -143,12 +143,9 @@ func obtain_key(key:KeyNode):
 	signal_key_obtained.emit(keys)
 	change_health(0.6)
 	#change_health2(health2_increment)
-	if(SaveHandler.get_current_level().levelType == Level.LevelType.STANDARD):
+	if( SaveHandler.get_current_level().is_standard_level()):
 		if(keys >= Globals.totalArenas):
 			Globals.victory_event()
-	#elif(SaveHandler.get_current_level().levelType == Level.LevelType.BOSS):
-		#if(key.is_boss_key):
-			#Globals.victory_event()
 	success_sound.play(0)
 	if(key != null):
 		key.queue_free()

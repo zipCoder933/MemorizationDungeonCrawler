@@ -445,8 +445,6 @@ func _ready():
 	var level = SaveHandler.get_current_level()
 	var game = SaveHandler.currentGame
 	var includeBossfight = false
-	var lotsOfArenas = false
-	var number_arenas = 5
 	
 	if( level != null ):
 		set_dungeon_theme(level, game)
@@ -458,21 +456,9 @@ func _ready():
 		
 		if(level.levelType == Level.LevelType.BOSS):
 			includeBossfight = true
-		else:
-			if(next_level != null && next_level.levelType == Level.LevelType.BOSS):
-				lotsOfArenas = true
 			
 		#Calculate how many arenas we want
 		var cards = CardsHandler.card_count(level.card_tags)
-		var total_drills = level.card_count_multiplier * cards
-		number_arenas = round(total_drills / level.enemy_card_count)
-		if(includeBossfight):
-			number_arenas = level.boss_level_arenas
-		elif(lotsOfArenas):
-			number_arenas = clamp(number_arenas*2, 10, 25)
-		else:
-			number_arenas = clamp(number_arenas, 4, 25)
-		print("Total drills: ",total_drills,"; Arenas: ",number_arenas,"; lots of arenas: ",lotsOfArenas)
 	
 	var min_path_length = 1
 	var max_path_length = 12
@@ -505,7 +491,7 @@ func _ready():
 			var end_pls:Vector3 = (Vector3(place) + direction * length)
 			if is_area_clear(end_pls.x, end_pls.z, (arenaSize) + CLOSENESS_TO_END_PATH_END + 2):
 				var steps = path(place, end_pls, 5, 0, arenaSize, FAILED_LEVEL_SURVIVAL, false)
-			if(Globals.totalArenas >= number_arenas):
+			if(Globals.totalArenas >= level.arena_count):
 				break
 	
 	_place_floors(searched, floor_size)

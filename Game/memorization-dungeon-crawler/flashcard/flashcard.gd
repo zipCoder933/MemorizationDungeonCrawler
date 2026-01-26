@@ -7,6 +7,7 @@ class_name FlashcardUI
 @onready var background: ColorRect = %background
 @export var worldFlashcardNode:WorldFlashCard;
 @onready var drill_left_bar: ProgressBar = %drillLeftBar
+@onready var drill_left_label: Label = %drillLeftLabel
 
 const OPACITY = 0.9
 const DEFAULT_COLOR = Color(0.18, 0.18, 0.18, OPACITY)
@@ -80,6 +81,7 @@ func _process(delta:float):
 	if(q != null && Globals.has_flashcard()):
 		var remainingDrill:float = float(Globals.flashcard_remaining_count()) /  float(Globals.flashcard_deck_size())
 		drill_left_bar.value = remainingDrill;
+		drill_left_label.text = str(Globals.flashcard_remaining_count())+" / "+ str(Globals.flashcard_deck_size())
 		
 		var timeElapsed = get_time_elapsed_MS()
 		var timeLimitMS = q.time_limit * 1000

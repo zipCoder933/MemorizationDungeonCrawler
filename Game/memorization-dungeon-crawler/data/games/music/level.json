@@ -17,7 +17,8 @@
 		}
 	  ],
 	  "goal_speed_percent": 0.8,
-	  "card_count_multiplier": 6,
+	  "card_count_multiplier": 1,
+	  "enemy_card_count": 30,
 	  "boss_card_count_multiplier": 4,
 	  "complete_drill_levels": 0
 	},
@@ -35,9 +36,9 @@
 		  "count": 3
 		}
 	  ],
-	  "card_count_multiplier": 4,
+	  "arena_count": [4, 8],
 	  "boss_level_arenas": 3,
-	  "enemy_card_count": 35,
+	  "enemy_card_count": 30,
 	  "boss_card_count_multiplier": 6,
 	  "complete_drill_levels": 0
 	},
@@ -52,6 +53,7 @@
 		}
 	  ],
 	  "goal_speed_percent": 0.8,
+	  "enemy_card_count": 30,
 	  "card_count_multiplier": 6,
 	  "boss_card_count_multiplier": 4,
 	  "complete_drill_levels": 0
@@ -70,9 +72,9 @@
 		  "count": 3
 		}
 	  ],
-	  "card_count_multiplier": 4,
+	  "arena_count": [4, 8],
 	  "boss_level_arenas": 3,
-	  "enemy_card_count": 35,
+	  "enemy_card_count": 30,
 	  "boss_card_count_multiplier": 6,
 	  "complete_drill_levels": 0
 	},
@@ -98,7 +100,7 @@
 		  "count": 1
 		}
 	  ],
-	  "card_count_multiplier": 3,
+	  "arena_count": [4, 8],
 	  "start_speed_percent": 0.4,
 	  "boss_card_count_multiplier": 4,
 	  "enemy_card_count": 35,

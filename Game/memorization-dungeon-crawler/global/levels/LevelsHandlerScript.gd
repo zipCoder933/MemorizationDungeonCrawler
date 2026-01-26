@@ -125,14 +125,16 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 		# ---------------------------
 		# THEMATIC DRILL LEVELS
 		# ---------------------------
-		var themed_drills = dungeon.get("themed_drill_levels", [])
-		if typeof(themed_drills) != TYPE_ARRAY:
+		var themed_levels = dungeon.get("themed_drill_levels", [])
+		var complete_levels = JsonUtils.get_int(dungeon, "complete_drill_levels", 0)
+		
+		if typeof(themed_levels) != TYPE_ARRAY:
 			results.write("'themed_drill_levels' in dungeon %d must be an array." % dungIndx)
 			return false
 
 		var themed_tags:Array[String] = []
-
-		for themed_level in themed_drills:
+		for themed_level_indx in range(themed_levels.size()):
+			var themed_level = themed_levels[themed_level_indx]
 			if typeof(themed_level) != TYPE_DICTIONARY:
 				results.write("A themed level in dungeon %d is not a dictionary." % dungIndx)
 				return false
@@ -168,11 +170,10 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			for j in range(levelCount):
 				var t = float(j) / max(1, levelCount)
 				var speed = lerp(midgame_start_speed, midgame_goal_speed, t)
+				var nextLevelBoss = complete_levels == 0 && (themed_level_indx >= themed_levels.size()-1) && (j >= levelCount - 1)
 				#If we are running through entirely new cards and the midgame speed is the same as the default setting
 				if(hasNewCards and midgame_start_speed == default_start_speed):
 					speed = lerp(start_speed, midgame_goal_speed, t)
-
-
 
 				levels.append(Level.makeLevel(
 					dungIndx,
@@ -180,37 +181,37 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 					speed,
 					levelTags,
 					levelTags,
-					Level.LevelType.STANDARD, verbose
+					Level.LevelType.STANDARD,
+					nextLevelBoss,
+					verbose
 				))
 
 			themed_tags.append_array(levelTags)
-
+		
+		
 		# ---------------------------
 		# COMPLETE DRILL LEVELS
 		# ---------------------------
 		learnedTags.append_array(themed_tags.duplicate())
-
 		var final_is_last = dungIndx == dungeons.size() - 1
 		var complete_goal = goal_speed if final_is_last else midgame_goal_speed
 
+		if complete_levels > 0:
+			for i in range(complete_levels):
+				var t = float(i) / max(1, complete_levels)
+				var speed = lerp(midgame_start_speed, complete_goal, t)
+				var nextLevelBoss = (i >= complete_levels - 1)
 
-		var completeCount = JsonUtils.get_int(dungeon, "complete_drill_levels", 0)
-		if completeCount < 0:
-			results.write("'complete_drill_levels' must not be negative (dungeon %d)." % dungIndx)
-			return false
-
-		for i in range(completeCount):
-			var t = float(i) / max(1, completeCount)
-			var speed = lerp(midgame_start_speed, complete_goal, t)
-
-			levels.append(Level.makeLevel(
-				dungIndx,
-				dungeon,
-				speed,
-				themed_tags,
-				learnedTags,
-				Level.LevelType.STANDARD, verbose
-			))
+				levels.append(Level.makeLevel(
+					dungIndx,
+					dungeon,
+					speed,
+					themed_tags,
+					learnedTags,
+					Level.LevelType.STANDARD, 
+					nextLevelBoss,
+					verbose
+				))
 
 		# ---------------------------
 		# BOSS LEVEL
@@ -225,7 +226,9 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			complete_goal,
 			themed_tags,
 			_last_level_tags,
-			Level.LevelType.BOSS, verbose
+			Level.LevelType.BOSS,
+			false,
+			verbose
 		))
 
 	return true
