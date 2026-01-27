@@ -33,7 +33,8 @@ static func makePracticeLevel(level:Level) -> Level:
 
 #For levelsHandlerScript
 static func makeLevel(dungeonIndex:int,\
-					dungeon:Variant,\
+					dungeonJson:Variant,\
+					levelJson:Variant,\
 					speed_seconds:float,\
 					themed_tags:Array[String],\
 					card_tags:Array[String],\
@@ -46,7 +47,7 @@ static func makeLevel(dungeonIndex:int,\
 	
 	# Convert string to enum
 	var theme = LevelTheme.DUNGEON  # default fallback
-	var _theme = JsonUtils.get_string(dungeon,"theme", "")
+	var _theme = JsonUtils.get_string(dungeonJson,"theme", "")
 	for themeName in LevelTheme.keys():
 		if _theme.strip_edges().to_upper() == themeName.to_upper():
 			theme = LevelTheme[themeName]
@@ -54,28 +55,30 @@ static func makeLevel(dungeonIndex:int,\
 	
 	var arena_count = 4;
 	if(levelType == LevelType.BOSS):
-		arena_count = JsonUtils.get_int(dungeon,"boss_level_arenas", 3)
+		arena_count = JsonUtils.get_int(dungeonJson,"boss_level_arenas", 3)
 	else:
-		var arena_range = JsonUtils.get_int_array(dungeon,"arena_count", [3,6])
+		var arena_range = JsonUtils.get_int_array(levelJson,"arena_count", [3,6])
 		if(arena_range.size() >=2):
 			arena_count = randi_range(arena_range[0],arena_range[1])
 		if(nextLevelBoss):
 			levelType = LevelType.PRE_BOSS
 			arena_count = max(clamp(arena_count*2,9,15),arena_count)
 	
+	var enemy_card_count = JsonUtils.get_int(levelJson,"enemy_card_count", JsonUtils.get_int(dungeonJson,"enemy_card_count", 15))
+	
 	var level =  Level.new(
 		dungeonIndex,
 		LevelsHandler.level_index,
-		JsonUtils.get_string(dungeon,"name", ""),
+		JsonUtils.get_string(dungeonJson,"name", ""),
 		theme,
 		arena_count,
-		JsonUtils.get_float(dungeon,"boss_card_count_multiplier", 2), #boss card cound multiplier
+		JsonUtils.get_float(dungeonJson,"boss_card_count_multiplier", 2), #boss card cound multiplier
 		levelType,
-		JsonUtils.get_string(dungeon,"boss_name", ""),
+		JsonUtils.get_string(dungeonJson,"boss_name", ""),
 		speed_seconds,  # or any logic to set time_to_answer_sec
 		themed_tags.duplicate(),
 		card_tags.duplicate(),
-		JsonUtils.get_int(dungeon,"enemy_card_count", 15)
+		enemy_card_count,
 	)
 	if(verbose):
 		print(level.toString())

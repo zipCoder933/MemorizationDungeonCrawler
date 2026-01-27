@@ -10,23 +10,22 @@
 	  "name": "The Treble Dungeon",
 	  "theme": "Dungeon",
 	  "boss_name": "Treble Trouble",
-	  "themed_drill_levels": [
+	  "levels": [
 		{
 		  "tags": ["treble"],
-		  "count": 6
+		  "count": 6,
+		  "enemy_card_count": 30
 		}
 	  ],
 	  "goal_speed_percent": 0.8,
 	  "card_count_multiplier": 1,
-	  "enemy_card_count": 30,
-	  "boss_card_count_multiplier": 4,
-	  "complete_drill_levels": 0
+	  "boss_card_count_multiplier": 4
 	},
 	{
 	  "name": "Outer treble Dungeon",
 	  "theme": "Jungle",
 	  "boss_name": "Outerlands Guardian",
-	  "themed_drill_levels": [
+	  "levels": [
 		{
 		  "tags": ["outer-treble"],
 		  "count": 2
@@ -39,14 +38,13 @@
 	  "arena_count": [4, 8],
 	  "boss_level_arenas": 3,
 	  "enemy_card_count": 30,
-	  "boss_card_count_multiplier": 6,
-	  "complete_drill_levels": 0
+	  "boss_card_count_multiplier": 6
 	},
 	{
 	  "name": "Bass Dungeon",
 	  "theme": "Antarctic",
 	  "boss_name": "The Abomination",
-	  "themed_drill_levels": [
+	  "levels": [
 		{
 		  "tags": ["bass"],
 		  "count": 6
@@ -55,14 +53,13 @@
 	  "goal_speed_percent": 0.8,
 	  "enemy_card_count": 30,
 	  "card_count_multiplier": 6,
-	  "boss_card_count_multiplier": 4,
-	  "complete_drill_levels": 0
+	  "boss_card_count_multiplier": 4
 	},
 	{
 	  "name": "Outer Bass Dungeon",
 	  "theme": "Lava",
 	  "boss_name": "Fire and Bass",
-	  "themed_drill_levels": [
+	  "levels": [
 		{
 		  "tags": ["outer-bass"],
 		  "count": 2
@@ -75,14 +72,13 @@
 	  "arena_count": [4, 8],
 	  "boss_level_arenas": 3,
 	  "enemy_card_count": 30,
-	  "boss_card_count_multiplier": 6,
-	  "complete_drill_levels": 0
+	  "boss_card_count_multiplier": 6
 	},
 	{
 	  "name": "Grand Staff Dungeon",
 	  "theme": "Machine",
 	  "boss_name": "Intergalactic Overseer",
-	  "themed_drill_levels": [
+	  "levels": [
 		{
 		  "tags": ["treble", "outer-treble"],
 		  "count": 1
@@ -98,14 +94,16 @@
 		{
 		  "tags": ["bass", "outer-bass"],
 		  "count": 1
+		},
+		{
+		  "count": 4,
+		  "arena_count": [4, 8],
 		}
 	  ],
-	  "arena_count": [4, 8],
 	  "start_speed_percent": 0.4,
 	  "boss_card_count_multiplier": 4,
 	  "enemy_card_count": 35,
-	  "boss_level_arenas": 4,
-	  "complete_drill_levels": 4
+	  "boss_level_arenas": 4
 	}
   ]
 }

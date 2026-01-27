@@ -33,7 +33,7 @@ func _ready():
 				node.set_details(tag, entry, LevelsHandler.start_speed, LevelsHandler.goal_speed)
 			
 			var completed = saveEntry.get_completed_level()
-			print("Reading levels: ",LevelsHandler.levels.size()," level - ",completed)
+			print("Reading levels: ",LevelsHandler.levels.size(), " level - ",completed)
 			for level in LevelsHandler.levels:
 				_add_level_entry(level,completed)
 				if(level.levelType == Level.LevelType.BOSS):

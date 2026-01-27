@@ -8,39 +8,47 @@
 	  "theme": "antarctic",
 	  "boss_name": "Da Boss",
 	  "boss_card_count_multiplier": 1,
-	  "themed_drill_levels": [
+	  "levels": [
 		{
 		  "tags": ["1s"],
 		  "count": 1
+		},
+		{
+		  "tags": [],
+		  "count": 3,
+		"arena_count": [100,101],
+		  "enemy_card_count":100
 		}
 	  ],
-	  "complete_drill_levels": 0
 	},
 	{
 	  "name": "Dungeon 2",
 	  "theme": "lava",
 	  "boss_name": "Bossmania",
 	  "boss_card_count_multiplier": 1,
-	  "themed_drill_levels": [
-		{
-		  "tags": ["1s"],
-		  "count": 1
-		}
-	  ],
-	  "complete_drill_levels": 1
-	},
-	{
-	  "name": "Dungeon 2",
-	  "theme": "lava",
-	  "boss_name": "Bossmania",
-	  "boss_card_count_multiplier": 1,
-	  "themed_drill_levels": [
+	  "levels": [
 		{
 		  "tags": ["2s"],
 		  "count": 1
+		},
+		{
+		  "count": 3,
+		  "enemy_card_count":100
 		}
-	  ],
-	  "complete_drill_levels": 1
+	  ]
+	},
+	{
+	  "name": "Dungeon 2",
+	  "theme": "lava",
+	  "boss_name": "Bossmania",
+	  "boss_card_count_multiplier": 1,
+		"enemy_card_count":1000,
+	  "levels": [
+		{
+		  "tags": ["2s"],
+		  "count": 10
+		}
+	  ]
 	}
   ]
 }

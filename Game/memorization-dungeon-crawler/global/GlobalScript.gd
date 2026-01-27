@@ -101,6 +101,7 @@ func load_cards_levels(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoad
 	if(!out):
 		feedback.write("Failed to load cards.json")
 		feedback.write(jsonFeedback.message)
+		print(feedback.message)
 		return false
 	
 	#Load levels
@@ -109,8 +110,8 @@ func load_cards_levels(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoad
 	if(!out):
 		feedback.write("Failed to load level.json")
 		feedback.write(jsonFeedback.message)
+		print(feedback.message)
 		return false
-
 	return true
 
 

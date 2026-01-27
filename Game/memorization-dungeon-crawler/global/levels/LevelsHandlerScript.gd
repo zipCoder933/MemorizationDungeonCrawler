@@ -123,32 +123,28 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			print("Dungeon speed: start=",midgame_start_speed,"; end=",midgame_goal_speed)
 
 		# ---------------------------
-		# THEMATIC DRILL LEVELS
+		# DRILL LEVELS
 		# ---------------------------
-		var themed_levels = dungeon.get("themed_drill_levels", [])
-		var complete_levels = JsonUtils.get_int(dungeon, "complete_drill_levels", 0)
+		var levelsjson:Variant = dungeon.get("levels", [])
 		
-		if typeof(themed_levels) != TYPE_ARRAY:
-			results.write("'themed_drill_levels' in dungeon %d must be an array." % dungIndx)
+		if typeof(levels) != TYPE_ARRAY:
+			results.write("'levels' in dungeon %d must be an array." % dungIndx)
 			return false
 
 		var themed_tags:Array[String] = []
-		for themed_level_indx in range(themed_levels.size()):
-			var themed_level = themed_levels[themed_level_indx]
-			if typeof(themed_level) != TYPE_DICTIONARY:
+		for level_indx in range(levelsjson.size()):
+			var level = levelsjson[level_indx]
+			if typeof(level) != TYPE_DICTIONARY:
 				results.write("A themed level in dungeon %d is not a dictionary." % dungIndx)
 				return false
 
-			var levelCount = JsonUtils.get_int(themed_level, "count", 0)
+			var levelCount = JsonUtils.get_int(level, "count", 0)
 			if levelCount < 0:
 				results.write("Negative 'count' in themed level (dungeon %d)." % dungIndx)
 				return false
 
 			# Validate tags
-			var raw_tags = themed_level.get("tags", [])
-			if typeof(raw_tags) != TYPE_ARRAY:
-				results.write("The 'tags' field in a themed level (dungeon %d) is not an array." % dungIndx)
-				return false
+			var raw_tags = JsonUtils.get_string_array(level, "tags",[])
 
 			# Ensure every tag is a string
 			var levelTags:Array[String] = []
@@ -170,7 +166,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			for j in range(levelCount):
 				var t = float(j) / max(1, levelCount)
 				var speed = lerp(midgame_start_speed, midgame_goal_speed, t)
-				var nextLevelBoss = complete_levels == 0 && (themed_level_indx >= themed_levels.size()-1) && (j >= levelCount - 1)
+				var nextLevelBoss = (level_indx >= levelsjson.size() - 1) && (j >= levelCount - 1)
 				#If we are running through entirely new cards and the midgame speed is the same as the default setting
 				if(hasNewCards and midgame_start_speed == default_start_speed):
 					speed = lerp(start_speed, midgame_goal_speed, t)
@@ -178,6 +174,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 				levels.append(Level.makeLevel(
 					dungIndx,
 					dungeon,
+					level,
 					speed,
 					levelTags,
 					levelTags,
@@ -187,48 +184,30 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 				))
 
 			themed_tags.append_array(levelTags)
-		
-		
-		# ---------------------------
-		# COMPLETE DRILL LEVELS
-		# ---------------------------
-		learnedTags.append_array(themed_tags.duplicate())
-		var final_is_last = dungIndx == dungeons.size() - 1
-		var complete_goal = goal_speed if final_is_last else midgame_goal_speed
-
-		if complete_levels > 0:
-			for i in range(complete_levels):
-				var t = float(i) / max(1, complete_levels)
-				var speed = lerp(midgame_start_speed, complete_goal, t)
-				var nextLevelBoss = (i >= complete_levels - 1)
-
-				levels.append(Level.makeLevel(
-					dungIndx,
-					dungeon,
-					speed,
-					themed_tags,
-					learnedTags,
-					Level.LevelType.STANDARD, 
-					nextLevelBoss,
-					verbose
-				))
 
 		# ---------------------------
 		# BOSS LEVEL
 		# ---------------------------
 		#Get the tags from the last level
+		var levelSpeed = midgame_goal_speed
+		
+		if(dungIndx == dungeons.size()-1):
+			levelSpeed = goal_speed
+		
 		if _last_level_tags.is_empty():
 			_last_level_tags = learnedTags
 		
 		levels.append(Level.makeLevel(
 			dungIndx,
 			dungeon,
-			complete_goal,
+			null,
+			levelSpeed,
 			themed_tags,
 			_last_level_tags,
 			Level.LevelType.BOSS,
 			false,
 			verbose
 		))
+		print("Levels size: ",levels.size())
 
 	return true

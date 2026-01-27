@@ -44,6 +44,9 @@ follow_damping = true
 follow_distance = 2.0
 spring_length = 2.0
 collision_mask = 11
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="."]

@@ -2,8 +2,8 @@ extends Node
 class_name JsonUtils
 
 
-static func get_typed(dict: Dictionary, key: String, expected_types, default, ):
-	if not dict.has(key):
+static func get_typed(dict: Variant, key: String, expected_types, default, ):
+	if dict == null or not dict.has(key):
 		return default
 	var value = dict[key]
 	var t = typeof(value)
@@ -11,8 +11,8 @@ static func get_typed(dict: Dictionary, key: String, expected_types, default, ):
 		expected_types = [expected_types]
 	return value if  expected_types.has(t) else default
 
-static func get_string(dict: Dictionary, key: String, default: String = "") -> String:
-	if not dict.has(key):
+static func get_string(dict: Variant, key: String, default: String = "") -> String:
+	if dict == null or not dict.has(key):
 		return default
 	
 	var v = dict[key]
@@ -33,8 +33,8 @@ static func get_string(dict: Dictionary, key: String, default: String = "") -> S
 	return default
 
 
-static func get_int(dict: Dictionary, key: String, default: int = 0) -> int:
-	if not dict.has(key):
+static func get_int(dict: Variant, key: String, default: int = 0) -> int:
+	if dict == null or not dict.has(key):
 		return default
 
 	var v = dict[key]
@@ -62,8 +62,8 @@ static func get_int(dict: Dictionary, key: String, default: int = 0) -> int:
 	return default
 
 
-static func get_float(dict: Dictionary, key: String, default: float = 0.0) -> float:
-	if not dict.has(key):
+static func get_float(dict: Variant, key: String, default: float = 0.0) -> float:
+	if dict == null or not dict.has(key):
 		return default
 
 	var v = dict[key]
@@ -91,8 +91,8 @@ static func get_float(dict: Dictionary, key: String, default: float = 0.0) -> fl
 	return default
 
 
-static func get_bool(dict: Dictionary, key: String, default: bool = false) -> bool:
-	if not dict.has(key):
+static func get_bool(dict: Variant, key: String, default: bool = false) -> bool:
+	if dict == null or not dict.has(key):
 		return default
 
 	var v = dict[key]
@@ -123,8 +123,8 @@ static func get_bool(dict: Dictionary, key: String, default: bool = false) -> bo
 
 
 ## Safely returns a PackedStringArray. Converts elements to strings if possible.
-static func get_string_array(dict: Dictionary, key: String, default: PackedStringArray = []) -> PackedStringArray:
-	if not dict.has(key) or typeof(dict[key]) != TYPE_ARRAY:
+static func get_string_array(dict: Variant, key: String, default: PackedStringArray = []) -> PackedStringArray:
+	if dict == null or not dict.has(key) or typeof(dict[key]) != TYPE_ARRAY:
 		return default
 	
 	var result = PackedStringArray()
@@ -139,8 +139,8 @@ static func get_string_array(dict: Dictionary, key: String, default: PackedStrin
 
 
 ## Safely returns a PackedInt32Array or PackedInt64Array.
-static func get_int_array(dict: Dictionary, key: String, default: PackedInt32Array = []) -> PackedInt32Array:
-	if not dict.has(key) or typeof(dict[key]) != TYPE_ARRAY:
+static func get_int_array(dict: Variant, key: String, default: PackedInt32Array = []) -> PackedInt32Array:
+	if dict == null or not dict.has(key) or typeof(dict[key]) != TYPE_ARRAY:
 		return default
 	
 	var result = PackedInt32Array()
@@ -156,8 +156,8 @@ static func get_int_array(dict: Dictionary, key: String, default: PackedInt32Arr
 
 
 ## Safely returns a PackedFloat32Array.
-static func get_float_array(dict: Dictionary, key: String, default: PackedFloat32Array = []) -> PackedFloat32Array:
-	if not dict.has(key) or typeof(dict[key]) != TYPE_ARRAY:
+static func get_float_array(dict: Variant, key: String, default: PackedFloat32Array = []) -> PackedFloat32Array:
+	if dict == null or not dict.has(key) or typeof(dict[key]) != TYPE_ARRAY:
 		return default
 	
 	var result = PackedFloat32Array()
@@ -173,8 +173,8 @@ static func get_float_array(dict: Dictionary, key: String, default: PackedFloat3
 
 
 ## Returns an array of Dictionaries (useful for nested JSON structures).
-static func get_dict_array(dict: Dictionary, key: String, default: Array[Dictionary] = []) -> Array[Dictionary]:
-	if not dict.has(key) or typeof(dict[key]) != TYPE_ARRAY:
+static func get_dict_array(dict: Variant, key: String, default: Array[Dictionary] = []) -> Array[Dictionary]:
+	if dict == null or not dict.has(key) or typeof(dict[key]) != TYPE_ARRAY:
 		return default
 	
 	var result: Array[Dictionary] = []
@@ -185,7 +185,9 @@ static func get_dict_array(dict: Dictionary, key: String, default: Array[Diction
 
 
 ## Returns a Dictionary at the specific key, or an empty one if missing/wrong type.
-static func get_dict(dict: Dictionary, key: String, default: Dictionary = {}) -> Dictionary:
+static func get_dict(dict: Variant, key: String, default: Variant = {}) -> Dictionary:
+	if(dict == null):
+		return default
 	var v = dict.get(key)
 	if typeof(v) == TYPE_DICTIONARY:
 		return v
