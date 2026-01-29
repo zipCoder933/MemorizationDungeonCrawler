@@ -88,7 +88,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 		results.write("'dungeons' must be an array.")
 		return false
 
-	var learnedTags:Array[String] = []
+	var learned_tags:Array[String] = []
 	const emptyArray: Array[String] = []
 
 	for dungIndx in dungeons.size():
@@ -163,18 +163,17 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			for tag in raw_tags:
 				if typeof(tag) == TYPE_STRING:
 					level_tags.append(tag)
-					learnedTags.append(tag)
-					if tag not in themed_tags:
+					themed_tags.append(tag)
+					if tag not in learned_tags:
 						hasNewCards = true
-						break
+					
+					learned_tags.append(tag)
 				else:
 					results.write("Non-string tag found in themed level (dungeon %d)." % dungIndx)
 					return false
-			#Add level tags to themed tags only if we have specified any ourselves
-			themed_tags.append_array(level_tags)
 			
 			if(raw_tags.size() == 0):
-				level_tags.append_array(learnedTags)
+				level_tags.append_array(learned_tags)
 
 			# Create levels
 			for j in range(levelCount):
@@ -208,7 +207,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 		# ---------------------------
 		#Get the tags from the last level
 		if _last_level_tags.is_empty():
-			_last_level_tags = learnedTags
+			_last_level_tags = learned_tags
 		
 		levels.append(Level.makeLevel(
 			dungIndx,
