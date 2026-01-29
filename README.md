@@ -23,4 +23,5 @@ Inspired by Timez Attack, Cogni Crawl is a 3D dungeon crawler that helps you mem
 ## 🎮 Controls
 - **WASD** → walk around like you mean it  
 - **Mouse** → look around suspiciously
+- **CTRL** → FPS menu
 - **ESC** → panic pause  
