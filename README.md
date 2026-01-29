@@ -24,8 +24,3 @@ A spooky-fun dungeon crawler that tests your memory, your reflexes, and your abi
 - **WASD** → walk around like you mean it  
 - **Mouse** → look around suspiciously
 - **ESC** → panic pause  
-
----
-
-## 🐉 License  
-MIT Liscence
