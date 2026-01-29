@@ -1,7 +1,7 @@
 ![Splash](https://github.com/Lightning323/MemorizationDungeonCrawler/blob/main/assets/splash.jpg)
 # Cogni Crawl
 ### Built for the 2025 Hackathon  
-A 3D dungeon crawler that helps you memorize facts in an entertaining way. Put your memory to the test with Cogni Crawl!
+Inspired by Timez Attack, Cogni Crawl is a 3D dungeon crawler that helps you memorize short form facts (math tables, musical notes, etc) in an entertaining way. Put your memory to the test with Cogni Crawl!
 
 ![Status](https://img.shields.io/badge/Status-V1.2.0-blue)
 ![Hackathon](https://img.shields.io/badge/Hackathon-2025-purple)
