@@ -7,8 +7,8 @@ Inspired by Timez Attack, Cogni Crawl is a 3D dungeon crawler that helps you mem
 ![Hackathon](https://img.shields.io/badge/Hackathon-2025-purple)
 ![Engine](https://img.shields.io/badge/Engine-Godot-orange)
 
-[Watch the Demo Video](https://youtu.be/7NtKeN1fMC0?si=m0R-WZLCvUW9YDGo)
-[Download on Itch.io](https://lightning323.itch.io/cogni-crawl)
+* [Watch the Demo Video](https://youtu.be/7NtKeN1fMC0?si=m0R-WZLCvUW9YDGo)
+* [Download on Itch.io](https://lightning323.itch.io/cogni-crawl)
 
 ---
 
