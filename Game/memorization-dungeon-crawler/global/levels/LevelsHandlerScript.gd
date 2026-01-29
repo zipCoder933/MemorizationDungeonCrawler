@@ -25,8 +25,8 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 	start_speed = 0
 	goal_speed = 0
 	level_index = 0
-	midgame_start_speed = 0
-	midgame_goal_speed = 0
+	var dungeon_start_speed = 0
+	var dungeon_goal_speed = 0
 	
 	print("Loading levels:", file_path)
 
@@ -105,22 +105,25 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 		# SPEED 
 		# We can get the speed from each dungeon or from the default valeus
 		# ---------------------------
+		dungeon_start_speed = midgame_start_speed
 		if(dungeon.has("start_speed_percent")):
 			var lerp_value =  JsonUtils.get_float(dungeon, "start_speed_percent",0)
-			print("Start lerp ",lerp_value)
-			midgame_start_speed = lerp(start_speed, goal_speed,lerp_value)
+			dungeon_start_speed = lerp(start_speed, goal_speed,lerp_value)
 		else:
-			midgame_start_speed = default_start_speed
+			dungeon_start_speed = default_start_speed
 		
+		dungeon_goal_speed = midgame_goal_speed
 		if(dungeon.has("goal_speed_percent")):
 			var lerp_value =  JsonUtils.get_float(dungeon, "goal_speed_percent",0)
-			print("End lerp ",lerp_value)
-			midgame_goal_speed  = lerp(start_speed, goal_speed,lerp_value)
+			dungeon_goal_speed  = lerp(start_speed, goal_speed,lerp_value)
 		else:
-			midgame_goal_speed = default_goal_speed
+			dungeon_goal_speed = default_goal_speed
+		
+		if(dungIndx == dungeons.size()-1):
+			dungeon_goal_speed = goal_speed
 		
 		if(verbose):
-			print("Dungeon speed: start=",midgame_start_speed,"; end=",midgame_goal_speed)
+			print("Dungeon speed: start=",dungeon_start_speed,"; end=",dungeon_goal_speed)
 
 		# ---------------------------
 		# DRILL LEVELS
@@ -132,68 +135,78 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			return false
 
 		var themed_tags:Array[String] = []
+		var total_levels_in_dungeon:int = 0
+		var total_levels_so_far:int = 0
+		
 		for level_indx in range(levelsjson.size()):
 			var level = levelsjson[level_indx]
+			var levelCount = JsonUtils.get_int(level, "count", 0)
+			if levelCount > 0:
+				total_levels_in_dungeon+=levelCount
+		
+		
+		for level_indx in range(levelsjson.size()):
+			var level = levelsjson[level_indx]
+			var levelCount = JsonUtils.get_int(level, "count", 0)
+			if levelCount <= 0:
+				continue
+			
 			if typeof(level) != TYPE_DICTIONARY:
 				results.write("A themed level in dungeon %d is not a dictionary." % dungIndx)
 				return false
-
-			var levelCount = JsonUtils.get_int(level, "count", 0)
-			if levelCount < 0:
-				results.write("Negative 'count' in themed level (dungeon %d)." % dungIndx)
-				return false
-
-			# Validate tags
+				
+			# Get tags
+			var hasNewCards := false
 			var raw_tags = JsonUtils.get_string_array(level, "tags",[])
-
-			# Ensure every tag is a string
-			var levelTags:Array[String] = []
+			var level_tags:Array[String] = []
+			
 			for tag in raw_tags:
 				if typeof(tag) == TYPE_STRING:
-					levelTags.append(tag)
+					level_tags.append(tag)
+					learnedTags.append(tag)
+					if tag not in themed_tags:
+						hasNewCards = true
+						break
 				else:
 					results.write("Non-string tag found in themed level (dungeon %d)." % dungIndx)
 					return false
+			#Add level tags to themed tags only if we have specified any ourselves
+			themed_tags.append_array(level_tags)
+			
+			if(raw_tags.size() == 0):
+				level_tags.append_array(learnedTags)
 
-			# Determine whether they contain new learning tags
-			var hasNewCards := false
-			for tag in levelTags:
-				if tag not in themed_tags:
-					hasNewCards = true
-					break
-
-			# Create themed levels
+			# Create levels
 			for j in range(levelCount):
+				total_levels_so_far += 1
 				var t = float(j) / max(1, levelCount)
-				var speed = lerp(midgame_start_speed, midgame_goal_speed, t)
-				var nextLevelBoss = (level_indx >= levelsjson.size() - 1) && (j >= levelCount - 1)
+				var speed:float = 0
+
 				#If we are running through entirely new cards and the midgame speed is the same as the default setting
-				if(hasNewCards and midgame_start_speed == default_start_speed):
-					speed = lerp(start_speed, midgame_goal_speed, t)
+				if(hasNewCards and dungeon_start_speed == default_start_speed):
+					speed = lerp(start_speed, dungeon_goal_speed, t)
+				else:
+					speed = lerp(dungeon_start_speed, dungeon_goal_speed, t)
+
+				var levelType = Level.LevelType.STANDARD
+				if(total_levels_so_far >= total_levels_in_dungeon):
+					levelType = Level.LevelType.PRE_BOSS
 
 				levels.append(Level.makeLevel(
 					dungIndx,
 					dungeon,
 					level,
 					speed,
-					levelTags,
-					levelTags,
-					Level.LevelType.STANDARD,
-					nextLevelBoss,
+					themed_tags, level_tags,
+					levelType,
 					verbose
 				))
 
-			themed_tags.append_array(levelTags)
 
 		# ---------------------------
 		# BOSS LEVEL
 		# ---------------------------
 		#Get the tags from the last level
-		var levelSpeed = midgame_goal_speed
-		
-		if(dungIndx == dungeons.size()-1):
-			levelSpeed = goal_speed
-		
 		if _last_level_tags.is_empty():
 			_last_level_tags = learnedTags
 		
@@ -201,11 +214,9 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			dungIndx,
 			dungeon,
 			null,
-			levelSpeed,
-			themed_tags,
-			_last_level_tags,
+			dungeon_goal_speed,
+			themed_tags, _last_level_tags,
 			Level.LevelType.BOSS,
-			false,
 			verbose
 		))
 		print("Levels size: ",levels.size())

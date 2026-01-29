@@ -7,6 +7,7 @@ extends Panel
 @onready var tags: Label = %tags
 @onready var loading_panel: GameLoadingPanel = $CanvasLayer/LoadingPanel
 @onready var message_box_container: MessageBox = $CanvasLayer/messageBoxContainer
+@onready var speed: Label = %speed
 
 var saveEntry:SaveEntry 
 var level:Level
@@ -26,7 +27,11 @@ func set_details(saveEntry:SaveEntry , level:Level, unlocked:bool):
 	else:
 		number.text = str(level.level_index)
 	
-	if(level.card_tags.size() >= CardsHandler.tag_dict.size()):
+	speed.text = "%.1fs" % level.time_to_answer_sec
+	
+	if(level.card_tags.size() == 0):
+		tags.text="Everything"
+	elif(level.card_tags.size() >= CardsHandler.tag_dict.size()):
 		tags.text ="Everything"
 	else:
 		tags.text = ", ".join(level.card_tags)

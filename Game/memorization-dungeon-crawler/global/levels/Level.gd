@@ -39,7 +39,6 @@ static func makeLevel(dungeonIndex:int,\
 					themed_tags:Array[String],\
 					card_tags:Array[String],\
 					levelType: Level.LevelType,\
-					nextLevelBoss:bool,\
 					verbose:bool) -> Level:
 						
 	LevelsHandler.level_index += 1
@@ -60,8 +59,8 @@ static func makeLevel(dungeonIndex:int,\
 		var arena_range = JsonUtils.get_int_array(levelJson,"arena_count", [3,6])
 		if(arena_range.size() >=2):
 			arena_count = randi_range(arena_range[0],arena_range[1])
-		if(nextLevelBoss):
-			levelType = LevelType.PRE_BOSS
+			
+		if(levelType == LevelType.PRE_BOSS):
 			arena_count = max(clamp(arena_count*2,9,15),arena_count)
 	
 	var enemy_card_count = JsonUtils.get_int(levelJson,"enemy_card_count", JsonUtils.get_int(dungeonJson,"enemy_card_count", 15))
@@ -148,8 +147,20 @@ func _init(_dungeon_index:int,
 func toString() -> String:
 	var theme_name = LevelTheme.keys()[theme]
 	var type_name = LevelType.keys()[levelType]
-
-	return "Level %s; (Dungeon %s: \"%s\"): \tTime: %.2fs \tArenas: %s\t Enemy cards: %s\t \t%s \tType: %s \tTags: [%s] \tThemed-Tags: [%s] \tBoss Card X: %s" % [
-		level_index,dungeon_index, level_name, time_to_answer_sec, arena_count, enemy_card_count, theme_name, type_name,  \
-		", ".join(card_tags),", ".join(themed_card_tags),boss_card_count_multiplier
+	var ret := "Level %s; (Dungeon %s: \"%s\"):\tTime: %.2fs\tArenas: %s\tEnemy cards: %s\tTheme: %s\tType: %s\tTags: [%s]\tThemed-Tags: [%s]" % [
+		level_index,
+		dungeon_index,
+		level_name,
+		time_to_answer_sec,
+		arena_count,
+		enemy_card_count,
+		theme_name,
+		type_name,
+		", ".join(card_tags),
+		", ".join(themed_card_tags)
 	]
+
+	if levelType == LevelType.BOSS:
+		ret += "\tBoss Card X: %s" % boss_card_count_multiplier
+
+	return ret

@@ -7,102 +7,112 @@
 	  "name": "The Castle",
 	  "theme": "Dungeon",
 	  "boss_name": "Troll King",
-	  "themed_drill_levels": [
-			{
-				"tags": ["1s", "2s"],
-				"count": 3
-			}
-		],
-	  "boss_card_review_number":2,
-	  "complete_drill_levels": 0
+	  "boss_card_review_number": 2,
+	  "levels": [
+		{
+		  "tags": ["1s", "2s"],
+		  "count": 3
+		},
+		{
+		  "count": 0
+		}
+	  ]
 	},
 	{
 	  "name": "Steel Lands",
 	  "theme": "machine",
 	  "boss_name": "Bossmania",
-  	  "themed_drill_levels": [
+	  "boss_card_review_number": 2,
+	  "levels": [
 		{
-			"tags": ["3s"],
-			"count":1,
+		  "tags": ["3s"],
+		  "count": 1
 		},
 		{
-			"tags": [ "4s"],
-			"count": 1,
+		  "tags": ["4s"],
+		  "count": 1
 		},
 		{
-			"tags": ["3s", "4s"],
-			"count": 1,
+		  "tags": ["3s", "4s"],
+		  "count": 1
+		},
+		{
+		  "count": 2
 		}
-	],
-	  "boss_card_review_number":2,
-	  "complete_drill_levels": 2
+	  ]
 	},
-		{
+	{
 	  "name": "Hot Hallways",
 	  "theme": "lava",
 	  "boss_name": "Draconeus",
-	  "boss_card_review_number":1,
-   	  "themed_drill_levels": [
+	  "boss_card_review_number": 1,
+	  "levels": [
 		{
-			"tags": ["5s"],
-			"count":1,
+		  "tags": ["5s"],
+		  "count": 1
 		},
 		{
-			"tags": [ "6s"],
-			"count": 1,
+		  "tags": ["6s"],
+		  "count": 1
 		},
 		{
-			"tags": ["5s", "6s"],
-			"count": 1,
+		  "tags": ["5s", "6s"],
+		  "count": 1
+		},
+		{
+		  "count": 2
 		}
-	],
-	  "complete_drill_levels": 2
+	  ]
 	},
 	{
 	  "name": "Peruvian Wastelands",
 	  "theme": "jungle",
 	  "boss_name": "Jagged Rocks",
- 	  "themed_drill_levels": [
+	  "boss_card_review_number": 1,
+	  "levels": [
 		{
-			"tags": ["7s"],
-			"count":1,
+		  "tags": ["7s"],
+		  "count": 1
 		},
 		{
-			"tags": [ "8s"],
-			"count": 1,
+		  "tags": ["8s"],
+		  "count": 1
 		},
 		{
-			"tags": [ "9s"],
-			"count": 1,
+		  "tags": ["9s"],
+		  "count": 1
 		},
 		{
-			"tags": ["7s", "8s", "9s"],
-			"count": 1,
+		  "tags": ["7s", "8s", "9s"],
+		  "count": 1
+		},
+		{
+		  "count": 4
 		}
-	],
-	  "boss_card_review_number":1,
-	  "complete_drill_levels": 4
+	  ]
 	},
 	{
 	  "name": "The Final Dungeon",
 	  "theme": "Antarctic",
 	  "boss_name": "Frostbite",
-	  "boss_card_review_number":1,
-	   	  "themed_drill_levels": [
+	  "boss_card_review_number": 1,
+	  "levels": [
 		{
-			"tags": ["10s", "11s"],
-			"count":1,
+		  "tags": ["10s", "11s"],
+		  "count": 1
 		},
 		{
-			"tags": [ "12s"],
-			"count": 1,
+		  "tags": ["12s"],
+		  "count": 1
 		},
 		{
-			"tags": ["10s", "11s", "12s"],
-			"count": 1,
+		  "tags": ["10s", "11s", "12s"],
+		  "count": 1
+		},
+		{
+		  "count": 3
 		}
-	],
-	  "complete_drill_levels": 3
+	  ]
 	}
   ]
 }
