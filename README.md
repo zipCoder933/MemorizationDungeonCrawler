@@ -9,6 +9,7 @@ Inspired by Timez Attack, Cogni Crawl is a 3D dungeon crawler that helps you mem
 
 [Watch the Demo Video](https://youtu.be/7NtKeN1fMC0?si=m0R-WZLCvUW9YDGo)
 
+[Download on Itch.io](https://lightning323.itch.io/cogni-crawl)
 ---
 
 ![Enemy Fight](https://github.com/Lightning323/MemorizationDungeonCrawler/blob/main/assets/screenshots/Screenshot%202025-11-25%20151800.png)
