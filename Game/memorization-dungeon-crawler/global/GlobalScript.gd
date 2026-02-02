@@ -35,8 +35,6 @@ static var themed_succeeded:int= 0
 static var succeeded:int = 0
 static var questions:Array[Question];
 static var _flashcardNode:WorldFlashCard
-static var failed_flashcards:Array[Question]
-static var _allow_end_on_failure = false
 
 ##If we are in the middle of a long bossfight, we may want to give our player a short break
 static var FLASHCARD_BREAK_INTERVAL = 25
@@ -137,7 +135,6 @@ func load_game(entry:SaveEntry, successCall: Callable = Callable(), feedback:Gam
 
 
 func go_home():
-	failed_flashcards = []
 	clear_flashcard()
 	SaveHandler.save_to_file(Globals.SAVE_FILE)
 	get_tree().change_scene_to_file("res://UI/mainMenu/main/main_menu.tscn")
@@ -233,13 +230,12 @@ func get_world_environment() -> WorldEnvironment:
 #flashcardElement the node to assign to the flashcards
 
 func drill_flashcards(quantity:int, flashcardElement:WorldFlashCard, time_multiplier:float = 1):
-	failed_flashcards.clear()
 	var questions:Array[Question] = []
 	for card in CardsHandler.get_random_cards(SaveHandler.get_current_level().card_tags, quantity):
 		questions.append(card.toQuestion(time_multiplier, SaveHandler.get_current_level()))
 	drill_questions(questions, flashcardElement)
 
-func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard, begin_delay_sec:float = 0, _allow_end_on_failure2:bool = false):
+func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard, begin_delay_sec:float = 0):
 	if(has_flashcard() and flashcardElement != _flashcardNode):
 		print("There is already a set of flashcards being drilled!")
 		return
@@ -248,7 +244,6 @@ func drill_questions(questions2:Array[Question], flashcardElement:WorldFlashCard
 		return
 	clear_flashcard()
 	_flashcardNode = flashcardElement
-	_allow_end_on_failure = _allow_end_on_failure2
 	fact_answering_mode.emit(_flashcardNode)
 	deckSize = questions2.size()
 	questions = questions2;
@@ -275,7 +270,7 @@ func flashcard_deck_size():
 var last_flascard_answer;
 
 func submit_flashcard(succeed:bool):
-	#If we dont have a flashcard anymore (We already submitted the last one)	
+	#If we dont have a flashcard anymore (We already submitted the last one)
 	if(!has_flashcard()):
 		return
 	var player =  get_player()
@@ -305,39 +300,34 @@ func submit_flashcard(succeed:bool):
 	_flashcardNode.drill_submit_time_ms = time_ms
 	_flashcardNode.signal_flashcard_single_drill.emit(succeed)
 	signal_flashcard_single_drill.emit(_flashcardNode, succeed)
-	questions.remove_at(0)
+	
+	if(succeed):
+		questions.remove_at(0)
+	else:  #recycle the question if we failed
+		var failedQuestion = questions.get(0)
+		questions.remove_at(0)
+		questions.append(failedQuestion)
+		await get_tree().create_timer(1).timeout
+	
 	#Set current flashcard question to null to prevent from submitting twice
 	_has_flashcard = false
 	var totalCompletedCards = deckSize - questions.size()
 	
-	if(!succeed):
-		failed_flashcards.append(_current_flashcard_question)
-		await get_tree().create_timer(1).timeout
-	
 	if(questions.size() > 0):
-		
 		if(FLASHCARD_BREAK_INTERVAL > 0 and totalCompletedCards >= FLASHCARD_BREAK_INTERVAL and totalCompletedCards % FLASHCARD_BREAK_INTERVAL == 0):
 			#If it has been more than 15 cards, give the user a short rest
 			questions[0].time_limit *= FLASHCARD_BREAK_TIME_MULTIPLIER
-		
 		new_flashcard_question(questions[0])
 	else:
-		#If we want the last one to be good, we will just keep reviewing missed cards until then
-		if(!succeed and !_allow_end_on_failure):
-			if failed_flashcards.size() > 1: #If we have a failed flashcard to review
-				new_flashcard_question(failed_flashcards[0])
-				failed_flashcards.pop_back()
+		if (!succeed):#If we have no questions left, keep reviewing random ones until we get one right
+			for card in CardsHandler.get_random_cards(SaveHandler.get_current_level().card_tags, 1):
+				new_flashcard_question(card.toQuestion(1, SaveHandler.get_current_level()))
 				return
-			else: #Otherwise pick a random card fron one of our tags (This should never happen)
-				for card in CardsHandler.get_random_cards(SaveHandler.get_current_level().card_tags, 1):
-					new_flashcard_question(card.toQuestion(1, SaveHandler.get_current_level()))
-					return
 
 		var results:FlashcardDrillResults = FlashcardDrillResults.new(deckSize, themed_cards, succeeded, themed_succeeded, _flashcardNode)
 		print("Drill finished. ",results.toString())
 		_flashcardNode.signal_flashcard_finished_drill.emit(results)
 		signal_flashcard_finished_drill.emit(results)
-		failed_flashcards.clear()
 		clear_flashcard()
 		
 		var isBossfight = false
@@ -349,10 +339,8 @@ func submit_flashcard(succeed:bool):
 				Globals.get_player().mode = Player.PlayerMode.STILL
 				await get_tree().create_timer(4).timeout
 				signal_show_bossfight_results.emit(trigger, results)
-				
 		if(isBossfight==false and player !=null and player.health > 0):
 			adventure_mode.emit()
-
 
 func _input(event):
 	if (get_player() == null or get_player().mode == Player.PlayerMode.FACTS) and has_flashcard():
@@ -375,7 +363,6 @@ func _input(event):
 				signal_flashcard_answer_changed.emit(current_flashcard_answer)
 				if(get_flashcard_question().answerEquals(current_flashcard_answer)):
 					submit_flashcard(true)
-				
 
 static var rng = RandomNumberGenerator.new()
 
