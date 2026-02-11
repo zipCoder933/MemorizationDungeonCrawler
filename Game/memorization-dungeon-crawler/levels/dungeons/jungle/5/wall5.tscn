@@ -48,7 +48,7 @@ light_indirect_energy = 3.1
 omni_range = 5.034739
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.611449, -0.17042068, 0, 0.24867365, 2.4749937, 0, 0, 0, 4.474575, -0.56444526, 3.7570996, -0.29252005)
+transform = Transform3D(3.6199977, -0.0029009804, 0, 0.0042330846, 2.4808524, 0, 0, 0, 4.474575, -0.5034466, 3.7570996, -0.29252005)
 mesh = SubResource("QuadMesh_ag208")
 surface_material_override/0 = SubResource("StandardMaterial3D_ke0kl")
 
