@@ -58,7 +58,8 @@ func _submitted_global(node:WorldFlashCard, success:bool):
 func _submitted(success:bool):
 	if(!success):
 		background.color = FAILED_COLOR
-	answer_label.text = q.formattedAnswer()
+	if(q != null):
+		answer_label.text = q.formattedAnswer()
 	start_time = Time.get_ticks_msec()
 	q = null
 
