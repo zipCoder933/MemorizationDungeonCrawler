@@ -2,7 +2,7 @@ extends StaticBody3D
 class_name DoorTrigger
 const CardsHandler = preload("uid://cc0wwewiey4d7")
 const LevelsHandler = preload("uid://bte11e0fapqes")
-const FLASHCARD_TIME_MULTIPLIER = 0.9 #The doors shouldnt be easy to open
+const FLASHCARD_TIME_MULTIPLIER = 1
 
 @export var door:Door;
 @onready var _3d_flashcard: Sprite3D = $"3dFlashcard"

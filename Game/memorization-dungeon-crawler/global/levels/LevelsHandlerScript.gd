@@ -69,6 +69,9 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 	start_speed = JsonUtils.get_float(json_data, "starting_answer_speed_sec", 10.0)
 	goal_speed  = JsonUtils.get_float(json_data, "goal_answer_speed_sec", 1.0)
 
+	#In the future we could make this configurable
+	var progression_curve:float = 0.3
+	
 	var default_start_speed:float = lerp(start_speed, goal_speed, clampf(JsonUtils.get_float(json_data, "midgame_start_speed_percent", 0.1), 0, 0.9 ))
 	var default_goal_speed:float  = lerp(start_speed, goal_speed, clampf(JsonUtils.get_float(json_data, "midgame_goal_speed_percent", 0.82), 0.1 ,1 ))
 	midgame_start_speed = default_start_speed
@@ -179,7 +182,12 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			# Create levels
 			for j in range(levelCount):
 				total_levels_so_far += 1
+				
 				var t = float(j) / max(1, levelCount)
+				# We need to ease into goal speed, if it is linear the last level will get to fast without any preparation for it
+				#t = ease(t, 2.0)
+				t = pow(t, progression_curve)
+				
 				var speed:float = 0
 
 				#If we are running through entirely new cards and the midgame speed is the same as the default setting
