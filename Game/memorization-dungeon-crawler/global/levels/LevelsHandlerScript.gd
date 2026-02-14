@@ -70,7 +70,8 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 	goal_speed  = JsonUtils.get_float(json_data, "goal_answer_speed_sec", 1.0)
 
 	#In the future we could make this configurable
-	var progression_curve:float = 0.3
+	#lower means we get closer to the goal as we approach the end
+	var progression_curve:float = clampf(JsonUtils.get_float(json_data, "progression_curve", 0.21), 0.1, 1)
 	
 	var default_start_speed:float = lerp(start_speed, goal_speed, clampf(JsonUtils.get_float(json_data, "midgame_start_speed_percent", 0.1), 0, 0.9 ))
 	var default_goal_speed:float  = lerp(start_speed, goal_speed, clampf(JsonUtils.get_float(json_data, "midgame_goal_speed_percent", 0.82), 0.1 ,1 ))
@@ -150,7 +151,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 		
 		
 		for level_indx in range(levelsjson.size()):
-			var level = levelsjson[level_indx]
+			var level = levelsjson[level_indx] #our level json file
 			var levelCount = JsonUtils.get_int(level, "count", 0)
 			if levelCount <= 0:
 				continue
@@ -179,6 +180,11 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 			if(raw_tags.size() == 0):
 				level_tags.append_array(learned_tags)
 
+			var level_progression_curve = progression_curve
+			
+			if(level.has("progression_curve")):#We can change the progression curve for each level set if we want to
+				level_progression_curve = clampf(JsonUtils.get_float(level, "progression_curve", 0.21), 0.1, 1)
+				
 			# Create levels
 			for j in range(levelCount):
 				total_levels_so_far += 1
@@ -186,7 +192,7 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 				var t = float(j) / max(1, levelCount)
 				# We need to ease into goal speed, if it is linear the last level will get to fast without any preparation for it
 				#t = ease(t, 2.0)
-				t = pow(t, progression_curve)
+				t = pow(t, level_progression_curve)
 				
 				var speed:float = 0
 
