@@ -4,10 +4,10 @@ extends Node
 static var levels: Array[Level] = []
 
 #start and goal speed in seconds
-static var start_speed
-static var goal_speed
-static var midgame_start_speed
-static var midgame_goal_speed
+static var start_speed:float
+static var goal_speed:float
+static var midgame_start_speed:float
+static var midgame_goal_speed:float
 
 static var _last_level_tags:Array[String] = []
 #---
@@ -69,10 +69,16 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 	start_speed = JsonUtils.get_float(json_data, "starting_answer_speed_sec", 10.0)
 	goal_speed  = JsonUtils.get_float(json_data, "goal_answer_speed_sec", 1.0)
 
-	var default_start_speed = lerp(start_speed, goal_speed, JsonUtils.get_float(json_data, "midgame_start_speed_percent", 0.1))
-	var default_goal_speed  = lerp(start_speed, goal_speed, JsonUtils.get_float(json_data, "midgame_goal_speed_percent", 0.82))
+	var default_start_speed:float = lerp(start_speed, goal_speed, clampf(JsonUtils.get_float(json_data, "midgame_start_speed_percent", 0.1), 0, 0.9 ))
+	var default_goal_speed:float  = lerp(start_speed, goal_speed, clampf(JsonUtils.get_float(json_data, "midgame_goal_speed_percent", 0.82), 0.1 ,1 ))
 	midgame_start_speed = default_start_speed
 	midgame_goal_speed  = default_goal_speed
+	
+	if(verbose):
+		print("start_speed=",start_speed,"\ngoal_speed=",goal_speed)
+		print("midgame_start_speed=",midgame_start_speed,"\nmidgame_goal_speed=",default_goal_speed)
+		#print("test ",Globals.smart_lerp(10, 0.4, 0.95))
+
 	
 
 	print("GAME SPEED (SEC): start=%2f; end=%2f; mid-start=%2f; mid-end=%2f;" %
@@ -106,20 +112,15 @@ static func load_from_file(file_path: String, results:GameJsonLoadInfo = GameJso
 		# We can get the speed from each dungeon or from the default valeus
 		# ---------------------------
 		dungeon_start_speed = midgame_start_speed
-		if(dungeon.has("start_speed_percent")):
+		if(dungeon.has("start_speed_percent")): 
 			var lerp_value =  JsonUtils.get_float(dungeon, "start_speed_percent",0)
-			dungeon_start_speed = lerp(start_speed, goal_speed,lerp_value)
-		else:
-			dungeon_start_speed = default_start_speed
+			dungeon_start_speed = lerp(start_speed, goal_speed, lerp_value)
 		
 		dungeon_goal_speed = midgame_goal_speed
 		if(dungeon.has("goal_speed_percent")):
 			var lerp_value =  JsonUtils.get_float(dungeon, "goal_speed_percent",0)
-			dungeon_goal_speed  = lerp(start_speed, goal_speed,lerp_value)
-		else:
-			dungeon_goal_speed = default_goal_speed
-		
-		if(dungIndx == dungeons.size()-1):
+			dungeon_goal_speed  = lerp(start_speed, goal_speed, lerp_value)
+		elif(dungIndx == dungeons.size()-1):
 			dungeon_goal_speed = goal_speed
 		
 		if(verbose):

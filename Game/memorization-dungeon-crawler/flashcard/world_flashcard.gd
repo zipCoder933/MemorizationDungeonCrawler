@@ -21,5 +21,8 @@ func get_look_target() -> Vector3:
 func get_time_elapsed_MS() -> int:
 	return card_ui.get_time_elapsed_MS()
 
+func get_time_limit_MS() -> int:
+	return card_ui.get_time_limit_MS()
+
 func _ready():
 	visible = false

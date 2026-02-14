@@ -35,6 +35,7 @@ static var themed_succeeded:int= 0
 static var succeeded:int = 0
 static var questions:Array[Question];
 static var _flashcardNode:WorldFlashCard
+static var submit_allowed
 
 ##If we are in the middle of a long bossfight, we may want to give our player a short break
 static var FLASHCARD_BREAK_INTERVAL = 25
@@ -113,7 +114,6 @@ func load_cards_levels(dir_path:String, feedback:GameJsonLoadInfo = GameJsonLoad
 	return true
 
 
-
 func load_game(entry:SaveEntry, successCall: Callable = Callable(), feedback:GameJsonLoadInfo = GameJsonLoadInfo.new()):
 	var loadingPanel:GameLoadingPanel = get_game_loading_panel()
 	if(loadingPanel != null):
@@ -166,7 +166,7 @@ func go_to_level():
 	get_tree().change_scene_to_file("res://levels/Level.tscn")
 
 func has_flashcard():
-	return _current_flashcard_question!=null and _has_flashcard
+	return _current_flashcard_question!=null and _flashcardNode !=null and _has_flashcard
 
 func get_flashcard_question():
 	return _current_flashcard_question
@@ -180,6 +180,7 @@ func clear_flashcard():
 	_has_flashcard = false
 
 func new_flashcard_question(current_flashcard_question2:Question):
+	submit_allowed = true
 	last_flascard_answer = null
 	if(get_player() == null or get_player().mode != Player.PlayerMode.FACTS):
 		#If the player says nope, forget about the new flashcard question
@@ -269,10 +270,13 @@ func flashcard_deck_size():
 
 var last_flascard_answer;
 
+#This method is used to automatically fail us if we run out of time
 func submit_flashcard(succeed:bool):
 	#If we dont have a flashcard anymore (We already submitted the last one)
-	if(!has_flashcard()):
+	if(submit_allowed ==false or !has_flashcard()):
 		return
+	#We cannot submit if we have already submitted
+	submit_allowed = false
 	var player =  get_player()
 	player.play_submit_sound(succeed);
 	var accuracy = 0

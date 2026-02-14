@@ -17,7 +17,6 @@
 		  "enemy_card_count": 30
 		}
 	  ],
-	  "goal_speed_percent": 0.8,
 	  "card_count_multiplier": 1,
 	  "boss_card_count_multiplier": 4
 	},
