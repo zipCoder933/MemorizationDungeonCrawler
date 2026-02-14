@@ -16,7 +16,7 @@
 		{
 		  "tags": [],
 		  "count": 3,
-		"arena_count": [100,101],
+		  "arena_count": [100,101],
 		  "enemy_card_count":100
 		}
 	  ],
@@ -42,7 +42,7 @@
 	  "theme": "lava",
 	  "boss_name": "Bossmania",
 	  "boss_card_count_multiplier": 1,
-		"enemy_card_count":1000,
+	  "enemy_card_count":1000,
 	  "levels": [
 		{
 		  "tags": ["2s"],
