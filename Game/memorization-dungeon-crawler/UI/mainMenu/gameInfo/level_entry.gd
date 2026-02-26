@@ -11,15 +11,17 @@ extends Panel
 
 var saveEntry:SaveEntry 
 var level:Level
+var practice_level:Level
 const A = Color(0.24, 0.24, 0.24, 0.718)
 
-func set_details(saveEntry:SaveEntry , level:Level, unlocked:bool):
+func set_details(saveEntry:SaveEntry , level:Level, practice_level:Level, unlocked:bool):
 	if(level.dungeon_index % 2 == 0):
 		var style := StyleBoxFlat.new()
 		style.bg_color = A
 		add_theme_stylebox_override("panel", style)
 	
 	self.level = level
+	self.practice_level = practice_level
 	self.saveEntry = saveEntry
 	
 	if(level.levelType == Level.LevelType.PRACTICE):
@@ -55,4 +57,11 @@ func _on_play_button_pressed() -> void:
 	if(level != null):
 		Globals.load_game(saveEntry)
 		SaveHandler.set_current_level(level)
+		Globals.go_to_level()
+
+
+func _on_practice_button_pressed() -> void:
+	if(practice_level != null):
+		Globals.load_game(saveEntry)
+		SaveHandler.set_current_level(practice_level)
 		Globals.go_to_level()

@@ -211,3 +211,37 @@ static func load_texture_anywhere(path: String) -> Texture2D:
 		return tex
 	push_error("❌ Failed non-absolute load: " + path)
 	return null
+
+
+func unzip_file(zip_path: String, destination_path: String):
+	var reader := ZIPReader.new()
+	var err := reader.open(zip_path)
+	
+	if err != OK:
+		push_error("Failed to open ZIP file.")
+		return
+
+	# Ensure the destination directory exists
+	if not DirAccess.dir_exists_absolute(destination_path):
+		DirAccess.make_dir_recursive_absolute(destination_path)
+
+	var files = reader.get_files()
+	
+	for file_path in files:
+		# Create subdirectories if the ZIP contains folders
+		var target_file_path = destination_path.path_join(file_path)
+		if file_path.ends_with("/"):
+			DirAccess.make_dir_recursive_absolute(target_file_path)
+			continue
+			
+		# Read the file data from the ZIP
+		var data = reader.read_file(file_path)
+		
+		# Write the data to the new location
+		var file = FileAccess.open(target_file_path, FileAccess.WRITE)
+		if file:
+			file.store_buffer(data)
+			file.close()
+
+	reader.close()
+	print("Extraction complete!")

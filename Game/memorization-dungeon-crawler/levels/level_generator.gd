@@ -102,7 +102,7 @@ func get_arena_center(x: int, z: int, x_radius: int, z_radius: int, direction: D
 
 
 
-func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, testMode:bool, enemy:Resource) -> bool:
+func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, testMode:bool, enemy:Resource, addDoors: bool = true) -> bool:
 	var final = moveIn(Vector3(x,0,z),direction)
 	x = final.x;
 	z = final.z;
@@ -122,7 +122,7 @@ func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, t
 						return false
 				else:
 					box(ox,oz,false,false, false)
-		if !testMode:
+		if addDoors:
 			wall(x + 0.5, z, DOOR, direction)
 	elif direction == Direction.ZNEG:
 		for ox in range(x-z_radius,x+z_radius+1):#Spread out
@@ -133,7 +133,7 @@ func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, t
 						return false
 				else:
 					box(ox,oz,false,false, false)
-		if !testMode:
+		if addDoors:
 			wall(x + 0.5, z + 1, DOOR, direction)
 	elif direction == Direction.XNEG:
 		for oz in range(z-z_radius,z+z_radius+1):#Spread out
@@ -144,7 +144,7 @@ func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, t
 						return false
 				else:
 					box(ox,oz,false,false, false)
-		if !testMode:
+		if addDoors:
 			wall(x + 1, z + 0.5,DOOR, direction)
 	else:
 		for oz in range(z-z_radius,z+z_radius+1):#Spread out
@@ -155,7 +155,7 @@ func arena(x: int, z: int, x_radius: int, z_radius: int, direction: Direction, t
 						return false
 				else:
 					box(ox,oz,false,false, false)
-		if !testMode:
+		if addDoors:
 			wall(x, z + 0.5, DOOR,direction)
 	
 	return true
@@ -187,18 +187,6 @@ func moveIn(place:Vector3, direction:Direction) -> Vector3:
 	return place
 
 var count = 0
-
-#func _process(delta):
-	#count+=1
-	##if(count > 50):
-		##count = 0
-		##place = searched.keys()[randi_range(0,searched.keys().size()-1)]
-		##var direction =Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()  # to the right
-		##var length = randi_range(5,50)
-		##var end_pls:Vector3 = (Vector3(place) + direction * length)
-		##if is_area_clear(end_pls.x, end_pls.z, 6):
-			##var steps = path(place, end_pls, 25,0,arenaSize)
-
 
 var counter:int = 0
 var searched: Dictionary = {}
@@ -268,13 +256,14 @@ func path_direction(direction:Direction, length:int, placeDoors:bool, idea_path)
 
 func path(path_start:Vector3, path_end:Vector3, max_failures:int, \
 		starting_arena_size:int, arenaSize:int, failedLevelSurvival:float, boss:bool,\
-		set_player_spawn_at_start:bool=false) -> int:
+		set_player_spawn_at_start:bool=false, door_likelyhood:float = 0.3) -> int:
 	place = path_start
 	var stepsTaken = 0
 	var failures = 0
 	var lastSuccesfullDirection = Direction.XPOS
 	var lastDirection = Direction.XPOS
 	var idea_path:Array[PathStep]
+	var arena_doors = true
 
 	for i in range(0, 100000):
 		var direction = findDirectionThatPointsToTarget(path_end)
@@ -285,30 +274,31 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, \
 			
 		var placeDoors = true #Always place a door at the beginning of a path
 		if(stepsTaken > 0):
-			placeDoors = randf() < DOOR_LIKELYHOOD
-		#if Engine.is_embedded_in_editor(): #Dont want to worry about doors in editor
-				#placeDoors = false
+			placeDoors = randf() < door_likelyhood
+		if door_likelyhood <= 0:
+				placeDoors = false
+				arena_doors=false
 		if(place.is_equal_approx(path_end)):
 			break;
 		if path_direction(direction,randi_range(1,4),placeDoors,idea_path):
 			if(stepsTaken == 0 and starting_arena_size > 0):
 				if direction == Direction.XPOS:
-					arena(path_start.x+1,path_start.z, starting_arena_size,starting_arena_size, Direction.XNEG, false,null)
+					arena(path_start.x+1,path_start.z, starting_arena_size,starting_arena_size, Direction.XNEG, false,null,arena_doors)
 					if(set_player_spawn_at_start):
 						PLAYER_SPAWN = _format_vec3(\
 						get_arena_center(path_start.x+1,path_start.z, starting_arena_size,starting_arena_size, Direction.XNEG))
 				elif direction == Direction.XNEG:
-					arena(path_start.x-1,path_start.z, starting_arena_size,starting_arena_size, Direction.XPOS, false,null)
+					arena(path_start.x-1,path_start.z, starting_arena_size,starting_arena_size, Direction.XPOS, false,null,arena_doors)
 					if(set_player_spawn_at_start):
 						PLAYER_SPAWN = _format_vec3(\
 						get_arena_center(path_start.x-1,path_start.z, starting_arena_size,starting_arena_size, Direction.XPOS))
 				elif direction == Direction.ZPOS:
-					arena(path_start.x,path_start.z+1, starting_arena_size,starting_arena_size, Direction.ZNEG, false,null)
+					arena(path_start.x,path_start.z+1, starting_arena_size,starting_arena_size, Direction.ZNEG, false,null,arena_doors)
 					if(set_player_spawn_at_start):
 						PLAYER_SPAWN = _format_vec3(\
 						get_arena_center(path_start.x,path_start.z+1, starting_arena_size,starting_arena_size, Direction.ZNEG))
 				else:
-					arena(path_start.x,path_start.z-1, starting_arena_size,starting_arena_size, Direction.ZPOS, false,null)
+					arena(path_start.x,path_start.z-1, starting_arena_size,starting_arena_size, Direction.ZPOS, false,null,arena_doors)
 					if(set_player_spawn_at_start):
 						PLAYER_SPAWN = _format_vec3(\
 						get_arena_center(path_start.x,path_start.z-1, starting_arena_size,starting_arena_size, Direction.ZPOS))
@@ -331,9 +321,9 @@ func path(path_start:Vector3, path_end:Vector3, max_failures:int, \
 		#Only place the arena if we didnt fail
 		if(stepsTaken > 0 and failures < max_failures and arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, true, null)):
 			if(boss):
-				arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, false, ARENA_BOSS)
+				arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, false, ARENA_BOSS,arena_doors)
 			else:
-				arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, false, ARENA_ENEMY)
+				arena(place.x,place.z, arenaSize,arenaSize, lastSuccesfullDirection, false, ARENA_ENEMY,arena_doors)
 				Globals.totalArenas += 1
 	
 	return stepsTaken
@@ -354,7 +344,6 @@ func _material(prefix: String) -> StandardMaterial3D:
 const arenaSize = 1;
 const CLOSENESS_TO_END_PATH_END = 6;
 const FAILED_LEVEL_SURVIVAL = 0.3
-const DOOR_LIKELYHOOD = 0.3
 var WALL
 var DOOR = preload("uid://bdnosseu7fsm")
 var ARENA_ENEMY = preload("uid://bqoufhp54uwue")
@@ -444,7 +433,6 @@ func set_dungeon_theme(level:Level, game:SaveEntry):
 func _ready():
 	var level = SaveHandler.get_current_level()
 	var game = SaveHandler.currentGame
-	var includeBossfight = false
 	
 	if( level != null ):
 		set_dungeon_theme(level, game)
@@ -453,10 +441,6 @@ func _ready():
 		"\n--------------------------------------------------\n")
 		var next_level:Level = LevelsHandler.get_level(SaveHandler.currentGame.get_completed_level()+1)
 		print("Next level: ",next_level.toString())
-		
-		if(level.levelType == Level.LevelType.BOSS):
-			includeBossfight = true
-			
 		#Calculate how many arenas we want
 		var cards = CardsHandler.card_count(level.card_tags)
 	
@@ -471,13 +455,13 @@ func _ready():
 	if(level.levelType == Level.LevelType.PRACTICE):
 		main_path_end = Vector3(start_pos)
 		main_path_end.x -= 5
-	
-	if(includeBossfight):
+		path(start_pos, main_path_end, 25, 2, arenaSize, 1, false, true, 0)
+	elif(level.levelType == Level.LevelType.BOSS):
 		print("BOSS PATH: ",\
-		 path(start_pos, main_path_end, 25, 2, arenaSize+2, 1, true, true))
+		path(start_pos, main_path_end, 25, 2, arenaSize+2, 1, true, true))
 	else:
 		print("STANDARD PATH: ",\
-		 path(start_pos, main_path_end, 25, 2, arenaSize, 1, false, true))
+		path(start_pos, main_path_end, 25, 2, arenaSize, 1, false, true))
 	
 	print("Center: ",PLAYER_SPAWN)
 	Globals.get_player().global_position.x = PLAYER_SPAWN.x

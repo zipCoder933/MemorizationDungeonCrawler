@@ -36,15 +36,13 @@ func _ready():
 			print("Reading levels: ",LevelsHandler.levels.size(), " level - ",completed)
 			for level in LevelsHandler.levels:
 				_add_level_entry(level,completed)
-				if(level.levelType == Level.LevelType.BOSS):
-					var practiceLevel = Level.makePracticeLevel(level)
-					_add_level_entry(practiceLevel,completed)
 		)
 
 func _add_level_entry(level:Level, completed:int):
+	var practiceLevel = Level.makePracticeLevel(level)
 	var node = LEVEL_ENTRY.instantiate()
 	level_entries.add_child(node)
-	node.set_details(saveEntry, level, level.level_index <= completed)
+	node.set_details(saveEntry, level,practiceLevel, level.level_index <= completed)
 
 func _on_tab_bar_tab_selected(tab: int) -> void:
 	selectTab(tab)
