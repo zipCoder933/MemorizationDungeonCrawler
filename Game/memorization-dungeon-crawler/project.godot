@@ -8,6 +8,10 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Cogni Crawl"
@@ -17,9 +21,9 @@ config/name_localized={
 config/description="A Flashcard Memorization Dungeon Crawler"
 config/version="1.2.4"
 run/main_scene="uid://cpl08t4hcotn"
-config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/fullsize=false
+boot_splash/stretch_mode=0
 boot_splash/image="uid://7ksq3q1yh5he"
 config/icon="uid://d260hqcqu35ev"
 config/windows_native_icon="res://assets/icon.ico"
@@ -27,7 +31,7 @@ boot_splash/minimum_display_time=400
 
 [autoload]
 
-PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+PhantomCameraManager="*uid://duq6jhf6unyis"
 Globals="*res://global/GlobalNode.tscn"
 LevelsHandler="*res://global/levels/LevelsHandlerNode.tscn"
 SaveHandlerGlobal="*res://global/saves/SaveHandlerNode.tscn"
