@@ -1,10 +1,8 @@
-
-Game/memorization-dungeon-crawler/MemorizationDungeonCrawler.exe
-assets/*.blend1
-assets/knight/Knight.blend
-assets/knight/Knight.blend1
-/Game/memorization-dungeon-crawler/data_MemorizationDungeonCrawler_windows_x86_64
-/program
-/program-linux
-/Program
 *.blend1
+*.zip
+
+/Game/dist/windows/*
+/Game/dist/linux_arm/*
+/Game/dist/linux_x86/*
+/Game/dist/macos/*
+/Program
