@@ -86,10 +86,10 @@ func _global_fact_answering_mode(_flashcardNode:WorldFlashCard):
 			if(bossfight_mode):
 				ambient_sound.volume_db = -10
 				#Set the target volume of the bossfight music
-				var target_db:float = 6.0
+				var target_db:float = 5.85
 				ambient_sound.play()
 				var tween = create_tween()
-				tween.tween_property(ambient_sound, "volume_db", target_db, 1.5)
+				tween.tween_property(ambient_sound, "volume_db", target_db, 2.0)
 			else:
 				#Set the target volume of the enemy music
 				ambient_sound.volume_db = 0
