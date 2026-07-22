@@ -134,7 +134,7 @@ var averageTime: float = 0.0
 var averageAccuracy: float = 0.0
 var samples: int = 0
 
-func _flashcard_single_drill(node: WorldFlashCard, succeed: bool):
+func _flashcard_single_drill(node: WorldFlashCard, succeed: bool, time_ms:int):
 	if SaveHandler.get_current_level().levelType == Level.LevelType.PRACTICE:
 		var time:int = node.drill_submit_time_ms
 		var accuracy: float = 1.0 if succeed else 0.0

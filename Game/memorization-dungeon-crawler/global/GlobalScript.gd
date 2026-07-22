@@ -46,7 +46,21 @@ static var _in_editor:bool
 static func is_in_editor() -> bool:
 	return _in_editor
 
+@onready var fantasy_music: AudioStreamPlayer = %FantasyMusic
 
+func play_music():
+	if(!fantasy_music.is_playing()):
+		fantasy_music.play()
+		fantasy_music.volume_db = -30.0
+		var tween = create_tween()
+		var target_db: float = -5.0;
+		var fade_duration: float = 10.0;
+		tween.tween_interval(1)#delay seconds
+		tween.tween_callback(fantasy_music.play)
+		tween.tween_property(fantasy_music, "volume_db", target_db, fade_duration)
+	
+func stop_music():
+	fantasy_music.stop()
 
 func _ready():
 	_in_editor = Engine.is_embedded_in_editor()
@@ -302,8 +316,8 @@ func submit_flashcard(succeed:bool):
 			SaveHandler.currentGame.tag_mastery[tag] = SaveEntry.CardMastery.new(time_ms, accuracy,1)
 	
 	_flashcardNode.drill_submit_time_ms = time_ms
-	_flashcardNode.signal_flashcard_single_drill.emit(succeed)
-	signal_flashcard_single_drill.emit(_flashcardNode, succeed)
+	_flashcardNode.signal_flashcard_single_drill.emit(succeed, time_ms)
+	signal_flashcard_single_drill.emit(_flashcardNode, succeed, time_ms)
 	
 	if(succeed):
 		questions.remove_at(0)

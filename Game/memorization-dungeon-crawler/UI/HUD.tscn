@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bfj67b4iujjtf"]
+[gd_scene format=3 uid="uid://bfj67b4iujjtf"]
 
 [ext_resource type="Script" uid="uid://qn46exgdgmle" path="res://UI/hud.gd" id="1_ijstf"]
 [ext_resource type="Texture2D" uid="uid://ch714bgi1e00f" path="res://assets/textures/health_indicator.png" id="1_yixhe"]
@@ -41,7 +41,7 @@ bg_color = Color(0.41239682, 0.28710702, 0.9308016, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ptjp"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="PlayerHUD" type="Control"]
+[node name="PlayerHUD" type="Control" unique_id=987176813]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,9 +51,9 @@ grow_vertical = 2
 theme = ExtResource("5_f2wx0")
 script = ExtResource("1_ijstf")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1366727350]
 
-[node name="keys_hud" type="Panel" parent="CanvasLayer"]
+[node name="keys_hud" type="Panel" parent="CanvasLayer" unique_id=728169219]
 unique_name_in_owner = true
 anchors_preset = 10
 anchor_right = 1.0
@@ -61,7 +61,7 @@ offset_bottom = 87.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rbci0")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/keys_hud"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/keys_hud" unique_id=1429221620]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -72,11 +72,11 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 
-[node name="keyContainer" type="HBoxContainer" parent="CanvasLayer/keys_hud/MarginContainer"]
+[node name="keyContainer" type="HBoxContainer" parent="CanvasLayer/keys_hud/MarginContainer" unique_id=2146446325]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="key" type="TextureRect" parent="CanvasLayer/keys_hud/MarginContainer/keyContainer"]
+[node name="key" type="TextureRect" parent="CanvasLayer/keys_hud/MarginContainer/keyContainer" unique_id=440669007]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
@@ -84,7 +84,7 @@ texture = ExtResource("10_rbci0")
 expand_mode = 4
 stretch_mode = 4
 
-[node name="keysInfo" type="Label" parent="CanvasLayer/keys_hud"]
+[node name="keysInfo" type="Label" parent="CanvasLayer/keys_hud" unique_id=470643002]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
@@ -99,7 +99,7 @@ theme = ExtResource("4_am7sw")
 theme_override_fonts/font = ExtResource("4_md4fy")
 text = "KEYS -/-"
 
-[node name="health_hud" type="Panel" parent="CanvasLayer"]
+[node name="health_hud" type="Panel" parent="CanvasLayer" unique_id=1796931763]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -110,7 +110,7 @@ offset_bottom = 45.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_md4fy")
 
-[node name="DamageBar" type="ProgressBar" parent="CanvasLayer/health_hud"]
+[node name="DamageBar" type="ProgressBar" parent="CanvasLayer/health_hud" unique_id=1520618140]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
@@ -133,12 +133,12 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_o3xbc")
 max_value = 1.0
 value = 1.0
 
-[node name="HealthIndicator" type="Sprite2D" parent="CanvasLayer/health_hud/DamageBar"]
+[node name="HealthIndicator" type="Sprite2D" parent="CanvasLayer/health_hud/DamageBar" unique_id=1508321469]
 position = Vector2(-31.250015, 15.215232)
 scale = Vector2(0.29334688, 0.20563807)
 texture = ExtResource("1_yixhe")
 
-[node name="DamageBar2" type="ProgressBar" parent="CanvasLayer/health_hud"]
+[node name="DamageBar2" type="ProgressBar" parent="CanvasLayer/health_hud" unique_id=1950855760]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
@@ -163,7 +163,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_rbci0")
 max_value = 1.0
 value = 1.0
 
-[node name="practiceHUD" type="Panel" parent="CanvasLayer"]
+[node name="practiceHUD" type="Panel" parent="CanvasLayer" unique_id=1036594236]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -172,7 +172,7 @@ grow_vertical = 2
 theme = ExtResource("5_f2wx0")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_am7sw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/practiceHUD"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/practiceHUD" unique_id=1376440190]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -184,12 +184,12 @@ offset_bottom = 66.0
 grow_horizontal = 0
 theme_override_constants/separation = 2
 
-[node name="accuracy" type="Panel" parent="CanvasLayer/practiceHUD/VBoxContainer"]
+[node name="accuracy" type="Panel" parent="CanvasLayer/practiceHUD/VBoxContainer" unique_id=232689570]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ixkb2")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/practiceHUD/VBoxContainer/accuracy"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/practiceHUD/VBoxContainer/accuracy" unique_id=1133905433]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -198,13 +198,13 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/practiceHUD/VBoxContainer/accuracy/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/practiceHUD/VBoxContainer/accuracy/HBoxContainer" unique_id=9078438]
 layout_mode = 2
 theme = ExtResource("4_am7sw")
 theme_override_font_sizes/font_size = 16
 text = "Avg Accuracy:"
 
-[node name="practiceHud_accuracy" type="ProgressBar" parent="CanvasLayer/practiceHUD/VBoxContainer/accuracy/HBoxContainer"]
+[node name="practiceHud_accuracy" type="ProgressBar" parent="CanvasLayer/practiceHUD/VBoxContainer/accuracy/HBoxContainer" unique_id=1078165320]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
@@ -214,12 +214,12 @@ theme = ExtResource("5_f2wx0")
 value = 100.0
 rounded = true
 
-[node name="time" type="Panel" parent="CanvasLayer/practiceHUD/VBoxContainer"]
+[node name="time" type="Panel" parent="CanvasLayer/practiceHUD/VBoxContainer" unique_id=269863530]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_mms7u")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/practiceHUD/VBoxContainer/time"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/practiceHUD/VBoxContainer/time" unique_id=1112995452]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -228,20 +228,20 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/practiceHUD/VBoxContainer/time/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/practiceHUD/VBoxContainer/time/HBoxContainer" unique_id=390732866]
 layout_mode = 2
 theme = ExtResource("4_am7sw")
 theme_override_font_sizes/font_size = 16
 text = "Avg Time:"
 
-[node name="practiceHud_timeColor" type="ColorRect" parent="CanvasLayer/practiceHUD/VBoxContainer/time/HBoxContainer"]
+[node name="practiceHud_timeColor" type="ColorRect" parent="CanvasLayer/practiceHUD/VBoxContainer/time/HBoxContainer" unique_id=384310332]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 color = Color(0, 0.37353253, 0.3572697, 1)
 
-[node name="practiceHud_timeLabel" type="Label" parent="CanvasLayer/practiceHUD/VBoxContainer/time/HBoxContainer/practiceHud_timeColor"]
+[node name="practiceHud_timeLabel" type="Label" parent="CanvasLayer/practiceHUD/VBoxContainer/time/HBoxContainer/practiceHud_timeColor" unique_id=1533220903]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -256,12 +256,12 @@ text = "25s"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/practiceHUD"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/practiceHUD" unique_id=734634396]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CardUI" parent="CanvasLayer" instance=ExtResource("6_gppie")]
+[node name="CardUI" parent="CanvasLayer" unique_id=2028009138 instance=ExtResource("6_gppie")]
 unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
@@ -273,7 +273,7 @@ offset_bottom = 35.0
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
 
-[node name="GameOverPanel" type="Panel" parent="CanvasLayer"]
+[node name="GameOverPanel" type="Panel" parent="CanvasLayer" unique_id=563029927]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -289,7 +289,7 @@ grow_vertical = 2
 theme = ExtResource("5_f2wx0")
 theme_override_styles/panel = ExtResource("3_uk570")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverPanel" unique_id=462722055]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -297,24 +297,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/GameOverPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/GameOverPanel/VBoxContainer" unique_id=608440004]
 layout_mode = 2
 size_flags_vertical = 3
 text = "GAME OVER!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="quit" type="Button" parent="CanvasLayer/GameOverPanel/VBoxContainer"]
+[node name="quit" type="Button" parent="CanvasLayer/GameOverPanel/VBoxContainer" unique_id=466172991]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit to Main Menu"
 
-[node name="try_again" type="Button" parent="CanvasLayer/GameOverPanel/VBoxContainer"]
+[node name="try_again" type="Button" parent="CanvasLayer/GameOverPanel/VBoxContainer" unique_id=1871961898]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Try Again"
 
-[node name="VictoryPanel" type="Panel" parent="CanvasLayer"]
+[node name="VictoryPanel" type="Panel" parent="CanvasLayer" unique_id=1749233775]
 visible = false
 z_index = 100
 anchors_preset = 15
@@ -325,7 +325,7 @@ grow_vertical = 2
 theme = ExtResource("5_f2wx0")
 theme_override_styles/panel = ExtResource("3_uk570")
 
-[node name="VictoryText" type="Label" parent="CanvasLayer/VictoryPanel"]
+[node name="VictoryText" type="Label" parent="CanvasLayer/VictoryPanel" unique_id=455245269]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 14
@@ -341,7 +341,7 @@ text = "Victory!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="back" type="Button" parent="CanvasLayer/VictoryPanel"]
+[node name="back" type="Button" parent="CanvasLayer/VictoryPanel" unique_id=1290646308]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -357,7 +357,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Main Menu"
 
-[node name="Next" type="Button" parent="CanvasLayer/VictoryPanel"]
+[node name="Next" type="Button" parent="CanvasLayer/VictoryPanel" unique_id=104827159]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -373,7 +373,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Next Level"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VictoryPanel"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VictoryPanel" unique_id=690594030]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -389,7 +389,7 @@ grow_vertical = 2
 texture = ExtResource("8_md4fy")
 expand_mode = 1
 
-[node name="MenuPanel" type="Panel" parent="CanvasLayer"]
+[node name="MenuPanel" type="Panel" parent="CanvasLayer" unique_id=2096350480]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 8
@@ -406,7 +406,7 @@ grow_vertical = 2
 theme = ExtResource("5_f2wx0")
 theme_override_styles/panel = ExtResource("3_uk570")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuPanel" unique_id=977392403]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -414,7 +414,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/MenuPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/MenuPanel/VBoxContainer" unique_id=2057102324]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("5_f2wx0")
@@ -422,26 +422,26 @@ text = "Game Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="mute" type="Button" parent="CanvasLayer/MenuPanel/VBoxContainer"]
+[node name="mute" type="Button" parent="CanvasLayer/MenuPanel/VBoxContainer" unique_id=507814622]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_f2wx0")
 text = "Mute"
 
-[node name="graphics" type="Button" parent="CanvasLayer/MenuPanel/VBoxContainer"]
+[node name="graphics" type="Button" parent="CanvasLayer/MenuPanel/VBoxContainer" unique_id=360597672]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_f2wx0")
 text = "Graphics"
 
-[node name="home" type="Button" parent="CanvasLayer/MenuPanel/VBoxContainer"]
+[node name="home" type="Button" parent="CanvasLayer/MenuPanel/VBoxContainer" unique_id=893544439]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_f2wx0")
 text = "Quit to Main Menu"
 
-[node name="LoadingPanel" type="Panel" parent="CanvasLayer"]
+[node name="LoadingPanel" type="Panel" parent="CanvasLayer" unique_id=285664548]
 visible = false
 z_index = 100
 anchors_preset = 15
@@ -451,10 +451,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2ptjp")
 
-[node name="BossfightStats" parent="CanvasLayer" instance=ExtResource("9_7i7fj")]
+[node name="BossfightStats" parent="CanvasLayer" unique_id=1433425306 instance=ExtResource("9_7i7fj")]
 visible = false
 
-[node name="fps" type="Label" parent="."]
+[node name="fps" type="Label" parent="." unique_id=181741791]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -472,7 +472,7 @@ text = "FPS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="level indicator" type="Label" parent="."]
+[node name="level indicator" type="Label" parent="." unique_id=53280158]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12

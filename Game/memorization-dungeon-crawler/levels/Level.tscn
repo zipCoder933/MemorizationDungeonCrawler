@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4y3srd4o2pb3"]
+[gd_scene format=3 uid="uid://b4y3srd4o2pb3"]
 
 [ext_resource type="Script" uid="uid://btmeorhdo0pat" path="res://levels/level.gd" id="1_aevpi"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_n5p7m"]
@@ -8,7 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://ddqrdhfnatubf" path="res://assets/qwantani_moon_noon_puresky_2k.exr" id="4_o5d2f"]
 [ext_resource type="AudioStream" uid="uid://p62l3tk24nub" path="res://assets/sounds/pixabay/short-whoosh.wav" id="8_ddowk"]
 [ext_resource type="PackedScene" uid="uid://17b24tvmkjco" path="res://levels/LevelGenerator.tscn" id="8_o5d2f"]
-[ext_resource type="AudioStream" uid="uid://c6ya83avd5b3" path="res://assets/sounds/pixabay/levels/victory.ogg" id="9_ddowk"]
+[ext_resource type="AudioStream" uid="uid://baj3jwyt6xg2u" path="res://assets/sounds/pixabay/music/fantasy-epic-454036.mp3" id="9_ddowk"]
+[ext_resource type="AudioStream" uid="uid://c6ya83avd5b3" path="res://assets/sounds/pixabay/levels/victory.ogg" id="9_ghmtr"]
 
 [sub_resource type="Resource" id="Resource_0oum7"]
 script = ExtResource("4_aevpi")
@@ -30,10 +31,10 @@ sky = SubResource("Sky_ghmtr")
 
 [sub_resource type="Compositor" id="Compositor_nw5tl"]
 
-[node name="Level" type="Node3D" groups=["level"]]
+[node name="Level" type="Node3D" unique_id=744050937 groups=["level"]]
 script = ExtResource("1_aevpi")
 
-[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=785947853 node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.973, 6)
 script = ExtResource("3_eelho")
 follow_mode = 6
@@ -44,49 +45,52 @@ follow_damping = true
 follow_distance = 2.0
 spring_length = 2.0
 collision_mask = 11
-align_transform_with_view = Callable()
-align_position_with_view = Callable()
-align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1470563418]
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.973, 6)
 environment = SubResource("Environment_nw5tl")
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1622060583]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("2_n5p7m")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="Player" parent="." node_paths=PackedStringArray("phantom_camera_3d", "camera") instance=ExtResource("4_n5p7m")]
+[node name="Player" parent="." unique_id=136601679 node_paths=PackedStringArray("phantom_camera_3d", "camera") instance=ExtResource("4_n5p7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.848, 4)
 phantom_camera_3d = NodePath("../PhantomCamera3D")
 camera = NodePath("../Camera3D")
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=631928967]
 transform = Transform3D(0.901508, 0.024285711, -0.4320805, 0.26702994, 0.75447875, 0.5995474, 0.340556, -0.6558752, 0.6736835, -3.0613227, 1.8557096, -3.074823)
 light_energy = 0.1
 
-[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="." unique_id=214717198]
 transform = Transform3D(0.901508, 0.03110703, 0.431643, 0.26702997, -0.8248837, -0.49825892, 0.3405559, 0.56444603, -0.7519458, -5.9382224, 2.8218932, -5.025458)
 light_energy = 0.01
 
-[node name="LevelGenerator" parent="." instance=ExtResource("8_o5d2f")]
+[node name="LevelGenerator" parent="." unique_id=2008901152 instance=ExtResource("8_o5d2f")]
 
-[node name="shortWhooshSound" type="AudioStreamPlayer" parent="."]
+[node name="shortWhooshSound" type="AudioStreamPlayer" parent="." unique_id=750207074]
 unique_name_in_owner = true
 stream = ExtResource("8_ddowk")
 
-[node name="ambientSound" type="AudioStreamPlayer" parent="."]
+[node name="ambientSound" type="AudioStreamPlayer" parent="." unique_id=1655854933]
 unique_name_in_owner = true
 
-[node name="victorySound" type="AudioStreamPlayer" parent="."]
+[node name="victorySound" type="AudioStreamPlayer" parent="." unique_id=197815896]
+unique_name_in_owner = true
+stream = ExtResource("9_ghmtr")
+
+[node name="victoryMusic" type="AudioStreamPlayer" parent="." unique_id=1137562128]
 unique_name_in_owner = true
 stream = ExtResource("9_ddowk")
+volume_db = -5.0
+parameters/looping = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." groups=["world_environment"]]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=523527066 groups=["world_environment"]]
 environment = SubResource("Environment_ddowk")
 camera_attributes = SubResource("CameraAttributesPractical_ghmtr")
 compositor = SubResource("Compositor_nw5tl")

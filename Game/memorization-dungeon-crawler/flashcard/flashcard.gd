@@ -12,6 +12,8 @@ class_name FlashcardUI
 const OPACITY = 0.9
 const DEFAULT_COLOR = Color(0.18, 0.18, 0.18, OPACITY)
 const FAILED_COLOR = Color(0.973, 0.0, 0.245, OPACITY)
+const OUT_OF_TIME_COLOR = DEFAULT_COLOR
+const WARNING_COLOR = Color(0.8, 0.533, 0.0, OPACITY)
 
 var start_time:int
 var timeLimitMS:int
@@ -29,7 +31,6 @@ func _drill_global(node:WorldFlashCard, q2:Question):
 #Put up a new flashcard
 func _drill(q2: Question):
 	time_left_bar.value = 1
-	out_of_time=false
 	start_time = Time.get_ticks_msec()
 	q = null
 
@@ -60,15 +61,20 @@ func _drill(q2: Question):
 	timeLimitMS = q.time_limit * 1000 #We need to store this when Q goes null
 
 
-func _submitted_global(node:WorldFlashCard, success:bool):
-	_submitted(success)
+func _submitted_global(node:WorldFlashCard, success:bool, time_ms:int):
+	_submitted(success, time_ms)
 
-func _submitted(success:bool):
+func _submitted(success:bool, time_ms:int):
 	#Once we submit, everything resets
 	if(!success):
-		background.color = FAILED_COLOR
+		#print(time_ms,"-",timeLimitMS,"---")
+		if(time_ms > timeLimitMS):
+			background.color = OUT_OF_TIME_COLOR
+		else:
+			background.color = FAILED_COLOR
 	if(q != null):
 		answer_label.text = q.formattedAnswer()
+		
 	q = null
 
 func _ready():
@@ -89,8 +95,6 @@ func get_time_elapsed_MS() -> int:
 func get_time_limit_MS() -> int:
 	return timeLimitMS
 
-func is_time_out() -> bool:
-	return out_of_time
 
 func _process(delta:float):
 	if(q != null && Globals.has_flashcard()):
@@ -100,11 +104,19 @@ func _process(delta:float):
 		
 		var timeElapsed = get_time_elapsed_MS()
 		time_left_bar.value = remap(timeElapsed, 0, timeLimitMS, 1, 0)
+		
+		#Display a warning color when we are running out of time
+		var warningTime:float =  timeLimitMS * .5
+		if(timeElapsed > warningTime):
+			var t: float = clampf(inverse_lerp(warningTime, timeLimitMS, timeElapsed), 0.0, 1.0)
+			var k: float = 2.0
+			var d: float = log(1.0 + k * t) / log(1.0 + k)
+			var blended_color: Color = DEFAULT_COLOR.lerp(WARNING_COLOR, d)
+			background.color = blended_color
+		
 		if(timeElapsed > timeLimitMS):
-			out_of_time = true
 			answer_label.text = q.formattedAnswer()
 			Globals.submit_flashcard(false)
-			background.color = FAILED_COLOR
 
 
 func _flashcardAnswerChanged(answer:String):

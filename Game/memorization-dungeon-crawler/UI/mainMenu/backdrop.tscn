@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://laf057gsoqjg"]
+[gd_scene format=3 uid="uid://laf057gsoqjg"]
 
 [ext_resource type="Texture2D" uid="uid://cc3nxvtm6vx7j" path="res://assets/background10.png" id="1_abkjh"]
 [ext_resource type="Script" uid="uid://do1fgwffaqsp7" path="res://UI/mainMenu/backdrop.gd" id="1_ahd0u"]
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="3_ts40u"]
 
-[node name="Backdrop" type="Node"]
+[node name="Backdrop" type="Node" unique_id=329667560]
 script = ExtResource("1_ahd0u")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2124431443]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,7 +19,7 @@ texture = ExtResource("1_abkjh")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1044570177]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,14 +27,37 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.08, 0.08, 0.08, 0.16470589)
 
-[node name="version" type="Label" parent="."]
-unique_name_in_owner = true
-anchors_preset = 2
-anchor_top = 1.0
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=624517562]
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -20.0
-offset_right = 159.0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="soundButton" type="Button" parent="MarginContainer" unique_id=928153516]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("3_ts40u")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Sound: ON"
+
+[node name="version" type="Label" parent="MarginContainer" unique_id=836176788]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
 theme = ExtResource("3_ts40u")
 theme_override_font_sizes/font_size = 14
 text = "V1.0.0"
+
+[connection signal="pressed" from="MarginContainer/soundButton" to="." method="_on_sound_button_pressed"]

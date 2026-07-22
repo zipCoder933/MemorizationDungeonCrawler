@@ -4,6 +4,7 @@ class_name LevelData
 @onready var ambient_sound: AudioStreamPlayer = %ambientSound
 @onready var short_whoosh_sound: AudioStreamPlayer = %shortWhooshSound
 @onready var victory_sound: AudioStreamPlayer = %victorySound
+@onready var victory_music: AudioStreamPlayer = %victoryMusic
 
 
 #We need a node in the level that holds the data for the entire level
@@ -19,6 +20,7 @@ var game_mode:GameMode = GameMode.NORMAL
 @export var auto_load_game = false
 
 func _ready():
+	Globals.stop_music()
 	game_mode = GameMode.NORMAL
 	Globals._on_level_loaded()
 	
@@ -57,7 +59,17 @@ func _victory_event():
 		tween.tween_property(ambient_sound, "volume_db", 0, 1)
 	else:
 		ambient_sound.stop()
-		victory_sound.play(0)
+		play_victory_sounds()
+
+func play_victory_sounds() -> void:
+	victory_sound.play(0)
+	victory_music.volume_db = -20.0
+	var tween = create_tween()
+	var target_db: float = 0.0;
+	var fade_duration: float = 10.0;
+	tween.tween_interval(3)#delay seconds
+	tween.tween_callback(victory_music.play)
+	tween.tween_property(victory_music, "volume_db", target_db, fade_duration)
 
 var bossfight_mode = false
 

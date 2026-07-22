@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://3cmqyetfdyvt"]
+[gd_scene format=3 uid="uid://3cmqyetfdyvt"]
 
 [ext_resource type="PackedScene" uid="uid://m1nwhli4ahnc" path="res://player/Knight.tscn" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://btu8hwdt0o0n4" path="res://player/player.gd" id="1_rkbax"]
@@ -15,7 +15,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rkbax"]
 height = 1.6958008
 
-[node name="Player" type="RigidBody3D" groups=["player"]]
+[node name="Player" type="RigidBody3D" unique_id=18368395 groups=["player"]]
 collision_mask = 10
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -24,11 +24,11 @@ contact_monitor = true
 max_contacts_reported = 3
 script = ExtResource("1_rkbax")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2025111777]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8479004, 0)
 shape = SubResource("CapsuleShape3D_rkbax")
 
-[node name="Knight2" parent="." instance=ExtResource("1_oul6g")]
+[node name="Knight2" parent="." unique_id=1214441266 instance=ExtResource("1_oul6g")]
 
 [node name="Skeleton3D" parent="Knight2/Knight" index="0"]
 bones/0/position = Vector3(0.0037811296, 0.015645482, -0.8569023)
@@ -154,43 +154,45 @@ bones/67/position = Vector3(2.7844457e-08, 0.16699995, 2.5647154e-08)
 bones/67/rotation = Quaternion(0.4658653, -0.10228255, 0.04824163, 0.8775994)
 bones/68/position = Vector3(-3.269047e-08, 0.071199976, 7.68705e-09)
 
-[node name="PlayerHUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_g1dw6")]
+[node name="PlayerHUD" parent="." unique_id=159730351 node_paths=PackedStringArray("player") instance=ExtResource("3_g1dw6")]
 player = NodePath("..")
 
-[node name="MouseController" parent="." node_paths=PackedStringArray("playerHUD") instance=ExtResource("5_x8kxw")]
+[node name="MouseController" parent="." unique_id=1613471106 node_paths=PackedStringArray("playerHUD") instance=ExtResource("5_x8kxw")]
 playerHUD = NodePath("../PlayerHUD")
 
-[node name="PhantomCameraFollowNode" type="Node3D" parent="."]
+[node name="PhantomCameraFollowNode" type="Node3D" parent="." unique_id=1487639119]
 unique_name_in_owner = true
 script = ExtResource("5_aqcbf")
 
-[node name="audio" type="Node3D" parent="."]
+[node name="audio" type="Node3D" parent="." unique_id=269384419]
 
-[node name="drill_submit" type="AudioStreamPlayer" parent="audio"]
+[node name="drill_submit" type="AudioStreamPlayer" parent="audio" unique_id=1173594485]
 unique_name_in_owner = true
 stream = ExtResource("6_06mnu")
 
-[node name="damageSound" type="AudioStreamPlayer" parent="audio"]
+[node name="damageSound" type="AudioStreamPlayer" parent="audio" unique_id=1520638401]
 unique_name_in_owner = true
 stream = ExtResource("6_aqcbf")
 
-[node name="killSound" type="AudioStreamPlayer" parent="audio"]
+[node name="killSound" type="AudioStreamPlayer" parent="audio" unique_id=1089944906]
 unique_name_in_owner = true
 stream = ExtResource("7_gskgj")
 volume_db = -10.0
 
-[node name="successSound" type="AudioStreamPlayer" parent="audio"]
+[node name="successSound" type="AudioStreamPlayer" parent="audio" unique_id=1410380039]
 unique_name_in_owner = true
 stream = ExtResource("9_mhpjh")
 
-[node name="runningSound" type="AudioStreamPlayer" parent="audio"]
+[node name="runningSound" type="AudioStreamPlayer" parent="audio" unique_id=397786238]
 unique_name_in_owner = true
 stream = ExtResource("10_ndjxb")
 pitch_scale = 0.8
 
-[node name="drill_fail" type="AudioStreamPlayer" parent="audio"]
+[node name="drill_fail" type="AudioStreamPlayer" parent="audio" unique_id=1421627484]
 unique_name_in_owner = true
 stream = ExtResource("11_5qrx2")
+volume_db = -5.0
+pitch_scale = 0.95
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

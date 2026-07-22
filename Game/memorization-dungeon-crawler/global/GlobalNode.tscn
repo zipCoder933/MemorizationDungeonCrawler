@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://d364dmqkqu5a0"]
+[gd_scene format=3 uid="uid://d364dmqkqu5a0"]
 
 [ext_resource type="Script" uid="uid://dlrmvi8dlvd4n" path="res://global/GlobalScript.gd" id="1_38vhn"]
+[ext_resource type="AudioStream" uid="uid://baj3jwyt6xg2u" path="res://assets/sounds/pixabay/music/fantasy-epic-454036.mp3" id="2_kyxae"]
 
-[node name="Global" type="Node"]
+[node name="Global" type="Node" unique_id=1269196086]
 script = ExtResource("1_38vhn")
+
+[node name="FantasyMusic" type="AudioStreamPlayer" parent="." unique_id=552659514]
+unique_name_in_owner = true
+stream = ExtResource("2_kyxae")
+volume_db = -15.0
+parameters/looping = true
