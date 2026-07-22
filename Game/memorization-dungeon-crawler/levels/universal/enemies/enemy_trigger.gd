@@ -78,7 +78,7 @@ func play_idle_animation():
 	else:
 		_animation_player.play(idle_animation,0.4,idle_animation_speed)
 
-func _single_drill(success):
+func _single_drill(success, time:int):
 	if(success):
 		player.change_health(success_health_add)
 		if(!isDead && take_hit_animation != null):

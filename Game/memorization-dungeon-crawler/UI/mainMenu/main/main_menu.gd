@@ -26,7 +26,6 @@ func reload():
 	get_tree().reload_current_scene()
 
 func _ready():
-	SaveHandler.load_from_file(Globals.SAVE_FILE)
 	for entry in SaveHandler.saves:
 		var node = GAME_ENTRY.instantiate()
 		v_box_container.add_child(node)

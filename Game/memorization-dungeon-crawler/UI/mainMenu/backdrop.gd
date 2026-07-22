@@ -11,8 +11,7 @@ func muteSound(is_muted:bool):
 		Globals.play_music()
 	
 	SaveHandler.muted = is_muted
-	#VERY IMPORTANT NOT TO DO THIS HERE, We dont want to "write" to the save file before it has loaded!!!
-	#SaveHandler.save_to_file(Globals.SAVE_FILE)
+	SaveHandler.save_to_file(Globals.SAVE_FILE)
 	AudioServer.set_bus_mute(
 		master_bus,
 		is_muted

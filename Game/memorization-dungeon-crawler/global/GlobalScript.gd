@@ -71,7 +71,8 @@ func _ready():
 	var da := DirAccess.open("user://")
 	da.make_dir_recursive(CUSTOM_GAMES_DIR)
 	
-	print("SAVE FILE: ", SAVE_FILE)
+	print("loading save file: ", SAVE_FILE)
+	SaveHandler.load_from_file(SAVE_FILE);
 	#Write the new file if not exist
 	if not FileAccess.file_exists(SAVE_FILE):
 		print("Writing file...")

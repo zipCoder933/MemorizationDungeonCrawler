@@ -6,6 +6,7 @@ static var currentGame:SaveEntry
 static var _currentLevel:Level
 static var muted:bool
 static var graphics_level:int
+static var loaded: bool = false
 
 static func get_current_level():
 	return _currentLevel
@@ -35,9 +36,16 @@ static func load_from_file(file_path: String) -> void:
 		var save = SaveEntry.from_dictionary(entry_data)
 		print(save.toString())
 		saves.append(save)
+	#Ensure we know the file is loaded
+	loaded = true
 
 
 static func save_to_file(file_path: String) -> void:
+	#If we havent loaded yet, Load the file!
+	if(!loaded):
+		print("Save File hasn't been loaded yet! Loading now...");
+		load_from_file(file_path)
+		
 	var games_data: Array = []
 
 	for save_entry in saves:
