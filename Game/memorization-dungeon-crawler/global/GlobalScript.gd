@@ -53,7 +53,7 @@ func play_music():
 		fantasy_music.play()
 		fantasy_music.volume_db = -30.0
 		var tween = create_tween()
-		var target_db: float = -5.0;
+		var target_db: float = -8.0;
 		var fade_duration: float = 10.0;
 		tween.tween_interval(1)#delay seconds
 		tween.tween_callback(fantasy_music.play)

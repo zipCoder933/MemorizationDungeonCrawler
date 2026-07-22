@@ -42,6 +42,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="soundButton" type="Button" parent="MarginContainer" unique_id=928153516]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8

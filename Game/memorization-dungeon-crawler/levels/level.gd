@@ -65,7 +65,7 @@ func play_victory_sounds() -> void:
 	victory_sound.play(0)
 	victory_music.volume_db = -20.0
 	var tween = create_tween()
-	var target_db: float = 0.0;
+	var target_db: float = -5.5;
 	var fade_duration: float = 10.0;
 	tween.tween_interval(3)#delay seconds
 	tween.tween_callback(victory_music.play)
@@ -85,10 +85,13 @@ func _global_fact_answering_mode(_flashcardNode:WorldFlashCard):
 			print("Starting music; bossfight: ",bossfight_mode)
 			if(bossfight_mode):
 				ambient_sound.volume_db = -10
+				#Set the target volume of the bossfight music
+				var target_db:float = 6.0
 				ambient_sound.play()
 				var tween = create_tween()
-				tween.tween_property(ambient_sound, "volume_db", 0, 1.5)
+				tween.tween_property(ambient_sound, "volume_db", target_db, 1.5)
 			else:
+				#Set the target volume of the enemy music
 				ambient_sound.volume_db = 0
 				ambient_sound.play(0)
 	else:
