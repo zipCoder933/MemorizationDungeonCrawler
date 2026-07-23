@@ -1,6 +1,6 @@
 *.blend1
 *.zip
-
+/test
 /Game/dist/windows/*
 /Game/dist/linux_arm/*
 /Game/dist/linux_x86/*

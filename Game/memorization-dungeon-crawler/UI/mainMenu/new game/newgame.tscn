@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://3axsagpubaea" path="res://UI/mainMenu/new game/newgame.gd" id="1_ad0hl"]
 [ext_resource type="PackedScene" uid="uid://laf057gsoqjg" path="res://UI/mainMenu/backdrop.tscn" id="3_ad0hl"]
 [ext_resource type="PackedScene" uid="uid://b4yoi6vvbosi2" path="res://UI/MessageBox.tscn" id="3_lgfno"]
+[ext_resource type="FontFile" uid="uid://l2eim6vo1a7j" path="res://assets/fonts/New_Rocker/NewRocker-Regular.ttf" id="3_v1eqc"]
 [ext_resource type="PackedScene" uid="uid://nyn623p07565" path="res://UI/mainMenu/new game/CustomGameLoader.tscn" id="4_hev5t"]
 
 [node name="Newgame" type="Control" unique_id=165666129]
@@ -25,9 +26,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -225.0
+offset_top = -245.0
 offset_right = 200.0
-offset_bottom = 225.0
+offset_bottom = 245.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -96,14 +97,23 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate" unique_id=2117100613]
 layout_mode = 2
-text = "Custom Template"
+text = "Custom Game"
 horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate" unique_id=2035854478]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.68307734, 0.6830774, 0.68307734, 1)
+theme_override_fonts/font = ExtResource("3_v1eqc")
+theme_override_font_sizes/font_size = 14
+text = "Drag & Drop or Paste the path to your custom game folder or archive (.zip) file. Refer to \"help\" for more information."
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="customTemplate" type="LineEdit" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate" unique_id=995476576]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-placeholder_text = "Path to Custom Template"
+placeholder_text = "Path to Custom Folder or Archive File"
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate" unique_id=1922064930]
@@ -117,6 +127,11 @@ theme_override_font_sizes/font_size = 20
 disabled = true
 button_pressed = true
 text = "Copy to Appdata"
+
+[node name="openWiki" type="Button" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/HBoxContainer" unique_id=1072556428]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Help"
 
 [node name="openAppData" type="Button" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/HBoxContainer" unique_id=619034053]
 unique_name_in_owner = true
@@ -151,12 +166,14 @@ unique_name_in_owner = true
 visible = false
 
 [node name="CustomGameLoader" parent="CanvasLayer" unique_id=468993747 instance=ExtResource("4_hev5t")]
+visible = false
 
 [node name="Backdrop" parent="." unique_id=815950229 instance=ExtResource("3_ad0hl")]
 
 [connection signal="focus_entered" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/customTemplate" to="." method="_on_custom_template_focus_entered"]
 [connection signal="text_changed" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/customTemplate" to="." method="_on_custom_template_text_changed"]
 [connection signal="toggled" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/HBoxContainer/copyGameToAppdata" to="." method="_on_copy_game_to_appdata_toggled"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/HBoxContainer/openWiki" to="." method="_on_open_wiki_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/HBoxContainer/openAppData" to="." method="_on_open_app_data_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

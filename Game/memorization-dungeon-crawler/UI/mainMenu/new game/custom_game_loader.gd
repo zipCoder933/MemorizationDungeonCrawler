@@ -41,27 +41,33 @@ func validate_and_build_custom_game(input_dir:String, game_name:String, copy_to_
 			return ""
 			
 	var dest_dir = input_dir
+	var unique_game_name = game_name+" "+Globals.get_base36_time()
 	if(copy_to_appdata):
-		dest_dir = Globals.CUSTOM_GAMES_DIR+"/"+game_name+" "+Globals.get_base36_time()
+		dest_dir = Globals.CUSTOM_GAMES_DIR.path_join(unique_game_name)
 	elif(isArchive):
 		dest_dir = input_dir.get_base_dir()
 	
 	self.show()
 	info("Validating game...", "\nInput dir="+input_dir+"\n Output dir="+dest_dir, 0)
 	if(isArchive): #If this is an archive
-		dest_dir = FileUtils.extract_archive(input_dir, dest_dir)
-		print("Unzipped new destination: ",dest_dir)
+		dest_dir = FileUtils.extract_archive(input_dir, dest_dir.path_join(unique_game_name))
 		if(dest_dir.is_empty()):
 			fail("Failed to unzip game","The archive file was unable to be unzipped")
 			return ""
-
-		var feedback = GameJsonLoadInfo.new()
+			
 		#Extract and then validate, because we have to extract first anyway
-		if Globals.load_cards_levels(dest_dir,feedback):
+		var feedback = GameJsonLoadInfo.new()
+		print("Testing dir",dest_dir)
+		if Globals.load_cards_levels(dest_dir,feedback): #Check root dir first
 			return dest_dir
 		else:
-			fail("Unable to load extracted game",feedback.message)
-			return ""
+			for subpath in FileUtils.list_subpaths(dest_dir): #If that doesnt work, check subfolders that were extracted
+				if(DirAccess.dir_exists_absolute(subpath)):
+					print("Testing dir" , subpath)
+					if Globals.load_cards_levels(subpath, feedback):
+						return dest_dir
+		fail("Unable to load extracted game",feedback.message)
+		
 	else: #If this is a folder
 		var feedback = GameJsonLoadInfo.new()
 		if Globals.load_cards_levels(input_dir,feedback): #First validate the game before copying it over

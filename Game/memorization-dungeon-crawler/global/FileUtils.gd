@@ -231,7 +231,10 @@ static func extract_archive(zip_path: String, destination_path: String) -> Strin
 		push_error("Failed to open ZIP file: %s (Error %d)" % [zip_path, err])
 		return ""
 
-	for zip_entry in reader.get_files():
+	var entries := reader.get_files()
+	#var root_folder := get_zip_root(entries)
+
+	for zip_entry in entries:
 		var target_path := destination_path.path_join(zip_entry)
 
 		# Directory entry
@@ -265,37 +268,22 @@ static func extract_archive(zip_path: String, destination_path: String) -> Strin
 	reader.close()
 	print("Successfully extracted '%s' to '%s'." % [zip_path, destination_path])
 	#If the extracted path has a root folder, we need to append the root folder to get the full path to the archive's contents
-	return get_extracted_root(destination_path)
-
-static func get_extracted_root(destination_path: String) -> String:
-	var dir := DirAccess.open(destination_path)
-	if dir == null:
-		return destination_path
-
-	var folders: Array[String] = []
-	var files: Array[String] = []
-
-	dir.list_dir_begin()
-
-	while true:
-		var name := dir.get_next()
-		if name == "":
-			break
-
-		if name == "." or name == "..":
-			continue
-
-		if dir.current_is_dir():
-			folders.append(name)
-		else:
-			files.append(name)
-
-	dir.list_dir_end()
-
-	if folders.size() == 1 and files.is_empty():
-		return destination_path.path_join(folders[0])
-
 	return destination_path
+
+static func list_subpaths(path: String) -> Array[String]:
+	var entries: Array[String] = []
+
+	var dir := DirAccess.open(path)
+	if dir == null:
+		return entries
+
+	for folder in DirAccess.get_directories_at(path):
+		entries.append(path.path_join(folder))
+
+	for file in DirAccess.get_files_at(path):
+		entries.append(path.path_join(file))
+
+	return entries
 
 static func find_best_path(base_dir:String, base_path: String) -> String:
 	base_dir = base_dir.replace("\\","/")

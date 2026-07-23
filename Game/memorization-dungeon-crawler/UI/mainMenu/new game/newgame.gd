@@ -108,3 +108,6 @@ func _on_copy_game_to_appdata_toggled(toggled_on: bool) -> void:
 
 func _on_open_app_data_pressed() -> void:
 	OS.shell_open(Globals.CUSTOM_GAMES_DIR)
+
+func _on_open_wiki_pressed() -> void:
+	OS.shell_open("https://github.com/Lightning323/Cogni-Crawl/wiki/Custom-Flashcard-Games-in-Cogni%E2%80%90Crawl")
