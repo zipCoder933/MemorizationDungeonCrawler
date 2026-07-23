@@ -16,6 +16,7 @@ func _on_files_dropped(files):
 	if(files.size() > 0):
 		custom_template.text = files[0]
 		template_box.deselect_all()
+	copy_game_to_appdata.disabled = custom_template.text.is_empty()
 
 func _ready():
 	get_tree().get_root().connect("files_dropped", _on_files_dropped)

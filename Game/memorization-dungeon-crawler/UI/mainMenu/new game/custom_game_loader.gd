@@ -65,7 +65,7 @@ func validate_and_build_custom_game(input_dir:String, game_name:String, copy_to_
 				if(DirAccess.dir_exists_absolute(subpath)):
 					print("Testing dir" , subpath)
 					if Globals.load_cards_levels(subpath, feedback):
-						return dest_dir
+						return subpath
 		fail("Unable to load extracted game",feedback.message)
 		
 	else: #If this is a folder

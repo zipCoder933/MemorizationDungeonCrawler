@@ -139,24 +139,31 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Open AppData"
 
-[node name="buttons" type="MarginContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2" unique_id=490915320]
-layout_mode = 2
-theme_override_constants/margin_left = -6
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect" unique_id=976445429]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons" unique_id=604567893]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer" unique_id=604567893]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 2
 
-[node name="CancelButton" type="Button" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons/HBoxContainer" unique_id=597124849]
+[node name="CancelButton" type="Button" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer" unique_id=597124849]
 layout_mode = 2
 theme = ExtResource("1_2626c")
 text = "Cancel"
 
-[node name="StartButton" type="Button" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons/HBoxContainer" unique_id=1877728013]
+[node name="StartButton" type="Button" parent="CanvasLayer/ColorRect/MarginContainer/HBoxContainer" unique_id=1877728013]
 layout_mode = 2
 theme = ExtResource("1_2626c")
 text = "OK"
@@ -175,5 +182,5 @@ visible = false
 [connection signal="toggled" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/HBoxContainer/copyGameToAppdata" to="." method="_on_copy_game_to_appdata_toggled"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/HBoxContainer/openWiki" to="." method="_on_open_wiki_pressed"]
 [connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/HBoxContainer/openAppData" to="." method="_on_open_app_data_pressed"]
-[connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/MarginContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
