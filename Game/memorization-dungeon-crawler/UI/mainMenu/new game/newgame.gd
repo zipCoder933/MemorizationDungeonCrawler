@@ -1,5 +1,8 @@
 extends Control
+class_name NewGameUI
+
 const SaveHandler = preload("uid://bgwdh30vglopu")
+
 
 @onready var name_box: LineEdit = %nameBox
 @onready var template_box: ItemList = %templateBox
@@ -7,31 +10,18 @@ const SaveHandler = preload("uid://bgwdh30vglopu")
 @onready var custom_template: LineEdit = %customTemplate
 @onready var copy_game_to_appdata: CheckBox = %copyGameToAppdata
 @onready var open_app_data: Button = %openAppData
+@onready var custom_game_loader: Control = $CanvasLayer/CustomGameLoader
 
 func _on_files_dropped(files):
-	print("Yummy files:", files)
 	if(files.size()>0):
 		custom_template.text = files[0]
 		template_box.deselect_all()
 
 func _ready():
 	get_tree().get_root().connect("files_dropped", _on_files_dropped)
+	custom_game_loader.init(self)
 	if(Engine.is_embedded_in_editor()):
 		template_box.add_item("Test")
-	#var base_path = Globals.CUSTOM_GAMES_DIR
-	#var da := DirAccess.open(Globals.CUSTOM_GAMES_DIR)
-	#if da:
-		#da.list_dir_begin()
-		#var name := da.get_next()
-		#while name != "":
-			#if da.current_is_dir() and name != "." and name != "..":
-				##var full_path = base_path.plus_file(name)
-				##var card_status = LevelsHandler.load_from_file(full_path+"\\level.json")
-				##var level_status = CardsHandler.load_from_file(full_path+"\\cards.json")
-				#template_box.add_item(name)
-			#name = da.get_next()
-		#da.list_dir_end()
-
 
 func _go_home():
 	get_tree().change_scene_to_file("res://UI/mainMenu/main/main_menu.tscn")
@@ -69,27 +59,16 @@ func _on_start_button_pressed() -> void:
 		message_box.show_message("Name is empty","You must enter a name for your game")
 		return
 	
-	if load_game(template_dir):
-		#Really stupid but we have to check if it starts with res to determine if its REALLY not absolute
-		if DirAccess.dir_exists_absolute(template_dir) and !template_dir.strip_edges().begins_with("res://"):
-			print("Making game in absolute directory: ",template_dir)
-			#If this is a custom game, Copy the game into a new folder in our appData directory
-			var dest_dir = Globals.CUSTOM_GAMES_DIR+"/"+name_box.text+" "+Globals.get_base36_time()
-			if(copy_game_to_appdata.button_pressed):
-				var feedback = GameJsonLoadInfo.new()
-				if FileUtils.copy_game(template_dir, dest_dir, feedback):
-					template_dir = dest_dir
-					print("Made game in directory: ",template_dir)
-					if(load_game(dest_dir)):
-						_make_game(template_dir)
-				else:
-					message_box.show_message("Unable to copy to AppData",feedback.message)
-					return
-			else:
-				_make_game(template_dir)
-		else:
-			print("Making game in resource directory: ",template_dir)
-			#If this is not a custom game
+	#If this IS a custom game
+	if DirAccess.dir_exists_absolute(template_dir) and !template_dir.strip_edges().begins_with("res://"):
+		var dest_dir = null
+		if(copy_game_to_appdata.button_pressed):
+			dest_dir = Globals.CUSTOM_GAMES_DIR+"/"+name_box.text+" "+Globals.get_base36_time()
+		if(custom_game_loader.load_custom_game(template_dir,dest_dir)):
+			_make_game(template_dir)
+	else: #If this is not a custom game
+		print("Making game in resource directory: ",template_dir)
+		if(load_game(template_dir)):
 			_make_game(template_dir)
 
 func _make_game(template_dir:String):

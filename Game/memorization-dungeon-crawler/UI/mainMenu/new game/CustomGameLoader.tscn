@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://nyn623p07565"]
+
+[ext_resource type="Script" uid="uid://8v3wap35olw7" path="res://UI/mainMenu/new game/custom_game_loader.gd" id="1_mco4p"]
+[ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="2_vowrt"]
+[ext_resource type="StyleBox" uid="uid://bxp67n10n2pan" path="res://styles/translucent_box.tres" id="3_u6ge5"]
+[ext_resource type="FontFile" uid="uid://l2eim6vo1a7j" path="res://assets/fonts/New_Rocker/NewRocker-Regular.ttf" id="4_75j5k"]
+
+[node name="CustomGameLoader" type="Control" unique_id=468993747]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mco4p")
+
+[node name="MessageBox" type="Panel" parent="." unique_id=1187156897]
+z_index = 100
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0625
+offset_top = -146.7461
+offset_right = 167.0625
+offset_bottom = 146.7461
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_vowrt")
+theme_override_styles/panel = ExtResource("3_u6ge5")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MessageBox" unique_id=1349932123]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MessageBox/MarginContainer2" unique_id=351093434]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="message_title" type="Label" parent="MessageBox/MarginContainer2/VBoxContainer" unique_id=409054528]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Creating Custom Game"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="MessageBox/MarginContainer2/VBoxContainer" unique_id=1555830896]
+layout_mode = 2
+
+[node name="progress info" type="Label" parent="MessageBox/MarginContainer2/VBoxContainer" unique_id=606909908]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.60990286, 0.609903, 0.609903, 1)
+theme_override_fonts/font = ExtResource("4_75j5k")
+theme_override_font_sizes/font_size = 16
+text = "Processing..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MessageBox" unique_id=1906549251]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MessageBox/MarginContainer" unique_id=2058617775]
+layout_mode = 2
+alignment = 2
+
+[node name="cancel_button" type="Button" parent="MessageBox/MarginContainer/HBoxContainer" unique_id=483147552 groups=["message_box"]]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cancel"
+
+[node name="ok_button" type="Button" parent="MessageBox/MarginContainer/HBoxContainer" unique_id=71511630]
+unique_name_in_owner = true
+layout_mode = 2
+text = "OK"
+
+[connection signal="pressed" from="MessageBox/MarginContainer/HBoxContainer/cancel_button" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="MessageBox/MarginContainer/HBoxContainer/cancel_button" to="MessageBox" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="MessageBox/MarginContainer/HBoxContainer/ok_button" to="." method="_on_ok_button_pressed"]
+[connection signal="pressed" from="MessageBox/MarginContainer/HBoxContainer/ok_button" to="MessageBox" method="_on_ok_button_pressed"]

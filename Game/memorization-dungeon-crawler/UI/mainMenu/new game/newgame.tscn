@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://o164qtonnr5o"]
+[gd_scene format=3 uid="uid://o164qtonnr5o"]
 
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="1_2626c"]
 [ext_resource type="Script" uid="uid://3axsagpubaea" path="res://UI/mainMenu/new game/newgame.gd" id="1_ad0hl"]
 [ext_resource type="PackedScene" uid="uid://laf057gsoqjg" path="res://UI/mainMenu/backdrop.tscn" id="3_ad0hl"]
 [ext_resource type="PackedScene" uid="uid://b4yoi6vvbosi2" path="res://UI/MessageBox.tscn" id="3_lgfno"]
+[ext_resource type="PackedScene" uid="uid://nyn623p07565" path="res://UI/mainMenu/new game/CustomGameLoader.tscn" id="4_hev5t"]
 
-[node name="Newgame" type="Control"]
+[node name="Newgame" type="Control" unique_id=165666129]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,9 +16,9 @@ grow_vertical = 2
 theme = ExtResource("1_2626c")
 script = ExtResource("1_ad0hl")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1183650797]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=675646936]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -33,7 +34,7 @@ size_flags_horizontal = 4
 theme = ExtResource("1_2626c")
 color = Color(0.22745098, 0.22745098, 0.22745098, 0.7019608)
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/ColorRect"]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/ColorRect" unique_id=2091304899]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,37 +50,37 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2" unique_id=1237201618]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="name" type="VBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2"]
+[node name="name" type="VBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2" unique_id=505669777]
 layout_mode = 2
 
-[node name="name" type="Label" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/name"]
+[node name="name" type="Label" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/name" unique_id=792351981]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_2626c")
 text = "New Game"
 horizontal_alignment = 1
 
-[node name="nameBox" type="LineEdit" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/name"]
+[node name="nameBox" type="LineEdit" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/name" unique_id=1999425508]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 placeholder_text = "Game Name"
 alignment = 1
 
-[node name="template" type="VBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2"]
+[node name="template" type="VBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2" unique_id=1701910889]
 custom_minimum_size = Vector2(0, 175)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/template"]
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/template" unique_id=1486061980]
 layout_mode = 2
 text = "Builtin Template"
 horizontal_alignment = 1
 
-[node name="templateBox" type="ItemList" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/template"]
+[node name="templateBox" type="ItemList" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/template" unique_id=177189831]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -90,25 +91,25 @@ item_1/text = "Addition"
 item_2/text = "Subtraction"
 item_3/text = "Musical notes (Treble/Base)"
 
-[node name="customTemplate" type="VBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2"]
+[node name="customTemplate" type="VBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2" unique_id=253632737]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate"]
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate" unique_id=2117100613]
 layout_mode = 2
 text = "Custom Template"
 horizontal_alignment = 1
 
-[node name="customTemplate" type="LineEdit" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate"]
+[node name="customTemplate" type="LineEdit" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate" unique_id=995476576]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 placeholder_text = "Path to Custom Template"
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate" unique_id=1922064930]
 layout_mode = 2
 
-[node name="copyGameToAppdata" type="CheckBox" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/HBoxContainer"]
+[node name="copyGameToAppdata" type="CheckBox" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/HBoxContainer" unique_id=267929178]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -117,39 +118,41 @@ disabled = true
 button_pressed = true
 text = "Copy to Appdata"
 
-[node name="openAppData" type="Button" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/HBoxContainer"]
+[node name="openAppData" type="Button" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/HBoxContainer" unique_id=619034053]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Open AppData"
 
-[node name="buttons" type="MarginContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2"]
+[node name="buttons" type="MarginContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2" unique_id=490915320]
 layout_mode = 2
 theme_override_constants/margin_left = -6
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons" unique_id=604567893]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 2
 
-[node name="CancelButton" type="Button" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons/HBoxContainer"]
+[node name="CancelButton" type="Button" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons/HBoxContainer" unique_id=597124849]
 layout_mode = 2
 theme = ExtResource("1_2626c")
 text = "Cancel"
 
-[node name="StartButton" type="Button" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons/HBoxContainer"]
+[node name="StartButton" type="Button" parent="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/buttons/HBoxContainer" unique_id=1877728013]
 layout_mode = 2
 theme = ExtResource("1_2626c")
 text = "OK"
 
-[node name="MessageBox" parent="CanvasLayer" instance=ExtResource("3_lgfno")]
+[node name="MessageBox" parent="CanvasLayer" unique_id=1726263831 instance=ExtResource("3_lgfno")]
 unique_name_in_owner = true
 visible = false
 
-[node name="Backdrop" parent="." instance=ExtResource("3_ad0hl")]
+[node name="CustomGameLoader" parent="CanvasLayer" unique_id=468993747 instance=ExtResource("4_hev5t")]
+
+[node name="Backdrop" parent="." unique_id=815950229 instance=ExtResource("3_ad0hl")]
 
 [connection signal="focus_entered" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/customTemplate" to="." method="_on_custom_template_focus_entered"]
 [connection signal="text_changed" from="CanvasLayer/ColorRect/MarginContainer2/VBoxContainer2/customTemplate/customTemplate" to="." method="_on_custom_template_text_changed"]
