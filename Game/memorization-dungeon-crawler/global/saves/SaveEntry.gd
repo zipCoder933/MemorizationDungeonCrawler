@@ -10,6 +10,9 @@ var total_levels: int #Used for information on the menu
 var tag_mastery: Dictionary = {}  # tag (String) -> CardMastery
 var seed:int
 
+func is_template_game():
+	return path.begins_with("res:/")
+
 func get_completed_level():
 	return _completed_level
 	

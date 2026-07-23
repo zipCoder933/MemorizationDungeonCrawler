@@ -110,7 +110,7 @@ static func load_from_file(jsonFile, results:GameJsonLoadInfo = GameJsonLoadInfo
 				elif(c.has("QuestionImage")):
 					isImage=true
 					var image_json_path:String = c["QuestionImage"]
-					var image_path = find_best_image_path(base_dir, image_json_path)
+					var image_path = FileUtils.find_best_path(base_dir, image_json_path)
 					if(image_path == ""):
 						results.write("Invalid image path for "+str(image_json_path))
 						return false
@@ -144,43 +144,3 @@ static func load_from_file(jsonFile, results:GameJsonLoadInfo = GameJsonLoadInfo
 	else:
 		results.write("Couldn't open cards.json file")
 		return false
-
-
-
-static func find_best_image_path(base_dir:String, base_path: String) -> String:
-	base_dir = base_dir.replace("\\","/")
-	base_path = base_path.replace("\\","/")
-	
-	# --- Clean the input path ---
-	if(base_dir.begins_with("res://")):
-		base_dir = base_dir.lstrip("res://")
-	if(base_path.begins_with("res://")):
-		base_path = base_path.lstrip("res://")
-		
-	if(base_dir.begins_with("res:/")):
-		base_dir = base_dir.lstrip("res:/")
-	if(base_path.begins_with("res:/")):
-		base_path = base_path.lstrip("res:/")
-		
-	if(base_dir.begins_with("/")):
-		base_dir = base_dir.lstrip("/")
-	if(base_path.begins_with("/")):
-		base_path = base_path.lstrip("/")
-		
-	# --- Build both possibilities ---
-	var possible_paths := [
-		"res://" + (base_dir + "/" +base_path).replace("//","/"),
-		 (base_dir + "/" +base_path).replace("//","/")
-	]
-
-	# --- Try both paths in order ---
-	for path in possible_paths:
-		#print("Testing ",path)
-		if FileUtils.load_texture_anywhere(path) != null:
-			#print("Found path: ",path)
-			return path
-
-
-	# --- If nothing worked ---
-	push_error("❌ Could not find valid image path for: " + base_path)
-	return ""  # indicate failure

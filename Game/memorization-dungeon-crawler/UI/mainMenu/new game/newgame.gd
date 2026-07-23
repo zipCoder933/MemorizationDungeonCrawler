@@ -13,7 +13,7 @@ const SaveHandler = preload("uid://bgwdh30vglopu")
 @onready var custom_game_loader: Control = $CanvasLayer/CustomGameLoader
 
 func _on_files_dropped(files):
-	if(files.size()>0):
+	if(files.size() > 0):
 		custom_template.text = files[0]
 		template_box.deselect_all()
 
@@ -59,17 +59,18 @@ func _on_start_button_pressed() -> void:
 		message_box.show_message("Name is empty","You must enter a name for your game")
 		return
 	
-	#If this IS a custom game
-	if DirAccess.dir_exists_absolute(template_dir) and !template_dir.strip_edges().begins_with("res://"):
-		var dest_dir = null
-		if(copy_game_to_appdata.button_pressed):
-			dest_dir = Globals.CUSTOM_GAMES_DIR+"/"+name_box.text+" "+Globals.get_base36_time()
-		if(custom_game_loader.load_custom_game(template_dir,dest_dir)):
-			_make_game(template_dir)
-	else: #If this is not a custom game
+	if template_dir.is_empty(): #If this is not a custom game
 		print("Making game in resource directory: ",template_dir)
 		if(load_game(template_dir)):
 			_make_game(template_dir)
+	else: #If this IS a custom game
+		if (DirAccess.dir_exists_absolute(template_dir) or FileAccess.file_exists(template_dir)) and !template_dir.strip_edges().begins_with("res://"):	
+			var dest_dir = custom_game_loader.validate_and_build_custom_game(template_dir, name_box.text, copy_game_to_appdata.button_pressed)
+			if(!dest_dir.is_empty()):
+				_make_game(dest_dir)
+		else:
+			message_box.show_message("Invalid game path", "The path "+template_dir+" Does not exist or is invalid.")
+
 
 func _make_game(template_dir:String):
 	print("NAME: ",name_box.text," DIR: ",template_dir)

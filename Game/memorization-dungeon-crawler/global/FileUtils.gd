@@ -213,35 +213,128 @@ static func load_texture_anywhere(path: String) -> Texture2D:
 	return null
 
 
-func unzip_file(zip_path: String, destination_path: String):
-	var reader := ZIPReader.new()
-	var err := reader.open(zip_path)
-	
+static func extract_archive(zip_path: String, destination_path: String) -> String:
+	# Verify the ZIP exists.
+	if not FileAccess.file_exists(zip_path):
+		push_error("ZIP file does not exist: %s" % zip_path)
+		return ""
+
+	# Ensure the destination directory exists.
+	var err := DirAccess.make_dir_recursive_absolute(destination_path)
 	if err != OK:
-		push_error("Failed to open ZIP file.")
-		return
+		push_error("Failed to create destination directory: %s (Error %d)" % [destination_path, err])
+		return ""
 
-	# Ensure the destination directory exists
-	if not DirAccess.dir_exists_absolute(destination_path):
-		DirAccess.make_dir_recursive_absolute(destination_path)
+	var reader := ZIPReader.new()
+	err = reader.open(zip_path)
+	if err != OK:
+		push_error("Failed to open ZIP file: %s (Error %d)" % [zip_path, err])
+		return ""
 
-	var files = reader.get_files()
-	
-	for file_path in files:
-		# Create subdirectories if the ZIP contains folders
-		var target_file_path = destination_path.path_join(file_path)
-		if file_path.ends_with("/"):
-			DirAccess.make_dir_recursive_absolute(target_file_path)
+	for zip_entry in reader.get_files():
+		var target_path := destination_path.path_join(zip_entry)
+
+		# Directory entry
+		if zip_entry.ends_with("/"):
+			err = DirAccess.make_dir_recursive_absolute(target_path)
+			if err != OK:
+				push_warning("Failed to create directory: %s" % target_path)
 			continue
-			
-		# Read the file data from the ZIP
-		var data = reader.read_file(file_path)
-		
-		# Write the data to the new location
-		var file = FileAccess.open(target_file_path, FileAccess.WRITE)
-		if file:
-			file.store_buffer(data)
-			file.close()
+
+		# Make sure the parent directory exists.
+		var parent_dir := target_path.get_base_dir()
+		err = DirAccess.make_dir_recursive_absolute(parent_dir)
+		if err != OK:
+			push_error("Failed to create parent directory: %s" % parent_dir)
+			reader.close()
+			return ""
+
+		# Read the file from the archive.
+		var data := reader.read_file(zip_entry)
+
+		# Write it to disk.
+		var file := FileAccess.open(target_path, FileAccess.WRITE)
+		if file == null:
+			push_error("Failed to create file: %s" % target_path)
+			reader.close()
+			return ""
+
+		file.store_buffer(data)
+		file.close()
 
 	reader.close()
-	print("Extraction complete!")
+	print("Successfully extracted '%s' to '%s'." % [zip_path, destination_path])
+	#If the extracted path has a root folder, we need to append the root folder to get the full path to the archive's contents
+	return get_extracted_root(destination_path)
+
+static func get_extracted_root(destination_path: String) -> String:
+	var dir := DirAccess.open(destination_path)
+	if dir == null:
+		return destination_path
+
+	var folders: Array[String] = []
+	var files: Array[String] = []
+
+	dir.list_dir_begin()
+
+	while true:
+		var name := dir.get_next()
+		if name == "":
+			break
+
+		if name == "." or name == "..":
+			continue
+
+		if dir.current_is_dir():
+			folders.append(name)
+		else:
+			files.append(name)
+
+	dir.list_dir_end()
+
+	if folders.size() == 1 and files.is_empty():
+		return destination_path.path_join(folders[0])
+
+	return destination_path
+
+static func find_best_path(base_dir:String, base_path: String) -> String:
+	base_dir = base_dir.replace("\\","/")
+	base_path = base_path.replace("\\","/")
+	
+	# --- Clean the base dir ---
+	if(base_dir.begins_with("res://")):
+		base_dir = base_dir.lstrip("res://")
+	if(base_path.begins_with("res://")):
+		base_path = base_path.lstrip("res://")
+	if(base_dir.begins_with("res:/")):
+		base_dir = base_dir.lstrip("res:/")
+	if(base_path.begins_with("res:/")):
+		base_path = base_path.lstrip("res:/")
+	
+	# --- Clean the input path ---
+	if(base_path.begins_with("../")):
+		base_path = base_path.lstrip("../")
+	if(base_path.begins_with("./")):
+		base_path = base_path.lstrip("./")
+	if(base_path.begins_with("/")):
+		base_path = base_path.lstrip("/")
+		
+	# --- Build both possibilities ---
+	var possible_paths := [
+		"res://" + (base_dir + "/" +base_path).replace("//","/"),
+		(base_dir + "/" +base_path).replace("//","/"),
+		(base_dir.lstrip("/") + "/" +base_path).replace("//","/"),
+		("/"+ base_dir + "/" +base_path).replace("//","/")
+	]
+
+	# --- Try both paths in order ---
+	for path in possible_paths:
+		#print("Testing ",path)
+		if FileUtils.load_texture_anywhere(path) != null:
+			#print("Found path: ",path)
+			return path
+
+
+	# --- If nothing worked ---
+	push_error("❌ Could not find valid image path for: " + base_path)
+	return ""  # indicate failure

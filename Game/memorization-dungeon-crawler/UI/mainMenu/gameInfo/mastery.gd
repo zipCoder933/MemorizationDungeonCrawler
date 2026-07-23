@@ -10,6 +10,7 @@ const LEVEL_ENTRY = preload("uid://bg6dyxvcv8cuf")
 @onready var mastery_panel: Panel = $CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/mastery_panel
 @onready var levels_panel: Panel = $CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/levels_panel
 @onready var loading_panel: GameLoadingPanel = $CanvasLayer/LoadingPanel
+@onready var folder_button: Button = %FolderButton
 
 
 
@@ -19,8 +20,11 @@ func _on_quit_button_pressed() -> void:
 static var saveEntry:SaveEntry
 
 func _ready():
+	folder_button.hide()
 	selectTab(0)
 	if(saveEntry != null):
+		if(!saveEntry.is_template_game()):
+			folder_button.show()
 		#We want to load the game without entering the level
 		Globals.load_game(saveEntry, func():
 			title.text = "\""+str(saveEntry.name)+"\"";
@@ -54,3 +58,8 @@ func selectTab(tab:int):
 	else:
 		mastery_panel.visible=false;
 		levels_panel.visible=true;
+
+
+func _on_folder_button_pressed() -> void:
+	if(saveEntry!=null):
+		OS.shell_open(saveEntry.path)

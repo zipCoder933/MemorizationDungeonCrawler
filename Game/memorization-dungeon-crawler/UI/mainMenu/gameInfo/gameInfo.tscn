@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://brmrlpnvb5ykq"]
+[gd_scene format=3 uid="uid://brmrlpnvb5ykq"]
 
 [ext_resource type="Theme" uid="uid://bpaxcbhwijdid" path="res://styles/main_theme.tres" id="1_5rkgg"]
 [ext_resource type="Script" uid="uid://cr2gvwqau1e44" path="res://UI/mainMenu/gameInfo/mastery.gd" id="2_yifxd"]
@@ -9,7 +9,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqn84"]
 bg_color = Color(0.22745098, 0.22745098, 0.22745098, 0.7019608)
 
-[node name="MasteryRecords" type="Control" groups=["main menu"]]
+[node name="MasteryRecords" type="Control" unique_id=672261338 groups=["main menu"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,14 +20,14 @@ size_flags_horizontal = 3
 theme = ExtResource("1_5rkgg")
 script = ExtResource("2_yifxd")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1523692865]
 
-[node name="messageBoxContainer" parent="CanvasLayer" instance=ExtResource("3_1dew5")]
+[node name="messageBoxContainer" parent="CanvasLayer" unique_id=1467844011 instance=ExtResource("3_1dew5")]
 z_index = 4096
 
-[node name="LoadingPanel" parent="CanvasLayer" instance=ExtResource("4_62wgk")]
+[node name="LoadingPanel" parent="CanvasLayer" unique_id=1290760209 instance=ExtResource("4_62wgk")]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1747548298]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -42,7 +42,8 @@ grow_vertical = 2
 theme = ExtResource("1_5rkgg")
 color = Color(0, 0, 0, 0)
 
-[node name="LoadPanel" type="Panel" parent="CanvasLayer/ColorRect"]
+[node name="LoadPanel" type="Panel" parent="CanvasLayer/ColorRect" unique_id=694863109]
+unique_name_in_owner = true
 z_as_relative = false
 layout_mode = 1
 anchors_preset = 8
@@ -58,7 +59,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_aqn84")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/LoadPanel"]
+[node name="title" type="Label" parent="CanvasLayer/ColorRect/LoadPanel" unique_id=1009835941]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 33.0
+grow_horizontal = 2
+theme = ExtResource("1_5rkgg")
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/LoadPanel" unique_id=1000150376]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,11 +84,11 @@ theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer" unique_id=346265560]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TabBar" type="TabBar" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer"]
+[node name="TabBar" type="TabBar" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer" unique_id=2111051198]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 current_tab = 0
@@ -84,13 +96,13 @@ tab_count = 2
 tab_0/title = "Mastery"
 tab_1/title = "Levels"
 
-[node name="mastery_panel" type="Panel" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer"]
+[node name="mastery_panel" type="Panel" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer" unique_id=1365389302]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/mastery_panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/mastery_panel" unique_id=1115663642]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -100,7 +112,7 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/mastery_panel/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/mastery_panel/ScrollContainer" unique_id=2077488634]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -109,17 +121,17 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="masteryEntries" type="VBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/mastery_panel/ScrollContainer/MarginContainer"]
+[node name="masteryEntries" type="VBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/mastery_panel/ScrollContainer/MarginContainer" unique_id=1621054550]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="levels_panel" type="Panel" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer"]
+[node name="levels_panel" type="Panel" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer" unique_id=138481622]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/levels_panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/levels_panel" unique_id=863531421]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,7 +140,7 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/levels_panel/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/levels_panel/ScrollContainer" unique_id=1328813371]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -137,41 +149,48 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="levelEntries" type="VBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/levels_panel/ScrollContainer/MarginContainer"]
+[node name="levelEntries" type="VBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/levels_panel/ScrollContainer/MarginContainer" unique_id=1972294244]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="title" type="Label" parent="CanvasLayer/ColorRect/LoadPanel"]
-unique_name_in_owner = true
+[node name="buttonPanel" type="MarginContainer" parent="CanvasLayer/ColorRect/LoadPanel" unique_id=1266036538]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 33.0
-grow_horizontal = 2
-theme = ExtResource("1_5rkgg")
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="QuitButton" type="Button" parent="CanvasLayer/ColorRect/LoadPanel"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -118.25
-offset_top = -49.5
-offset_right = -12.25
-offset_bottom = -8.5
-grow_horizontal = 0
+offset_top = -41.0
+grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/LoadPanel/buttonPanel" unique_id=1030846365]
+layout_mode = 2
+theme_override_constants/separation = 11
+alignment = 2
+
+[node name="FolderButton" type="Button" parent="CanvasLayer/ColorRect/LoadPanel/buttonPanel/HBoxContainer" unique_id=1101196898]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.7764706, 0.039215688, 1)
+theme_override_colors/font_focus_color = Color(0.9999997, 0.8137702, 0.3384247, 1)
+theme_override_colors/font_hover_color = Color(0.9999996, 0.8732861, 0.570126, 1)
+text = "Open Folder"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/ColorRect/LoadPanel/buttonPanel/HBoxContainer" unique_id=13717360]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.7764706, 0.039215688, 1)
 theme_override_colors/font_focus_color = Color(0.9999997, 0.8137702, 0.3384247, 1)
 theme_override_colors/font_hover_color = Color(0.9999996, 0.8732861, 0.570126, 1)
 text = "Back"
 
-[node name="Backdrop" parent="." instance=ExtResource("4_l67mc")]
+[node name="Backdrop" parent="." unique_id=131222131 instance=ExtResource("4_l67mc")]
 
 [connection signal="tab_selected" from="CanvasLayer/ColorRect/LoadPanel/MarginContainer/VBoxContainer/TabBar" to="." method="_on_tab_bar_tab_selected"]
-[connection signal="pressed" from="CanvasLayer/ColorRect/LoadPanel/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/LoadPanel/buttonPanel/HBoxContainer/FolderButton" to="." method="_on_folder_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect/LoadPanel/buttonPanel/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -55,9 +55,6 @@ text = "Creating Custom Game"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ProgressBar" type="ProgressBar" parent="MessageBox/MarginContainer2/VBoxContainer" unique_id=1555830896]
-layout_mode = 2
-
 [node name="progress info" type="Label" parent="MessageBox/MarginContainer2/VBoxContainer" unique_id=606909908]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)

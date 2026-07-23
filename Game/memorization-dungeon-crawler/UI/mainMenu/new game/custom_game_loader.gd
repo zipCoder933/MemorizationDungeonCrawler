@@ -4,7 +4,6 @@ class_name CustomGameLoader
 var newgame:NewGameUI
 
 @onready var message_title: Label = %message_title
-@onready var progress_bar: ProgressBar = $MessageBox/MarginContainer2/VBoxContainer/ProgressBar
 @onready var progress_info: Label = %"progress info"
 @onready var cancel_button: Button = %cancel_button
 @onready var ok_button: Button = %ok_button
@@ -19,55 +18,68 @@ func init(newgame: NewGameUI):
 func _process(delta: float) -> void:
 	pass
 	
-func progress(text:String, progress:float):
+func info(title:String = "",text:String="", progress:float=0):
+	if(!title.is_empty()):
+		message_title.text = title
 	progress_info.text = text;
-	progress_bar.value = progress;
+	#progress_bar.value = progress;
 	print("CUSTOM GAME: ",text)
+
+func fail(title:String, message:String):
+	message_title.text = "Unable to load copied game"
+	progress_info.text = message
+	print("CUSTOM GAME: ",message)
 	
-func load_custom_game(template_dir:String, dest_dir:String) -> bool:
-	self.show()
-	message_title.text = "Building custom game..."
-	print("Making game in absolute directory: "+template_dir)
-	progress_bar.value = 0
+func validate_and_build_custom_game(input_dir:String, game_name:String, copy_to_appdata:bool) -> String:
+	var isArchive = false #Is the input file a directory or a .zip?
 	
-	#if(template_dir.ends_with(".zip")):
-		#var zip := ZIPReader.new()
-		#if zip.open(template_dir) == OK:
-			#var files = zip.get_files()
-			#for file_path in files:
-				#var data = zip.read_file(file_path)
-				## Create directories if needed
-				#var dir_path = file_path.get_base_dir()
-				#if dir_path != "":
-					#DirAccess.make_dir_recursive_absolute("user://unzipped/" + dir_path)
-				## Skip directories
-				#if file_path.ends_with("/"):
-					#continue
-				#var file = FileAccess.open("user://unzipped/" + file_path, FileAccess.WRITE)
-				#if file:
-					#file.store_buffer(data)
-					#file.close()
-			#zip.close()
-		#else:
-			#print("Failed to open ZIP")
-	
-	#Load the game to ensure it works
-	if newgame.load_game(template_dir):
-		if(dest_dir != null):
-			progress("Copying to Appdata dir", 0.5)
-			var feedback = GameJsonLoadInfo.new()
-			if FileUtils.copy_game(template_dir, dest_dir, feedback):
-				template_dir = dest_dir
-				print("Made game in directory: ",template_dir)
-				if(newgame.load_game(dest_dir)):
-					return true
-			else:
-				newgame.message_box.show_message("Unable to copy to AppData",feedback.message)
-				return false
+	if !DirAccess.dir_exists_absolute(input_dir):
+		if input_dir.ends_with(".zip"):
+			isArchive = true
 		else:
-			progress("Building in directory", 0.5)
-			return true
-	return false
+			fail("Invalid game file", "File must be a .zip archive or a folder")
+			return ""
+			
+	var dest_dir = input_dir
+	if(copy_to_appdata):
+		dest_dir = Globals.CUSTOM_GAMES_DIR+"/"+game_name+" "+Globals.get_base36_time()
+	elif(isArchive):
+		dest_dir = input_dir.get_base_dir()
+	
+	self.show()
+	info("Validating game...", "\nInput dir="+input_dir+"\n Output dir="+dest_dir, 0)
+	if(isArchive): #If this is an archive
+		dest_dir = FileUtils.extract_archive(input_dir, dest_dir)
+		print("Unzipped new destination: ",dest_dir)
+		if(dest_dir.is_empty()):
+			fail("Failed to unzip game","The archive file was unable to be unzipped")
+			return ""
+
+		var feedback = GameJsonLoadInfo.new()
+		#Extract and then validate, because we have to extract first anyway
+		if Globals.load_cards_levels(dest_dir,feedback):
+			return dest_dir
+		else:
+			fail("Unable to load extracted game",feedback.message)
+			return ""
+	else: #If this is a folder
+		var feedback = GameJsonLoadInfo.new()
+		if Globals.load_cards_levels(input_dir,feedback): #First validate the game before copying it over
+			if(dest_dir != input_dir): #If the destination is different than the temp dir
+				info("","Copying game", 0.5)
+				if FileUtils.copy_game(input_dir, dest_dir, feedback):
+					feedback = GameJsonLoadInfo.new()
+					if Globals.load_cards_levels(dest_dir,feedback):
+						return dest_dir
+					else:
+						fail("Unable to load copied game",feedback.message)
+				else:
+					fail("Unable to load game",feedback.message)
+			else:
+				return dest_dir
+		else:
+			fail("Unable to load game",feedback.message)
+	return ""
 
 
 func _on_cancel_button_pressed() -> void:
