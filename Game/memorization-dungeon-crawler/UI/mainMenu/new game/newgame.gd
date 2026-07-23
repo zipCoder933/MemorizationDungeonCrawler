@@ -52,7 +52,7 @@ func _on_start_button_pressed() -> void:
 	if(!custom_template.text.is_empty()):
 		template_dir = custom_template.text
 
-	if template_dir == null:
+	if template_dir == null || template_dir.trim().is_empty():
 		message_box.show_message("No Template selected","You must either select a builtin template, or create one and enter the path in the text box")
 		return
 		
@@ -60,7 +60,7 @@ func _on_start_button_pressed() -> void:
 		message_box.show_message("Name is empty","You must enter a name for your game")
 		return
 	
-	if template_dir.is_empty(): #If this is not a custom game
+	if custom_template.text.is_empty(): #If this is not a custom game
 		print("Making game in resource directory: ",template_dir)
 		if(load_game(template_dir)):
 			_make_game(template_dir)
